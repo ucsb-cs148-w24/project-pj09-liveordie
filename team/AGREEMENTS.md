@@ -1,4 +1,4 @@
-1. Meeting window on Friday 7:30 - 9:00 pm.
+1. We would like to meet on Friday 7:30 - 9:00 pm.
 
 2. When one of us is absent for an unavoidable reason, we will let the other team members know on the team slack channel, in advance when possible, as soon as possible afterwards when not.
 
