@@ -1,30 +1,30 @@
-Project: Live or Die CS 148
+# Project: Live or Die CS 148
 
-Mentor: TBD
+## Mentor: TBD
 
-Meeting Time: lab01
+## Meeting Time: lab01
 
-Type of meeting: Daily Scrum
+## Type of meeting: Daily Scrum/Standup
 
-Team: Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X]
+## Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X]
 
-*Scribed Discussion*
+## *Scribed Discussion*
 
-Rachel created a new branch, a personal markdown file and merged a PR. Plans to download Unity
+**Rachel**:  created a new branch, a personal markdown file and merged a PR. Plans to download Unity
 
-Thomas created a new branch, a personal markdown file and merged a PR. Plans to look into Unity
+**Thomas**: created a new branch, a personal markdown file and merged a PR. Plans to look into Unity
 
-Jason created a new branch, a personal markdown file and merged a PR. Plans to
+**Jason**:  created a new branch, a personal markdown file and merged a PR. Plans to
 look into & download Unity
 
-Baige created a new branch, a personal markdown file and merged a PR. Plans to
+**Baige**: created a new branch, a personal markdown file and merged a PR. Plans to
 look into Unity & download it
 
-Frank created a new branch, a personal markdown file and merged a PR. Plans to
+**Frank**: created a new branch, a personal markdown file and merged a PR. Plans to
 look into Unity & download it
 
-Sean created a new branch, a personal markdown file and merged a PR. Plans to
+**Sean**: created a new branch, a personal markdown file and merged a PR. Plans to
 look into Unity & download
 
-Cindy created a new branch, a personal markdown file and merged a PR. Plans to
+**Cindy**: created a new branch, a personal markdown file and merged a PR. Plans to
 look into Unity & download it
