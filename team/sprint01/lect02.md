@@ -1,13 +1,13 @@
 # Project: Live or Die CS148
 
-Mentor: TBD
-Meeting Time: lect02
+## Mentor: TBD
+## Meeting Time: lect02
 
-Type of meeting: Scrum Meeting
+## Type of meeting: Scrum Meeting
 
-Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X]
+## Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X]
 
-*Scribed Discussion*
+## *Scribed Discussion*
 
 Rachel added lect02 agenda. Todo: learn Unity
 
