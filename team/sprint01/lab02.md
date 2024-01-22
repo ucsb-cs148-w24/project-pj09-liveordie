@@ -6,7 +6,7 @@
 
 ## Type of meeting: Daily Scrum, Sprint Planning (LOL)
 
-## Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X]
+## Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X], Baige Hu [X]
 
 ## Key Notes:
 - Project will be a 2D Multiplayer Unity Game App
