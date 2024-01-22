@@ -5,7 +5,7 @@
 
 ## Type of meeting: Scrum Meeting
 
-## Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X]
+## Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X], Baige Hu [X]
 
 ## *Scribed Discussion*
 
