@@ -21,7 +21,7 @@ This game is designed for two players connected by an elastic string. Together, 
 
 ## User Roles and Permissions:
 upcoming
-## Spring Logs
+## Sprint Logs
 #### Sprint01: [folder](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/tree/main/team/sprint01)
 
 
