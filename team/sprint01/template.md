@@ -5,7 +5,7 @@ This will be the template for all documentation in reference to scrum principles
 _____________________________________________________________________________
 ## ==BASIC INFORMATION==
 _____________________________________________________________________________
-### Mentor: TBD
+### Mentor: Kristen/Christopher
 ### Meeting Time: [madlib]
 ### Type of meeting: [madlib]
 _____________________________________________________________________________
