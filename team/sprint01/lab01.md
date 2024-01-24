@@ -7,6 +7,7 @@
 ## Type of meeting: Daily Scrum/Standup
 
 ## Team: Cindy Lin [X], Sean Oh [X], Rachel Jiang [X], Frank Zhong [X], Thomas Harbeck [X], Jason Gu [X], Baige Hu [X]
+## Scribe: Rachel Jiang
 
 ## *Scribed Discussion*
 
