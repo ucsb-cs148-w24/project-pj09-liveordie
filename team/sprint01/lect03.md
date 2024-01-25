@@ -20,6 +20,7 @@ _____________________________________________________________________________
 - Gameplay is puzzle/obstacle or versus enemies (like Vampire Survivors) based?
 - 
 
+## Scribe: Sean Oh
 ## ==Scribe Notes==
 
 #### Rachel

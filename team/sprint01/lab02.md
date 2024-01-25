@@ -15,6 +15,8 @@
 	- top-down perspective
 	- focus: functionality, aside: graphics
 
+## Scribe: Rachel Jiang
+
 ## *Scribed Discussion*
 
 Rachel: completed Hello World Lab. Added to separate branch. Plans to work with team on fleshing out idea for game more. 

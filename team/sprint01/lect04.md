@@ -6,10 +6,10 @@ _____________________________________________________________________________
 ## ==BASIC INFORMATION==
 _____________________________________________________________________________
 ### Mentor: Kristen/Christopher
-### Meeting Time: [madlib]
-### Type of meeting: [madlib]
+### Meeting Time: 1/24/2024
+### Type of meeting: Daily Scrum
 _____________________________________________________________________________
-## ==ATTENDENCE==
+## ==ATTENDANCE==
 - [x] Rachel Jiang
 - [x] Jason Gu
 - [x] Frank Zhong
@@ -20,48 +20,49 @@ _____________________________________________________________________________
 _____________________________________________________________________________
 
 ## ==KEY NOTES==
-- [madlib]
-- [madlib]
-- [madlib]
+- Sean will be Retro Facilitator
+- Game concept: Fish swimming in the water
+- Look at Overcooked
+- Dirt Boss game
+- MVP done in two weeks: Basic play 
+- Decided on pixel art sprites
 _____________________________________________________________________________
-
-## Scribe: [insert name]
 
 ## ==Scribe Notes==
 
 #### Rachel
-- What did:
-- What to do:
+- What did: Moving character demo with graphics, learned about scripting 
+- What to do: Learn about rigid body physics
 - What blockers:
 
 #### Jason
-- What did:
-- What to do:
+- What did: Researched character movement
+- What to do: Create more user stories/issues, work on UI
 - What blockers:
 
 #### Frank
-- What did:
-- What to do:
+- What did: Drew game concepts, developed ideas
+- What to do: Learn Unity basics
 - What blockers:
 
 #### Baige
-- What did:
-- What to do:
+- What did: Found details about how players can learn skills 
+- What to do: How players detect enemies
 - What blockers:
 
 #### Cindy
-- What did:
-- What to do:
+- What did: N/A
+- What to do: Create enemies and how they detect players, assign issues
 - What blockers:
 
 #### Sean
-- What did:
-- What to do:
+- What did: Tinkering with Unity
+- What to do: Work on Kanban Board
 - What blockers:
 
 #### Thomas
-- What did:
-- What to do:
+- What did: N/A
+- What to do: Kanban Board, select facilitator 
 - What blockers:
 
 _____________________________________________________________________________
