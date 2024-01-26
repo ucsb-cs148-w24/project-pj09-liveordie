@@ -2,7 +2,7 @@
 
 This game is designed for two players connected by an elastic string. Together, they must navigate through various obstacles like spikes, pits, and poisonous swamps. Collaboration is essential as they work to jump over hurdles and defeat hostile minions.
 
-## Technology Stack: UNITY (C#)
+## Technology Stack: Unity Real-Time Development Platform, which uses built-in assets and C#.
 
 ## Group Members:
 - Rachel Jiang @racheljiang310
