@@ -20,7 +20,10 @@ This game is designed for two players connected by an elastic string. Together, 
 - Baige He @Bgggggh
 
 ## User Roles and Permissions:
-upcoming
+What kinds of users? Players (Player 1 & Player 2)
+- They will be able to play the game, but will have no permissions to the backend of the game and have no administrative roles
+
+
 ## Sprint Logs
 #### Sprint01: [folder](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/tree/main/team/sprint01)
 
