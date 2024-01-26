@@ -4,34 +4,34 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-#region 场景管理器
-//场景管理器封装了两个更好的场景加载方法
+#region Scene Manager
+//Scene Manager has two encapsulated load methods 
 
-//分别是同步加载场景和异步加载场景，两者都可以在加载完成后调用一个函数
-//异步加载场景方法中触发了一个ProgressBar的事件，传入了加载的进度值，有需要可以监听
+//Both Load Scene sync and async allows user to pass in a call back function that is called after loading
+//Load async trigger a event called ProgressBar with the progress value 
 #endregion
 public class SceneMgr : Singleton<SceneMgr>
 {
     
     /// <summary>
-    /// 同步加载场景
-    /// 可能会有卡顿，在加载完后调用afterLoad
+    /// Load scene synchronously
+    /// It may lag. Call afterLoad after scene loaded
     /// </summary>
-    /// <param name="sceneName">场景名</param>
-    /// <param name="afterLoad">加载后调用的函数</param>
-    /// <param name="loadSceneMode">加载场景的模式，默认为普通加载</param>
+    /// <param name="sceneName">Scene Name</param>
+    /// <param name="afterLoad">Function called after scene loaded</param>
+    /// <param name="loadSceneMode">load mode, default is normal mode</param>
     public void LoadScene(string sceneName, UnityAction afterLoad, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
     {
         SceneManager.LoadScene(sceneName,loadSceneMode);
-        afterLoad();
+        afterLoad(); //call after loading completed
     }
 
     /// <summary>
-    /// 异步加载场景
+    /// Load scene asynchronously
     /// </summary>
-    /// <param name="sceneName">场景名</param>
-    /// <param name="afterLoad">加载后调用的函数</param>
-    /// <param name="loadSceneMode">加载场景的模式，默认为普通加载</param>
+    /// <param name="sceneName">Scene Name</param>
+    /// <param name="afterLoad">Function called after scene loaded</param>
+    /// <param name="loadSceneMode">load mode, default is normal mode</param>
     public void LoadSceneAsync(string sceneName, UnityAction afterLoad, LoadSceneMode loadSceneMode = LoadSceneMode.Single)
     {
         MonoMgr.Instance.StartCoroutine(LoadSceneAsyncCoroutine(sceneName, afterLoad,loadSceneMode));
@@ -43,11 +43,11 @@ public class SceneMgr : Singleton<SceneMgr>
 
         while (!ao.isDone)
         {
-            EventMgr.Instance.EventTrigger("ProgressBar", ao.progress); //每次加载触发事件，传入新进度值
+            EventMgr.Instance.EventTrigger("ProgressBar", ao.progress); //trigger event every time it loads, passing new progress value
 
-            yield return ao.progress; //更新进度值
+            yield return ao.progress; //update progress value 
         }
 
-        afterLoad(); //调用加载完之后的方法
+        afterLoad(); //call after loading completed
     }
 }
