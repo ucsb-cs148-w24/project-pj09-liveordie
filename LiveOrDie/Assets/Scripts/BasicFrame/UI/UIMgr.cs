@@ -116,7 +116,7 @@ public class UIMgr : Singleton<UIMgr>
             panel.transform.SetParent(currPanel); //set panel to be child object of selected layer
             
             //Set position and scale to default 
-            panel.transform.localPosition = Vector3.zero;
+            //panel.transform.localPosition = Vector3.zero;
             panel.transform.localScale = Vector3.one;
             
             (panel.transform as RectTransform).offsetMax= Vector2.zero;
