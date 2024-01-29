@@ -26,5 +26,6 @@ What kinds of users? Players (Player 1 & Player 2)
 
 ## Sprint Logs
 #### Sprint01: [folder](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/tree/main/team/sprint01)
+#### Sprint02: [folder](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/tree/main/team/sprint02)
 
 
