@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player1
+  - Player2
+  - Bond
   layers:
   - Default
   - TransparentFX
@@ -11,10 +14,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Selections
+  - Selections in Game
+  - Characters
+  - Background
   - 
   - 
   - 
@@ -40,4 +43,31 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 4161257817
+    locked: 0
+  - name: 
+    uniqueID: 2455703971
+    locked: 0
+  - name: 
+    uniqueID: 3226745647
+    locked: 0
+  - name: 
+    uniqueID: 1251076595
+    locked: 0
+  - name: 
+    uniqueID: 3132658783
+    locked: 0
+  - name: Outside Game
+    uniqueID: 4269549595
+    locked: 0
+  - name: Inside Game
+    uniqueID: 2275625329
+    locked: 0
+  - name: Characters
+    uniqueID: 1574922491
+    locked: 0
+  - name: Background
+    uniqueID: 503165355
     locked: 0
