@@ -35,7 +35,7 @@ _____________________________________________________________________________
 - What blockers:
 
 #### Jason
-- What did: Example toolkit, wrote document, help with starting menu, edit settings menu
+- What did: [Example Toolkit](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/tree/1e76645cc6c6bea7f0803dd1d8bb49b189979cfd/LiveOrDie/Assets/Scripts/Test/Toolkit), wrote document, help with starting menu, edit settings menu
 - What to do: maybe edit more settings menu
 - What blockers:
 
