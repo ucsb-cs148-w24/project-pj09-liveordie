@@ -1,0 +1,7 @@
+# Problem Scenario
+
+- Sarah and her best friend Alex love playing video games together, but they often struggle to find games that truly emphasize cooperative gameplay. They crave a game that requires them to work together closely, strategize, and communicate effectively to overcome challenges. They are eagerly looking for a game like Live or Die with Your Best Friend that will provide them with an immersive cooperative experience and strengthen their bond as friends.
+
+- Mark is tired of playing single-player games that lack excitement and social interaction. He desires a game that allows him to engage with his best friend, Lisa, in a shared gaming experience. They want to collaborate, face challenges together, and celebrate their victories as a team. Live or Die with Your Best Friend presents an ideal solution for Mark and Lisa, offering them an opportunity to enjoy a dynamic multiplayer adventure that they can experience and enjoy together.
+
+- Emily and her best friend Daniel have been gaming buddies since childhood. However, they often struggle to find multiplayer games that accommodate only two players. They want a game that is specifically designed for a pair of players and doesn't require joining larger online communities or competing against strangers. Live or Die with Your Best Friend addresses this challenge by offering a unique cooperative experience tailored for close friends, allowing Emily and Daniel to fully immerse themselves in the game and strengthen their friendship through shared adventures.
