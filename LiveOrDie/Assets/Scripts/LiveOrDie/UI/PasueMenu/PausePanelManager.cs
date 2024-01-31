@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PausePanelManager : MonoBehaviour
 {
+    private void Start()
+    {
+        EventMgr.Instance.AddEventListener("GamePaused", SwitchPauseState);
+    }
 
     private bool isPausePanelShown = false;
     private void Update()
@@ -26,4 +30,10 @@ public class PausePanelManager : MonoBehaviour
             
         }
     }
+
+    private void SwitchPauseState()
+    {
+        isPausePanelShown = !isPausePanelShown;
+    }
+        
 }
