@@ -12,6 +12,8 @@ public class AttackArea : MonoBehaviour
 
     }
 
+    // This will detect if an enemy is within the  area when the attack button in the player script is pressed.
+    // The enemy will be destroyed. We will need to update this function with a "reward" for destroying an enemy.
     private void onTriggerEnter2D(Collider2D col) {
         if(col.gameObject.tag == "Enemy") {
             Destroy(col.gameObject);

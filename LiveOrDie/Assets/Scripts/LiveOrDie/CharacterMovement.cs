@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour
     public float speed = 1.5f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
     public int whichCharacter; // unique ID of character
+
+    private Vector3 flip = new Vector3(3f, 3f, 1f);
     GameObject peer;
     void Start()
     {
@@ -50,10 +52,12 @@ public class CharacterMovement : MonoBehaviour
         if((playerID == 1 && Input.GetKey("a")) 
         || (playerID == 2 && Input.GetKey(KeyCode.LeftArrow))){
             pos.x -= Time.deltaTime * speed;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         if((playerID == 1 && Input.GetKey("d"))
         || (playerID == 2 && Input.GetKey(KeyCode.RightArrow))){
             pos.x += Time.deltaTime * speed;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         if((playerID == 1 && Input.GetKey("s"))
         || (playerID == 2 && Input.GetKey(KeyCode.DownArrow))){
