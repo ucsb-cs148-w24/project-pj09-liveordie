@@ -68,32 +68,4 @@ public class CharacterMovement : MonoBehaviour
             pos.y += Time.deltaTime * speed;
         }
     }
-    // void checkMoveLeftCharacter(ref Vector3 pos, float currDist){
-    //     if(Input.GetKey("a")){
-    //         pos.x -= Time.deltaTime * speed;
-    //     }
-    //     if(Input.GetKey("d")){
-    //         pos.x += Time.deltaTime * speed;
-    //     }
-    //     if(Input.GetKey("s")){
-    //         pos.y -= Time.deltaTime * speed;
-    //     }
-    //     if(Input.GetKey("w")){
-    //         pos.y += Time.deltaTime * speed;
-    //     }
-    // }
-    // void checkMoveRightCharacter(ref Vector3 pos, float currDist){
-    //     if(Input.GetKey(KeyCode.LeftArrow)){
-    //         pos.x -= Time.deltaTime * speed;
-    //     }
-    //     if(Input.GetKey(KeyCode.RightArrow)){
-    //         pos.x += Time.deltaTime * speed;
-    //     }
-    //     if(Input.GetKey(KeyCode.DownArrow)){
-    //         pos.y -= Time.deltaTime * speed;
-    //     }
-    //     if(Input.GetKey(KeyCode.UpArrow)){
-    //         pos.y += Time.deltaTime * speed;
-    //     }
-    // }
 }
