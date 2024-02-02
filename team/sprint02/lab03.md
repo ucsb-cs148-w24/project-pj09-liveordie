@@ -6,8 +6,8 @@ _____________________________________________________________________________
 ## ==BASIC INFORMATION==
 _____________________________________________________________________________
 ### Mentor: Kristen/Christopher
-### Meeting Time: [madlib]
-### Type of meeting: [madlib]
+### Meeting Time: 2/2 3p.m.
+### Type of meeting: Daily Scrum, Sprint
 _____________________________________________________________________________
 ## ==ATTENDENCE==
 - [x] Rachel Jiang
