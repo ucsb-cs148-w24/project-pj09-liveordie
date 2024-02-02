@@ -33,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
         float distance = Vector3.Distance(pos, peer.transform.position);
         
         if(distance > maxRadius){ // maxRadius reached
-            Debug.Log("SOUL BOND IS DYING!! Current Distance: " + distance); // for debugging purposes
+            // Debug.Log("SOUL BOND IS DYING!! Current Distance: " + distance); // for debugging purposes
             Vector3 direction = (peer.transform.position - transform.position).normalized;
             pos += direction * (distance - maxRadius);
         }

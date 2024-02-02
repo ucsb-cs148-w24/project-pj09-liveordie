@@ -7,6 +7,8 @@ TagManager:
   - Player1
   - Player2
   - Bond
+  - Enemy
+  - CloneGod
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Selections in Game
   - Characters
   - Background
-  - 
+  - Enemy
   - 
   - 
   - 
