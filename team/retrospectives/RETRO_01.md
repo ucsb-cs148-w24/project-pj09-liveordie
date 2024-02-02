@@ -27,5 +27,8 @@
 ## Experiment/Change
 
 * A brief description of what constitutes your change/experiment
+We changed how we did our standups, by timing them, removing longer discussions, actually standing up
 * A brief assessment of how its results (did it improve things? move the needle at all?)
+We forgot to actually stand up, but otherwise, our standups have become more streamlined and effective
 * A decision going forward: keep the change, revert to previous procedure, make a new change? 
+We will keep this change going forward.
