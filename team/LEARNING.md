@@ -4,14 +4,14 @@
  
   Baige: Unity
 
-  Frank: Unity
+  Frank: Unity; posted a link about pause menu tutorial https://ucsb-148-w24.slack.com/archives/C06ECHEE9D1/p1706915186208529
 
   Cindy: Unity
 
-  Sean: Unity
+  Sean: Unity; posted a link about the Tilemap tutorial https://ucsb-148-w24.slack.com/archives/C06ECHEE9D1/p1706915144249409
 
   Rachel: Unity
 
-  Thomas: Unity
+  Thomas: Unity; posted a link for Unity beginners https://ucsb-148-w24.slack.com/archives/C06ECHEE9D1/p1706915145487499
 
-  Jason: Unity
+  Jason: Unity; posted a link about Unity tutorial https://ucsb-148-w24.slack.com/archives/C06ECHEE9D1/p1706915165200869
