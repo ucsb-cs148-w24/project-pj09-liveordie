@@ -21,5 +21,8 @@ public class SettingsPanel : BasePanel
     {
         (transform as RectTransform).offsetMax= Vector2.zero;
         (transform as RectTransform).offsetMin= Vector2.zero;
+        
     }
+    
+    
 }

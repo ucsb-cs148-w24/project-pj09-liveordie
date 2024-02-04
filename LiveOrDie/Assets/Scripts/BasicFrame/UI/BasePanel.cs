@@ -41,6 +41,7 @@ public class BasePanel : MonoBehaviour
         FindChildrenComponent<ScrollRect>();
         FindChildrenComponent<InputField>();
         FindChildrenComponent<TextMeshProUGUI>();
+        FindChildrenComponent<TMP_Text>();
     }
 
     /// <summary>

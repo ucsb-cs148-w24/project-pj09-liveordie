@@ -9,7 +9,7 @@ public class StartScreenPanel:BasePanel
         switch (buttonName)
         {
             case "StartGameButton":
-                print("startGame");
+                // print("startGame");
                 GoToScene("PauseMenuTest");
                 UIMgr.Instance.HidePanel("StartScreenPanel");
                 break;
@@ -31,9 +31,12 @@ public class StartScreenPanel:BasePanel
     
     private void GoToScene(string sceneName)
     {
+        UIMgr.Instance.ShowPanel<LoadingPanel>("LoadingPanel", E_PanelLayer.Top); //show loading panel
+        
         SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
         {
             EventMgr.Instance.EventTrigger("Load"+sceneName+"Complete");
+            UIMgr.Instance.HidePanel("LoadingPanel");//hide loading panel after loading complete
         }); 
     }
 }
