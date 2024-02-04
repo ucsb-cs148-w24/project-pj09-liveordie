@@ -9,14 +9,20 @@ public class SettingsPanel : BasePanel
         switch (buttonName)
         {
             case "BackButton":
-                print("back");
+                // print("back");
                 UIMgr.Instance.HidePanel("SettingsPanel");
                 break;
             default:
                 break;
         }
     }
-    
 
+    public override void Show()
+    {
+        (transform as RectTransform).offsetMax= Vector2.zero;
+        (transform as RectTransform).offsetMin= Vector2.zero;
+        
+    }
+    
     
 }

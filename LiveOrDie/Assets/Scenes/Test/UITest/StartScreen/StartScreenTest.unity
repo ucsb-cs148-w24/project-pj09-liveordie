@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 656276607}
   - component: {fileID: 656276606}
   m_Layer: 0
-  m_Name: UIController
+  m_Name: StartScreenController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
