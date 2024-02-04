@@ -32,11 +32,13 @@ public class StartScreenPanel:BasePanel
     private void GoToScene(string sceneName)
     {
         UIMgr.Instance.ShowPanel<LoadingPanel>("LoadingPanel", E_PanelLayer.Top); //show loading panel
-        
+
         SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
         {
-            EventMgr.Instance.EventTrigger("Load"+sceneName+"Complete");
-            UIMgr.Instance.HidePanel("LoadingPanel");//hide loading panel after loading complete
+            EventMgr.Instance.EventTrigger("ProgressBar", 1f);
+            // EventMgr.Instance.EventTrigger("Load"+sceneName+"Completed"); //for later usage 
+            
+            
         }); 
     }
 }

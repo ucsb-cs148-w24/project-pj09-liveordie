@@ -9,7 +9,7 @@ public class SettingsPanel : BasePanel
         switch (buttonName)
         {
             case "BackButton":
-                print("back");
+                // print("back");
                 UIMgr.Instance.HidePanel("SettingsPanel");
                 break;
             default:

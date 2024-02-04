@@ -41,8 +41,9 @@ public class PausePanel : BasePanel
         
         SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
         {
-            EventMgr.Instance.EventTrigger("Load"+sceneName+"Complete");
-            UIMgr.Instance.HidePanel("LoadingPanel"); //hide loading panel after loading complete
+            EventMgr.Instance.EventTrigger("ProgressBar", 1f);
+            // EventMgr.Instance.EventTrigger("Load"+sceneName+"Completed");  //for later usage 
+            
         }); 
     }
     

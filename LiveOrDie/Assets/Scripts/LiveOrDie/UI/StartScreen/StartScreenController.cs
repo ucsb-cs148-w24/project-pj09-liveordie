@@ -6,6 +6,7 @@ public class StartScreenController : MonoBehaviour
 {
     private void Start()
     {
-        UIMgr.Instance.ShowPanel<StartScreenPanel>("StartScreenPanel",E_PanelLayer.Top);
+        UIMgr.Instance.ShowPanel<StartScreenPanel>("StartScreenPanel",E_PanelLayer.Mid);
     }
+    
 }
