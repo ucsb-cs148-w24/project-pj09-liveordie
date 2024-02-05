@@ -6,8 +6,8 @@ _____________________________________________________________________________
 ## ==BASIC INFORMATION==
 _____________________________________________________________________________
 ### Mentor: Kristen/Christopher
-### Meeting Time: [madlib]
-### Type of meeting: [madlib]
+### Meeting Time: 2/2 3p.m.
+### Type of meeting: Daily Scrum, Sprint
 _____________________________________________________________________________
 ## ==ATTENDENCE==
 - [x] Rachel Jiang
@@ -30,38 +30,38 @@ _____________________________________________________________________________
 ## ==Scribe Notes==
 
 #### Rachel
-- What did:
-- What to do:
+- What did: work with Cindy enemy, organize github branch
+- What to do: work together with Cindy and Thomas
 - What blockers:
 
 #### Jason
-- What did:
-- What to do:
+- What did:nothing
+- What to do: finish UI next week, including progress bar
 - What blockers:
 
 #### Frank
-- What did:
-- What to do:
+- What did: game-over page
+- What to do: finish above, add conditions
 - What blockers:
 
 #### Baige
-- What did:
-- What to do:
+- What did: discuss with Jason about UIs
+- What to do: finish UIs with Jason and Frank
 - What blockers:
 
 #### Cindy
-- What did:
-- What to do:
+- What did: finish enemy movement, features, 
+- What to do: work together with Rachel and Thomas
 - What blockers:
 
 #### Sean
-- What did:
-- What to do:
+- What did: look up example, UI, figure out collisons 
+- What to do: continue above
 - What blockers:
 
 #### Thomas
-- What did:
-- What to do:
+- What did: character attack
+- What to do: work together with Thomas and Rachel
 - What blockers:
 
 _____________________________________________________________________________

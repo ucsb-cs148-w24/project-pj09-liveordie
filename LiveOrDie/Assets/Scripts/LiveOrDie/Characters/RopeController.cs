@@ -7,9 +7,9 @@ public class RopeController : MonoBehaviour
     public Transform Player1, Player2;
     public float ropeWidth = 0.05f; // Adjust the width of the rope
     private LineRenderer ropeRenderer;
-    private HingeJoint ropeHingeJoint;
+    private HingeJoint2D ropeHingeJoint;
     public Color c = Color.white;
-    private Rigidbody p1;
+    private Rigidbody2D p1;
     // Start is called before the first frame update
 
     void OnEnable(){
@@ -21,18 +21,19 @@ public class RopeController : MonoBehaviour
         ropeRenderer.endWidth = ropeWidth;
         ropeRenderer.positionCount = 2;
         ropeRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        ropeRenderer.SetColors(c, c);
+        ropeRenderer.startColor = c;
+        ropeRenderer.endColor = c;
 
         // create HingeJoint if it doesn't exist
-        ropeHingeJoint = gameObject.GetComponent<HingeJoint>();
-        if(ropeHingeJoint == null){
-            ropeHingeJoint = gameObject.AddComponent<HingeJoint>();
-        }
+        ropeHingeJoint = gameObject.GetComponent<HingeJoint2D>();
+        // if(ropeHingeJoint == null){
+        //     ropeHingeJoint = gameObject.AddComponent<HingeJoint2D>();
+        // }
 
         // attach hingeJoint to Player1
-        ropeHingeJoint.connectedBody = Player1.GetComponent<Rigidbody>();
-        p1 = Player1.GetComponent<Rigidbody>();
-        ropeHingeJoint.axis = Vector3.forward; // Z-axis rotation
+        ropeHingeJoint.connectedBody = Player1.GetComponent<Rigidbody2D>();
+        p1 = Player1.GetComponent<Rigidbody2D>();
+        // ropeHingeJoint.axis = Vector3.forward; // Z-axis rotation
 
         ropeRenderer.SetPosition(0, Player1.position);
         ropeRenderer.SetPosition(1, Player2.position);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -10,9 +11,27 @@ public class CharacterMovement : MonoBehaviour
     public float speed = 1.5f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
     public int whichCharacter; // unique ID of character
-    GameObject peer;
-    void Start()
-    {
+
+    private BoxCollider2D collide;
+    private Rigidbody2D rb;
+    private Vector3 flip = new Vector3(3f, 3f, 1f);
+    private GameObject peer;
+
+    // void OnEnable(){
+    // }
+
+    private void OnTriggerEnter2D(Collider2D other){
+        if(other.CompareTag("Enemy")){
+            // Destroy(this.gameObject);
+        }
+    }
+    void Start(){ 
+        rb = this.GetComponent<Rigidbody2D>();
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        collide = this.AddComponent<BoxCollider2D>();
+        
+        collide.isTrigger = true;
+        this.transform.localPosition = new Vector3(0, 0, 0); // sets default position
         switch (whichCharacter){ // identifies characters (you vs peer)
             case 1: // User 1 finds User 2 (right)
                 peer = GameObject.FindGameObjectWithTag("Player2");
@@ -24,7 +43,6 @@ public class CharacterMovement : MonoBehaviour
                 Debug.LogWarning("Unexpected character type: " + whichCharacter);
                 break;
         }
-        this.transform.localPosition = new Vector3(0, 0, 0); // sets default position
     }
 
     void Update()
@@ -33,7 +51,6 @@ public class CharacterMovement : MonoBehaviour
         float distance = Vector3.Distance(pos, peer.transform.position);
         
         if(distance > maxRadius){ // maxRadius reached
-            // Debug.Log("SOUL BOND IS DYING!! Current Distance: " + distance); // for debugging purposes
             Vector3 direction = (peer.transform.position - transform.position).normalized;
             pos += direction * (distance - maxRadius);
         }
@@ -50,10 +67,12 @@ public class CharacterMovement : MonoBehaviour
         if((playerID == 1 && Input.GetKey("a")) 
         || (playerID == 2 && Input.GetKey(KeyCode.LeftArrow))){
             pos.x -= Time.deltaTime * speed;
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         if((playerID == 1 && Input.GetKey("d"))
         || (playerID == 2 && Input.GetKey(KeyCode.RightArrow))){
             pos.x += Time.deltaTime * speed;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         if((playerID == 1 && Input.GetKey("s"))
         || (playerID == 2 && Input.GetKey(KeyCode.DownArrow))){

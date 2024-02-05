@@ -6,13 +6,10 @@ using UnityEngine;
 
 public class EnemyCloner : MonoBehaviour
 {
-    // public List<GameObject> points; // list of points
     public int enemySize = 10;
     private int count = 0;
     public GameObject prefabEnemy; // game object of the enemy
     GameObject instance;
-    float waitTime; // wait time for each enemy to appear
-
     void Clone()
     {
         Vector3 randomSpawn = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, 0));
@@ -23,7 +20,6 @@ public class EnemyCloner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        waitTime = 1;
     }
 
     // Update is called once per frame
