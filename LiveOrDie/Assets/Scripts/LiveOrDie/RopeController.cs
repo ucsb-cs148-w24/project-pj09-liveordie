@@ -38,7 +38,6 @@ public class RopeController : MonoBehaviour
 
         ropeRenderer.SetPosition(0, Player1.position);
         ropeRenderer.SetPosition(1, Player2.position);
-        ropeRenderer.sortingOrder = 2;
     }
     void Update()
     {
