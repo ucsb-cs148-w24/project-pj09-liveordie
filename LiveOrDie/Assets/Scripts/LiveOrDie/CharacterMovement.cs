@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -13,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector3 flip = new Vector3(3f, 3f, 1f);
     GameObject peer;
+    private Rigidbody2D rb;
     void Start()
     {
         switch (whichCharacter){ // identifies characters (you vs peer)
@@ -26,25 +28,27 @@ public class CharacterMovement : MonoBehaviour
                 Debug.LogWarning("Unexpected character type: " + whichCharacter);
                 break;
         }
-        this.transform.localPosition = new Vector3(0, 0, 0); // sets default position
+        rb = GetComponent<Rigidbody2D>();
+        // this.transform.localPosition = new Vector3(0, 0, 0); // sets default position
     }
 
     void Update()
     {
         Vector3 pos = this.transform.position;
-        float distance = Vector3.Distance(pos, peer.transform.position);
+        // float distance = Vector3.Distance(pos, peer.transform.position);
         
-        if(distance > maxRadius){ // maxRadius reached
-            Debug.Log("SOUL BOND IS DYING!! Current Distance: " + distance); // for debugging purposes
-            Vector3 direction = (peer.transform.position - transform.position).normalized;
-            pos += direction * (distance - maxRadius);
-        }
-        else{
+        // if(distance > maxRadius){ // maxRadius reached
+        //     Debug.Log("SOUL BOND IS DYING!! Current Distance: " + distance); // for debugging purposes
+        //     Vector3 direction = (peer.transform.position - transform.position).normalized;
+        //     pos += direction * speed;
+        // }
+        // else{
             if(whichCharacter == 2 || whichCharacter == 1){
                 MoveCharacter(ref pos, whichCharacter);
             } else{ Debug.LogWarning("Unexpected character type: " + whichCharacter); }
-        }
-        this.transform.position = pos;
+        // }
+        rb.MovePosition(pos);
+        // this.transform.position = pos;
     }
 
     // Controls response to keyboard movement
