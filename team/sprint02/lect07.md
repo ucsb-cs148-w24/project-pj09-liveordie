@@ -6,8 +6,8 @@ _____________________________________________________________________________
 ## ==BASIC INFORMATION==
 _____________________________________________________________________________
 ### Mentor: Kristen/Christopher
-### Meeting Time: 2/2 3p.m.
-### Type of meeting: Daily Scrum, Sprint
+### Meeting Time: 2/5/2024
+### Type of meeting: Daily Scrum
 _____________________________________________________________________________
 ## ==ATTENDENCE==
 - [x] Rachel Jiang
@@ -25,46 +25,46 @@ _____________________________________________________________________________
 - [madlib]
 _____________________________________________________________________________
 
-## Scribe: Baige He
+## Scribe: Cindy Lin
 
 ## ==Scribe Notes==
 
 #### Rachel
-- What did: work with Cindy enemy, organize github branch
-- What to do: work together with Cindy and Thomas
-- What blockers:
+- What did: Merged PR and worked on player-enemy-interaction
+- What to do: Work with Cindy and Thomas on interactions
+- What blockers: The bullets can only go to one direction instead of multiple directions
 
 #### Jason
-- What did:nothing
-- What to do: finish UI next week, including progress bar
+- What did: Worked on game UI with Frank, finished loading panel and found momre assets
+- What to do: Finish UI integration, work on switching between different scenes
 - What blockers:
 
 #### Frank
-- What did: game-over page
-- What to do: finish above, add conditions
+- What did: Worked with Jason, health bar, found some possible UI background
+- What to do: Work on MVP demo video
 - What blockers:
 
 #### Baige
-- What did: discuss with Jason about UIs
-- What to do: finish UIs with Jason and Frank
+- What did: Wrote some storyline about the game
+- What to do: Continue work on the story and make it more concise
 - What blockers:
 
 #### Cindy
-- What did: finish enemy movement, features, 
-- What to do: work together with Rachel and Thomas
+- What did: N/A
+- What to do: Work with Rachel and Thomas on interactions
 - What blockers:
 
 #### Sean
-- What did: look up example, UI, figure out collisons 
-- What to do: continue above
+- What did: Finished collisions with players, PR is ready to be merged
+- What to do: Work on level design
 - What blockers:
 
 #### Thomas
-- What did: character attack
-- What to do: work together with Thomas and Rachel
-- What blockers:
+- What did: Implemented into actual characters
+- What to do: Continue work on the interaction
+- What blockers: Cannot reconized the enemies
 
 _____________________________________________________________________________
 
 ## ==OTHER STUFF==
-[madlib]
+Schedule a meeting this Thursday 7PM before the deadline of MVP, in person @ library study room

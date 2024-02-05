@@ -48,18 +48,20 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         Vector3 pos = this.transform.position;
-        float distance = Vector3.Distance(pos, peer.transform.position);
+        // float distance = Vector3.Distance(pos, peer.transform.position);
         
-        if(distance > maxRadius){ // maxRadius reached
-            Vector3 direction = (peer.transform.position - transform.position).normalized;
-            pos += direction * (distance - maxRadius);
-        }
-        else{
+        // if(distance > maxRadius){ // maxRadius reached
+        //     Debug.Log("SOUL BOND IS DYING!! Current Distance: " + distance); // for debugging purposes
+        //     Vector3 direction = (peer.transform.position - transform.position).normalized;
+        //     pos += direction * speed;
+        // }
+        // else{
             if(whichCharacter == 2 || whichCharacter == 1){
                 MoveCharacter(ref pos, whichCharacter);
             } else{ Debug.LogWarning("Unexpected character type: " + whichCharacter); }
-        }
-        this.transform.position = pos;
+        // }
+        rb.MovePosition(pos);
+        // this.transform.position = pos;
     }
 
     // Controls response to keyboard movement
