@@ -8,6 +8,7 @@ public class PausePanelManager : MonoBehaviour
     private void Start()
     {
         EventMgr.Instance.AddEventListener("GamePaused", SwitchPauseState);
+        EventMgr.Instance.AddEventListener("GameResumed", SwitchPauseState);
     }
 
     private bool isPausePanelShown = false;

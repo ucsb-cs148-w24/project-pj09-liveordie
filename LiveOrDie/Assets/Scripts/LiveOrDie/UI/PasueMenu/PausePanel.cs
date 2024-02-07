@@ -16,7 +16,6 @@ public class PausePanel : BasePanel
             
             case "ResumeButton":
                 UIMgr.Instance.HidePanel("PausePanel"); // hide pause panel
-                EventMgr.Instance.EventTrigger("GamePaused"); //**send game paused event 
                 //return to the game ------------------
                 
                 break;
@@ -33,12 +32,14 @@ public class PausePanel : BasePanel
     public override void Show()
     {
         (transform as RectTransform).sizeDelta= new Vector2(960,540); //same as size in prefab
+        EventMgr.Instance.EventTrigger("GamePaused"); //**send game paused event 
         Time.timeScale = 0;
     }
 
     public override void Hide()
     {
         Time.timeScale = 1;
+        EventMgr.Instance.EventTrigger("GameResumed"); //**send game paused event 
     }
 
 
