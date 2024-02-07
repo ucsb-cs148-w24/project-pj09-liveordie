@@ -10,7 +10,8 @@ public class StartScreenPanel:BasePanel
         {
             case "StartGameButton":
                 // print("startGame");
-                GoToScene("PauseMenuTest");
+                // GoToScene("PauseMenuTest");
+                GoToScene("MainScene");
                 UIMgr.Instance.HidePanel("StartScreenPanel");
                 break;
             

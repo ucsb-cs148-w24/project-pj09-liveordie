@@ -24,7 +24,8 @@ public class PausePanel : BasePanel
             case "BackToMenuButton":
                 // print("back to menu");
                 UIMgr.Instance.HidePanel("PausePanel");
-                GoToScene("StartScreenTest"); //load start screen
+                // GoToScene("StartScreenTest"); //load start screen test
+                GoToScene("StartScene"); //load start screen test
                 break;
         }
     }
@@ -32,6 +33,12 @@ public class PausePanel : BasePanel
     public override void Show()
     {
         (transform as RectTransform).sizeDelta= new Vector2(960,540); //same as size in prefab
+        Time.timeScale = 0;
+    }
+
+    public override void Hide()
+    {
+        Time.timeScale = 1;
     }
 
 
