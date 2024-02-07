@@ -7,7 +7,8 @@ public class RopeController : MonoBehaviour
     public Transform Player1, Player2;
     public float ropeWidth = 0.05f; // Adjust the width of the rope
     private LineRenderer ropeRenderer;
-    public Color c = Color.white;
+    // public Color c = Color.grey;
+    // private SpringJoint2D spring; --> Worry about this later
     // Start is called before the first frame update
 
     void OnEnable(){
@@ -19,9 +20,13 @@ public class RopeController : MonoBehaviour
         ropeRenderer.endWidth = ropeWidth;
         ropeRenderer.positionCount = 2;
         ropeRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        ropeRenderer.startColor = c;
-        ropeRenderer.endColor = c;
+        ropeRenderer.startColor = Color.grey;
+        ropeRenderer.endColor = Color.grey;
         ropeRenderer.sortingOrder = 2;
+        // spring = this.GetComponent<SpringJoint2D>();
+        // spring.distance = 5.0f;
+        // spring.dampingRatio = 0.9f;
+        // spring.frequency = 0.8f;
 
         ropeRenderer.SetPosition(0, Player1.position);
         ropeRenderer.SetPosition(1, Player2.position);

@@ -22,8 +22,8 @@ public class EnemyMovement : MonoBehaviour
         chooseTarget = Random.Range(0, 2);
         if (chooseTarget == 0) target = GameObject.FindGameObjectWithTag("Player1");
         else target = GameObject.FindGameObjectWithTag("Player2");
-        if(chooseTarget == 0) render.color = Color.red;
-        else render.color = Color.blue;
+        if(chooseTarget == 0) render.color = Color.white;
+        else render.color = Color.grey;
     }
 
     void OnDisable()
@@ -38,11 +38,11 @@ public class EnemyMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other){
         if (other.CompareTag("Bullet")){
-            Debug.Log("Damage done to Enemy!");
+            // Debug.Log("Damage done to Enemy!");
             Destroy(this.gameObject);
         }
         else if(other.CompareTag(target.tag)){
-            Debug.Log("Damage done to Character");
+            // Debug.Log("Damage done to Character");
             Destroy(this.gameObject);
         }
     }
@@ -52,12 +52,4 @@ public class EnemyMovement : MonoBehaviour
         Vector3 direction = (target.transform.position - transform.position).normalized;
         this.transform.position += direction * speed * Time.deltaTime;
     }
-
-    // private void TrackDistance()
-    // {
-    //     float dist = Vector3.Distance(target.transform.position, transform.position);
-        // if(dist <= 0.1){
-        //     OnDisable();
-        // }
-    // }
 }
