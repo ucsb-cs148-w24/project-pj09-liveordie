@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 4645581076278884941}
   - component: {fileID: 9178055712953238706}
   - component: {fileID: 8871246770237727393}
-  - component: {fileID: 4862980240007760176}
+  - component: {fileID: 2837738015719961206}
   m_Layer: 8
   m_Name: Player1
   m_TagString: Player1
@@ -222,26 +222,20 @@ CapsuleCollider2D:
   m_Offset: {x: 0.03, y: -0.09}
   m_Size: {x: 0.59431404, y: 0.23910919}
   m_Direction: 1
---- !u!232 &4862980240007760176
-DistanceJoint2D:
+--- !u!114 &2837738015719961206
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278228051896783842}
   m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 110896915486969791}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 5
-  m_MaxDistanceOnly: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed006608214bb541b0a99d055dad889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8374863435778687136, guid: ddf16c1be929d409ea3ac1866d6afe81, type: 3}
+  firePoint: {fileID: 4581185948622797665}
 --- !u!1 &2405921495706572136
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +287,7 @@ MonoBehaviour:
   Player1: {fileID: 4581185948622797665}
   Player2: {fileID: 8016165881243981981}
   ropeWidth: 0.05
+  c: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &3113713084750309350
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +395,7 @@ GameObject:
   - component: {fileID: 7463035871079031829}
   - component: {fileID: 110896915486969791}
   - component: {fileID: 3077908110123453955}
+  - component: {fileID: 3681125915557931370}
   m_Layer: 8
   m_Name: Player2
   m_TagString: Player2
@@ -572,3 +568,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0.03, y: -0.09}
   m_Size: {x: 0.59431404, y: 0.23910919}
   m_Direction: 1
+--- !u!114 &3681125915557931370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440314939813618173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed006608214bb541b0a99d055dad889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8374863435778687136, guid: ddf16c1be929d409ea3ac1866d6afe81, type: 3}
+  firePoint: {fileID: 8016165881243981981}

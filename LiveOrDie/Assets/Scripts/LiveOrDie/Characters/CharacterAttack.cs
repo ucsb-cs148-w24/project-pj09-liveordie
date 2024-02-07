@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class CharacterAttack : MonoBehaviour
 {
 
-    private GameObject attackArea = default;
-
+    // private GameObject attackArea = default;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
     private bool attacking = false;
-
     private float timeToAttack = 0.25f;
     private float timer = 0f;
 
@@ -17,7 +17,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         // Gets the child of this object to create the attack area
         // the child should be the attack area polygon
-        attackArea = transform.GetChild(0).gameObject;
+        // attackArea = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class NewBehaviourScript : MonoBehaviour
             if(timer >= timeToAttack) {
                 timer = 0f;
                 attacking = false;
-                attackArea.SetActive(attacking);
+                // attackArea.SetActive(attacking);
             }
         }
     }
@@ -42,6 +42,7 @@ public class NewBehaviourScript : MonoBehaviour
     //attack function to time properly
     private void Attack() {
         attacking = true;
-        attackArea.SetActive(attacking);
+        // attackArea.SetActive(attacking);
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 }
