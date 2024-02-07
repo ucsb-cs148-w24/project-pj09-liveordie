@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
@@ -12,9 +13,12 @@ public class CharacterAttack : MonoBehaviour
     private float timeToAttack = 0.25f;
     private float timer = 0f;
 
+    private SpriteRenderer attackRender;
+
     // Start is called before the first frame update
     void Start()
     {
+        attackRender = this.GetComponent<SpriteRenderer>();
         // Gets the child of this object to create the attack area
         // the child should be the attack area polygon
         // attackArea = transform.GetChild(0).gameObject;
@@ -43,6 +47,9 @@ public class CharacterAttack : MonoBehaviour
     private void Attack() {
         attacking = true;
         // attackArea.SetActive(attacking);
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        newBullet.transform.parent = this.transform;
+        // newBullet.transform.localScale = Vector3.one;
+
     }
 }
