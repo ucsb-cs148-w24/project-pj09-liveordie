@@ -17,6 +17,8 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 flip = new Vector3(3f, 3f, 1f);
     private GameObject peer;
 
+    private DistanceJoint2D dj;
+
     // void OnEnable(){
     // }
 
@@ -31,10 +33,13 @@ public class CharacterMovement : MonoBehaviour
         collide = this.AddComponent<BoxCollider2D>();
         
         collide.isTrigger = true;
-        this.transform.localPosition = new Vector3(0, 0, 0); // sets default position
         switch (whichCharacter){ // identifies characters (you vs peer)
             case 1: // User 1 finds User 2 (right)
                 peer = GameObject.FindGameObjectWithTag("Player2");
+                dj = this.gameObject.AddComponent<DistanceJoint2D>();
+                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
+                dj.distance = maxRadius;
+                dj.maxDistanceOnly = true;
                 break;
             case 2: // User 2 finds User 1 (left)
                 peer = GameObject.FindGameObjectWithTag("Player1");
@@ -48,20 +53,12 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         Vector3 pos = this.transform.position;
-        // float distance = Vector3.Distance(pos, peer.transform.position);
-        
-        // if(distance > maxRadius){ // maxRadius reached
-        //     Debug.Log("SOUL BOND IS DYING!! Current Distance: " + distance); // for debugging purposes
-        //     Vector3 direction = (peer.transform.position - transform.position).normalized;
-        //     pos += direction * speed;
-        // }
-        // else{
-            if(whichCharacter == 2 || whichCharacter == 1){
-                MoveCharacter(ref pos, whichCharacter);
-            } else{ Debug.LogWarning("Unexpected character type: " + whichCharacter); }
-        // }
+ 
+        if(whichCharacter == 2 || whichCharacter == 1){
+            MoveCharacter(ref pos, whichCharacter);
+        } else{ Debug.LogWarning("Unexpected character type: " + whichCharacter); }
+
         rb.MovePosition(pos);
-        // this.transform.position = pos;
     }
 
     // Controls response to keyboard movement
