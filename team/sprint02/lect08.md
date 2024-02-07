@@ -2,9 +2,9 @@
 _____________________________________________________________________________
 ## ==BASIC INFORMATION==
 _____________________________________________________________________________
-### Mentor: Kristen/Christopher
-### Meeting Time: [madlib]
-### Type of meeting: [madlib]
+### Mentor: Kristin/Christopher
+### Meeting Time: [02/07/2024]
+### Type of meeting: [Daily Scrum]
 _____________________________________________________________________________
 ## ==ATTENDENCE==
 - [x] Rachel Jiang
