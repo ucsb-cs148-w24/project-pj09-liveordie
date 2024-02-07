@@ -5,7 +5,7 @@ This will be the template for all documentation in reference to scrum principles
 _____________________________________________________________________________
 ## ==BASIC INFORMATION==
 _____________________________________________________________________________
-### Mentor: Kristen/Christopher
+### Mentor: Kristin/Christopher
 ### Meeting Time: 2/5/2024
 ### Type of meeting: Daily Scrum
 _____________________________________________________________________________
