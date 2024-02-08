@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterAttack_1 : MonoBehaviour
+public class CharacterAttack : MonoBehaviour
 {
 
     // private GameObject attackArea = default;
