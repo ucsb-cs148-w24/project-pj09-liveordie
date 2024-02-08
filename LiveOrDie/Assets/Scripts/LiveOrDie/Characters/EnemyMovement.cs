@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     private CircleCollider2D collide;
     void Start()
     {
-
+    
     }
 
     void OnEnable()
@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
         else target = GameObject.FindGameObjectWithTag("Player2");
         if(chooseTarget == 0) render.color = Color.white;
         else render.color = Color.grey;
+
     }
 
     void OnDisable()
@@ -51,5 +52,11 @@ public class EnemyMovement : MonoBehaviour
         // TrackDistance();
         Vector3 direction = (target.transform.position - transform.position).normalized;
         this.transform.position += direction * speed * Time.deltaTime;
+
+        // Debug.Log(this.transform.position.x);
+        // Debug.Log(direction.x);
+
+        if(direction.x > 0) render.flipX = true;
+        else render.flipX = false;
     }
 }
