@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b65c1baf97a0ecc4e84997bea173f16e
+guid: 5f883a9444de0a748b980fa131ea57b4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 240
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,85 +123,113 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jiangshi_spritesheet 1_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 640
-        width: 640
-        height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b54f4d9d6118c9478fec8b94dba4c1a
-      internalID: -61193855
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jiangshi_spritesheet 1_1
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 640
-        width: 640
-        height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3061f4250ce5a1f4e8c8b5db11206fd4
-      internalID: 1792937760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jiangshi_spritesheet 1_2
+      name: torch_anim_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 640
+        width: 64
+        height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 2, y: -12}
+        - {x: -11, y: -15}
+        - {x: -11, y: -23}
+        - {x: -3, y: -31}
+        - {x: 4, y: -31}
+        - {x: 15, y: -23}
+        - {x: 15, y: -15}
       tessellationDetail: 0
       bones: []
-      spriteID: 73399740548c6c34a87ccbeffe3df371
-      internalID: 1674756323
+      spriteID: 606b81eb23a005e4d8d251ac6fecf281
+      internalID: -1538420293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jiangshi_spritesheet 1_3
+      name: torch_anim_1
       rect:
         serializedVersion: 2
-        x: 638
+        x: 64
         y: 0
-        width: 640
-        height: 640
+        width: 64
+        height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 2, y: -12}
+        - {x: -11, y: -15}
+        - {x: -11, y: -23}
+        - {x: -3, y: -31}
+        - {x: 4, y: -31}
+        - {x: 15, y: -23}
+        - {x: 15, y: -15}
       tessellationDetail: 0
       bones: []
-      spriteID: abd8f0bbd0b35cf48920b3f88e2befbc
-      internalID: 1437725447
+      spriteID: ccd7cd6165cde3a42bf8141818e3489a
+      internalID: 2038540273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torch_anim_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 2, y: -12}
+        - {x: -11, y: -15}
+        - {x: -11, y: -23}
+        - {x: -3, y: -31}
+        - {x: 4, y: -31}
+        - {x: 15, y: -23}
+        - {x: 15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2622cc8e65e9ab24782293b15f0939df
+      internalID: -2048741750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torch_anim_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 2, y: -12}
+        - {x: -11, y: -15}
+        - {x: -11, y: -23}
+        - {x: -3, y: -31}
+        - {x: 4, y: -31}
+        - {x: 15, y: -23}
+        - {x: 15, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f06a0663af91a854394f2cb817942609
+      internalID: 642307471
       vertices: []
       indices: 
       edges: []
@@ -217,10 +245,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      jiangshi_spritesheet 1_0: -61193855
-      jiangshi_spritesheet 1_1: 1792937760
-      jiangshi_spritesheet 1_2: 1674756323
-      jiangshi_spritesheet 1_3: 1437725447
+      torch_anim_0: -1538420293
+      torch_anim_1: 2038540273
+      torch_anim_2: -2048741750
+      torch_anim_3: 642307471
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
