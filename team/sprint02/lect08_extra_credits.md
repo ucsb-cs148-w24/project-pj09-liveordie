@@ -45,7 +45,7 @@ _____________________________________________________________________________
 - What blockers:
 
 #### Baige
-- What did: Imaging generation
+- What did: Generated images
 - What to do:
 - What blockers:
 
@@ -55,7 +55,7 @@ _____________________________________________________________________________
 - What blockers:
 
 #### Sean
-- What did: map update, readme
+- What did: map update, readme update
 - What to do:
 - What blockers:
 
