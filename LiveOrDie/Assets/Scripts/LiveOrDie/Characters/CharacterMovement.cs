@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class CharacterMovement : MonoBehaviour
     private DistanceJoint2D dj;
 
     public SpriteRenderer render;
+    
+    //movement lock flag
+    private bool isMovementLocked = false;
 
     // void OnEnable(){
     // }
@@ -28,6 +32,11 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     void Start(){ 
+        // Event listener
+        EventMgr.Instance.AddEventListener("GamePaused", SwitchMovementLock);
+        EventMgr.Instance.AddEventListener("GameResumed", SwitchMovementLock);
+        
+        
         render = this.GetComponent<SpriteRenderer>();
         rb = this.GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
@@ -54,11 +63,26 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         Vector3 pos = this.transform.position;
-        if(whichCharacter == 2 || whichCharacter == 1){
-            MoveCharacter(ref pos, whichCharacter);
-        } else{ Debug.LogWarning("Unexpected character type: " + whichCharacter); }
+        if (!isMovementLocked) // stop if movement locked
+        {
+            
+            if (whichCharacter == 2 || whichCharacter == 1)
+            {
+                MoveCharacter(ref pos, whichCharacter);
+            }
+            else
+            {
+                Debug.LogWarning("Unexpected character type: " + whichCharacter);
+            }
+            rb.MovePosition(pos);
+        }
+    }
 
-        rb.MovePosition(pos);
+
+    private void OnDestroy()
+    {
+        EventMgr.Instance.RemoveEventListener("GamePaused", SwitchMovementLock);
+        EventMgr.Instance.RemoveEventListener("GameResumed", SwitchMovementLock);
     }
 
     // Controls response to keyboard movement
@@ -82,4 +106,11 @@ public class CharacterMovement : MonoBehaviour
             pos.y += Time.deltaTime * speed;
         }
     }
+
+    private void SwitchMovementLock()
+    {
+        isMovementLocked = !isMovementLocked;
+    }
+    
+    
 }

@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Test/UITest/StartScreen/StartScreenTest.unity
-    guid: d93572e5c5c0a46aab610f467133c901
+    path: Assets/Scenes/LiveOrDie/StartScene.unity
+    guid: d014a0874b6ee974e8a42f83384c00a5
   - enabled: 1
     path: Assets/Scenes/Test/UITest/PauseMenuTest/PauseMenuTest.unity
     guid: 7d3a169b7f8f90f4c878fa6d54b99804
+  - enabled: 1
+    path: Assets/Scenes/Test/UITest/StartScreen/StartScreenTest.unity
+    guid: d93572e5c5c0a46aab610f467133c901
+  - enabled: 1
+    path: Assets/Scenes/LiveOrDie/MainScene.unity
+    guid: 74885a965595140f889188343894db10
   m_configObjects: {}
