@@ -2,8 +2,6 @@
 
 _This game is designed for two players connected by an elastic string. Together, they must navigate through various obstacles like spikes, pits, and poisonous swamps. Collaboration is essential as they work to jump over hurdles and defeat hostile minions._
 
-## MVP DEMO Video
-https://drive.google.com/file/d/1AWuoQ6QmaH-8sFH-P7rF-l5usDF10Otu/view?usp=drive_link
 
 ## Storyline
 Beneath the moonlit tapestry of the Hunan and Sichuan province, a clandestine custom dances through the annals of ancient China - the art of corpse driving. Born of necessity and shrouded in mystique, this enigmatic tradition unfolds like a ghostly tale from centuries past. Imagine Taoist priests and skilled artisans orchestrating a macabre parade, manipulating the departed to "walk" through the night, connected by bamboo poles. These bodies travel at night and rest during the day to avoid causing panic and discomfort among the living. The bodies appear to be walking upright like zombies, which is the origin of the term "corpse driving."
