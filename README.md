@@ -1,6 +1,6 @@
 # Live or Die with Your Best Friend
 
-_This game is designed for two players connected by an elastic string. Together, they must navigate through various obstacles like spikes, pits, and poisonous swamps. Collaboration is essential as they work to jump over hurdles and defeat hostile minions._
+_This game is designed for two players connected by an inelastic rope. Together, they must fight against enemies and avoid traps. Collaboration is essential as they work to survive._
 
 
 ## Storyline
