@@ -52,7 +52,7 @@ Libraries we used in this project:
 ### Installation Steps
 1. Navigate to [releases](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/releases) 
 2. Either load the game in your browser, or download the .zip file corresponding to your OS.
-3. Unzip the file and launch LiveOrDie.exe
+3. Unzip the file and launch LiveOrDie.exe (Windows) or LODBuild.app (Mac)
 4. Enjoy with a friend or by yourself!
 
 ## Functionality
