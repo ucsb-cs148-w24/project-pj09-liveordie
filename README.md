@@ -35,3 +35,62 @@ What kinds of users? Players (Player 1 & Player 2)
 #### Sprint02: [folder](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/tree/main/team/sprint02)
 
 
+## Installation
+### Prerequisites
+Either one of:
+- Windows 7/10/11
+- macOS Mojave 10.14+
+- Browser with WebGL 2.0 capability
+
+More details [here](https://docs.unity3d.com/2022.3/Documentation/Manual/system-requirements.html#desktop)
+
+### Dependencies
+Libraries we used in this project:
+- [Unity 2D feature set](https://docs.unity3d.com/Manual/2DFeature.html)
+- [Unity WebGL Publisher](https://docs.unity3d.com/Packages/com.unity.connect.share@4.2/manual/index.html)
+
+### Installation Steps
+1. Navigate to [releases](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/releases) 
+2. Either load the game in your browser, or download the .zip file corresponding to your OS.
+3. Unzip the file and launch LiveOrDie.exe
+4. Enjoy with a friend or by yourself!
+
+## Functionality
+- Upon launching the game, you will see the start screen
+- Press "Game Start" to start playing
+- Use WASD to control Player 1 movement and arrow keys to control Player 2 movement
+- Press V to attack with Player 1 and M to attack with Player 2
+- Be careful not to go too far apart from each other
+- Defeat the enemies as long as possible or until you both die (not yet implemented)
+
+## Known Problems
+- Various missing features like player/enemy health
+- Movement speed varies based on how fast your device can run the game
+
+## Contributing
+We are not currently accepting contributions
+
+## License
+[License](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/blob/main/LICENSE.md):
+
+MIT License
+
+Copyright (c) 2024 LiveOrDie
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
