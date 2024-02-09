@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b65c1baf97a0ecc4e84997bea173f16e
+guid: a841e7d2067877a4f8bc15b8e627d746
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 240
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,19 +69,6 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,85 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jiangshi_spritesheet 1_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 640
-        width: 640
-        height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b54f4d9d6118c9478fec8b94dba4c1a
-      internalID: -61193855
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jiangshi_spritesheet 1_1
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 640
-        width: 640
-        height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3061f4250ce5a1f4e8c8b5db11206fd4
-      internalID: 1792937760
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jiangshi_spritesheet 1_2
+      name: fire_sprite_sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        width: 300
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73399740548c6c34a87ccbeffe3df371
-      internalID: 1674756323
+      spriteID: a149e67f3326e324db22530d3180b5a1
+      internalID: -1367895933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jiangshi_spritesheet 1_3
+      name: fire_sprite_sheet_1
       rect:
         serializedVersion: 2
-        x: 638
+        x: 300
         y: 0
-        width: 640
-        height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        width: 300
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abd8f0bbd0b35cf48920b3f88e2befbc
-      internalID: 1437725447
+      spriteID: 8a90c522a17f4864eb1bfebea2a9b7be
+      internalID: 1259096046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire_sprite_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 300
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95de9e83891574c4aab6e6a5ea7eece3
+      internalID: -2137927015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fire_sprite_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 300
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa74925fa944664badc17104c3ef65a
+      internalID: -606859070
       vertices: []
       indices: 
       edges: []
@@ -217,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      jiangshi_spritesheet 1_0: -61193855
-      jiangshi_spritesheet 1_1: 1792937760
-      jiangshi_spritesheet 1_2: 1674756323
-      jiangshi_spritesheet 1_3: 1437725447
+      fire_sprite_sheet_0: -1367895933
+      fire_sprite_sheet_1: 1259096046
+      fire_sprite_sheet_2: -2137927015
+      fire_sprite_sheet_3: -606859070
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b65c1baf97a0ecc4e84997bea173f16e
+guid: 0de71940cd5b67d4b9079eb50688e05f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 240
+  spritePixelsToUnits: 320
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,19 +69,6 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,85 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jiangshi_spritesheet 1_0
+      name: jiangshi_spritesheet_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 640
         width: 640
         height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b54f4d9d6118c9478fec8b94dba4c1a
-      internalID: -61193855
+      spriteID: bc7f532d59f136e4bae6d4a04228e2c1
+      internalID: 912207169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jiangshi_spritesheet 1_1
+      name: jiangshi_spritesheet_2_1
       rect:
         serializedVersion: 2
         x: 640
         y: 640
         width: 640
         height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3061f4250ce5a1f4e8c8b5db11206fd4
-      internalID: 1792937760
+      spriteID: 38fac05abc93f804e8a30f3b2e32b59e
+      internalID: -1367717592
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jiangshi_spritesheet 1_2
+      name: jiangshi_spritesheet_2_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 640
         height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73399740548c6c34a87ccbeffe3df371
-      internalID: 1674756323
+      spriteID: de4804e428bbf544380d2c669d729195
+      internalID: 904968645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jiangshi_spritesheet 1_3
+      name: jiangshi_spritesheet_2_3
       rect:
         serializedVersion: 2
-        x: 638
+        x: 640
         y: 0
         width: 640
         height: 640
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abd8f0bbd0b35cf48920b3f88e2befbc
-      internalID: 1437725447
+      spriteID: 366a8c2c7b698104ea8d7cc4f1f78f7d
+      internalID: -793725863
       vertices: []
       indices: 
       edges: []
@@ -217,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      jiangshi_spritesheet 1_0: -61193855
-      jiangshi_spritesheet 1_1: 1792937760
-      jiangshi_spritesheet 1_2: 1674756323
-      jiangshi_spritesheet 1_3: 1437725447
+      jiangshi_spritesheet_2_0: 912207169
+      jiangshi_spritesheet_2_1: -1367717592
+      jiangshi_spritesheet_2_2: 904968645
+      jiangshi_spritesheet_2_3: -793725863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
