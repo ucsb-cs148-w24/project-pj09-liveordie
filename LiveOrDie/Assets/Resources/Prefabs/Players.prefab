@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8374863435778687136, guid: ddf16c1be929d409ea3ac1866d6afe81, type: 3}
   firePoint: {fileID: 4581185948622797665}
+  player: {fileID: 0}
 --- !u!1 &2405921495706572136
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +489,7 @@ GameObject:
   - component: {fileID: 7463035871079031829}
   - component: {fileID: 110896915486969791}
   - component: {fileID: 3077908110123453955}
-  - component: {fileID: 3681125915557931370}
+  - component: {fileID: 4677467781154675802}
   m_Layer: 8
   m_Name: Player2
   m_TagString: Player2
@@ -663,7 +664,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.03, y: -0.09}
   m_Size: {x: 0.59431404, y: 0.23910919}
   m_Direction: 1
---- !u!114 &3681125915557931370
+--- !u!114 &4677467781154675802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -677,3 +678,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8374863435778687136, guid: ddf16c1be929d409ea3ac1866d6afe81, type: 3}
   firePoint: {fileID: 8016165881243981981}
+  player: {fileID: 7440314939813618173}

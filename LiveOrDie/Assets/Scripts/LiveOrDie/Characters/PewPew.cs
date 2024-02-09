@@ -13,7 +13,6 @@ public class PewPew : MonoBehaviour
     private SpriteRenderer childRender, parentRender;
     void OnEnable(){
         childRender = this.GetComponent<SpriteRenderer>();
-        childRender.color = Color.yellow;
         bulletRb = this.AddComponent<Rigidbody2D>();
         collide = this.AddComponent<CapsuleCollider2D>();   
         bulletRb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
