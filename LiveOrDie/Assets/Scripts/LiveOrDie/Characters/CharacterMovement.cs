@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
 
     private BoxCollider2D boxCollide;
     private Rigidbody2D rb;
+    
     // private Vector3 flip = new Vector3(3f, 3f, 1f);
     private GameObject peer;
 
@@ -20,8 +21,7 @@ public class CharacterMovement : MonoBehaviour
 
     public SpriteRenderer render;
     
-    //movement lock flag
-    private bool isMovementLocked = false;
+    private bool isMovementLocked = false;  //movement lock flag
 
     // void OnEnable(){
     // }
@@ -41,8 +41,9 @@ public class CharacterMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         boxCollide = this.AddComponent<BoxCollider2D>();
-        
         boxCollide.isTrigger = true;
+
+
         switch (whichCharacter){ // identifies characters (you vs peer)
             case 1: // User 1 finds User 2 (right)
                 peer = GameObject.FindGameObjectWithTag("Player2");
@@ -62,19 +63,17 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 pos = this.transform.position;
         if (!isMovementLocked) // stop if movement locked
         {
             
             if (whichCharacter == 2 || whichCharacter == 1)
             {
-                MoveCharacter(ref pos, whichCharacter);
+                MoveCharacter( whichCharacter);
             }
             else
             {
                 Debug.LogWarning("Unexpected character type: " + whichCharacter);
             }
-            rb.MovePosition(pos);
         }
     }
 
@@ -86,24 +85,28 @@ public class CharacterMovement : MonoBehaviour
     }
 
     // Controls response to keyboard movement
-    void MoveCharacter(ref Vector3 pos, int playerID){
+    void MoveCharacter(int playerID){
         if((playerID == 1 && Input.GetKey("a")) 
         || (playerID == 2 && Input.GetKey(KeyCode.LeftArrow))){
-            pos.x -= Time.deltaTime * speed;
+            rb.position = new Vector2(rb.position.x - Time.deltaTime * speed, 
+                rb.position.y);
             render.flipX = false;
         }
         if((playerID == 1 && Input.GetKey("d"))
         || (playerID == 2 && Input.GetKey(KeyCode.RightArrow))){
-            pos.x += Time.deltaTime * speed;
+            rb.position = new Vector2(rb.position.x + Time.deltaTime * speed, 
+                rb.position.y);
             render.flipX = true;
         }
         if((playerID == 1 && Input.GetKey("s"))
         || (playerID == 2 && Input.GetKey(KeyCode.DownArrow))){
-            pos.y -= Time.deltaTime * speed;
+            rb.position = new Vector3(rb.position.x, 
+                rb.position.y  - Time.deltaTime * speed);
         }
         if((playerID == 1 && Input.GetKey("w"))
         || (playerID == 2 && Input.GetKey(KeyCode.UpArrow))){
-            pos.y += Time.deltaTime * speed;
+            rb.position = new Vector2(rb.position.x, 
+                rb.position.y + Time.deltaTime * speed);
         }
     }
 
