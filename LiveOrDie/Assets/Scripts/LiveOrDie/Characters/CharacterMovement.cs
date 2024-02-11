@@ -69,8 +69,6 @@ public class CharacterMovement : MonoBehaviour
             if (whichCharacter == 2 || whichCharacter == 1)
             {
                 MoveCharacter( whichCharacter);
-                print("t" + transform.position);
-                print("r" + rb.position);
             }
             else
             {
