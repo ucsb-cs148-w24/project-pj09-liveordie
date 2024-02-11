@@ -23,6 +23,14 @@ public class CharacterMovement : MonoBehaviour
     
     private bool isMovementLocked = false;  //movement lock flag
 
+    public enum E_MoveType
+    {
+        up,
+        down,
+        left,
+        right,
+    }
+    
     // void OnEnable(){
     // }
 
@@ -32,10 +40,17 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     void Start(){ 
-        // Event listener
-        EventMgr.Instance.AddEventListener("GamePaused", SwitchMovementLock);
-        EventMgr.Instance.AddEventListener("GameResumed", SwitchMovementLock);
+        // Event listener  game pause events
+        // EventMgr.Instance.AddEventListener("GamePaused", SwitchMovementLock);
+        // EventMgr.Instance.AddEventListener("GameResumed", SwitchMovementLock);
+        EventMgr.Instance.AddEventListener("GamePaused", GlobalControlLock);
+        EventMgr.Instance.AddEventListener("GameResumed", GlobalControlUnlock);
         
+        // Event listener  control events
+        EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
+
+        //open key control lock (also create InputMgr instance)
+        GlobalControlLock();
         
         render = this.GetComponent<SpriteRenderer>();
         rb = this.GetComponent<Rigidbody2D>();
@@ -63,56 +78,100 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        if (!isMovementLocked) // stop if movement locked
-        {
-            
-            if (whichCharacter == 2 || whichCharacter == 1)
-            {
-                MoveCharacter( whichCharacter);
-            }
-            else
-            {
-                Debug.LogWarning("Unexpected character type: " + whichCharacter);
-            }
-        }
+
     }
 
 
     private void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener("GamePaused", SwitchMovementLock);
-        EventMgr.Instance.RemoveEventListener("GameResumed", SwitchMovementLock);
+        //remove all event listener
+        // EventMgr.Instance.RemoveEventListener("GamePaused", SwitchMovementLock);
+        // EventMgr.Instance.RemoveEventListener("GameResumed", SwitchMovementLock);
+        EventMgr.Instance.RemoveEventListener("GamePaused", GlobalControlLock);
+        EventMgr.Instance.RemoveEventListener("GameResumed", GlobalControlUnlock);
+        EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
+    }
+    
+    //move character according to desired move type
+    void MoveCharacter(E_MoveType moveType){  
+        switch (moveType)
+        {
+            case E_MoveType.up:
+                rb.position = new Vector2(rb.position.x, rb.position.y + Time.deltaTime * speed);
+                break;
+            case E_MoveType.down:
+                rb.position = new Vector3(rb.position.x, rb.position.y  - Time.deltaTime * speed);
+                break;
+            case E_MoveType.left:
+                rb.position = new Vector2(rb.position.x - Time.deltaTime * speed, rb.position.y);
+                render.flipX = false;
+                break;
+            case E_MoveType.right:
+                rb.position = new Vector2(rb.position.x + Time.deltaTime * speed, rb.position.y);
+                render.flipX = true;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(moveType), moveType, null);
+        }
+        
     }
 
-    // Controls response to keyboard movement
-    void MoveCharacter(int playerID){
-        if((playerID == 1 && Input.GetKey("a")) 
-        || (playerID == 2 && Input.GetKey(KeyCode.LeftArrow))){
-            rb.position = new Vector2(rb.position.x - Time.deltaTime * speed, 
-                rb.position.y);
-            render.flipX = false;
+    private void Controls(E_AllKeysActs act) //called in update function in InputMgr
+    {
+        if (whichCharacter == 1)
+        {
+            switch (act)
+            {
+                case E_AllKeysActs.player1up:
+                    MoveCharacter(E_MoveType.up);
+                    break;
+                case E_AllKeysActs.player1down:
+                    MoveCharacter(E_MoveType.down);
+                    break;
+                case E_AllKeysActs.player1left:
+                    MoveCharacter(E_MoveType.left);
+                    break;
+                case E_AllKeysActs.player1right:
+                    MoveCharacter(E_MoveType.right);
+                    break;
+            }
         }
-        if((playerID == 1 && Input.GetKey("d"))
-        || (playerID == 2 && Input.GetKey(KeyCode.RightArrow))){
-            rb.position = new Vector2(rb.position.x + Time.deltaTime * speed, 
-                rb.position.y);
-            render.flipX = true;
+        else if (whichCharacter == 2)
+        {
+            switch (act)
+            {
+                case E_AllKeysActs.player2up:
+                    MoveCharacter(E_MoveType.up);
+                    break;
+                case E_AllKeysActs.player2down:
+                    MoveCharacter(E_MoveType.down);
+                    break;
+                case E_AllKeysActs.player2left:
+                    MoveCharacter(E_MoveType.left);
+                    break;
+                case E_AllKeysActs.player2right:
+                    MoveCharacter(E_MoveType.right);
+                    break;
+            }
         }
-        if((playerID == 1 && Input.GetKey("s"))
-        || (playerID == 2 && Input.GetKey(KeyCode.DownArrow))){
-            rb.position = new Vector3(rb.position.x, 
-                rb.position.y  - Time.deltaTime * speed);
-        }
-        if((playerID == 1 && Input.GetKey("w"))
-        || (playerID == 2 && Input.GetKey(KeyCode.UpArrow))){
-            rb.position = new Vector2(rb.position.x, 
-                rb.position.y + Time.deltaTime * speed);
-        }
+        
     }
+    
+    
+    
 
     private void SwitchMovementLock()
     {
         isMovementLocked = !isMovementLocked;
+    }
+
+    private void GlobalControlLock()
+    {
+        InputMgr.Instance.SwitchAllButtons(false);
+    }
+    private void GlobalControlUnlock()
+    {
+        InputMgr.Instance.SwitchAllButtons(true);
     }
     
     
