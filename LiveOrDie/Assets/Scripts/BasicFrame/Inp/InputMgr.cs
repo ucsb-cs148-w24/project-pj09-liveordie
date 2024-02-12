@@ -45,10 +45,26 @@ public class InputMgr : Singleton<InputMgr>
     public InputMgr() //Constructor, uses public mono manager to open Update function
     {
         MonoMgr.Instance.AddUpdateListener(InputUpdate);
+        MonoMgr.Instance.AddFixedUpdateListener(InputFixedUpdate);
     }
 
     private void InputUpdate() //The logic in update method
     {
+        // if (!isSwitchOn) return;
+        // CheckKey(E_AllKeysActs.player1up);
+        // CheckKey(E_AllKeysActs.player1down);
+        // CheckKey(E_AllKeysActs.player1left);
+        // CheckKey(E_AllKeysActs.player1right);
+        // CheckKey(E_AllKeysActs.player2up);
+        // CheckKey(E_AllKeysActs.player2down);
+        // CheckKey(E_AllKeysActs.player2left);
+        // CheckKey(E_AllKeysActs.player2right);
+        
+    }
+
+    private void InputFixedUpdate()
+    {
+        // if (!isSwitchOn) return;
         CheckKey(E_AllKeysActs.player1up);
         CheckKey(E_AllKeysActs.player1down);
         CheckKey(E_AllKeysActs.player1left);
@@ -57,8 +73,6 @@ public class InputMgr : Singleton<InputMgr>
         CheckKey(E_AllKeysActs.player2down);
         CheckKey(E_AllKeysActs.player2left);
         CheckKey(E_AllKeysActs.player2right);
-
-        
     }
     
     /// <summary>
