@@ -93,14 +93,15 @@ public class CharacterMovement : MonoBehaviour
     }
     
     //move character according to desired move type
-    void MoveCharacter(E_MoveType moveType){  
+    void MoveCharacter(E_MoveType moveType)
+    {
         switch (moveType)
         {
             case E_MoveType.up:
                 rb.position = new Vector2(rb.position.x, rb.position.y + Time.deltaTime * speed);
                 break;
             case E_MoveType.down:
-                rb.position = new Vector3(rb.position.x, rb.position.y  - Time.deltaTime * speed);
+                rb.position = new Vector2(rb.position.x, rb.position.y  - Time.deltaTime * speed);
                 break;
             case E_MoveType.left:
                 rb.position = new Vector2(rb.position.x - Time.deltaTime * speed, rb.position.y);
