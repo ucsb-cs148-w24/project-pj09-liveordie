@@ -28,7 +28,16 @@
         - I like the idea, maybe you can add either difficulty sliders or levels like you mentioned. Overall looks very good!
 
 -----RESPONSE ACTIONS-----
+    - Create healthbar to affect players
+    - Implement different levels or difficulty
+    - Tutorial/intro story environment
+    - "Super" moves 
+    - Adjust physics (for enemies)
+    - Add music/sound effects
 
 -----NEXT STEPS-----
+    - Enhance the aesthetics of the game with music/SFX and physics
+    - Add a tutorial feature/mode to give key controls + game story
+    - Add a healthbar and point system
     
     
