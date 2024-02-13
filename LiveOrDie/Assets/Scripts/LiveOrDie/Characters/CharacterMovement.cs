@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
 
     private BoxCollider2D boxCollide;
     private Rigidbody2D rb;
+    
     // private Vector3 flip = new Vector3(3f, 3f, 1f);
     private GameObject peer;
 
@@ -20,9 +21,17 @@ public class CharacterMovement : MonoBehaviour
 
     public SpriteRenderer render;
     
-    //movement lock flag
-    private bool isMovementLocked = false;
+    public int horizontal;
+    public int vertical;
 
+    public enum E_MoveType
+    {
+        up,
+        down,
+        left,
+        right,
+    }
+    
     // void OnEnable(){
     // }
 
@@ -32,17 +41,26 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     void Start(){ 
-        // Event listener
-        EventMgr.Instance.AddEventListener("GamePaused", SwitchMovementLock);
-        EventMgr.Instance.AddEventListener("GameResumed", SwitchMovementLock);
+        // Event listener  game pause events
+        // EventMgr.Instance.AddEventListener("GamePaused", SwitchMovementLock);
+        // EventMgr.Instance.AddEventListener("GameResumed", SwitchMovementLock);
+        EventMgr.Instance.AddEventListener("GamePaused", GlobalControlLock);
+        EventMgr.Instance.AddEventListener("GameResumed", GlobalControlUnlock);
         
+        // Event listener  control events
+        EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
+        EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
+
+        //open key control lock (also create InputMgr instance)
+        GlobalControlUnlock();
         
         render = this.GetComponent<SpriteRenderer>();
         rb = this.GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         boxCollide = this.AddComponent<BoxCollider2D>();
-        
         boxCollide.isTrigger = true;
+
+
         switch (whichCharacter){ // identifies characters (you vs peer)
             case 1: // User 1 finds User 2 (right)
                 peer = GameObject.FindGameObjectWithTag("Player2");
@@ -62,54 +80,133 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 pos = this.transform.position;
-        if (!isMovementLocked) // stop if movement locked
-        {
-            
-            if (whichCharacter == 2 || whichCharacter == 1)
-            {
-                MoveCharacter(ref pos, whichCharacter);
-            }
-            else
-            {
-                Debug.LogWarning("Unexpected character type: " + whichCharacter);
-            }
-            rb.MovePosition(pos);
-        }
+        
+    }
+
+    private void FixedUpdate()
+    {
+        rb.position += Time.deltaTime * speed * new Vector2(horizontal, vertical).normalized;
     }
 
 
     private void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener("GamePaused", SwitchMovementLock);
-        EventMgr.Instance.RemoveEventListener("GameResumed", SwitchMovementLock);
+        //remove all event listener
+        // EventMgr.Instance.RemoveEventListener("GamePaused", SwitchMovementLock);
+        // EventMgr.Instance.RemoveEventListener("GameResumed", SwitchMovementLock);
+        EventMgr.Instance.RemoveEventListener("GamePaused", GlobalControlLock);
+        EventMgr.Instance.RemoveEventListener("GameResumed", GlobalControlUnlock);
+        EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
+        EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
     }
-
-    // Controls response to keyboard movement
-    void MoveCharacter(ref Vector3 pos, int playerID){
-        if((playerID == 1 && Input.GetKey("a")) 
-        || (playerID == 2 && Input.GetKey(KeyCode.LeftArrow))){
-            pos.x -= Time.deltaTime * speed;
-            render.flipX = false;
-        }
-        if((playerID == 1 && Input.GetKey("d"))
-        || (playerID == 2 && Input.GetKey(KeyCode.RightArrow))){
-            pos.x += Time.deltaTime * speed;
-            render.flipX = true;
-        }
-        if((playerID == 1 && Input.GetKey("s"))
-        || (playerID == 2 && Input.GetKey(KeyCode.DownArrow))){
-            pos.y -= Time.deltaTime * speed;
-        }
-        if((playerID == 1 && Input.GetKey("w"))
-        || (playerID == 2 && Input.GetKey(KeyCode.UpArrow))){
-            pos.y += Time.deltaTime * speed;
-        }
-    }
-
-    private void SwitchMovementLock()
+    
+    //move character according to desired move type
+    void ChangeCharacterDirection(E_MoveType moveType)
     {
-        isMovementLocked = !isMovementLocked;
+        switch (moveType)
+        {
+            case E_MoveType.up:
+                vertical = 1;
+                break;
+            case E_MoveType.down:
+                vertical = -1;
+                break;
+            case E_MoveType.left:
+                horizontal = -1;
+                render.flipX = false;
+                break;
+            case E_MoveType.right:
+                horizontal = 1;
+                render.flipX = true;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(moveType), moveType, null);
+        }
+    }
+    
+    //set the move direction (Hold key action)
+    private void Controls(E_AllKeysActs act) //called in Update function in InputMgr
+    {
+        if (whichCharacter == 1)
+        {
+            switch (act)
+            {
+                case E_AllKeysActs.player1up:
+                    ChangeCharacterDirection(E_MoveType.up);
+                    break;
+                case E_AllKeysActs.player1down:
+                    ChangeCharacterDirection(E_MoveType.down);
+                    break;
+                case E_AllKeysActs.player1left:
+                    ChangeCharacterDirection(E_MoveType.left);
+                    break;
+                case E_AllKeysActs.player1right:
+                    ChangeCharacterDirection(E_MoveType.right);
+                    break;
+            }
+        }
+        else if (whichCharacter == 2)
+        {
+            switch (act)
+            {
+                case E_AllKeysActs.player2up:
+                    ChangeCharacterDirection(E_MoveType.up);
+                    break;
+                case E_AllKeysActs.player2down:
+                    ChangeCharacterDirection(E_MoveType.down);
+                    break;
+                case E_AllKeysActs.player2left:
+                    ChangeCharacterDirection(E_MoveType.left);
+                    break;
+                case E_AllKeysActs.player2right:
+                    ChangeCharacterDirection(E_MoveType.right);
+                    break;
+            }
+        }
+    }
+
+    //clear the move direction (Release key action)
+    private void CancelControls(E_AllKeysActs act) //called in Update function in InputMgr
+    {
+        if (whichCharacter == 1)
+        {
+            switch (act)
+            {
+                case E_AllKeysActs.player1up:
+                case E_AllKeysActs.player1down:
+                    vertical = 0;
+                    break;
+                case E_AllKeysActs.player1left:
+                case E_AllKeysActs.player1right:
+                    horizontal = 0;
+                    break;
+            }
+        }
+        else if (whichCharacter == 2)
+        {
+            switch (act)
+            {
+                case E_AllKeysActs.player2up:
+                case E_AllKeysActs.player2down:
+                    vertical = 0;
+                    break;
+                case E_AllKeysActs.player2left:
+                case E_AllKeysActs.player2right:
+                    horizontal = 0;
+                    break;
+            }
+        }
+        
+    }
+    
+
+    private void GlobalControlLock()
+    {
+        InputMgr.Instance.SwitchAllButtons(false);
+    }
+    private void GlobalControlUnlock()
+    {
+        InputMgr.Instance.SwitchAllButtons(true);
     }
     
     
