@@ -21,7 +21,8 @@ public class CharacterMovement : MonoBehaviour
 
     public SpriteRenderer render;
     
-    private bool isMovementLocked = false;  //movement lock flag
+    public int horizontal;
+    public int vertical;
 
     public enum E_MoveType
     {
@@ -48,9 +49,10 @@ public class CharacterMovement : MonoBehaviour
         
         // Event listener  control events
         EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
+        EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
 
         //open key control lock (also create InputMgr instance)
-        GlobalControlLock();
+        GlobalControlUnlock();
         
         render = this.GetComponent<SpriteRenderer>();
         rb = this.GetComponent<Rigidbody2D>();
@@ -78,7 +80,12 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
+        
+    }
 
+    private void FixedUpdate()
+    {
+        rb.position += Time.deltaTime * speed * new Vector2(horizontal, vertical).normalized;
     }
 
 
@@ -90,50 +97,51 @@ public class CharacterMovement : MonoBehaviour
         EventMgr.Instance.RemoveEventListener("GamePaused", GlobalControlLock);
         EventMgr.Instance.RemoveEventListener("GameResumed", GlobalControlUnlock);
         EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
+        EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
     }
     
     //move character according to desired move type
-    void MoveCharacter(E_MoveType moveType)
+    void ChangeCharacterDirection(E_MoveType moveType)
     {
         switch (moveType)
         {
             case E_MoveType.up:
-                rb.position = new Vector2(rb.position.x, rb.position.y + Time.deltaTime * speed);
+                vertical = 1;
                 break;
             case E_MoveType.down:
-                rb.position = new Vector2(rb.position.x, rb.position.y  - Time.deltaTime * speed);
+                vertical = -1;
                 break;
             case E_MoveType.left:
-                rb.position = new Vector2(rb.position.x - Time.deltaTime * speed, rb.position.y);
+                horizontal = -1;
                 render.flipX = false;
                 break;
             case E_MoveType.right:
-                rb.position = new Vector2(rb.position.x + Time.deltaTime * speed, rb.position.y);
+                horizontal = 1;
                 render.flipX = true;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(moveType), moveType, null);
         }
-        
     }
-
-    private void Controls(E_AllKeysActs act) //called in update function in InputMgr
+    
+    //set the move direction (Hold key action)
+    private void Controls(E_AllKeysActs act) //called in Update function in InputMgr
     {
         if (whichCharacter == 1)
         {
             switch (act)
             {
                 case E_AllKeysActs.player1up:
-                    MoveCharacter(E_MoveType.up);
+                    ChangeCharacterDirection(E_MoveType.up);
                     break;
                 case E_AllKeysActs.player1down:
-                    MoveCharacter(E_MoveType.down);
+                    ChangeCharacterDirection(E_MoveType.down);
                     break;
                 case E_AllKeysActs.player1left:
-                    MoveCharacter(E_MoveType.left);
+                    ChangeCharacterDirection(E_MoveType.left);
                     break;
                 case E_AllKeysActs.player1right:
-                    MoveCharacter(E_MoveType.right);
+                    ChangeCharacterDirection(E_MoveType.right);
                     break;
             }
         }
@@ -142,29 +150,55 @@ public class CharacterMovement : MonoBehaviour
             switch (act)
             {
                 case E_AllKeysActs.player2up:
-                    MoveCharacter(E_MoveType.up);
+                    ChangeCharacterDirection(E_MoveType.up);
                     break;
                 case E_AllKeysActs.player2down:
-                    MoveCharacter(E_MoveType.down);
+                    ChangeCharacterDirection(E_MoveType.down);
                     break;
                 case E_AllKeysActs.player2left:
-                    MoveCharacter(E_MoveType.left);
+                    ChangeCharacterDirection(E_MoveType.left);
                     break;
                 case E_AllKeysActs.player2right:
-                    MoveCharacter(E_MoveType.right);
+                    ChangeCharacterDirection(E_MoveType.right);
+                    break;
+            }
+        }
+    }
+
+    //clear the move direction (Release key action)
+    private void CancelControls(E_AllKeysActs act) //called in Update function in InputMgr
+    {
+        if (whichCharacter == 1)
+        {
+            switch (act)
+            {
+                case E_AllKeysActs.player1up:
+                case E_AllKeysActs.player1down:
+                    vertical = 0;
+                    break;
+                case E_AllKeysActs.player1left:
+                case E_AllKeysActs.player1right:
+                    horizontal = 0;
+                    break;
+            }
+        }
+        else if (whichCharacter == 2)
+        {
+            switch (act)
+            {
+                case E_AllKeysActs.player2up:
+                case E_AllKeysActs.player2down:
+                    vertical = 0;
+                    break;
+                case E_AllKeysActs.player2left:
+                case E_AllKeysActs.player2right:
+                    horizontal = 0;
                     break;
             }
         }
         
     }
     
-    
-    
-
-    private void SwitchMovementLock()
-    {
-        isMovementLocked = !isMovementLocked;
-    }
 
     private void GlobalControlLock()
     {

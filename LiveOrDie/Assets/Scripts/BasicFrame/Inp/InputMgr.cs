@@ -45,34 +45,34 @@ public class InputMgr : Singleton<InputMgr>
     public InputMgr() //Constructor, uses public mono manager to open Update function
     {
         MonoMgr.Instance.AddUpdateListener(InputUpdate);
-        MonoMgr.Instance.AddFixedUpdateListener(InputFixedUpdate);
+        // MonoMgr.Instance.AddFixedUpdateListener(InputFixedUpdate);
     }
 
     private void InputUpdate() //The logic in update method
     {
-        // if (!isSwitchOn) return;
-        // CheckKey(E_AllKeysActs.player1up);
-        // CheckKey(E_AllKeysActs.player1down);
-        // CheckKey(E_AllKeysActs.player1left);
-        // CheckKey(E_AllKeysActs.player1right);
-        // CheckKey(E_AllKeysActs.player2up);
-        // CheckKey(E_AllKeysActs.player2down);
-        // CheckKey(E_AllKeysActs.player2left);
-        // CheckKey(E_AllKeysActs.player2right);
+        if (!isSwitchOn) return;
+        CheckKeyRelease(E_AllKeysActs.player1up);
+        CheckKeyRelease(E_AllKeysActs.player1down);
+        CheckKeyRelease(E_AllKeysActs.player1left);
+        CheckKeyRelease(E_AllKeysActs.player1right);
+        CheckKeyRelease(E_AllKeysActs.player2up);
+        CheckKeyRelease(E_AllKeysActs.player2down);
+        CheckKeyRelease(E_AllKeysActs.player2left);
+        CheckKeyRelease(E_AllKeysActs.player2right);
         
+        CheckKeyHeld(E_AllKeysActs.player1up);
+        CheckKeyHeld(E_AllKeysActs.player1down);
+        CheckKeyHeld(E_AllKeysActs.player1left);
+        CheckKeyHeld(E_AllKeysActs.player1right);
+        CheckKeyHeld(E_AllKeysActs.player2up);
+        CheckKeyHeld(E_AllKeysActs.player2down);
+        CheckKeyHeld(E_AllKeysActs.player2left);
+        CheckKeyHeld(E_AllKeysActs.player2right);
     }
 
     private void InputFixedUpdate()
     {
-        // if (!isSwitchOn) return;
-        CheckKey(E_AllKeysActs.player1up);
-        CheckKey(E_AllKeysActs.player1down);
-        CheckKey(E_AllKeysActs.player1left);
-        CheckKey(E_AllKeysActs.player1right);
-        CheckKey(E_AllKeysActs.player2up);
-        CheckKey(E_AllKeysActs.player2down);
-        CheckKey(E_AllKeysActs.player2left);
-        CheckKey(E_AllKeysActs.player2right);
+
     }
     
     /// <summary>
@@ -85,22 +85,30 @@ public class InputMgr : Singleton<InputMgr>
          KeySet[act] = newKey;
     }
     
-    private void CheckKey(E_AllKeysActs act) //check if key is pressed or released, only trigger event
+    private void CheckKeyPress(E_AllKeysActs act) //check if key is pressed, only trigger event
     {
         if (Input.GetKeyDown(KeySet[act])) //press key
         {
             EventMgr.Instance.EventTrigger("KeyIsPressed", act);
         }
+    }
+
+    private void CheckKeyRelease(E_AllKeysActs act)
+    {
         if (Input.GetKeyUp(KeySet[act])) //release key
         {
             EventMgr.Instance.EventTrigger("KeyIsReleased", act);
         }
-
+    }
+    
+    private void CheckKeyHeld(E_AllKeysActs act)
+    {
         if (Input.GetKey(KeySet[act])) //hold key
         {
             EventMgr.Instance.EventTrigger("KeyIsHeld", act);
         }
     }
+    
 
     /// <summary>
     ///Open or close global check
