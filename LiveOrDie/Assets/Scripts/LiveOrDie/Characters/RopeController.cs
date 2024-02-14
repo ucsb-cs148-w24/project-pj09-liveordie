@@ -5,11 +5,8 @@ using UnityEngine;
 public class RopeController : MonoBehaviour
 {
     public Transform Player1, Player2;
-    public float ropeWidth = 0.05f; // Adjust the width of the rope
+    private float ropeWidth = 0.05f; // Adjust the width of the rope
     private LineRenderer ropeRenderer;
-    // public Color c = Color.grey;
-    // private SpringJoint2D spring; --> Worry about this later
-    // Start is called before the first frame update
 
     void OnEnable(){
         // create LineRenderer if it doesn't exist
@@ -37,8 +34,16 @@ public class RopeController : MonoBehaviour
     }
     void Update()
     {
-        // Update Line Renderer positions to connect the players
-        ropeRenderer.SetPosition(0, Player1.position);
-        ropeRenderer.SetPosition(1, Player2.position);
+        if(!Player1 || !Player2){
+            Destroy(ropeRenderer);
+            if (Player2) Destroy(GameObject.FindGameObjectWithTag("Player2"));
+            if (Player1) Destroy(GameObject.FindGameObjectWithTag("Player1"));
+            if(gameObject) Destroy(gameObject);
+        }
+        else{
+            // Update Line Renderer positions to connect the players
+            ropeRenderer.SetPosition(0, Player1.position);
+            ropeRenderer.SetPosition(1, Player2.position);
+        }
     }
 }

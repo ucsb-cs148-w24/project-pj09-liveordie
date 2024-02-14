@@ -1,60 +1,66 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
     public float speed = 0.5f; // move speed of enemies
     private GameObject target;
-    private int chooseTarget;
     private SpriteRenderer render;
     private Rigidbody2D rb;
     private CircleCollider2D collide;
+    private EnemyHealth healthbar;
+    public GameObject prefab;
+    private bool isDead = false;
     void Start()
     {
-    
+        healthbar = GetComponentInChildren<EnemyHealth>();
     }
-
+    public void Kill(){
+        isDead = true;
+    }
     void OnEnable()
     {
         render = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         collide = GetComponent<CircleCollider2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        chooseTarget = Random.Range(0, 2);
+        int chooseTarget = UnityEngine.Random.Range(0, 2);
         if (chooseTarget == 0) target = GameObject.FindGameObjectWithTag("Player1");
         else target = GameObject.FindGameObjectWithTag("Player2");
         if(chooseTarget == 0) render.color = Color.white;
         else render.color = Color.grey;
 
+        Vector3 pos = transform.localPosition;
+        GameObject instance = Instantiate(prefab, new Vector3(pos.x, pos.y+1.2f, pos.z), Quaternion.identity);
+        instance.transform.SetParent(gameObject.transform);
     }
 
     void OnDisable()
     {
-        if(gameObject != null) Destroy(gameObject);
+        if(gameObject){
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(!isDead && target) Move();
+        else {
+            Destroy(healthbar);
+            Destroy(gameObject);
+        }
     }
     private void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("Bullet")){
-            // Debug.Log("Damage done to Enemy!");
-            Destroy(this.gameObject);
-        }
-        else if(other.CompareTag(target.tag)){
-            // Debug.Log("Damage done to Character");
-            Destroy(this.gameObject);
+        if (!isDead && other.CompareTag("Bullet")){
+            healthbar.DecreaseHealth();
         }
     }
     private void Move()
     {
-        // TrackDistance();
         Vector3 direction = (target.transform.position - transform.position).normalized;
         this.transform.position += direction * speed * Time.deltaTime;
-
-        // Debug.Log(this.transform.position.x);
-        // Debug.Log(direction.x);
 
         if(direction.x > 0) render.flipX = true;
         else render.flipX = false;

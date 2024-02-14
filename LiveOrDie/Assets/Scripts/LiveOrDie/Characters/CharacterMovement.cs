@@ -4,34 +4,34 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    /* FOR LATER VARIABLES */
-    // public bool isDead{get; private set;}
-    // public int score;
     public float speed = 1.5f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
     public int whichCharacter; // unique ID of character
 
     private BoxCollider2D boxCollide;
     private Rigidbody2D rb;
-    // private Vector3 flip = new Vector3(3f, 3f, 1f);
     private GameObject peer;
-
     private DistanceJoint2D dj;
-
     public SpriteRenderer render;
+    private CharacterHealth healthbar;
+    private bool isDead = false;
     
     //movement lock flag
-    private bool isMovementLocked = false;
+    public bool isMovementLocked = false;
 
-    // void OnEnable(){
-    // }
+    public void Kill(){
+        isDead = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Enemy")){
-            // Destroy(this.gameObject);
+        if(!isDead && other.CompareTag("Enemy")){
+            // FOR NOW, bumping into character will "hurt" player, 
+            // later, ideal if there are more means of attack
+            healthbar.DecreaseHealth();
         }
     }
     void Start(){ 
+        healthbar = GetComponentInChildren<CharacterHealth>();
         // Event listener
         EventMgr.Instance.AddEventListener("GamePaused", SwitchMovementLock);
         EventMgr.Instance.AddEventListener("GameResumed", SwitchMovementLock);
@@ -62,19 +62,30 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 pos = this.transform.position;
-        if (!isMovementLocked) // stop if movement locked
-        {
-            
-            if (whichCharacter == 2 || whichCharacter == 1)
+        if(isDead) {
+            Destroy(healthbar);
+            Destroy(gameObject);
+        }
+        else{
+            Vector3 pos = this.transform.position;
+            if (!isMovementLocked) // stop if movement locked
             {
-                MoveCharacter(ref pos, whichCharacter);
+                
+                if (whichCharacter == 2 || whichCharacter == 1)
+                {
+                    MoveCharacter(ref pos, whichCharacter);
+                }
+                else
+                {
+                    Debug.LogWarning("Unexpected character type: " + whichCharacter);
+                }
+                rb.MovePosition(pos);
             }
-            else
-            {
-                Debug.LogWarning("Unexpected character type: " + whichCharacter);
-            }
-            rb.MovePosition(pos);
+        }
+    }
+    void OnDisable(){
+        if(gameObject){
+            Destroy(gameObject);
         }
     }
 

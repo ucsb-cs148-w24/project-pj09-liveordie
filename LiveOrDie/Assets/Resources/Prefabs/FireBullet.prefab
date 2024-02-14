@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5909358260444715413}
   - component: {fileID: -6260608692481741723}
   m_Layer: 8
-  m_Name: Capsule
+  m_Name: FireBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
