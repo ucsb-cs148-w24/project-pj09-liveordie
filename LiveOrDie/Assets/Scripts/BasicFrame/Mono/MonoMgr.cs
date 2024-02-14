@@ -16,13 +16,20 @@ using UnityEngine.Events;
 public class MonoMgr : SingletonMono<MonoMgr>
 {
     private event UnityAction updateEvent; // lifecycle event to hold methods
+    private event UnityAction fixedUpdateEvent;
 
     void Update()
     {
         if (updateEvent != null) //if there is methods in event
             updateEvent(); //call those methods in its own Update lifecycle function
     }
-    
+
+    private void FixedUpdate()
+    {
+        if (fixedUpdateEvent != null) //if there is methods in event
+            fixedUpdateEvent(); //call those methods in its own Update lifecycle function
+    }
+
     /// <summary>
     /// add update listener 
     /// </summary>
@@ -39,5 +46,23 @@ public class MonoMgr : SingletonMono<MonoMgr>
     public void RemoveUpdateListener(UnityAction func)
     {
         updateEvent -= func;
+    }
+    
+    /// <summary>
+    /// add fixedUpdate listener 
+    /// </summary>
+    /// <param name="func">function needed to be in Update</param>
+    public void AddFixedUpdateListener(UnityAction func) 
+    {
+        fixedUpdateEvent += func;
+    }
+    
+    /// <summary>
+    /// remove fixedUpdate listener
+    /// </summary>
+    /// <param name="func">function needed to be in Update</param>
+    public void RemoveFixedUpdateListener(UnityAction func)
+    {
+        fixedUpdateEvent -= func;
     }
 }    

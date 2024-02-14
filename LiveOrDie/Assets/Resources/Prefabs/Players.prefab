@@ -157,10 +157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba537fe2c718413eb6d61e37d089b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 3
   maxRadius: 5
   whichCharacter: 1
   render: {fileID: 0}
+  horizontal: 0
+  vertical: 0
 --- !u!50 &9178055712953238706
 Rigidbody2D:
   serializedVersion: 4
@@ -598,10 +600,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba537fe2c718413eb6d61e37d089b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 3
   maxRadius: 5
   whichCharacter: 2
   render: {fileID: 0}
+  horizontal: 0
+  vertical: 0
 --- !u!50 &110896915486969791
 Rigidbody2D:
   serializedVersion: 4
