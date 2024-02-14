@@ -13,6 +13,7 @@ public class EnemyCloner : MonoBehaviour
     void Clone()
     {
         Vector3 randomSpawn = Camera.main.ViewportToWorldPoint(new Vector3(UnityEngine.Random.value, UnityEngine.Random.value, 0));
+        randomSpawn.z = 0;
         instance = Instantiate(prefabEnemy, randomSpawn, Quaternion.identity);
         instance.transform.SetParent(this.gameObject.transform);
     }
