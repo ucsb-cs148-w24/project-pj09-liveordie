@@ -12,8 +12,13 @@ public class MainCameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        centerPoint = (obj1.position + obj2.position) / 2f;
-        transform.position = Vector2.SmoothDamp(transform.position, centerPoint, ref velocity, smoothTime);
-        transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        if(obj1 && obj2){
+            centerPoint = (obj1.position + obj2.position) / 2f;
+            transform.position = Vector2.SmoothDamp(transform.position, centerPoint, ref velocity, smoothTime);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+        }
+        else{
+            Debug.Log("GameOver");
+        }
     }
 }

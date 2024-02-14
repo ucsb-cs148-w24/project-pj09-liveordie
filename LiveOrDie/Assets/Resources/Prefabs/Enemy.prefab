@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  prefab: {fileID: 6273140279733702962, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
 --- !u!58 &-8167270379658744227
 CircleCollider2D:
   m_ObjectHideFlags: 0
