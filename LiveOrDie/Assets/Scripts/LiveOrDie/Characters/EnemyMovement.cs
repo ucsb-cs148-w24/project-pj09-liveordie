@@ -1,20 +1,24 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float speed = 0.5f; // move speed of enemies
     private GameObject target;
     private SpriteRenderer render;
     private Rigidbody2D rb;
     private CircleCollider2D collide;
     private EnemyHealth healthbar;
+    private NavMeshAgent agent;
     public GameObject prefab;
     private bool isDead = false;
     void Start()
     {
         healthbar = GetComponentInChildren<EnemyHealth>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+		agent.updateUpAxis = false;
     }
     public void Kill(){
         isDead = true;
@@ -59,10 +63,11 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Move()
     {
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        this.transform.position += direction * speed * Time.deltaTime;
+        agent.SetDestination(target.transform.position);
+        // Vector3 direction = (target.transform.position - transform.position).normalized;
+        // this.transform.position += direction * speed * Time.deltaTime;
 
-        if(direction.x > 0) render.flipX = true;
+        if(agent.desiredVelocity.x > 0) render.flipX = true;
         else render.flipX = false;
     }
 }
