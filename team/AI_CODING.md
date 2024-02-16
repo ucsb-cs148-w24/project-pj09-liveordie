@@ -29,4 +29,6 @@ Reflections:
 
 
 #### Thomas
-
+        - I used Adobe Firefly to generate different sprite concepts for enemies and other player visuals.
+        - I think this tool could be useful for generating concepts as the AI cannot create images in the exact style that our game is using. There are minor errors in the images themselves as they do not adhere to a pixel-by-pixel philosophy. Therefore the AI will be useful for generating concepts but not actual game assets.
+        - Adobe Firefly has a feature that allows the importation of an image to use as a basis for the newly generated images. I ran a few tests using the sprites we have already developed for our game, which generated art that was closer to style we want. However, the images still did not use the same pixel structure which is why it should be restricted to concept-only.
