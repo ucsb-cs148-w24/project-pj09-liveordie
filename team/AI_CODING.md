@@ -17,7 +17,7 @@ Reflections:
 
 
 #### Frank
-
+I used Gemini Advanced to generate a tile map. The result was an amazing concept picture, but it wasn't my goal. Most of the AI generation wouldn't work. They either missed certain keywords top-down/2d/pixel/tile-map, or got those right with an artistic style that would not fit.
 
 #### Baige
 
