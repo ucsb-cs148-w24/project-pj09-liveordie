@@ -33,9 +33,11 @@ public class PewPew : MonoBehaviour
         parentRender = this.GetComponentInParent<CharacterMovement>().render;
         if(parentRender.flipX == false){
             bulletRb.velocity = -transform.right * bulletSpeed;
+            childRender.flipX = false;
         }
         else if (parentRender.flipX == true){
             bulletRb.velocity = transform.right * bulletSpeed;
+            childRender.flipX = true;
         }
     }
 
