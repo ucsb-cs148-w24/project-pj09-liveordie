@@ -17,7 +17,7 @@ Reflections:
 
 
 #### Frank
-I used Gemini Advanced to generate a tile map. The results were some high-quality concept pictures, but that wasn't my goal. Most of the AI generation on the market wouldn't work. They either missed certain keywords top-down/2d/pixel/tile-map, or got those right with an artistic style that would not fit.
+I used Gemini Advanced to generate a tile map. The results were some high-quality concept pictures, but that wasn't my goal. Most of the AI generation (DALLE, Midjourney, SD) on the market wouldn't work. They either missed certain keywords top-down/2d/pixel/tile-map, or got those right with an artistic style that would not fit.
 
 #### Baige
 
