@@ -26,6 +26,13 @@ Reflections:
 
 
 #### Sean
+I used Codeium for code completion instead of Github Copilot.
+Reflections:
+- The tool was mostly useful for writing code similar to already written code. If I was writing something new, it would often generate wrong code. The best way to use it I found was to write pseudocode first so it can understand what to implement.
+- I also used it to explain a portion of code and it gave a decent description of the code's functionality, but I wouldn't use it for stuff I didn't already understand.
+- I also generated some documentation, which it was very good at and I only had to make minor edits.
+- The way it makes diffs for code it writes is nicer to visualise than copilot
+- In general, it seems as good if not better than Github Copilot, and it's free so I will be using it from now on.
 
 
 #### Thomas
