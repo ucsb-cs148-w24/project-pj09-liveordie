@@ -23,7 +23,9 @@ I used Gemini Advanced to generate a tile map. The results were some high-qualit
 
 
 #### Cindy
-
+I used ChatGPT to help me generate the documentation. I think it can save time compared to writing it manually, especially for large codebases. I also tried to generate the documentation for other teammates' code to help me learn more about Unity and coding. However, I realized that ChatGPT can create some errors while generating documentation, but I can fix it quickly as long as I understand the code.
+I also tried Adobe Firefly to generate different sprites just for fun. I used the sprites created by my teammates as the design pattern and wrote what I wanted in words. It was useful for some inspiration but if we do not change the words it just keeps creating a similar design from before.
+In general, I think AI can inspire us but we still need some modifications or updates for actual use. Overall, they are useful.
 
 #### Sean
 I used Codeium for code completion instead of Github Copilot.
