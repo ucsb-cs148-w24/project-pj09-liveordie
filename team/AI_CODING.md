@@ -14,7 +14,7 @@ Reflections:
 
 
 #### Jason
-
+I tried out a unity plugin locally called 'text to script generator and code optimizer', which is based on ChapGPT. I used a legacy free version. I tired to create a few scripts to perform functionalities like object movement and debugings. It turned out that the plugin is pertty reliable on simple tasks and would generate C# attributes to create editor tooltips to clearify its fields. However sometimes it would mismatch the existing references or does not use the correct namespace. In other words, it might not be a good idea to let it create scipts that connects with other ones, but still useful to generate examples for single task scripts.
 
 #### Frank
 I used Gemini Advanced to generate a tile map. The results were some high-quality concept pictures, but that wasn't my goal. Most of the AI generation (DALLE3, Midjourney, Stable Diffusion, Adobe Firefly) on the market wouldn't work. They either missed certain keywords top-down/2d/pixel/tile-map, or got those right with an artistic style that would not fit.
