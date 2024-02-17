@@ -20,6 +20,7 @@ I tried out a unity plugin locally called 'text to script generator and code opt
 I used Gemini Advanced to generate a tile map. The results were some high-quality concept pictures, but that wasn't my goal. Most of the AI generation (DALLE3, Midjourney, Stable Diffusion, Adobe Firefly) on the market wouldn't work. They either missed certain keywords top-down/2d/pixel/tile-map, or got those right with an artistic style that would not fit.
 
 #### Baige
+I used OpenAI, including ChatGPT and Dalle3 to generate C# scripts and relative images in our game. Since none of us in our team is good at art, and I mainly came up with the background story and the introduction part of the game, I used Dalle3 to generate images visualizing my story. During the process, I did nothing about technology but describing my demand to AI. First of all, it creates some images that are indeed related to my background. However, it does not meet my prefections. Then, I keep pointing out the places I wanted that to improve. After a few times, I found that those images provided by AI are not only as same as what I want, but also out of my expectation. In general, I was shocked by the maturity of the AI nowadays. Although it may not be able to achieve our requirements at the first time, I firmly believe that it could make it with more detailed descriptions. In the future, we shuold use AI to help us accomplish our goals.
 
 
 #### Cindy
