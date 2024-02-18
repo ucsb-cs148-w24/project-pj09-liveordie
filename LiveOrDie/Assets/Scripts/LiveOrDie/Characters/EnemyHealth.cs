@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float enemyHealth = 10f; // can be changed
-    private EnemyMovement enemy_Control;
+    private Enemy enemy;
     private Image healthbar;
     private Color healthy = new Color(0.6f, 1, 0.6f, 1);
     void OnEnable(){
@@ -16,22 +15,22 @@ public class EnemyHealth : MonoBehaviour
     }
 
     public void DecreaseHealth(){
-        enemyHealth--;
-        healthbar.fillAmount = enemyHealth/10;
+        enemy.health--;
+        healthbar.fillAmount = enemy.health/10f;
     }
     // Start is called before the first frame update
     void Start()
     {
-        enemy_Control = transform.parent.GetComponent<EnemyMovement>();
+        enemy = transform.parent.GetComponent<Wolf>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyHealth <= 0){
-            enemy_Control.Kill();
+        if (enemy.health <= 0){
+            enemy.Kill();
         }
-        else if(enemyHealth > 2){
+        else if(enemy.health > 2){
             healthbar.color = healthy;
         }
         else { healthbar.color = Color.red;}
