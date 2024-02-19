@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class EnemyCloner : MonoBehaviour
 {
     public int enemySize = 10;
-    private int count = 0;
+    private int wolfCount = 0; //number of current wolves 
 
     public GameObject wolfPrefab;
     private WolfFactory wolfFactory;
@@ -17,21 +17,24 @@ public class EnemyCloner : MonoBehaviour
 
     void Clone()
     {
-        newWolf = wolfFactory.CreateEnemy(wolfPrefab, GetRandomSpawnPosition()) as Wolf;
-        newWolf.gameObject.transform.SetParent(this.gameObject.transform);
+        wolfFactory.CreateEnemyAsync(GetRandomSpawnPosition(), (wolf) =>
+        {
+            //use reference 'wolf' here if you want to use the wolf spawned
+            wolfCount++;
+        });
+
     }
 
     // Start is called before the first frame update
     void Start()
-    {   
-        wolfFactory = WolfFactory.CreateInstance<WolfFactory>();
+    {
+        wolfFactory = new WolfFactory();
     }
 
     // Update is called once per frame
     void Update()
     {
-        count = this.transform.childCount;
-        if(count < enemySize) {
+        if(wolfCount < enemySize) {
             Clone();
         }
     }
@@ -45,8 +48,8 @@ public class EnemyCloner : MonoBehaviour
         float radius = 1.2f;
         float x = Mathf.Cos(angle) * radius;
         float y = Mathf.Sin(angle) * radius;
-        Debug.Log(x);
-        Debug.Log(y);
+        // Debug.Log(x);
+        // Debug.Log(y);
 
         // convert viewport coordinates to world coordinates
         Vector3 randomSpawn = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 0));
@@ -56,7 +59,7 @@ public class EnemyCloner : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomSpawn, out hit, 60, 1 << NavMesh.GetAreaFromName("Walkable"));
         Vector3 spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f) * 0.95f;     // multiply by 0.9 since spawning on the edge of the nav surface doesn't work
-        Debug.Log(spawnPosition);
+        // Debug.Log(spawnPosition);
         return spawnPosition;
     }
 }
