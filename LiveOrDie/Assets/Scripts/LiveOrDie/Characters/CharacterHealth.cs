@@ -14,7 +14,7 @@ public class CharacterHealth : MonoBehaviour
     void OnEnable(){
         character_control = GetComponentInParent<CharacterMovement>();
         trans = GetComponentInParent<Transform>();
-        Vector3 posit = new Vector3(trans.localPosition.x, trans.localPosition.y + 2.7f, 0);
+        Vector3 posit = new Vector3(trans.localPosition.x, trans.localPosition.y + 2.0f, 0);
         transform.localPosition = posit;
         foreach(var image in gameObject.GetComponentsInChildren<Image>())
         {   
