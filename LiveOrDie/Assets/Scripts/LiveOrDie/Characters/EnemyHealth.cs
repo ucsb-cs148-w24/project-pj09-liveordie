@@ -14,14 +14,6 @@ public class EnemyHealth : MonoBehaviour
     private Color healthy = new Color(0.6f, 1, 0.6f, 1);
     
     
-    void Update()
-    {
-        if(enemy.health > 2){
-            healthbar.color = healthy;
-        }
-        else { healthbar.color = Color.red;}
-    }
-    
     public void Initialize()
     {
         healthbar.color = healthy;
@@ -31,5 +23,10 @@ public class EnemyHealth : MonoBehaviour
     public void UpdateHealthBar()
     {
         healthbar.fillAmount = enemy.health/10f;
+        if(enemy.health > 2){
+            healthbar.color = healthy;
+        }
+        else { healthbar.color = Color.red;}
     }
+    
 }
