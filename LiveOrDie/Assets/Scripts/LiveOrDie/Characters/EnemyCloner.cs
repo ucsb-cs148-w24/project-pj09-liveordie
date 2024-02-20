@@ -24,22 +24,26 @@ public class EnemyCloner : MonoBehaviour
         });
 
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         wolfFactory = new WolfFactory();
-    }
+        
+        //***********************Any counting function should be moved into a centralized mgr later***************
+        EventMgr.Instance.AddEventListener("WolfDead", ReduceWolfCount);
+        EventMgr.Instance.AddEventListener("WolfDead", CheckIfClone);
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(wolfCount < enemySize) {
-            Clone();
+        for (int i = 0; i < 10; i++)
+        {
+            Clone(); //clone 10 at the beginning
         }
     }
-    void OnDisable()
+    
+
+    private void OnDestroy()
     {
+        EventMgr.Instance.RemoveEventListener("WolfDead", ReduceWolfCount);
+        EventMgr.Instance.RemoveEventListener("WolfDead", CheckIfClone);
     }
 
     private Vector3 GetRandomSpawnPosition() {
@@ -62,4 +66,20 @@ public class EnemyCloner : MonoBehaviour
         // Debug.Log(spawnPosition);
         return spawnPosition;
     }
+
+    //***********************Any counting function should be moved into a centralized mgr later***************
+    private void ReduceWolfCount()
+    {
+        wolfCount--;
+    }
+
+    //*******************Any clone rule related functions should be moved into a centralized mgr later***************
+    private void CheckIfClone()
+    {
+        if(wolfCount < enemySize) {  //can add some sort of delay here using Invoke
+            Invoke(nameof(Clone), 5f);
+        }
+    }
+    
+    
 }
