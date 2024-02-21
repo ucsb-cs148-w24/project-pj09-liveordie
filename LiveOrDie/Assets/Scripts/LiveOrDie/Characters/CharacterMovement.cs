@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public float speed = 1.5f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
     public int whichCharacter; // unique ID of character
-
+    private int scoreboard = 0;
     private BoxCollider2D boxCollide;
     private Rigidbody2D rb;
     private GameObject peer;
@@ -31,6 +31,9 @@ public class CharacterMovement : MonoBehaviour
         left,
         right,
     }
+
+    public int getScore() {return scoreboard;}
+    public void incrementScore() { scoreboard++; }
     public bool checkDeath() { return isDead; }
     public void setMockObject(float spd, float rad, int whichChar){
         speed = spd;
