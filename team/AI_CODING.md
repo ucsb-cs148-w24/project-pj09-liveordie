@@ -29,6 +29,7 @@ I also tried Adobe Firefly to generate different sprites just for fun. I used th
 In general, I think AI can inspire us but we still need some modifications or updates for actual use. Overall, they are useful.
 
 #### Sean
+
 I used Codeium for code completion instead of Github Copilot.
 Reflections:
 - The tool was mostly useful for writing code similar to already written code. If I was writing something new, it would often generate wrong code. The best way to use it I found was to write pseudocode first so it can understand what to implement.
