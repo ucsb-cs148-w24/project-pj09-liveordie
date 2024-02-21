@@ -114,9 +114,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 300
-        height: 340
+        y: 900
+        width: 380
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: fire_sprite_sheet_1
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 300
-        height: 340
+        x: 0
+        y: 600
+        width: 380
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +155,10 @@ TextureImporter:
       name: fire_sprite_sheet_2
       rect:
         serializedVersion: 2
-        x: 600
-        y: 0
-        width: 300
-        height: 340
+        x: 0
+        y: 300
+        width: 380
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: fire_sprite_sheet_3
       rect:
         serializedVersion: 2
-        x: 900
+        x: 0
         y: 0
-        width: 300
-        height: 340
+        width: 380
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

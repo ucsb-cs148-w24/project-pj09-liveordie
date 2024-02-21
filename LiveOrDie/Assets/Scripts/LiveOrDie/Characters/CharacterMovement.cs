@@ -1,6 +1,9 @@
 using System;
 using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -28,7 +31,16 @@ public class CharacterMovement : MonoBehaviour
         left,
         right,
     }
-    
+    public bool checkDeath() { return isDead; }
+    public void setMockObject(float spd, float rad, int whichChar){
+        speed = spd;
+        isDead = false;
+        isMovementLocked = false;
+        maxRadius = rad;
+        whichCharacter = whichChar;
+        horizontal = 0;
+        vertical = 0;
+    } 
     public void Kill(){
         isDead = true;
     }
