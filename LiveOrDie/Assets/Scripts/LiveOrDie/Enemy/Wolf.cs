@@ -11,9 +11,12 @@ public class Wolf : Enemy
     public override void Initialize() {
         health = 10;
         damage = 1;
-        isDead = false;
         SetTarget();
+        
+        //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();
+        enemyHealth.enemy = this; //assign itself to its sub component
+        enemyHealth.Initialize();
     }
 
     void OnEnable()
@@ -21,22 +24,12 @@ public class Wolf : Enemy
         Initialize();
     }
 
-    void OnDisable()
-    {
-        if(gameObject){
-            Destroy(gameObject);
-        }
-    }
-
-    private void Update() {
-        if(isDead && gameObject) {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D other){
-        if (!isDead && other.CompareTag("Bullet")){
-            enemyHealth.DecreaseHealth();
+        if (other.CompareTag("Bullet"))
+        {
+            health--;
+            enemyHealth.UpdateHealthBar();
+            CheckDead(); //should be move out of the if/switch case when there are more ways to reduce health
         }
     }
 
@@ -49,5 +42,19 @@ public class Wolf : Enemy
         else target = GameObject.FindGameObjectWithTag("Player2");
         if(chooseTarget == 0) render.color = Color.white;
         else render.color = Color.grey;
+    }
+
+    private void CheckDead()
+    {
+        if (health <= 0){
+           Die();
+        }
+    }
+    
+
+    protected override void Die()
+    {
+        EventMgr.Instance.EventTrigger("WolfDead"); //trigger event for later usage
+        PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
     }
 }
