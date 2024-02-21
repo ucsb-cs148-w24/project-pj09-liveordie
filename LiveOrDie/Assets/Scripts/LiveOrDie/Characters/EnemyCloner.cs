@@ -45,8 +45,8 @@ public class EnemyCloner : MonoBehaviour
         float radius = 1.2f;
         float x = Mathf.Cos(angle) * radius;
         float y = Mathf.Sin(angle) * radius;
-        Debug.Log(x);
-        Debug.Log(y);
+        // Debug.Log(x);
+        // Debug.Log(y);
 
         // convert viewport coordinates to world coordinates
         Vector3 randomSpawn = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 0));
@@ -56,7 +56,7 @@ public class EnemyCloner : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomSpawn, out hit, 60, 1 << NavMesh.GetAreaFromName("Walkable"));
         Vector3 spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f) * 0.95f;     // multiply by 0.9 since spawning on the edge of the nav surface doesn't work
-        Debug.Log(spawnPosition);
+        // Debug.Log(spawnPosition);
         return spawnPosition;
     }
 }
