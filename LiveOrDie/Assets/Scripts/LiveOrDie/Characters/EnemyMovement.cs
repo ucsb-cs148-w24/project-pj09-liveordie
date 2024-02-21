@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!enemy.isDead && enemy.target) Move();
+        if(enemy.target) Move();
     }
     
     private void Move()
