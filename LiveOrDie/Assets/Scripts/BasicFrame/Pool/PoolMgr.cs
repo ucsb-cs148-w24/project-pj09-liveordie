@@ -70,7 +70,7 @@ public class PoolData
 public class PoolMgr : Singleton<PoolMgr>
 {                                                                                                                                                                                                     
     //Pool dictionary
-    //string —— name of that kind of object（一个抽屉）
+    //string —— name of that kind of object
     //PoolData —— encapsulates a list of objects and father object (in hierarchy window)
     public Dictionary<string, PoolData> poolDic = new Dictionary<string, PoolData>();
 
