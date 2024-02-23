@@ -136,13 +136,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1980748162}
     m_Modifications:
+    - target: {fileID: 430638900949663929, guid: 71845c2a65b31644ea28373aa6795c2a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1713923215910425005, guid: 71845c2a65b31644ea28373aa6795c2a, type: 3}
       propertyPath: m_Name
       value: LoadingPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1713923215910425005, guid: 71845c2a65b31644ea28373aa6795c2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3367653244981101725, guid: 71845c2a65b31644ea28373aa6795c2a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6413999337067028177, guid: 71845c2a65b31644ea28373aa6795c2a, type: 3}
       propertyPath: m_Pivot.x
@@ -633,27 +641,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601502172910817403, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4778565117343151721, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5289006660147736338, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6231799921650090969, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_Name
       value: SettingsPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 6231799921650090969, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6653302077073252420, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -880,7 +884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1988823968
 RectTransform:
   m_ObjectHideFlags: 0
