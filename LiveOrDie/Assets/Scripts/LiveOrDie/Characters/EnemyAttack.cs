@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // This will destroy the enemy if it comes into contact with the player. 
-    //Will need to add to the main player script and completed healthbar/UI 
     float damage;
     float damagePerSecond = 1f;
     private bool isFollowingPlayer = false;
@@ -28,7 +26,9 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col) {
+    // This will destroy the enemy if it comes into contact with the player. 
+    //Will need to add to the main player script and completed healthbar/UI 
+        private void OnCollisionEnter2D(Collision2D col) {
         if(col.gameObject.tag == "Bullet") {
             // col.gameObject.GetComponent<PlayerScript>().hurt();
             Destroy(this.gameObject);
