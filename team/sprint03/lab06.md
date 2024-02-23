@@ -46,7 +46,7 @@ _____________________________________________________________________________
 
 #### Cindy
 - What did: created pr for enemy attack script
-- What to do: work with others on features
+- What to do: work on tutorial
 - What blockers: N/A
 
 #### Sean
