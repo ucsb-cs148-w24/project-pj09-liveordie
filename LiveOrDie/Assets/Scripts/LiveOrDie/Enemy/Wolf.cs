@@ -8,7 +8,7 @@ public class Wolf : Enemy
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
 
-    private CharacterMovement mostRecentAttacker; // keeps track of the last person who shot them --> for scoreboard purposes
+    private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
 
     public override void Initialize() {
         health = 10;
@@ -29,8 +29,8 @@ public class Wolf : Enemy
     private void OnTriggerEnter2D(Collider2D other){
         if (other.CompareTag("Bullet"))
         {
-            mostRecentAttacker = other.GetComponentInParent<CharacterMovement>();
             health--;
+            mostRecentAttacker = other.GetComponentInParent<CharacterMovement>();
             enemyHealth.UpdateHealthBar();
             CheckDead(); //should be move out of the if/switch case when there are more ways to reduce health
         }
@@ -50,7 +50,7 @@ public class Wolf : Enemy
     private void CheckDead()
     {
         if (health <= 0){
-            mostRecentAttacker.incrementScore();
+            EventMgr.Instance.EventTrigger("IncrementScore", mostRecentAttacker.whichCharacter);
             Die();
         }
     }

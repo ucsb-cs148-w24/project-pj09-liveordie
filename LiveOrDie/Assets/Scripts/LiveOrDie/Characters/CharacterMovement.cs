@@ -10,13 +10,13 @@ public class CharacterMovement : MonoBehaviour
     public float speed = 1.5f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
     public int whichCharacter; // unique ID of character
-    private int scoreboard = 0;
     private BoxCollider2D boxCollide;
     private Rigidbody2D rb;
     private GameObject peer;
     private DistanceJoint2D dj;
     public SpriteRenderer render;
     private CharacterHealth healthbar;
+    private Scoreboard gameScore; // gameScore of current session
     private bool isDead = false;
     
     //movement lock flag
@@ -31,9 +31,6 @@ public class CharacterMovement : MonoBehaviour
         left,
         right,
     }
-
-    public int getScore() {return scoreboard;}
-    public void incrementScore() { scoreboard++; }
     public bool checkDeath() { return isDead; }
     public void setMockObject(float spd, float rad, int whichChar){
         speed = spd;
@@ -56,6 +53,8 @@ public class CharacterMovement : MonoBehaviour
     }
     void Start(){ 
         healthbar = GetComponentInChildren<CharacterHealth>();
+        gameScore = GetComponentInChildren<Scoreboard>();
+
         // Event listener
         EventMgr.Instance.AddEventListener("GamePaused", GlobalControlLock);
         EventMgr.Instance.AddEventListener("GameResumed", GlobalControlUnlock);
@@ -97,22 +96,6 @@ public class CharacterMovement : MonoBehaviour
             Destroy(healthbar);
             Destroy(gameObject);
         }
-        // else{
-        //     Vector3 pos = this.transform.position;
-        //     if (!isMovementLocked) // stop if movement locked
-        //     {
-                
-        //         if (whichCharacter == 2 || whichCharacter == 1)
-        //         {
-        //             MoveCharacter(ref pos, whichCharacter);
-        //         }
-        //         else
-        //         {
-        //             Debug.LogWarning("Unexpected character type: " + whichCharacter);
-        //         }
-        //         rb.MovePosition(pos);
-        //     }
-        // }
     }
     void OnDisable(){
         if(gameObject){ Destroy(gameObject); }
