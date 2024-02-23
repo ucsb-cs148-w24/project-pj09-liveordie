@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Players
       objectReference: {fileID: 0}
+    - target: {fileID: 2062207388592805065, guid: 618ed381331167048a27aa8cbd641b77, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4127653848056708114, guid: 618ed381331167048a27aa8cbd641b77, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -210,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySize: 10
-  wolfPrefab: {fileID: 0}
+  wolfPrefab: {fileID: 4491543255784683769, guid: 8d1784c86e2c84240811589474ab0a45, type: 3}
 --- !u!4 &1092750042
 Transform:
   m_ObjectHideFlags: 0

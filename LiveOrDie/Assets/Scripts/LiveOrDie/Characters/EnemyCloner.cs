@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class EnemyCloner : MonoBehaviour
 {
     public int enemySize = 10;
-    private int count = 0;
+    private int wolfCount = 0; //number of current wolves 
 
     public GameObject wolfPrefab;
     private WolfFactory wolfFactory;
@@ -17,26 +17,33 @@ public class EnemyCloner : MonoBehaviour
 
     void Clone()
     {
-        newWolf = wolfFactory.CreateEnemy(wolfPrefab, GetRandomSpawnPosition()) as Wolf;
-        newWolf.gameObject.transform.SetParent(this.gameObject.transform);
-    }
+        wolfFactory.CreateEnemyAsync(GetRandomSpawnPosition(), (wolf) =>
+        {
+            //use reference 'wolf' here if you want to use the wolf spawned
+            wolfCount++;
+        });
 
-    // Start is called before the first frame update
+    }
+    
     void Start()
-    {   
-        wolfFactory = WolfFactory.CreateInstance<WolfFactory>();
-    }
-
-    // Update is called once per frame
-    void Update()
     {
-        count = this.transform.childCount;
-        if(count < enemySize) {
-            Clone();
+        wolfFactory = new WolfFactory();
+        
+        //***********************Any counting function should be moved into a centralized mgr later***************
+        EventMgr.Instance.AddEventListener("WolfDead", ReduceWolfCount);
+        EventMgr.Instance.AddEventListener("WolfDead", CheckIfClone);
+
+        for (int i = 0; i < 10; i++)
+        {
+            Clone(); //clone 10 at the beginning
         }
     }
-    void OnDisable()
+    
+
+    private void OnDestroy()
     {
+        EventMgr.Instance.RemoveEventListener("WolfDead", ReduceWolfCount);
+        EventMgr.Instance.RemoveEventListener("WolfDead", CheckIfClone);
     }
 
     private Vector3 GetRandomSpawnPosition() {
@@ -59,4 +66,20 @@ public class EnemyCloner : MonoBehaviour
         // Debug.Log(spawnPosition);
         return spawnPosition;
     }
+
+    //***********************Any counting function should be moved into a centralized mgr later***************
+    private void ReduceWolfCount()
+    {
+        wolfCount--;
+    }
+
+    //*******************Any clone rule related functions should be moved into a centralized mgr later***************
+    private void CheckIfClone()
+    {
+        if(wolfCount < enemySize) {  //can add some sort of delay here using Invoke
+            Invoke(nameof(Clone), 5f);
+        }
+    }
+    
+    
 }
