@@ -15,4 +15,12 @@ public class MainSceneAudioController : MonoBehaviour
     {
         AudioMgr.Instance.StopBGM();
     }
+
+    private void Update(){
+
+        if(Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown(KeyCode.M))
+        AudioMgr.Instance.PlayAudio("BulletSFX",false);
+        
+    }
+
 }
