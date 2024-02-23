@@ -37,7 +37,7 @@ _____________________________________________________________________________
 #### Frank
 - What did: worked with Jason, worked on the audio controller, added bullet sound effect
 - What to do: Add details audio manager
-- What blockers: Discuss later
+- What blockers: N/A
 
 #### Baige
 - What did: more pixel arts for weapons
@@ -57,7 +57,7 @@ _____________________________________________________________________________
 #### Thomas
 - What did: created bullet attaction pr so it does not pass the wall
 - What to do: make ghost enemy separate from the prefabs
-- What blockers: Bullets go through walls? string also does...
+- What blockers: N/A
 _____________________________________________________________________________
 
 ## ==OTHER STUFF==
