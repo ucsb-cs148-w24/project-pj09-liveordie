@@ -46,7 +46,6 @@ public class EnemyAttack : MonoBehaviour
     {
         while (isAttacking && currentTarget != null)
         {
-            Debug.Log("Attacking");
             // Decrease player's health by 1 each second
             currentTarget.GetComponent<CharacterHealth>().DecreaseHealth();
             yield return new WaitForSeconds(0.1f);
