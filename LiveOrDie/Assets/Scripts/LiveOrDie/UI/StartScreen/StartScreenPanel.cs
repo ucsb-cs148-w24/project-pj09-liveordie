@@ -17,7 +17,6 @@ public class StartScreenPanel:BasePanel
             
             case "SettingsButton":
                 UIMgr.Instance.ShowPanel<SettingsPanel>("SettingsPanel", E_PanelLayer.Top);
-                print("settings");
                 break;
             
             case "QuitButton":

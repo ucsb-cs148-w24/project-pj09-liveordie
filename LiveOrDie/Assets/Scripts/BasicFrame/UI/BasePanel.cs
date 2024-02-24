@@ -78,6 +78,14 @@ public class BasePanel : MonoBehaviour
                     OnValueChange(componentName,boolValue); //Add listener of virtual method
                 }));
             }
+            else if (componentInChildren is Slider)
+            {
+                (componentInChildren as Slider).onValueChanged.AddListener(((value) =>
+                {
+                    OnSliderValueChange(componentName,value); //Add listener of virtual method
+                }));
+            }
+            
             //-------------------If other components are needed to be listened，add more listener with corresponding virtual method----------------------------
         }
     }
@@ -101,6 +109,17 @@ public class BasePanel : MonoBehaviour
     {
         //Override this method, listener is added in the above method
         //Use switch case to enter logic for toggle with different names
+    }
+
+    /// <summary>
+    /// Virtual Method, Listener for slider value event
+    /// </summary>
+    /// <param name="sliderName">name of slider</param>
+    /// <param name="floatValue">float passed</param>
+    protected virtual void OnSliderValueChange(string sliderName, float floatValue)
+    {
+        //Override this method, listener is added in the above method
+        //Use switch case to enter logic for slider with different names
     }
     
     

@@ -644,27 +644,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601502172910817403, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4778565117343151721, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5289006660147736338, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6231799921650090969, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_Name
       value: SettingsPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 6231799921650090969, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6653302077073252420, guid: e57db33e9fbcc46c0852d98aee6e9e7d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
