@@ -16,7 +16,6 @@ public class CharacterMovement : MonoBehaviour
     private DistanceJoint2D dj;
     public SpriteRenderer render;
     private CharacterHealth healthbar;
-    private Scoreboard gameScore; // gameScore of current session
     private bool isDead = false;
     
     //movement lock flag
@@ -53,7 +52,6 @@ public class CharacterMovement : MonoBehaviour
     }
     void Start(){ 
         healthbar = GetComponentInChildren<CharacterHealth>();
-        gameScore = GetComponentInChildren<Scoreboard>();
 
         // Event listener
         EventMgr.Instance.AddEventListener("GamePaused", GlobalControlLock);

@@ -7,6 +7,7 @@ public class Wolf : Enemy
     private SpriteRenderer render;
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
+    private int points = 10; // how many points a wolf worth
 
     private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
 
@@ -50,7 +51,6 @@ public class Wolf : Enemy
     private void CheckDead()
     {
         if (health <= 0){
-            EventMgr.Instance.EventTrigger("IncrementScore", mostRecentAttacker.whichCharacter);
             Die();
         }
     }
@@ -59,6 +59,7 @@ public class Wolf : Enemy
     protected override void Die()
     {
         EventMgr.Instance.EventTrigger("WolfDead"); //trigger event for later usage
+        EventMgr.Instance.EventTrigger("IncrementScore", points);
         PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
     }
 }
