@@ -9,15 +9,18 @@ public class CharacterMovement : MonoBehaviour
 {
     public float speed = 1.5f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
-    public int whichCharacter; // unique ID of character
 
-    private BoxCollider2D boxCollide;
+    // EVERYTHING FROM HERE AND DOWN BELONGS TO CHARACTER.CS CLASS
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    public int whichCharacter; // unique ID of character
+    // private BoxCollider2D boxCollide; obsolete
     private Rigidbody2D rb;
     private GameObject peer;
     private DistanceJoint2D dj;
     public SpriteRenderer render;
     private CharacterHealth healthbar;
     private bool isDead = false;
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     
     //movement lock flag
     public bool isMovementLocked = false;
@@ -67,8 +70,8 @@ public class CharacterMovement : MonoBehaviour
         render = this.GetComponent<SpriteRenderer>();
         rb = this.GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        boxCollide = this.AddComponent<BoxCollider2D>();
-        boxCollide.isTrigger = true;
+        // boxCollide = this.AddComponent<BoxCollider2D>();
+        // boxCollide.isTrigger = true;
 
 
         switch (whichCharacter){ // identifies characters (you vs peer)
