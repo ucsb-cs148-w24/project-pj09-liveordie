@@ -10,7 +10,6 @@ public class CharacterMovement : MonoBehaviour
     public float speed = 1.5f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
     public int whichCharacter; // unique ID of character
-
     private BoxCollider2D boxCollide;
     private Rigidbody2D rb;
     private GameObject peer;
@@ -53,6 +52,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void Start(){ 
         healthbar = GetComponentInChildren<CharacterHealth>();
+
         // Event listener
         EventMgr.Instance.AddEventListener("GamePaused", GlobalControlLock);
         EventMgr.Instance.AddEventListener("GameResumed", GlobalControlUnlock);
@@ -94,22 +94,6 @@ public class CharacterMovement : MonoBehaviour
             Destroy(healthbar);
             Destroy(gameObject);
         }
-        // else{
-        //     Vector3 pos = this.transform.position;
-        //     if (!isMovementLocked) // stop if movement locked
-        //     {
-                
-        //         if (whichCharacter == 2 || whichCharacter == 1)
-        //         {
-        //             MoveCharacter(ref pos, whichCharacter);
-        //         }
-        //         else
-        //         {
-        //             Debug.LogWarning("Unexpected character type: " + whichCharacter);
-        //         }
-        //         rb.MovePosition(pos);
-        //     }
-        // }
     }
     void OnDisable(){
         if(gameObject){ Destroy(gameObject); }

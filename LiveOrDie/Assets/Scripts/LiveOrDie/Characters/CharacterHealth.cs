@@ -14,7 +14,6 @@ public class CharacterHealth : MonoBehaviour
 
     // public functions used for testing
     public void setHealth(float newHealth){ characterHealth = newHealth; }
-    public void setCharacterMovement(CharacterMovement mov){character_control = mov;}
     public float getHealth() { return this.characterHealth;}
     public float getHealthBarFillAmount() { return healthbar.fillAmount;}
     public bool checkDeath(){ return character_control.checkDeath(); }
