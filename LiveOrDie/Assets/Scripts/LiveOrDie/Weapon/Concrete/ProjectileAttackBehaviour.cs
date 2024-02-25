@@ -37,8 +37,10 @@ public class ProjectileAttackBehaviour : AttackBehaviourBase
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("Enemy") || other.CompareTag("Object")) {
-            other.GetComponent<Enemy>().TakeDamage(damage);
+        if(other.CompareTag("Enemy") || other.CompareTag("Objects")) {
+            if(other.CompareTag("Enemy")) {
+                other.GetComponent<Enemy>().TakeDamage(damage);
+            }
             PoolMgr.Instance.PushObj("Prefabs/Weapons/FireBullet",this.gameObject);
         }
     }
