@@ -21,6 +21,7 @@ public class EnemyCloner : MonoBehaviour
         {
             //use reference 'wolf' here if you want to use the wolf spawned
             wolfCount++;
+            wolf.transform.parent = transform;
         });
 
     }

@@ -24,14 +24,20 @@ public class Wolf : Enemy
         Initialize();
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
-        if (other.CompareTag("Bullet"))
-        {
-            health--;
-            enemyHealth.UpdateHealthBar();
-            CheckDead(); //should be move out of the if/switch case when there are more ways to reduce health
-        }
+    public override void TakeDamage(int damage) {
+        health -= damage;
+        enemyHealth.UpdateHealthBar();
+        CheckDead();
     }
+
+    // private void OnTriggerEnter2D(Collider2D other){
+    //     if (other.CompareTag("Bullet"))
+    //     {
+    //         health--;
+    //         enemyHealth.UpdateHealthBar();
+    //         CheckDead(); //should be move out of the if/switch case when there are more ways to reduce health
+    //     }
+    // }
 
     private void SetTarget() {
         render = GetComponent<SpriteRenderer>();
