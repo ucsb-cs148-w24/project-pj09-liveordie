@@ -23,9 +23,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
         pwsSprite = GetComponent<SpriteRenderer>();
 
         // Set the local scale of the transform so the length is equal to the range
-        float currentLength = pwsSprite.bounds.size.x; // Assuming the length is along the x-axis
-        float scaleFactor = range / currentLength;
-        transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+        transform.localScale = new Vector3(range, range, 1);
     }
 
     public void Fire(Transform p1Transform, Transform p2Transform) 

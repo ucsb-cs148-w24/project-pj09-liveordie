@@ -28,7 +28,6 @@ public class PeachWoodSword : MeleeWeapon
     {
         PoolMgr.Instance.GetObjAsync("Prefabs/Weapons/PeachWoodSwordAttack", (sword) => {
             sword.transform.position = (player1Transform.position + player2Transform.position) / 2;
-            sword.transform.rotation = Quaternion.identity;
             sword.transform.parent = transform;
 
             PWSAttackBehaviour pwsAttackBehaviour = sword.GetComponent<PWSAttackBehaviour>();
