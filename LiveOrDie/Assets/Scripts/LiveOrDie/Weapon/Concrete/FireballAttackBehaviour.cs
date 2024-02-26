@@ -1,14 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-public class ProjectileAttackBehaviour : AttackBehaviourBase
+public class FireballAttackBehaviour : AttackBehaviourBase
 {
     private float speed;
     private float maxDistance;
     private int damage;
     private float accuracy;
 
-    private Rigidbody2D projectileRb;
+    private Rigidbody2D firebulletRb;
 
     public override void Initialize(Weapon weapon)
     {
@@ -17,13 +17,13 @@ public class ProjectileAttackBehaviour : AttackBehaviourBase
         damage = weapon.weaponDamage;
         accuracy = weapon.weaponAccuracy;
 
-        projectileRb = GetComponent<Rigidbody2D>();
+        firebulletRb = GetComponent<Rigidbody2D>();
     }
 
     public void Fire(Vector3 direction) 
     {
-        projectileRb.rotation = Quaternion.FromToRotation(Vector3.right, direction).eulerAngles.z;
-        projectileRb.velocity = direction * speed;
+        firebulletRb.rotation = Quaternion.FromToRotation(Vector3.right, direction).eulerAngles.z;
+        firebulletRb.velocity = direction * speed;
 
         StartCoroutine(DestroyAfterTime());
     }

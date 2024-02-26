@@ -158,7 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySize: 10
-  wolfPrefab: {fileID: 4491543255784683769, guid: 8d1784c86e2c84240811589474ab0a45, type: 3}
 --- !u!1001 &234315329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,6 +177,7 @@ PrefabInstance:
     - target: {fileID: 1043138102988663628, guid: 9bb802783d13bd2419270661e1b7fde6, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[1].second.m_AnimationSpeed
       value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1645674066163395925, guid: 9bb802783d13bd2419270661e1b7fde6, type: 3}
       propertyPath: m_TagString
       value: Objects
