@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PausePanelManager : MonoBehaviour
+public class PausePanelController : MonoBehaviour
 {
     private void Start()
     {
