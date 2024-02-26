@@ -13,7 +13,7 @@ public class PeachWoodSword : MeleeWeapon
         weaponRate = 5.0f;
         weaponLevel = 1;
         weaponName = "PeachWoodSword";
-        meleeRange = 5.0f;
+        meleeRange = 1.0f;
         meleeSwingTime = 2.0f;
 
         autoAttackOn = false;
