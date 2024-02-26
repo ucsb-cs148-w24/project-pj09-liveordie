@@ -41,7 +41,7 @@ public class PeachWoodSword : MeleeWeapon
         Debug.Log("Auto Attack");
         while(autoAttackOn) {
             Attack();
-            yield return new WaitForSeconds(Mathf.Max(weaponRate, meleeSwingTime));
+            yield return new WaitForSeconds(weaponRate);
         }
     }
 

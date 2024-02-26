@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PWSAttackBehaviour : AttackBehaviourBase
 {
+    [SerializeField] public float pwsAlpha = 0.5f;
+    [SerializeField] public float fadeTime = 1.0f;
     private float range;
     private float swingTime;
     private int damage;
@@ -21,6 +23,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
         
         pwsRb = GetComponent<Rigidbody2D>();
         pwsSprite = GetComponent<SpriteRenderer>();
+        pwsSprite.color = new Color(1, 1, 1, 0);
 
         // Set the local scale of the transform so the length is equal to the range
         transform.localScale = new Vector3(range, range, 1);
@@ -34,11 +37,13 @@ public class PWSAttackBehaviour : AttackBehaviourBase
     private IEnumerator fireRoutine(Transform p1Transform, Transform p2Transform)
     {
         yield return swingRoutine(p1Transform, p2Transform);
+        yield return FadeOutRoutine();
         PoolMgr.Instance.PushObj("Prefabs/Weapons/PeachWoodSwordAttack",this.gameObject);
     }
 
     private IEnumerator swingRoutine(Transform p1Transform, Transform p2Transform) 
     {
+        StartCoroutine(FadeInRoutine());
         float elapsedTime = 0f;
         float startRotation = pwsRb.rotation;
         float targetRotation = startRotation - 360f; // Rotate counterclockwise by 360 degrees
@@ -65,6 +70,27 @@ public class PWSAttackBehaviour : AttackBehaviourBase
     {
         if(other.CompareTag("Enemy")) {
             other.GetComponent<Enemy>().TakeDamage(damage);
+        }
+    }
+
+    private IEnumerator FadeInRoutine()
+    {
+        float alpha = 0;
+        while(alpha < pwsAlpha) {
+            alpha += Time.deltaTime / fadeTime;
+            pwsSprite.color = new Color(1, 1, 1, alpha);
+            yield return null;
+        }
+
+    }
+
+    private IEnumerator FadeOutRoutine()
+    {
+        float alpha = pwsAlpha;
+        while(alpha > 0) {
+            alpha -= Time.deltaTime / fadeTime;
+            pwsSprite.color = new Color(1, 1, 1, alpha);
+            yield return null;
         }
     }
 
