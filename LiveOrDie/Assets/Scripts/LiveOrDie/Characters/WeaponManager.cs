@@ -11,6 +11,7 @@ public class WeaponManager : MonoBehaviour
         weapons = new Dictionary<string, Weapon>();
         // for now, we just add fireball weapon by default
         AddWeapon("Fireball");
+        AddWeapon("PeachWoodSword");
     }
 
     public void AddWeapon(string name)

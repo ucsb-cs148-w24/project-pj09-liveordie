@@ -60,7 +60,7 @@ Libraries we used in this project:
 - Upon launching the game, you will see the start screen
 - Press "Game Start" to start playing
 - Use WASD to control Player 1 movement and arrow keys to control Player 2 movement
-- Press V to attack with Player 1 and M to attack with Player 2
+- Automatic attack
 - Be careful not to go too far apart from each other
 - Defeat the enemies as long as possible or until you both die (not yet implemented)
 

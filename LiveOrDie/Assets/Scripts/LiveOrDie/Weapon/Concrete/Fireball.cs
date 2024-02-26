@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Fireball : RangedWeapon
@@ -7,7 +6,6 @@ public class Fireball : RangedWeapon
     private Vector3 firePointOffset = new Vector3(0,1,0);
     private SpriteRenderer p1Sprite, p2Sprite;
     private GameObject player1, player2;
-    private bool autoAttackOn;
     
     public override void Initialize()
     {
@@ -40,9 +38,9 @@ public class Fireball : RangedWeapon
             firebullet.transform.rotation = Quaternion.identity;
             firebullet.transform.parent = transform;
 
-            ProjectileAttackBehaviour projectileAttackBehaviour = firebullet.GetComponent<ProjectileAttackBehaviour>();
-            projectileAttackBehaviour.Initialize(this);
-            projectileAttackBehaviour.Fire(p1Sprite.flipX ? Vector3.right : Vector3.left);
+            FireballAttackBehaviour fireballAttackBehaviour = firebullet.GetComponent<FireballAttackBehaviour>();
+            fireballAttackBehaviour.Initialize(this);
+            fireballAttackBehaviour.Fire(p1Sprite.flipX ? Vector3.right : Vector3.left);
         });
 
         // instantiate fireball prefab (with ProjectileAttackBehaviour script) at p2FirePoint
@@ -51,31 +49,10 @@ public class Fireball : RangedWeapon
             firebullet.transform.rotation = Quaternion.identity;
             firebullet.transform.parent = transform;
 
-            ProjectileAttackBehaviour projectileAttackBehaviour = firebullet.GetComponent<ProjectileAttackBehaviour>();
-            projectileAttackBehaviour.Initialize(this);
-            projectileAttackBehaviour.Fire(p2Sprite.flipX ? Vector3.right : Vector3.left);
+            FireballAttackBehaviour fireballAttackBehaviour = firebullet.GetComponent<FireballAttackBehaviour>();
+            fireballAttackBehaviour.Initialize(this);
+            fireballAttackBehaviour.Fire(p2Sprite.flipX ? Vector3.right : Vector3.left);
         });
 
-    }
-
-    public override void StartAutoAttack()
-    {
-        autoAttackOn = true;
-        StartCoroutine(AutoAttackRoutine());
-    }
-
-    private IEnumerator AutoAttackRoutine()
-    {
-        Debug.Log("Auto Attack");
-        while(autoAttackOn) {
-            Attack();
-            yield return new WaitForSeconds(weaponRate);
-        }
-    }
-
-    public override void StopAutoAttack()
-    {
-        autoAttackOn = false;
-        StopCoroutine(AutoAttackRoutine());
     }
 }
