@@ -14,6 +14,19 @@ public interface IEventInfo
 }
 
 /// <summary>
+///Event class (two generic type parameters)
+/// </summary>
+public class EventInfo<T1, T2> : IEventInfo
+{
+    public UnityAction<T1, T2> actions;
+
+    public EventInfo( UnityAction<T1, T2> action) //Constructor, to add a method of generic parameter in member delegate
+    {
+        actions += action;
+    }
+}
+
+/// <summary>
 ///Event class (generic type parameter)
 /// </summary>
 /// <typeparam name="T">generic type, allows the event to pass a parameter</typeparam>
@@ -72,6 +85,24 @@ public class EventMgr : Singleton<EventMgr>
             eventDic.Add(name, new EventInfo<T>( action )); //add new event to the dict using constructor
         }
     }
+    
+    /// <summary>
+    ///Add event listener (two generic parameter)
+    /// </summary>
+    /// <param name="name">the according event name</param>
+    /// <param name="action">the method you want to add into the event, the method should be one generic parameter and no return value</param>
+    public void AddEventListener<T1, T2>(string name, UnityAction<T1, T2> action)
+    {
+
+        if( eventDic.ContainsKey(name) ) //if there is an according event listener
+        {
+            (eventDic[name] as EventInfo<T1, T2>).actions += action; //add method to existing event
+        }
+        else //if there is no according event listener
+        {
+            eventDic.Add(name, new EventInfo<T1, T2>( action )); //add new event to the dict using constructor
+        }
+    }
 
     /// <summary>
     ///Add event listener (no parameter)
@@ -100,6 +131,16 @@ public class EventMgr : Singleton<EventMgr>
         if (eventDic.ContainsKey(name))
             (eventDic[name] as EventInfo<T>).actions -= action;
     }
+    
+    /// <summary>
+    ///Remove event listener (two generic parameters)
+    /// </summary>
+    /// <param name="name">the according event name</param>
+    public void RemoveEventListener<T1, T2>(string name, UnityAction<T1, T2> action)
+    {
+        if (eventDic.ContainsKey(name))
+            (eventDic[name] as EventInfo<T1, T2>).actions -= action;
+    }
 
     /// <summary>
     ///Remove event listener (no parameter)
@@ -126,6 +167,21 @@ public class EventMgr : Singleton<EventMgr>
                 (eventDic[name] as EventInfo<T>).actions(info); //call the delegate inside event class
         }
     }
+    
+    /// <summary>
+    ///Event trigger (two generic parameters)
+    /// </summary>
+    /// <param name="name">event name</param>
+    public void EventTrigger<T1, T2>(string name, T1 info1, T2 info2)
+    {
+        //if there is an according listener (if there is no listener, then it means no one cares about the event, and you dont have to trigger)
+        if (eventDic.ContainsKey(name))
+        {
+            if((eventDic[name] as EventInfo<T1, T2>).actions != null)
+                (eventDic[name] as EventInfo<T1, T2>).actions(info1, info2); //call the delegate inside event class
+        }
+    }
+    
 
     /// <summary>
     ///Event trigger (no parameter)
