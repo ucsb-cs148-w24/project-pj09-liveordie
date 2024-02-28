@@ -15,8 +15,11 @@ List of Tests:
   4. `VerifyMainSceneRopeLoadedCorrectly`: Ensures String spawns between players
   5. `VerifyPauseControllerLoadedCorrectly`: Ensures there exists a Pause feature
   6. `VerifyPlayerHealthBarsLoadedCorrectly`: Ensures each Player has a proper starting healthbar
+  7. `VerifyEnemySpawnerLoadedCorrectly`: Enemy Spawn works, more detailed compared to #2
+  8. `VerifyAudioSceneManagerLoadedCorrectly`: Audio loaded correctly
+  9. `VerifyScoreBoardControllerLoadedCorrectly`: Ensures scoreboard exists
 
-[Status]: 6/6 Passing
+[Status]: 9/9 Passing
 
 
 [2-16-2024] Created First 2 Scene Verification (Integration) Tests
