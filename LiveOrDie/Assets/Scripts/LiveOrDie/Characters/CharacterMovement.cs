@@ -14,7 +14,7 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject peer;
     private DistanceJoint2D dj;
-    public SpriteRenderer render;
+    private SpriteRenderer render;
     private CharacterHealth healthbar;
     private bool isDead = false;
     

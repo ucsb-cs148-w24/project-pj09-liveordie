@@ -16,6 +16,9 @@ public class ExpBarPanel : BasePanel
     private void Start()
     {
         expBarSlider = GetUIComponent<Slider>("ExpBarSlider");
+        
+        //event parameter value of the exp orb (for now)
+        EventMgr.Instance.AddEventListener<float>("ExpOrbPicked", IncreaseExpBarValue);
     }
 
     protected override void OnSliderValueChange(string sliderName, float floatValue)
@@ -28,13 +31,14 @@ public class ExpBarPanel : BasePanel
         //eventually the val should be calculated inside leveling system and sent over here************
         playerExp += val;
         expBarSlider.value = playerExp / playerExpLimit;
-        
+
         //*************************
         
-        if (Math.Abs(expBarSlider.value - 1f) > 0.001f)
+        if (Math.Abs(expBarSlider.value - 1f) < 0.001f)
         {
             EventMgr.Instance.EventTrigger("LevelUp"); //level up and empty the exp bar
             expBarSlider.value = 0;
+            playerExp = 0;
             
             //eventually the new exp needed should be calculated inside leveling system************
             playerExpLimit *= 1.5f;

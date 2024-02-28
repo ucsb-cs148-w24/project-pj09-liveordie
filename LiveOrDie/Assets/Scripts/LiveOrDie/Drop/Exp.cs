@@ -2,16 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Exp : MonoBehaviour
+public class Exp : Drop
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public float expValue = 1f;
+    public Image img;
+    
+    protected override void TriggerEffect()
     {
-        if (other.CompareTag("Player1") || other.CompareTag("Player2"))
-        {
-            EventMgr.Instance.EventTrigger("ExpOrbPicked");
-            PoolMgr.Instance.PushObj("Prefabs/Exp", this.gameObject); //hide this object
-        }
-        
+        EventMgr.Instance.EventTrigger("ExpOrbPicked", expValue);
+    }
+    
+    protected override void DestroySelf()
+    {
+        PoolMgr.Instance.PushObj("Prefabs/Exp", this.gameObject); //hide this object
     }
 }

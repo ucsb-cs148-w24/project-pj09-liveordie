@@ -8,7 +8,6 @@ public class Wolf : Enemy
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
     private int points = 10; // how many points a wolf is worth
-    private float exp = 1f; //how many exp a wolf is worth
 
     private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
 
@@ -57,7 +56,7 @@ public class Wolf : Enemy
     {
         EventMgr.Instance.EventTrigger("WolfDead"); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
-        EventMgr.Instance.EventTrigger("DropExp", exp, this.gameObject.transform.position);
+        EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
         PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
     }
 }
