@@ -12,6 +12,7 @@ public class Wolf : Enemy
     public override void Initialize() {
         health = 10;
         damage = 1;
+        attack = gameObject.AddComponent<EnemyAttack>();
         SetTarget();
         
         //subcomponents
@@ -57,8 +58,9 @@ public class Wolf : Enemy
 
     protected override void Die()
     {
+        PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
         EventMgr.Instance.EventTrigger("WolfDead"); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
-        PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
+        
     }
 }

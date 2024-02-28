@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 
     [HideInInspector]
     public float maxRadius {get; set;} // max distance between players
-    private bool isDead; // dead?
+    [HideInInspector]
+    public bool isDead; // dead?
     private Player peer; // BEST FRIEND
     private Rigidbody2D rb; // Physics
     private DistanceJoint2D dj; // Physics
@@ -18,8 +19,6 @@ public class Player : MonoBehaviour
     private CharacterHealth healthbar;
     [HideInInspector]
     private CharacterMovement movement;
-    // [HideInInspector]
-    // public CharacterWeapon weapon; --> In IMPLEMENTATION, need default
 
     // getter functions
     public Rigidbody2D getRigidBody() {return rb;}
@@ -27,9 +26,7 @@ public class Player : MonoBehaviour
 
     // setter functions
     private void KillPlayer() {isDead = true;}
-    private void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Enemy")){ EventMgr.Instance.EventTrigger("Hit", whichPlayer); }
-    }
+
     protected void OnEnable(){
         maxRadius = 5f;
         isDead = false;

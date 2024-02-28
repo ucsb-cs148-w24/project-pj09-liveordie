@@ -8,7 +8,7 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer render;
     private float speed;
-    public bool isMovementLocked = false;
+    // private bool isMovementLocked = false;
     public int horizontal, vertical;
 
     private enum E_MoveType
@@ -19,11 +19,7 @@ public class CharacterMovement : MonoBehaviour
         right,
     }
 
-    public float getSpeed() {return speed;}
     public void SelfDestruct() { Destroy(gameObject); }
-    private void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Enemy")){ EventMgr.Instance.EventTrigger("Hit", player.whichPlayer); }
-    }
     public void OnEnable(){
         speed = 10f;
         horizontal = vertical = 0;
