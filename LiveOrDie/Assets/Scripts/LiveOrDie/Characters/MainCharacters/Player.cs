@@ -27,10 +27,20 @@ public class Player : MonoBehaviour
 
     // setter functions
     private void KillPlayer() {isDead = true;}
-
+    private void OnTriggerEnter2D(Collider2D other){
+        if(other.CompareTag("Enemy")){ EventMgr.Instance.EventTrigger("Hit", whichPlayer); }
+    }
     protected void OnEnable(){
         maxRadius = 5f;
         isDead = false;
+        if(!(render = gameObject.GetComponent<SpriteRenderer>())) 
+            render = gameObject.AddComponent<SpriteRenderer>();
+        if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
+            rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        //WeaponState = default weapons
+    }
+    protected void Start() {       
         switch (whichPlayer){
             case 1: // User 1 finds User 2 (right)
                 peer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
@@ -48,18 +58,10 @@ public class Player : MonoBehaviour
                 Debug.LogWarning("Unexpected character type: " + whichPlayer);
                 break;
         }
-        render = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-
-        healthbar = this.GetComponentInChildren<CharacterHealth>();
-        healthbar.player = this;
+        healthbar = gameObject.GetComponentInChildren<CharacterHealth>();
         healthbar.playerPosition = gameObject.transform;
-        movement = gameObject.AddComponent<CharacterMovement>();
-        movement.player = this;
-        //WeaponState = default weapons
-    }
-    protected void Start() {       
+        if (!(movement = gameObject.GetComponent<CharacterMovement>()))
+            movement = gameObject.AddComponent<CharacterMovement>();
         EventMgr.Instance.AddEventListener("PlayerDeath", KillPlayer);
     }
 

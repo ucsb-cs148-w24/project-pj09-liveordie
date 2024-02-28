@@ -29,6 +29,7 @@ public class CharacterMovement : MonoBehaviour
         horizontal = vertical = 0;
     }
     void Start(){ 
+        player = gameObject.GetComponent<Player>();
         rb = player.getRigidBody();
         render = player.getSpriteRenderer();
         

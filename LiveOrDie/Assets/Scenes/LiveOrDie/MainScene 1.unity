@@ -158,7 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySize: 10
-  wolfPrefab: {fileID: 4491543255784683769, guid: 8d1784c86e2c84240811589474ab0a45, type: 3}
 --- !u!1001 &234315329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 0}
+  characterHealth: 50
   player: {fileID: 0}
   playerPosition: {fileID: 0}
 --- !u!1 &1233652380
@@ -567,11 +567,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whichPlayer: 1
-  isDead: 0
-  peer: {fileID: 0}
-  healthbar: {fileID: 0}
-  movement: {fileID: 0}
-  attack: {fileID: 0}
 --- !u!1 &8139741959802775716 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7440314939813618173, guid: 618ed381331167048a27aa8cbd641b77, type: 3}
@@ -590,11 +585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whichPlayer: 2
-  isDead: 0
-  peer: {fileID: 0}
-  healthbar: {fileID: 0}
-  movement: {fileID: 0}
-  attack: {fileID: 0}
 --- !u!1 &8139741959802775718 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1948270552235782979, guid: 618ed381331167048a27aa8cbd641b77, type: 3}
@@ -613,6 +603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 0}
+  characterHealth: 50
   player: {fileID: 0}
   playerPosition: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

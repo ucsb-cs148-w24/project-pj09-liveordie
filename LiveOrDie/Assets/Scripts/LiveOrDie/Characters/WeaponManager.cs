@@ -6,6 +6,10 @@ public class WeaponManager : MonoBehaviour
 {
     public Dictionary<string, Weapon> weapons;
 
+    public void OnDisable(){
+        weapons.Clear();
+        Destroy(gameObject);
+    }
     private void Start() 
     {
         weapons = new Dictionary<string, Weapon>();
