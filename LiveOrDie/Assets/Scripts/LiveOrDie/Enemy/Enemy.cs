@@ -11,6 +11,8 @@ public abstract class Enemy : MonoBehaviour
 
     public abstract void Initialize();
 
+    public abstract void TakeDamage(int damage);
+
     protected virtual void Die() {}
 
 }

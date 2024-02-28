@@ -47,6 +47,7 @@ public class PausePanel : BasePanel
     private void GoToScene(string sceneName)
     {
         UIMgr.Instance.ShowPanel<LoadingPanel>("LoadingPanel", E_PanelLayer.Top); //show loading panel
+        PoolMgr.Instance.Clear(); //empty the pool to prevent null reference
         
         SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
         {

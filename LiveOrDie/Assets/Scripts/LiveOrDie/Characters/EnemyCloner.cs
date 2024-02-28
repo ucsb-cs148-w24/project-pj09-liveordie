@@ -9,8 +9,7 @@ public class EnemyCloner : MonoBehaviour
 {
     public int enemySize = 10;
     private int wolfCount = 0; //number of current wolves 
-
-    public GameObject wolfPrefab;
+    
     private WolfFactory wolfFactory;
     private Wolf newWolf;
 
@@ -21,6 +20,7 @@ public class EnemyCloner : MonoBehaviour
         {
             //use reference 'wolf' here if you want to use the wolf spawned
             wolfCount++;
+            wolf.transform.parent = transform;
         });
 
     }
