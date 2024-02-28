@@ -1,61 +1,37 @@
 using System;
-using Unity.VisualScripting;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
 
 public class CharacterMovement : MonoBehaviour
 {
-    public float speed = 1.5f; // speed of player movement
-    public float maxRadius = 5f; // max distance between players
-
-    // EVERYTHING FROM HERE AND DOWN BELONGS TO CHARACTER.CS CLASS
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    public int whichCharacter; // unique ID of character
-    // private BoxCollider2D boxCollide; obsolete
+    [HideInInspector]
+    public Player player;
     private Rigidbody2D rb;
-    private GameObject peer;
-    private DistanceJoint2D dj;
-    public SpriteRenderer render;
-    private CharacterHealth healthbar;
-    private bool isDead = false;
-    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    
-    //movement lock flag
+    private SpriteRenderer render;
+    private float speed;
     public bool isMovementLocked = false;
-    public int horizontal;
-    public int vertical;
+    public int horizontal, vertical;
 
-    public enum E_MoveType
+    private enum E_MoveType
     {
         up,
         down,
         left,
         right,
     }
-    public bool checkDeath() { return isDead; }
-    public void setMockObject(float spd, float rad, int whichChar){
-        speed = spd;
-        isDead = false;
-        isMovementLocked = false;
-        maxRadius = rad;
-        whichCharacter = whichChar;
-        horizontal = 0;
-        vertical = 0;
-    } 
-    public void Kill(){
-        isDead = true;
-    }
+
+    public float getSpeed() {return speed;}
+    public void SelfDestruct() { Destroy(gameObject); }
     private void OnTriggerEnter2D(Collider2D other){
-        if(!isDead && other.CompareTag("Enemy")){
-            // FOR NOW, bumping into character will "hurt" player, 
-            // later, ideal if there are more means of attack
-            healthbar.DecreaseHealth();
-        }
+        if(other.CompareTag("Enemy")){ EventMgr.Instance.EventTrigger("Hit", player.whichPlayer); }
+    }
+    public void OnEnable(){
+        speed = 10f;
+        horizontal = vertical = 0;
     }
     void Start(){ 
-        healthbar = GetComponentInChildren<CharacterHealth>();
+        rb = player.getRigidBody();
+        render = player.getSpriteRenderer();
+        
         // Event listener
         EventMgr.Instance.AddEventListener("GamePaused", GlobalControlLock);
         EventMgr.Instance.AddEventListener("GameResumed", GlobalControlUnlock);
@@ -66,57 +42,10 @@ public class CharacterMovement : MonoBehaviour
 
         //open key control lock (also create InputMgr instance)
         GlobalControlUnlock();
-        
-        render = this.GetComponent<SpriteRenderer>();
-        rb = this.GetComponent<Rigidbody2D>();
-        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        // boxCollide = this.AddComponent<BoxCollider2D>();
-        // boxCollide.isTrigger = true;
-
-
-        switch (whichCharacter){ // identifies characters (you vs peer)
-            case 1: // User 1 finds User 2 (right)
-                peer = GameObject.FindGameObjectWithTag("Player2");
-                dj = this.gameObject.AddComponent<DistanceJoint2D>();
-                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
-                dj.distance = maxRadius;
-                dj.maxDistanceOnly = true;
-                break;
-            case 2: // User 2 finds User 1 (left)
-                peer = GameObject.FindGameObjectWithTag("Player1");
-                break;
-            default:
-                Debug.LogWarning("Unexpected character type: " + whichCharacter);
-                break;
-        }
     }
 
-    void Update()
-    {
-        if(isDead) {
-            Destroy(healthbar);
-            Destroy(gameObject);
-        }
-        // else{
-        //     Vector3 pos = this.transform.position;
-        //     if (!isMovementLocked) // stop if movement locked
-        //     {
-                
-        //         if (whichCharacter == 2 || whichCharacter == 1)
-        //         {
-        //             MoveCharacter(ref pos, whichCharacter);
-        //         }
-        //         else
-        //         {
-        //             Debug.LogWarning("Unexpected character type: " + whichCharacter);
-        //         }
-        //         rb.MovePosition(pos);
-        //     }
-        // }
-    }
-    void OnDisable(){
-        if(gameObject){ Destroy(gameObject); }
-    }
+    void Update(){ }
+    void OnDisable(){ if(gameObject){ Destroy(gameObject); }}
 
     private void FixedUpdate()
     {
@@ -161,7 +90,7 @@ public class CharacterMovement : MonoBehaviour
     //set the move direction (Hold key action)
     private void Controls(E_AllKeysActs act) //called in Update function in InputMgr
     {
-        if (whichCharacter == 1)
+        if (player.whichPlayer == 1)
         {
             switch (act)
             {
@@ -179,7 +108,7 @@ public class CharacterMovement : MonoBehaviour
                     break;
             }
         }
-        else if (whichCharacter == 2)
+        else if (player.whichPlayer == 2)
         {
             switch (act)
             {
@@ -202,7 +131,7 @@ public class CharacterMovement : MonoBehaviour
     //clear the move direction (Release key action)
     private void CancelControls(E_AllKeysActs act) //called in Update function in InputMgr
     {
-        if (whichCharacter == 1)
+        if (player.whichPlayer == 1)
         {
             switch (act)
             {
@@ -216,7 +145,7 @@ public class CharacterMovement : MonoBehaviour
                     break;
             }
         }
-        else if (whichCharacter == 2)
+        else if (player.whichPlayer == 2)
         {
             switch (act)
             {

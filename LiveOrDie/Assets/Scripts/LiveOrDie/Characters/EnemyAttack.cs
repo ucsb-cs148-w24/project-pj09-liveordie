@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // This will destroy the enemy if it comes into contact with the player. 
-    //Will need to add to the main player script and completed healthbar/UI 
-    // private void OnCollisionEnter2D(Collision2D col) {
-    //     if(col.gameObject.tag == "Bullet") {
-    //         // col.gameObject.GetComponent<PlayerScript>().hurt();
-    //         Destroy(this.gameObject);
-    //     }
-    // }
     private Transform player1Transform;
     private Transform player2Transform;
     private Transform currentTarget;
@@ -46,8 +38,6 @@ public class EnemyAttack : MonoBehaviour
     {
         while (isAttacking && currentTarget != null)
         {
-            // Decrease player's health by 1 each second
-            currentTarget.GetComponent<CharacterHealth>().DecreaseHealth();
             yield return new WaitForSeconds(0.1f);
         }
     }
