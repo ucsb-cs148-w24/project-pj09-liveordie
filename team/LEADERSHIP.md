@@ -3,25 +3,26 @@
 Standup Leaders: Using a Wheel Spinner for daily standups
 
 ## Retros
-______________________________________________________
-| Date        |         | Activity              |
-|-------------|---------|-----------------------|
-| Friday 1/26 | Sean Oh | Will lead first retro |
-| Friday 2/16 | Thomas Harbeck | Will lead 2nd retro |
-| Friday ?/?? | ?? | Will lead 3rd retro |
+_________________________________________________________
+| Date        |         | Activity                       |
+|-------------|---------|--------------------------------|
+| Friday 1/26 | Sean Oh | Will lead first retro          |
+| Friday 2/16 | Thomas Harbeck | Will lead 2nd retro     |
+| Friday 3/04 | Frank Zhong | Will lead 3rd retro        |
 
 ## More Roles (Lab 07):
-___________________________________________________
-| Role           | Person     |  Description      |
-|----------------|-----------|--------------------|
-| Product Owner  | ??        |                 ?? |
-| Scrum Master   | ??        |                 ?? |
-| UX Coordinator | ?       ? |                 ?? |
-| Testing/QA Coordinator| ?? |                 ?? |
-| Deploy Do Coordinator | ?? |                 ?? |
-| User Man Coordinator  | ?? |                 ?? |
-| Presentation Lead     | ?? |                 ?? |
-___________________________________________________
+_______________________________
+| Role           | Person     |
+|----------------|------------|
+| Product Owner  | [Link text Here](https://wheelofnames.com/nwv-vn3)|
+| Scrum Master   | [Link text Here](https://wheelofnames.com/nwv-vn3)|
+| UX Coordinator | Baige He  |
+| Testing/QA Coordinator| Rachel Jiang |
+| Deploy Documentation Coordinator | Sean Oh |
+| Design Documentation Coordinator | Jason Gu |
+| User Manual Coordinator  | Cindy Lin |
+| Presentation Lead     | Thomas Harbeck |
+___________________________________________
 
 
 
