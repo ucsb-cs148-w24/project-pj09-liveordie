@@ -15,7 +15,7 @@ _______________________________
 | Role           | Person     |
 |----------------|------------|
 | Product Owner  | [Wheel Decides](https://wheelofnames.com/nwv-vn3)|
-| Scrum Master   | [Wheel Decides](https://wheelofnames.com/nwv-vn3)|
+| Scrum Master   | Frank Zhong|
 | UX Coordinator | Baige He  |
 | Testing/QA Coordinator| Rachel Jiang |
 | Deploy Documentation Coordinator | Sean Oh |
