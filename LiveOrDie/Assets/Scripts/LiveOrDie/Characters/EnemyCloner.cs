@@ -16,7 +16,7 @@ public class EnemyCloner : MonoBehaviour
 
     void Clone()
     {
-        wolfFactory.CreateEnemyAsync(GetRandomSpawnPosition(), (wolf) =>
+        wolfFactory.CreateAsync(GetRandomSpawnPosition(), (wolf) =>
         {
             //use reference 'wolf' here if you want to use the wolf spawned
             wolfCount++;
