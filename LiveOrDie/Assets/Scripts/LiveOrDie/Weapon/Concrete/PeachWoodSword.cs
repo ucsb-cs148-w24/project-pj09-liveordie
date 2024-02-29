@@ -38,7 +38,6 @@ public class PeachWoodSword : MeleeWeapon
 
     protected override IEnumerator AutoAttackRoutine()
     {
-        Debug.Log("Auto Attack");
         while(autoAttackOn) {
             Attack();
             yield return new WaitForSeconds(weaponRate);

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class ScoreBoardPanel : BasePanel
 {
-    private CharacterMovement player; // keeps track of parent
     private TMP_Text scoreText; // displays player score
 
     //******************************************************************************************

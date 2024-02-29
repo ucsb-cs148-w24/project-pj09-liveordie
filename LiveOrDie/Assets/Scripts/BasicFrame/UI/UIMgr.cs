@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -138,7 +139,7 @@ public class UIMgr : Singleton<UIMgr>
     /// <param name="panelName">Name of the panel</param>
     public void HidePanel(string panelName)
     {
-        if (panelDict.ContainsKey(panelName))
+        if (panelDict!=null && panelDict.ContainsKey(panelName))
         {
             panelDict[panelName].Hide(); //Execute hide method in BasePanel class
             GameObject.Destroy(panelDict[panelName].gameObject); //Destroy the shown panel
