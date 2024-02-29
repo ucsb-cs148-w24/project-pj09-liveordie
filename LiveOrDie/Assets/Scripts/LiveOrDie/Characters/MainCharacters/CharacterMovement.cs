@@ -46,7 +46,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.position += Time.deltaTime * speed * new Vector2(horizontal, vertical).normalized;
+        rb.MovePosition(rb.position + Time.deltaTime * speed * new Vector2(horizontal, vertical).normalized);
     }
 
     private void OnDestroy()

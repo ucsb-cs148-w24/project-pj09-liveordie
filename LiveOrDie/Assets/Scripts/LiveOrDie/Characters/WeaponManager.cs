@@ -16,6 +16,7 @@ public class WeaponManager : MonoBehaviour
         // for now, we just add fireball weapon by default
         AddWeapon("Fireball");
         AddWeapon("PeachWoodSword");
+        AddWeapon("IncenseBurner");
     }
 
     public void AddWeapon(string name)

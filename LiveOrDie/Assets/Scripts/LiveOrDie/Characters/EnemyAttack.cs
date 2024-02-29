@@ -7,12 +7,15 @@ public class EnemyAttack : MonoBehaviour
     private Player player1, player2;
     private Player currentTarget;
     private bool isAttacking = false;
+    private Enemy enemy;
 
     void OnEnable()
     {
         // Assuming player tags are "Player1" and "Player2"
         player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
-        player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();;
+        player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
+
+        enemy = GetComponent<Enemy>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,7 +42,7 @@ public class EnemyAttack : MonoBehaviour
         while (isAttacking && currentTarget != null)
         {
             Debug.Log(currentTarget.GetComponentInChildren<CharacterHealth>().player.whichPlayer);
-            currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth();
+            currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(enemy.damage);
             yield return new WaitForSeconds(1f);
         }
     }
