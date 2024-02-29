@@ -70,7 +70,6 @@ public class Player : MonoBehaviour
     }
     public void OnDestroy(){
         EventMgr.Instance.RemoveEventListener("PlayerDeath", KillPlayer);
-        movement.SelfDestruct();
         healthbar.SelfDestruct();
         // weapon.SelfDestruct();
     }
