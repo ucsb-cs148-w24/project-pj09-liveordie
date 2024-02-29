@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4529436459226364020}
   - component: {fileID: 4889849382488487103}
   - component: {fileID: 8414672427759982758}
+  - component: {fileID: -4518274587596837846}
   m_Layer: 8
   m_Name: Wolf
   m_TagString: Enemy
@@ -180,7 +181,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.3}
@@ -218,6 +219,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aec6a733009af1c44bc1e82c82c234cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4518274587596837846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491543255784683769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d690844b3162284eb4a293e57153137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8750621086307843944

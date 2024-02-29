@@ -170,6 +170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapGrid1
       objectReference: {fileID: 0}
+    - target: {fileID: 1043138102988663628, guid: 9bb802783d13bd2419270661e1b7fde6, type: 3}
+      propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5281341918360322944, guid: 9bb802783d13bd2419270661e1b7fde6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

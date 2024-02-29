@@ -51,11 +51,9 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
         Physics2D.OverlapCollider(incenseBurnerRadiusCollider, new ContactFilter2D().NoFilter(), results);
         foreach(Collider2D collider in results) {
             if(collider.CompareTag("Enemy")) {
-                Debug.Log("Damage to enemy: " + damage);
                 collider.GetComponent<Enemy>().TakeDamage(damage);
             }
             if(collider.CompareTag("Player1") || collider.CompareTag("Player2")) {
-                Debug.Log("Heal to player: " + damage);
                 collider.GetComponentInChildren<CharacterHealth>().IncreaseHealth(damage);
             }
         }
@@ -63,7 +61,6 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
 
     private IEnumerator FadeInRoutine()
     {
-        Debug.Log("FadeInRoutine");
         float alpha = 0;
         while(alpha < radiusAlpha) {
             alpha += Time.deltaTime / fadeInTime;
@@ -74,7 +71,6 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
 
     private IEnumerator FadeOutRoutine()
     {
-        Debug.Log("FadeOutRoutine");
         float alpha = radiusAlpha;
         while(alpha > 0) {
             alpha -= Time.deltaTime / fadeOutTime;

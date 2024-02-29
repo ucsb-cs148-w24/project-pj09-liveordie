@@ -23,6 +23,7 @@ public class CharacterHealth : MonoBehaviour
     public void IncreaseHealth(int amount){
         if(characterHealth + amount > maxHealth) characterHealth = maxHealth;
         else characterHealth += amount;
+        healthbar.fillAmount = characterHealth/maxHealth; 
     }
     void OnEnable(){
         foreach(var image in gameObject.GetComponentsInChildren<Image>())

@@ -1,0 +1,21 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Exp : Drop
+{
+    public float expValue = 1f;
+    public Image img;
+    
+    protected override void TriggerEffect()
+    {
+        EventMgr.Instance.EventTrigger("ExpOrbPicked", expValue);
+    }
+    
+    protected override void DestroySelf()
+    {
+        PoolMgr.Instance.PushObj("Prefabs/Exp", this.gameObject); //hide this object
+    }
+}
