@@ -4,35 +4,27 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // This will destroy the enemy if it comes into contact with the player. 
-    //Will need to add to the main player script and completed healthbar/UI 
-    // private void OnCollisionEnter2D(Collision2D col) {
-    //     if(col.gameObject.tag == "Bullet") {
-    //         // col.gameObject.GetComponent<PlayerScript>().hurt();
-    //         Destroy(this.gameObject);
-    //     }
-    // }
-    private Transform player1Transform;
-    private Transform player2Transform;
-    private Transform currentTarget;
+    private Player player1, player2;
+    private Player currentTarget;
     private bool isAttacking = false;
 
-    void Start()
+    void OnEnable()
     {
         // Assuming player tags are "Player1" and "Player2"
-        player1Transform = GameObject.FindGameObjectWithTag("Player1").transform;
-        player2Transform = GameObject.FindGameObjectWithTag("Player2").transform;
+        player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
+        player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (player1.isDead || player2.isDead) return;
         if (collision.gameObject.CompareTag("Player1"))
         {
-            currentTarget = player1Transform;
+            currentTarget = player1;
         }
         else if (collision.gameObject.CompareTag("Player2"))
         {
-            currentTarget = player2Transform;
+            currentTarget = player2;
         }
 
         if (currentTarget != null)
@@ -46,9 +38,9 @@ public class EnemyAttack : MonoBehaviour
     {
         while (isAttacking && currentTarget != null)
         {
-            // Decrease player's health by 1 each second
-            currentTarget.GetComponent<CharacterHealth>().DecreaseHealth();
-            yield return new WaitForSeconds(0.1f);
+            Debug.Log(currentTarget.GetComponentInChildren<CharacterHealth>().player.whichPlayer);
+            currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth();
+            yield return new WaitForSeconds(1f);
         }
     }
 

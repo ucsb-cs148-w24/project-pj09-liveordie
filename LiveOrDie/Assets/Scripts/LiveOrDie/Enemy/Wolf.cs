@@ -7,13 +7,12 @@ public class Wolf : Enemy
     private SpriteRenderer render;
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
+    private Collider2D cd;
     private int points = 10; // how many points a wolf worth
-
-    private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
-
     public override void Initialize() {
         health = 10;
         damage = 1;
+        attack = gameObject.AddComponent<EnemyAttack>();
         SetTarget();
         
         //subcomponents
@@ -25,6 +24,10 @@ public class Wolf : Enemy
     void OnEnable()
     {
         Initialize();
+        if(!(cd = GetComponent<Collider2D>())){
+            cd = gameObject.AddComponent<Collider2D>();
+        }
+        cd.isTrigger = true;
     }
 
     public override void TakeDamage(int damage) {
@@ -36,8 +39,9 @@ public class Wolf : Enemy
     private void SetTarget() {
         render = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        cd = GetComponent<Collider2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        int chooseTarget = UnityEngine.Random.Range(0, 2);
+        int chooseTarget = Random.Range(0, 2);
         if (chooseTarget == 0) target = GameObject.FindGameObjectWithTag("Player1");
         else target = GameObject.FindGameObjectWithTag("Player2");
         if(chooseTarget == 0) render.color = Color.white;
@@ -54,8 +58,9 @@ public class Wolf : Enemy
 
     protected override void Die()
     {
+        PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
         EventMgr.Instance.EventTrigger("WolfDead"); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
-        PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
+        
     }
 }

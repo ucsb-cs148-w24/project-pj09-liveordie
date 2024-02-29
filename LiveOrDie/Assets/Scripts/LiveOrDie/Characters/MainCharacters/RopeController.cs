@@ -10,6 +10,9 @@ public class RopeController : MonoBehaviour
 
     void OnEnable(){
         // create LineRenderer if it doesn't exist
+    }
+    void Start()
+    {
         Player1 = GameObject.FindGameObjectWithTag("Player1").transform;
         Player2 = GameObject.FindGameObjectWithTag("Player2").transform;
         ropeRenderer = gameObject.AddComponent<LineRenderer>();
@@ -20,23 +23,12 @@ public class RopeController : MonoBehaviour
         ropeRenderer.startColor = Color.grey;
         ropeRenderer.endColor = Color.grey;
         ropeRenderer.sortingOrder = 2;
-        // spring = this.GetComponent<SpringJoint2D>();
-        // spring.distance = 5.0f;
-        // spring.dampingRatio = 0.9f;
-        // spring.frequency = 0.8f;
         ropeRenderer.SetPosition(0, new Vector3(Player1.localPosition.x, Player1.localPosition.y + 0.9f, Player1.localPosition.z));
         ropeRenderer.SetPosition(1, new Vector3(Player2.localPosition.x, Player2.localPosition.y + 0.9f, Player2.localPosition.z));
-    }
-    void Start()
-    {
-
     }
     void Update()
     {
         if(!Player1 || !Player2){
-            Destroy(ropeRenderer);
-            if (Player2) Destroy(GameObject.FindGameObjectWithTag("Player2"));
-            if (Player1) Destroy(GameObject.FindGameObjectWithTag("Player1"));
             if(gameObject) Destroy(gameObject);
         }
         else{
