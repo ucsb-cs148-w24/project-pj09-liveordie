@@ -26,6 +26,7 @@ public class PeachWoodSword : MeleeWeapon
 
     public override void Attack()
     {
+        if(!player1Transform || !player2Transform) return;
         PoolMgr.Instance.GetObjAsync("Prefabs/Weapons/PeachWoodSwordAttack", (sword) => {
             sword.transform.position = (player1Transform.position + player2Transform.position) / 2;
             sword.transform.parent = transform;

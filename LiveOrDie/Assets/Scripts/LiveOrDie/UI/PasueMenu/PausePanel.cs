@@ -11,7 +11,6 @@ public class PausePanel : BasePanel
         switch (buttonName)
         {
             case "SettingsButton":
-                // print("Open Settings Panel");
                 UIMgr.Instance.ShowPanel<SettingsPanel>("SettingsPanel", E_PanelLayer.Top); //show settings panel
                 break;
             
@@ -22,7 +21,6 @@ public class PausePanel : BasePanel
                 break;
             
             case "BackToMenuButton":
-                // print("back to menu");
                 UIMgr.Instance.HidePanel("PausePanel");
                 // GoToScene("StartScreenTest"); //load start screen test
                 GoToScene("StartScene"); //load start screen test

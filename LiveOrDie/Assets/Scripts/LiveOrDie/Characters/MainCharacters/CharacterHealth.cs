@@ -14,7 +14,6 @@ public class CharacterHealth : MonoBehaviour
     [HideInInspector]
     public Transform playerPosition;
 
-    public void SelfDestruct() { Destroy(gameObject);}
     public void DecreaseHealth(){
         characterHealth--;
         healthbar.fillAmount = characterHealth/50; 
