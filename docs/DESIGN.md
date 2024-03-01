@@ -1,1 +1,3 @@
-dd
+## TO DO (20 pts) an overview system architecture diagram and associated explanation.
+## TO DO(20 pts) a Section summarizing important team decisions since the start of the project, referring to meetings logged in your GitHub repo
+## TO DO (25 pts) the beginnings of a Section talking about your User Experience (UX) considerations. A high-level task/user flow (see below) might be the first thing to document there, and it will also be helpful for determining the structure of your manual (next week’s lab).
