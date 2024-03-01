@@ -52,8 +52,32 @@ TagManager:
   - name: 
     uniqueID: 4161257817
     locked: 0
+  - name: Background
+    uniqueID: 503165355
+    locked: 0
+  - name: Floor
+    uniqueID: 1251076595
+    locked: 0
+  - name: FloorOverlay
+    uniqueID: 3132658783
+    locked: 0
+  - name: Walls
+    uniqueID: 1587557915
+    locked: 0
+  - name: Characters
+    uniqueID: 1574922491
+    locked: 0
+  - name: Drops
+    uniqueID: 3132658783
+    locked: 0
   - name: 
-    uniqueID: 2455703971
+    uniqueID: 2275625329
+    locked: 0
+  - name: 
+    uniqueID: 536548521
+    locked: 0
+  - name: 
+    uniqueID: 4269549595
     locked: 0
   - name: 
     uniqueID: 3226745647
@@ -61,18 +85,4 @@ TagManager:
   - name: 
     uniqueID: 1251076595
     locked: 0
-  - name: Drops
-    uniqueID: 3132658783
-    locked: 0
-  - name: Outside Game
-    uniqueID: 4269549595
-    locked: 0
-  - name: Inside Game
-    uniqueID: 2275625329
-    locked: 0
-  - name: Characters
-    uniqueID: 1574922491
-    locked: 0
-  - name: Background
-    uniqueID: 503165355
-    locked: 0
+

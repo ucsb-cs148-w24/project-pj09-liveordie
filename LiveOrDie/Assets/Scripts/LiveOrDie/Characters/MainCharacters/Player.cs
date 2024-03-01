@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
                 peer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
                 dj = gameObject.AddComponent<DistanceJoint2D>();
                 dj.connectedBody = peer.GetComponent<Rigidbody2D>();
+                dj.maxDistanceOnly = true;
                 break;
             default:
                 Debug.LogWarning("Unexpected character type: " + whichPlayer);

@@ -22,7 +22,7 @@ public class RopeController : MonoBehaviour
         ropeRenderer.material = new Material(Shader.Find("Sprites/Default"));
         ropeRenderer.startColor = Color.grey;
         ropeRenderer.endColor = Color.grey;
-        ropeRenderer.sortingOrder = 2;
+        ropeRenderer.sortingLayerName = "Characters";
         ropeRenderer.SetPosition(0, new Vector3(Player1.localPosition.x, Player1.localPosition.y + 0.9f, Player1.localPosition.z));
         ropeRenderer.SetPosition(1, new Vector3(Player2.localPosition.x, Player2.localPosition.y + 0.9f, Player2.localPosition.z));
     }

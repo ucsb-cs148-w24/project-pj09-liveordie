@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4529436459226364020}
   - component: {fileID: 4889849382488487103}
   - component: {fileID: 8414672427759982758}
+  - component: {fileID: -4518274587596837846}
   m_Layer: 8
   m_Name: Wolf
   m_TagString: Enemy
@@ -77,9 +78,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 1574922491
+  m_SortingLayer: 6
+  m_SortingOrder: 0
   m_Sprite: {fileID: 329535362, guid: a0d636c7478290d4cac60dd41d8d8deb, type: 3}
   m_Color: {r: 0.8867924, g: 0.8826094, b: 0.8826094, a: 1}
   m_FlipX: 0
@@ -180,7 +181,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.3}
@@ -218,6 +219,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aec6a733009af1c44bc1e82c82c234cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4518274587596837846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491543255784683769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d690844b3162284eb4a293e57153137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8750621086307843944
