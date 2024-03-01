@@ -10,7 +10,7 @@ public abstract class Weapon : MonoBehaviour
 
     public string weaponName;
 
-    protected bool autoAttackOn;
+    public bool autoAttackOn;
 
     public abstract void Initialize();
 
