@@ -31,6 +31,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
 
     public void Fire(Transform p1Transform, Transform p2Transform) 
     {
+        if(!p1Transform || !p2Transform) return;
         StartCoroutine(fireRoutine(p1Transform, p2Transform));
     }
 

@@ -31,6 +31,7 @@ public class ExpBarPanel : BasePanel
         //eventually the val should be calculated inside leveling system and sent over here************
         playerExp += val;
         expBarSlider.value = playerExp / playerExpLimit;
+        EventMgr.Instance.EventTrigger("SendExp", playerExp);
 
         //*************************
         

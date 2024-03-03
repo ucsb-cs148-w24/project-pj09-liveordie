@@ -143,4 +143,13 @@ public class MainScenePanelTests
         Assert.That(script, Is.Not.Null);
         yield return null;
      }
+   [UnityTest]
+     public IEnumerator VerifyGameOverControllerLoadedCorrectly()
+     {
+        var score = GameObject.Find("GameOverController");
+        Assert.That(score, Is.Not.Null);
+        var script = score.GetComponent<GameOverController>();
+        Assert.That(script, Is.Not.Null);
+        yield return null;
+     }
 }

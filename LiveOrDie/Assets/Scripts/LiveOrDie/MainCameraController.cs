@@ -17,8 +17,5 @@ public class MainCameraController : MonoBehaviour
             transform.position = Vector2.SmoothDamp(transform.position, centerPoint, ref velocity, smoothTime);
             transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         }
-        else{
-            Debug.Log("GameOver");
-        }
     }
 }
