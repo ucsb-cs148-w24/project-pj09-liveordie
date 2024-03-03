@@ -30,25 +30,10 @@ public class CharacterMovement : MonoBehaviour
         left,
         right,
     }
-    public bool checkDeath() { return isDead; }
-    public void setMockObject(float spd, float rad, int whichChar){
-        speed = spd;
-        isDead = false;
-        isMovementLocked = false;
-        maxRadius = rad;
-        whichCharacter = whichChar;
-        horizontal = 0;
-        vertical = 0;
-    } 
-    public void Kill(){
-        isDead = true;
-    }
-    private void OnTriggerEnter2D(Collider2D other){
-        if(!isDead && other.CompareTag("Enemy")){
-            // FOR NOW, bumping into character will "hurt" player, 
-            // later, ideal if there are more means of attack
-            healthbar.DecreaseHealth();
-        }
+    public void SelfDestruct() { Destroy(gameObject); }
+    public void OnEnable(){
+        speed = 10f;
+        horizontal = vertical = 0;
     }
     void Start(){ 
         healthbar = GetComponentInChildren<CharacterHealth>();
@@ -101,7 +86,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.position += Time.deltaTime * speed * new Vector2(horizontal, vertical).normalized;
+        rb.MovePosition(rb.position + Time.deltaTime * speed * new Vector2(horizontal, vertical).normalized);
     }
 
     private void OnDestroy()

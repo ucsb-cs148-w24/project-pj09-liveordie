@@ -82,7 +82,30 @@ public class MainScenePanelTests
         Assert.That(healthLevels.FirstOrDefault, Is.EqualTo(50));
         yield return null;
      }
-
+    [UnityTest]
+    public IEnumerator VerifyPlayerWeaponManagerLoadedCorrectly()
+    {
+        var players = GameObject.Find("Players");
+        var weaponManager = players.GetComponentInChildren<WeaponManager>();
+        Assert.That(weaponManager, Is.Not.Null);
+        Assert.That(weaponManager.weapons, Is.Not.Null);
+        yield return null;
+    }
+    [UnityTest]
+    public IEnumerator VerifyPlayerWeaponsLoadedCorrectly()
+    {
+        var weaponManager = GameObject.Find("Players").GetComponentInChildren<WeaponManager>();
+        Assert.That(weaponManager, Is.Not.Null);
+        Assert.That(weaponManager.weapons, Is.Not.Null);
+        foreach (var weapon in weaponManager.weapons)
+        {
+            Assert.That(weapon.Value, Is.Not.Null);
+            Assert.That(weapon.Value, Is.InstanceOf<Weapon>());
+            Assert.That(weapon.Value.transform.parent, Is.EqualTo(weaponManager.transform));
+            Assert.That(weapon.Value.autoAttackOn, Is.True);
+        }
+        yield return null;
+    }
     [UnityTest]
      public IEnumerator VerifyEnemySpawnerLoadedCorrectly()
      {
