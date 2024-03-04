@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
     //assigned in inspector
     public Image healthbar;
     private Color healthy = new Color(0.6f, 1, 0.6f, 1);
-    
+    public float fillBar;
     
     public void Initialize()
     {
@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthbar.fillAmount = enemy.health/10f;
+        healthbar.fillAmount = enemy.health/fillBar;
         if(enemy.health > 2){
             healthbar.color = healthy;
         }

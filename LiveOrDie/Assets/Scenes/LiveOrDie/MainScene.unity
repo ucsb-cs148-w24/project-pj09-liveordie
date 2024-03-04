@@ -198,10 +198,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 217056753}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48782694be7cd47f899f41743d869246, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bbd66dc974b54f40adc0a5f0ddf3b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySize: 10
+  enemySize: 15
 --- !u!1001 &234315329
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,13 +12,12 @@ GameObject:
   - component: {fileID: 701784122470404622}
   - component: {fileID: -5170929297750550404}
   - component: {fileID: -1489804500684865715}
-  - component: {fileID: -5918134239126358424}
   - component: {fileID: 4529436459226364020}
-  - component: {fileID: 4889849382488487103}
-  - component: {fileID: 8414672427759982758}
-  - component: {fileID: -4518274587596837846}
+  - component: {fileID: 7330222224704954379}
+  - component: {fileID: 6445653746951992915}
+  - component: {fileID: -7841026986906903219}
   m_Layer: 8
-  m_Name: Wolf
+  m_Name: Ghost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 1574922491
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 329535362, guid: a0d636c7478290d4cac60dd41d8d8deb, type: 3}
+  m_Sprite: {fileID: 1997496176, guid: 70de076b922d40e44b1441f2d0a677cd, type: 3}
   m_Color: {r: 0.8867924, g: 0.8826094, b: 0.8826094, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 4491543255784683769}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dd0a15114ee14cc48a229cc30c37bafd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7802470806217aa48b7e9e1be88e79d4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -121,7 +120,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4491543255784683769}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -140,18 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &-5918134239126358424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4491543255784683769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19a403784fbaaf44ca544aacebcb3882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &4529436459226364020
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -181,20 +168,32 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.3}
   m_Size: {x: 1.25, y: 0.6}
   m_Direction: 1
---- !u!195 &4889849382488487103
-NavMeshAgent:
+--- !u!114 &7330222224704954379
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4491543255784683769}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b372336235ff4283fa0cc47e5967c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &6445653746951992915
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491543255784683769}
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.15
   m_Speed: 0.75
@@ -209,7 +208,7 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8414672427759982758
+--- !u!114 &-7841026986906903219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,21 +217,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4491543255784683769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aec6a733009af1c44bc1e82c82c234cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a3f215c77646814ca752550ade0e40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-4518274587596837846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4491543255784683769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebab1470f71a5e46b6cd2139bbcb086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speed: 1
 --- !u!1001 &8750621086307843944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -241,6 +229,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3295634084405530268}
     m_Modifications:
+    - target: {fileID: 3288919942004062365, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4914957828633466052, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -325,6 +317,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyHealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 6273140279733702962, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313707597830188155, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -9105178347222613240, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
     m_RemovedGameObjects: []
@@ -332,7 +332,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6273140279733702962, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6939067436386198439}
+      addedObject: {fileID: 7340417042292084214}
   m_SourcePrefab: {fileID: 100100000, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
 --- !u!114 &228472764911784824 stripped
 MonoBehaviour:
@@ -350,7 +350,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6273140279733702962, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
   m_PrefabInstance: {fileID: 8750621086307843944}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6939067436386198439
+--- !u!114 &7340417042292084214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   healthbar: {fileID: 228472764911784824}
-  fillBar: 10
+  fillBar: 5
 --- !u!224 &4414938965922212780 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4914957828633466052, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}

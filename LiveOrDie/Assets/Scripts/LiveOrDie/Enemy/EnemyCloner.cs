@@ -7,22 +7,36 @@ using UnityEngine.AI;
 
 public class EnemyCloner : MonoBehaviour
 {
-    public int enemySize = 10;
-    private int wolfCount = 0; //number of current wolves 
+    public int enemySize = 15;
+    private int enemyCount = 0; //number of current wolves 
     
     private WolfFactory wolfFactory;
     private Wolf newWolf;
 
+    private GhostFactory ghostFactory;
+    private Ghost newGhost;
+
+    int randomizer;
 
     void Clone()
     {
-        wolfFactory.CreateAsync(GetRandomSpawnPosition(), (wolf) =>
-        {
-            //use reference 'wolf' here if you want to use the wolf spawned
-            wolfCount++;
-            wolf.transform.parent = transform;
-        });
-
+        randomizer = UnityEngine.Random.Range(1,11);
+        // randomizer = 10;
+        if(randomizer <= 8) {
+            wolfFactory.CreateAsync(GetRandomSpawnPosition(), (wolf) =>
+            {
+                //use reference 'wolf' here if you want to use the wolf spawned
+                enemyCount++;
+                wolf.transform.parent = transform;
+            });
+        }
+        else {
+            ghostFactory.CreateAsync(GetRandomSpawnPosition(), (ghost) =>
+            {
+                enemyCount++;
+                ghost.transform.parent = transform;
+            });
+        }
     }
     
     void Start()
@@ -30,8 +44,10 @@ public class EnemyCloner : MonoBehaviour
         wolfFactory = new WolfFactory();
         
         //***********************Any counting function should be moved into a centralized mgr later***************
-        EventMgr.Instance.AddEventListener("WolfDead", ReduceWolfCount);
+        EventMgr.Instance.AddEventListener("WolfDead", ReduceEnemyCount);
         EventMgr.Instance.AddEventListener("WolfDead", CheckIfClone);
+
+        ghostFactory = new GhostFactory();
 
         for (int i = 0; i < 10; i++)
         {
@@ -42,7 +58,7 @@ public class EnemyCloner : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener("WolfDead", ReduceWolfCount);
+        EventMgr.Instance.RemoveEventListener("WolfDead", ReduceEnemyCount);
         EventMgr.Instance.RemoveEventListener("WolfDead", CheckIfClone);
     }
 
@@ -65,15 +81,15 @@ public class EnemyCloner : MonoBehaviour
     }
 
     //***********************Any counting function should be moved into a centralized mgr later***************
-    private void ReduceWolfCount()
+    private void ReduceEnemyCount()
     {
-        wolfCount--;
+        enemyCount--;
     }
 
     //*******************Any clone rule related functions should be moved into a centralized mgr later***************
     private void CheckIfClone()
     {
-        if(wolfCount < enemySize) {  //can add some sort of delay here using Invoke
+        if(enemyCount < enemySize) {  //can add some sort of delay here using Invoke
             Invoke(nameof(Clone), 5f);
         }
     }
