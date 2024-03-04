@@ -41,6 +41,7 @@ public class EnemyAttack : MonoBehaviour
     {
         while (isAttacking && currentTarget != null)
         {
+            AudioMgr.Instance.PlayAudio("beingCHEWED",true);
             Debug.Log(currentTarget.GetComponentInChildren<CharacterHealth>().player.whichPlayer);
             currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(enemy.damage);
             yield return new WaitForSeconds(1f);
