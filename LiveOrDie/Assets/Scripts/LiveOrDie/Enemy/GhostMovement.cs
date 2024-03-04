@@ -31,6 +31,7 @@ public class GhostMovement : MonoBehaviour
     private void Move()
     {
         // TrackDistance();
+        if (target == null) return;
         Vector3 direction = (target.transform.position - transform.position).normalized;
         this.transform.position += direction * speed * Time.deltaTime;
 

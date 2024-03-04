@@ -15,6 +15,7 @@ public class GameOverController : MonoBehaviour
                 panel.SetScore(score);
                 panel.SetExp(exp);
                 showing = true;
+                PoolMgr.Instance.Clear();
             });
         }
     }
