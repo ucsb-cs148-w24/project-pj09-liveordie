@@ -18,7 +18,7 @@ public class MainCameraController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         }
         else{
-            Debug.Log("GameOver");
+            // Debug.Log("GameOver");
         }
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -41,7 +40,7 @@ public class EnemyAttack : MonoBehaviour
     {
         while (isAttacking && currentTarget != null)
         {
-            Debug.Log(currentTarget.GetComponentInChildren<CharacterHealth>().player.whichPlayer);
+            // Debug.Log(currentTarget.GetComponentInChildren<CharacterHealth>().player.whichPlayer);
             currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(enemy.damage);
             yield return new WaitForSeconds(1f);
         }

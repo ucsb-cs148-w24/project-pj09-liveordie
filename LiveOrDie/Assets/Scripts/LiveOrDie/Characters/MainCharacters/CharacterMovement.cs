@@ -1,9 +1,6 @@
 using System;
 using Unity.VisualScripting;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -33,6 +30,7 @@ public class CharacterMovement : MonoBehaviour
     public void SelfDestruct() { Destroy(gameObject); }
     public void OnEnable(){
         speed = 10f;
+        speed = 5f;
         horizontal = vertical = 0;
     }
     void Start(){ 

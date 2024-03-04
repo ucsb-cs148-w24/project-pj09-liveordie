@@ -1,6 +1,4 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 public class Player : MonoBehaviour
 {
     public int whichPlayer; // UNIQUE ID
@@ -20,16 +18,27 @@ public class Player : MonoBehaviour
     [HideInInspector]
     private CharacterMovement movement;
 
-    // getter functions
+    // public functions
     public Rigidbody2D getRigidBody() {return rb;}
     public SpriteRenderer getSpriteRenderer() {return render;}
+    public void DropHealthEffect() { healthbar.DecreaseHealth((int)healthbar.characterHealth / 2);}
+    public void BoostHealthEffect() { healthbar.IncreaseHealth((int)healthbar.maxHealth - (int)healthbar.characterHealth);}
+    public void BoostSpeedEffect() { movement.speed *= 1.5f;}
+    public void SlugSpeedEffect() { movement.speed = 1;}
+    public void UpdateTempEffectBoolean(){underTempEffect = true;}
 
     // setter functions
     private void KillPlayer() {isDead = true;}
+    private void ResetCharacteristics(){
+        movement.speed = 5f;
+    }
+    private float timerEffect = 5f;
+    private bool underTempEffect;
 
     protected void OnEnable(){
         maxRadius = 5f;
         isDead = false;
+        underTempEffect = false;
         if(!(render = gameObject.GetComponent<SpriteRenderer>())) 
             render = gameObject.AddComponent<SpriteRenderer>();
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
@@ -67,6 +76,15 @@ public class Player : MonoBehaviour
     {
         if(isDead) {
             Destroy(gameObject);
+        }
+        else{
+            if(underTempEffect){
+                timerEffect -= Time.deltaTime;
+                if(timerEffect <= 0){
+                    underTempEffect = false;
+                    ResetCharacteristics();
+                }
+            }
         }
     }
     public void OnDestroy(){
