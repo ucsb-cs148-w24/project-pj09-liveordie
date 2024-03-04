@@ -11,6 +11,6 @@ public class ExpBarPanelController : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(this != null) UIMgr.Instance.HidePanel("ExpBarPanel");
+        if(this.gameObject.activeSelf) UIMgr.Instance.HidePanel("ExpBarPanel");
     }
 }

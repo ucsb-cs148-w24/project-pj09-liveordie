@@ -6,7 +6,10 @@ public class EnemyAttack : MonoBehaviour
 {
     private Player player1, player2;
     private Player currentTarget;
-    private bool isAttacking = false;
+    // private bool isAttacking = false;
+    private float attackCoolDownTime = 0.2f;
+    private float curAttackCoolDownTime = 0.2f;
+    private bool canAttack = true;
     private Enemy enemy;
 
     void OnEnable()
@@ -14,11 +17,13 @@ public class EnemyAttack : MonoBehaviour
         // Assuming player tags are "Player1" and "Player2"
         player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
         player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
+        attackCoolDownTime = 0.2f;
+        curAttackCoolDownTime = 0.2f;
 
         enemy = GetComponent<Enemy>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (player1.isDead || player2.isDead) return;
         if (collision.gameObject.CompareTag("Player1"))
@@ -30,25 +35,29 @@ public class EnemyAttack : MonoBehaviour
             currentTarget = player2;
         }
 
-        if (currentTarget != null)
-        {
-            isAttacking = true;
-            StartCoroutine(AttackPlayer());
-        }
-    }
-
-    IEnumerator AttackPlayer()
-    {
-        while (isAttacking && currentTarget != null)
+        if (currentTarget != null &&  canAttack )
         {
             Debug.Log(currentTarget.GetComponentInChildren<CharacterHealth>().player.whichPlayer);
             currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(enemy.damage);
-            yield return new WaitForSeconds(1f);
+            canAttack = false;
+            if(this.gameObject.activeSelf) StartCoroutine(AttackCoolDownCoroutine());
         }
     }
 
-    void OnDestroy()
+    IEnumerator AttackCoolDownCoroutine()
     {
-        StopCoroutine(AttackPlayer());
+        while (currentTarget != null && curAttackCoolDownTime > 0)
+        {
+            curAttackCoolDownTime -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        print("reset");
+        curAttackCoolDownTime = attackCoolDownTime;
+        canAttack = true;
+    }
+
+    void OnDisable()
+    {
+        StopCoroutine(AttackCoolDownCoroutine());
     }
 }
