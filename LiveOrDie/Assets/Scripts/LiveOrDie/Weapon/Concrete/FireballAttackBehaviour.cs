@@ -24,7 +24,7 @@ public class FireballAttackBehaviour : AttackBehaviourBase
     {
         firebulletRb.rotation = Quaternion.FromToRotation(Vector3.right, direction).eulerAngles.z;
         firebulletRb.velocity = direction * speed;
-
+        AudioMgr.Instance.PlayAudio("BulletSFX", false);
         StartCoroutine(DestroyAfterTime());
     }
 

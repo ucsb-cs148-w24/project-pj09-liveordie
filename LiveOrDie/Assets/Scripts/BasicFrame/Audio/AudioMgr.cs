@@ -18,7 +18,7 @@ public class AudioMgr : Singleton<AudioMgr>
     private float BGMVolume = 0.5f;
 
     private GameObject soundCarrier = null;
-    private float audioVolume = 0.5f;
+    private float audioVolume = 0.2f;
     private List<AudioSource> audioList = new List<AudioSource>();
 
     /// <summary>
