@@ -12,6 +12,6 @@ public class ScoreBoardController : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(this.gameObject.activeSelf) UIMgr.Instance.HidePanel("ScoreBoardPanel");
+        if(UIMgr.Instance.GetPanel<ScoreBoardPanel>("ScoreBoardPanel")) UIMgr.Instance.HidePanel("ScoreBoardPanel");
     }
 }
