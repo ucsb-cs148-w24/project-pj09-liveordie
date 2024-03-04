@@ -6,9 +6,7 @@ public class EnemyAttack : MonoBehaviour
 {
     private Player player1, player2;
     private Player currentTarget;
-    // private bool isAttacking = false;
     private float attackCoolDownTime = 0.2f;
-    private float curAttackCoolDownTime = 0.2f;
     private bool canAttack = true;
     private Enemy enemy;
 
@@ -18,9 +16,6 @@ public class EnemyAttack : MonoBehaviour
         player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
         player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
         canAttack = true;
-        attackCoolDownTime = 0.2f;
-        curAttackCoolDownTime = 0.2f;
-
         enemy = GetComponent<Enemy>();
     }
 
@@ -43,17 +38,12 @@ public class EnemyAttack : MonoBehaviour
             canAttack = false;
             if(this.gameObject.activeSelf) StartCoroutine(AttackCoolDownCoroutine());
         }
+        currentTarget = null;
     }
 
     IEnumerator AttackCoolDownCoroutine()
     {
-        while (currentTarget != null && curAttackCoolDownTime > 0)
-        {
-            curAttackCoolDownTime -= Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        print("reset");
-        curAttackCoolDownTime = attackCoolDownTime;
+        yield return new WaitForSeconds(attackCoolDownTime);
         canAttack = true;
     }
 
