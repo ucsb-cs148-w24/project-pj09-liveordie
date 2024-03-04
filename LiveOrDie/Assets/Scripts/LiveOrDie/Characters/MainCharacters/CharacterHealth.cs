@@ -15,10 +15,12 @@ public class CharacterHealth : MonoBehaviour
     [HideInInspector]
     public Transform playerPosition;
 
-    public void DecreaseHealth(){
+    public void DecreaseHealth()
+    {
         characterHealth--;
-        healthbar.fillAmount = characterHealth/50; 
-    
+        healthbar.fillAmount = characterHealth / 50;
+    }
+
     public void SelfDestruct() { Destroy(gameObject);}
    
    public void DecreaseHealth(int amount){
