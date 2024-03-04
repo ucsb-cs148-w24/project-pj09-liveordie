@@ -9,10 +9,6 @@ public class ExpBarPanel : BasePanel
 {
     private Slider expBarSlider;
     
-    //values below should be moved into a leveling system*************************************
-    private float playerExp = 0;
-    private float playerExpLimit = 10f;
-
     private void Start()
     {
         expBarSlider = GetUIComponent<Slider>("ExpBarSlider");

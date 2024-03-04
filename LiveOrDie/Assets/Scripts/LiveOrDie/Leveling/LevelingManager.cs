@@ -32,5 +32,6 @@ public class LevelingManager : MonoBehaviour
         curExp = 0;
         expToNextLevel *= levelUpMultiplier; //increase the exp needed for leveling up
         level ++;
+        EventMgr.Instance.EventTrigger("LevelUp");
     }
 }

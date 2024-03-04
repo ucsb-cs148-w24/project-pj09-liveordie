@@ -12,19 +12,26 @@ public abstract class Drop : MonoBehaviour
     private float backOffDist = 1f;
     private CircleCollider2D col;
 
+    private Coroutine attractionCoroutine;
+
     private void OnEnable()
     {
         col = GetComponent<CircleCollider2D>();
         col.enabled = true;
         backOffDist = 1f;
     }
-    
+
+    private void OnDisable()
+    {
+        StopCoroutine(attractionCoroutine);
+    }
+
 
     protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("PickBox"))
         {
-            StartCoroutine(AttractedCoroutine(other));
+            attractionCoroutine = StartCoroutine(AttractedCoroutine(other));
         }
     }
 
@@ -52,5 +59,6 @@ public abstract class Drop : MonoBehaviour
         TriggerEffect();
         DestroySelf();
     }
+    
     
 }

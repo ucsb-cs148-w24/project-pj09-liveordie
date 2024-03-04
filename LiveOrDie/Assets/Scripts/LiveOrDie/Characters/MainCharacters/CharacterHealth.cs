@@ -6,31 +6,28 @@ public class CharacterHealth : MonoBehaviour
     [HideInInspector]
     public Image healthbar;
 
-    // [HideInInspector]
-    public float characterHealth = 50f; // can be changed
-    public float maxHealth = 50f;
     [HideInInspector]
-    public Player player;
+    public Player playerModel;
     private Color healthy = new Color(0.6f, 1, 0.6f, 1);
     [HideInInspector]
     public Transform playerPosition;
 
     public void DecreaseHealth()
     {
-        characterHealth--;
-        healthbar.fillAmount = characterHealth / 50;
+        playerModel.characterHealth--;
+        healthbar.fillAmount = playerModel.characterHealth / 50;
     }
 
     public void SelfDestruct() { Destroy(gameObject);}
    
    public void DecreaseHealth(int amount){
-        characterHealth -= amount;
-        healthbar.fillAmount = characterHealth/maxHealth; 
+        playerModel.characterHealth -= amount;
+        healthbar.fillAmount = playerModel.characterHealth/playerModel.maxHealth; 
     }
     public void IncreaseHealth(int amount){
-        if(characterHealth + amount > maxHealth) characterHealth = maxHealth;
-        else characterHealth += amount;
-        healthbar.fillAmount = characterHealth/maxHealth; 
+        if(playerModel.characterHealth + amount > playerModel.maxHealth) playerModel.characterHealth = playerModel.maxHealth;
+        else playerModel.characterHealth += amount;
+        healthbar.fillAmount = playerModel.characterHealth/playerModel.maxHealth; 
     }
     void OnEnable(){
         foreach(var image in gameObject.GetComponentsInChildren<Image>())
@@ -38,8 +35,8 @@ public class CharacterHealth : MonoBehaviour
         healthbar.color = healthy;
     }
     void Start() { 
-        player = GetComponentInParent<Player>();
-        playerPosition = player.transform;
+        playerModel = GetComponentInParent<Player>();
+        playerPosition = playerModel.transform;
         this.transform.position = 
             new Vector3(playerPosition.localPosition.x, 
                         playerPosition.localPosition.y + 2.0f, 0);
@@ -47,10 +44,10 @@ public class CharacterHealth : MonoBehaviour
     }
     void Update()
     {
-        if (characterHealth <= 0){
+        if (playerModel.characterHealth <= 0){
             EventMgr.Instance.EventTrigger("PlayerDeath");
         }
-        else if(characterHealth > (0.5f*maxHealth)) {
+        else if(playerModel.characterHealth > (0.5f*playerModel.maxHealth)) {
             healthbar.color = healthy;
         }
         else { healthbar.color = Color.red;}
