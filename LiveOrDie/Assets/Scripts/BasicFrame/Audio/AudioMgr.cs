@@ -36,7 +36,7 @@ public class AudioMgr : Singleton<AudioMgr>
     {
         for (int i = audioList.Count-1; i >= 0; --i)
         {
-            if (!audioList[i].isPlaying)
+            if (audioList[i] && !audioList[i].isPlaying)
             {
                 Object.Destroy(audioList[i]);
                 audioList.RemoveAt(i);
