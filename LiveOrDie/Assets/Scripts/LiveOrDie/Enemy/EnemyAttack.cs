@@ -17,6 +17,7 @@ public class EnemyAttack : MonoBehaviour
         // Assuming player tags are "Player1" and "Player2"
         player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
         player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
+        canAttack = true;
         attackCoolDownTime = 0.2f;
         curAttackCoolDownTime = 0.2f;
 

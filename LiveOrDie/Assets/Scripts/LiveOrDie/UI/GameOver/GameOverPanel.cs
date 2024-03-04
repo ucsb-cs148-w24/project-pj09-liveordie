@@ -49,10 +49,10 @@ public class GameOverPanel : BasePanel
         }); 
     }
     public override void Show(){
-        return;
+        Time.timeScale = 0;
     }
     public override void Hide(){
-        return;
+        Time.timeScale = 1;
     }
     void OnDestroy(){
     }
