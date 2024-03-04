@@ -1,6 +1,4 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 public class Player : MonoBehaviour
 {
     public int whichPlayer; // UNIQUE ID
@@ -23,6 +21,8 @@ public class Player : MonoBehaviour
     // getter functions
     public Rigidbody2D getRigidBody() {return rb;}
     public SpriteRenderer getSpriteRenderer() {return render;}
+    public void DropHealthEffect() { healthbar.DecreaseHealth((int)healthbar.characterHealth / 2);}
+    public void BoostHealthEffect() { healthbar.IncreaseHealth((int)healthbar.maxHealth - (int)healthbar.characterHealth);}
 
     // setter functions
     private void KillPlayer() {isDead = true;}
