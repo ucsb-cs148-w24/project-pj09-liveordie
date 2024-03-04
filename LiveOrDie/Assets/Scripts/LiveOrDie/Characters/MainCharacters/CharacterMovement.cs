@@ -97,7 +97,7 @@ public class CharacterMovement : MonoBehaviour
         EventMgr.Instance.RemoveEventListener("GamePaused", GlobalControlLock);
         EventMgr.Instance.RemoveEventListener("GameResumed", GlobalControlUnlock);
         EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
-        EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
+        EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
     }
     
     //move character according to desired move type
@@ -201,9 +201,11 @@ public class CharacterMovement : MonoBehaviour
     private void GlobalControlLock()
     {
         InputMgr.Instance.SwitchAllButtons(false);
+        print("lock");
     }
     private void GlobalControlUnlock()
     {
         InputMgr.Instance.SwitchAllButtons(true);
+        print("unlock");
     }
 }
