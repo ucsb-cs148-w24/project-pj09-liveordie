@@ -13,32 +13,52 @@ public class Player : MonoBehaviour
     private SpriteRenderer render; // PLAYER SKIN
 
     // REFERENCES
-    [HideInInspector]
     private CharacterHealth healthbar;
-    [HideInInspector]
     private CharacterMovement movement;
-
     // public functions
     public Rigidbody2D getRigidBody() {return rb;}
     public SpriteRenderer getSpriteRenderer() {return render;}
-    public void DropHealthEffect() { healthbar.DecreaseHealth((int)healthbar.characterHealth / 2);}
-    public void BoostHealthEffect() { healthbar.IncreaseHealth((int)healthbar.maxHealth - (int)healthbar.characterHealth);}
-    public void BoostSpeedEffect() { movement.speed *= 1.5f;}
-    public void SlugSpeedEffect() { movement.speed = 1;}
-    public void UpdateTempEffectBoolean(){underTempEffect = true;}
-
+    public void EnforceSensitiveState(bool enforce){
+        healthbar.setSentitiveState(enforce);
+    }
+    public void EnforceDrunkEffect(bool enforce) { 
+        movement.ChangeDrunkState(enforce);
+    }
+    public void EnforceHealthEffect(string type) { 
+        if(type == "drop"){
+            healthbar.DecreaseHealth((int)healthbar.characterHealth / 2);
+        }
+        else if(type == "boost"){
+            healthbar.IncreaseHealth((int)healthbar.maxHealth - (int)healthbar.characterHealth);
+        }
+        else{
+            Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
+        }
+    }
+    public void EnforceSpeedEffect(string type) { 
+        if(type == "drop"){
+            movement.speed = 1;
+        }
+        else if(type == "boost"){
+            movement.speed *= 1.5f;
+        }
+        else if(type == "berzerkers"){
+            movement.speed *= 10f;
+        }
+        else{
+            Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
+        }
+    }
     // setter functions
     private void KillPlayer() {isDead = true;}
-    private void ResetCharacteristics(){
+    public void ResetCharacteristics(){
         movement.speed = 5f;
+        movement.ChangeDrunkState(false);
+        healthbar.setSentitiveState(false);
     }
-    private float timerEffect = 5f;
-    private bool underTempEffect;
-
     protected void OnEnable(){
         maxRadius = 5f;
         isDead = false;
-        underTempEffect = false;
         if(!(render = gameObject.GetComponent<SpriteRenderer>())) 
             render = gameObject.AddComponent<SpriteRenderer>();
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
@@ -69,6 +89,7 @@ public class Player : MonoBehaviour
         healthbar.playerPosition = gameObject.transform;
         if (!(movement = gameObject.GetComponent<CharacterMovement>()))
             movement = gameObject.AddComponent<CharacterMovement>();
+        
         EventMgr.Instance.AddEventListener("PlayerDeath", KillPlayer);
     }
 
@@ -76,15 +97,6 @@ public class Player : MonoBehaviour
     {
         if(isDead) {
             Destroy(gameObject);
-        }
-        else{
-            if(underTempEffect){
-                timerEffect -= Time.deltaTime;
-                if(timerEffect <= 0){
-                    underTempEffect = false;
-                    ResetCharacteristics();
-                }
-            }
         }
     }
     public void OnDestroy(){

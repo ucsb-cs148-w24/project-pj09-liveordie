@@ -10,20 +10,21 @@ public class DrugDropManager : MonoBehaviour
     private List<Player> players; // list referencing players so we can directly give it "effects"
     public int numDrugs, maxDrugs; // counter | max # to spawn
     private float targetTime; // startDelay | random Time to spawn
-
-    // Not all are implemented yet
+    private bool drugged; // whether under drug effect
+    public float effectTime; // amount of time left until drug wears off
     private enum RANDOM_EFFECTS{
-        DRUNK_STATE, // Keyboard input: WASD --> SDWA & UDLR --> DLRU
-        OVERKILL_STATE, // ALL WEAPONS ACTIVATED
-        SENSITIVE_STATE, // 10 seconds, hitting obstacles cause players to take damage
-        MAGIC_MUSHROOM_STATE, // Any player attack will hurt their peer Player instad of the wolves
         HEALTH_DROP_STATE, // Drop health by 1/2 its current
         HEALTH_BOOST_STATE, // Increase health by 1.5 OR to full health
         SLUG_STATE, // speed reduced to 1
         SPEEDY_STATE, // speed increases by 2x
+        DRUNK_STATE, // Keyboard input: WASD --> SDWA & UDLR --> DLRU
+        SENSITIVE_STATE, // 10 seconds, hitting obstacles cause players to take damage
+
+        ////////////////////////////// ANYTHING BELOW HAS YET TO BE IMPLEMENTED
+        MAGIC_MUSHROOM_STATE, // Any player attack will hurt their peer Player
         BOOST_STATE, // attack power 2x
         WEAK_STATE, // attack power halves
-        WITHDRAWAL_STATE, // crazy man
+        WITHDRAWAL_STATE, // crazy man, loose control of keyboard control
     }
 
     private void Start()
@@ -32,6 +33,7 @@ public class DrugDropManager : MonoBehaviour
         numDrugs = 0;
         maxDrugs = 10;
         targetTime = 5;
+        effectTime = 5f;
         players = new List<Player>() {
             GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>(),
             GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>()
@@ -41,40 +43,60 @@ public class DrugDropManager : MonoBehaviour
     }
 
     private void Update(){
-        targetTime -= Time.deltaTime;
+        targetTime -= Time.deltaTime; // update time for random drug spawn
         if (targetTime <= 0 && numDrugs < maxDrugs){
             DropDrug();
             targetTime = UnityEngine.Random.Range(10, 20);
         }
+        if(drugged){ // if drugged, update time that it wears off 
+            effectTime -= Time.deltaTime;
+            if(effectTime <= 0){
+                players.ForEach( p => {
+                    p.ResetCharacteristics();
+                });
+                drugged = false;
+                effectTime = 5f;
+            }
+        }
     }
-
     private void HandlePickedDrug(){
-        numDrugs--;
-        // Enforce random effect on Drugged Player --> Range [0-4] for now, but will expand
-        int effect = UnityEngine.Random.Range(4, 8); 
-        switch(effect){
-            case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
-                EventMgr.Instance.EventTrigger("DrugText", "DOOM! Health Halved!");
-                players.ForEach(p => p.DropHealthEffect());
-                break;
-            case (int)RANDOM_EFFECTS.HEALTH_BOOST_STATE:
-                EventMgr.Instance.EventTrigger("DrugText", "ENHANCE! Health Boost!");
-                players.ForEach(p => p.BoostHealthEffect());
-                break;
-            case (int)RANDOM_EFFECTS.SPEEDY_STATE:
-                EventMgr.Instance.EventTrigger("DrugText", "ENHANCE! Speed Boost!");
-                players.ForEach(p => {
-                    p.UpdateTempEffectBoolean();
-                    p.BoostSpeedEffect();
-                });
-                break;
-            case (int)RANDOM_EFFECTS.SLUG_STATE:
-                EventMgr.Instance.EventTrigger("DrugText", "DOOM! Slug Speed!");
-                players.ForEach(p => {
-                    p.UpdateTempEffectBoolean();
-                    p.SlugSpeedEffect();
-                });
-                break;
+        if(!drugged){
+            drugged = true;
+            numDrugs--;
+            // Enforce random effect on Drugged Player --> Range [0-6] for now, but will expand
+            int effect = UnityEngine.Random.Range(0, 6); 
+            switch(effect){
+                case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
+                    EventMgr.Instance.EventTrigger("DrugText", "DOOM! Health Halved!");
+                    players.ForEach(p => p.EnforceHealthEffect("drop"));
+                    break;
+                case (int)RANDOM_EFFECTS.HEALTH_BOOST_STATE:
+                    EventMgr.Instance.EventTrigger("DrugText", "ENHANCE! Health Boost!");
+                    players.ForEach(p => p.EnforceHealthEffect("boost"));
+                    break;
+                case (int)RANDOM_EFFECTS.SPEEDY_STATE:
+                    EventMgr.Instance.EventTrigger("DrugText", "ENHANCE! Speed Boost!");
+                    players.ForEach(p => p.EnforceSpeedEffect("boost"));
+                    break;
+                case (int)RANDOM_EFFECTS.SLUG_STATE:
+                    EventMgr.Instance.EventTrigger("DrugText", "You're a slug");
+                    players.ForEach(p => p.EnforceSpeedEffect("drop"));
+                    break;
+                case (int)RANDOM_EFFECTS.DRUNK_STATE:
+                    EventMgr.Instance.EventTrigger("DrugText", "Your a drunkard");
+                    players.ForEach(p => 
+                    {
+                        p.EnforceDrunkEffect(true);
+                        p.EnforceSpeedEffect("berzerkers");
+                    });
+                    break;
+                case (int)RANDOM_EFFECTS.SENSITIVE_STATE:
+                    EventMgr.Instance.EventTrigger("DrugText", "You're sensitive");
+                    players.ForEach(p => p.EnforceSensitiveState(true));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
