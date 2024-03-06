@@ -20,7 +20,7 @@ public class SettingsPanel : BasePanel
         {
             case "BackButton":
                 // print("back");
-                //AudioMgr.Instance.PlayAudio("OnClick", false);
+                AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.HidePanel("SettingsPanel");
                 break;
             default:
