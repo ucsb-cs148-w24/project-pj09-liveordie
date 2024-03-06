@@ -48,7 +48,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
         float elapsedTime = 0f;
         float startRotation = pwsRb.rotation;
         float targetRotation = startRotation - 360f; // Rotate counterclockwise by 360 degrees
-
+        AudioMgr.Instance.PlayAudio("pws_sfx",false);
         while (elapsedTime < swingTime)
         {
             float t = elapsedTime / swingTime; // Normalized time between 0 and 1
