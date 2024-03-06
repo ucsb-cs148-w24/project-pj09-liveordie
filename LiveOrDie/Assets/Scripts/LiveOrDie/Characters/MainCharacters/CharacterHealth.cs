@@ -49,6 +49,7 @@ public class CharacterHealth : MonoBehaviour
     {
         if (characterHealth <= 0){
             EventMgr.Instance.EventTrigger("PlayerDeath");
+            EventMgr.Instance.EventTrigger("StartShowing");
         }
         else if(characterHealth > (0.5f*maxHealth)) {
             healthbar.color = healthy;
