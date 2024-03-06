@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -150,6 +148,33 @@ public class MainScenePanelTests
         Assert.That(score, Is.Not.Null);
         var script = score.GetComponent<GameOverController>();
         Assert.That(script, Is.Not.Null);
+        yield return null;
+     }
+    [UnityTest]
+     public IEnumerator VerifyDrugDropManagerLoadedCorrectly()
+     {
+        // Assertions for Existence of the Bamboo/Rope
+        var check = GameObject.Find("DrugDropManager");
+        var drugManager = check.GetComponent<DrugDropManager>();
+        Assert.That(drugManager, Is.Not.Null);
+        yield return null;
+     }
+    [UnityTest]
+     public IEnumerator VerifyExpDropManagerLoadedCorrectly()
+     {
+        // Assertions for Existence of the Bamboo/Rope
+        var check = GameObject.Find("ExpDropManager");
+        var expManager = check.GetComponent<ExpDropManager>();
+        Assert.That(expManager, Is.Not.Null);
+        yield return null;
+     }
+    [UnityTest]
+     public IEnumerator VerifyExpDropPanelControllerLoadedCorrectly()
+     {
+        // Assertions for Existence of the Bamboo/Rope
+        var check = GameObject.Find("ExpBarPanelController");
+        var expController = check.GetComponent<ExpBarPanelController>();
+        Assert.That(expController, Is.Not.Null);
         yield return null;
      }
 }

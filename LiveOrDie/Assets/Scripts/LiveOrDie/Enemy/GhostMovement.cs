@@ -34,7 +34,6 @@ public class GhostMovement : MonoBehaviour
         if (target == null) return;
         Vector3 direction = (target.transform.position - transform.position).normalized;
         this.transform.position += direction * speed * Time.deltaTime;
-
         if(direction.x > 0) render.flipX = true;
         else render.flipX = false;
     }

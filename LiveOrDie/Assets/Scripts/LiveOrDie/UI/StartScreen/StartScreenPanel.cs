@@ -25,7 +25,7 @@ public class StartScreenPanel:BasePanel
             case "QuitButton":
                 AudioMgr.Instance.PlayAudio("OnClick", false);
                 Application.Quit(); //only works after deploying
-                print("QuitGame");
+                // print("QuitGame");
                 break;
             default:
                 break;

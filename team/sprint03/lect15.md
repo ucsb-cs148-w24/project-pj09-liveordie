@@ -6,8 +6,8 @@ _____________________________________________________________________________
 ## ==BASIC INFORMATION==
 _____________________________________________________________________________
 ### Mentor: Kristin/Christopher
-### Meeting Time: [madlib]
-### Type of meeting: [madlib]
+### Meeting Time: [2024/3/6]
+### Type of meeting: [standup]
 _____________________________________________________________________________
 ## ==ATTENDENCE==
 - [x] Rachel Jiang
@@ -19,25 +19,20 @@ _____________________________________________________________________________
 - [x] Thomas Harbeck
 _____________________________________________________________________________
 
-## ==KEY NOTES==
-- [madlib]
-- [madlib]
-- [madlib]
-_____________________________________________________________________________
 
-## Scribe: [insert name]
+## Scribe: [Jason Gu]
 
 ## ==Scribe Notes==
 
 #### Rachel
 - What did: Create the drugs pr
 - What to do: fix game over panel
-- What blockers: no blockers 
+- What blockers: None
 
 #### Jason
 - What did: Leveling system 
 - What to do: level up choice ui
-- What blockers:
+- What blockers: None
 
 #### Frank
 - What did: Finish SFX
@@ -47,22 +42,22 @@ _____________________________________________________________________________
 #### Baige
 - What did: Dialogue system in progress
 - What to do: add skip button for the system
-- What blockers:
+- What blockers: None
 
 #### Cindy
-- What did:
-- What to do:
-- What blockers:
+- What did: Working on the tutorial
+- What to do: Finish tutorial
+- What blockers: None
 
 #### Sean
 - What did: 
 - What to do: Weapon status ui
-- What blockers:
+- What blockers: None
 
 #### Thomas
 - What did:
 - What to do: exp soul sprite and attack animation
-- What blockers:
+- What blockers: None
 
 _____________________________________________________________________________
 
