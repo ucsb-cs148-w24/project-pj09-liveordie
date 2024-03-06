@@ -14,16 +14,15 @@ public class CharacterHealth : MonoBehaviour
     private Color healthy = new Color(0.6f, 1, 0.6f, 1);
     [HideInInspector]
     public Transform playerPosition;
-
-    public void DecreaseHealth()
-    {
-        characterHealth--;
-        healthbar.fillAmount = characterHealth / 50;
+    private bool sensitiveState; // if true, damaages x 2
+    public void setSentitiveState(bool state){
+        sensitiveState = state;
     }
-
     public void SelfDestruct() { Destroy(gameObject);}
-   
-   public void DecreaseHealth(int amount){
+    public void DecreaseHealth(int amount){
+        if(sensitiveState){
+            amount *= 2;
+        }
         characterHealth -= amount;
         healthbar.fillAmount = characterHealth/maxHealth; 
     }
@@ -38,6 +37,7 @@ public class CharacterHealth : MonoBehaviour
         healthbar.color = healthy;
     }
     void Start() { 
+        sensitiveState = false; 
         player = GetComponentInParent<Player>();
         playerPosition = player.transform;
         this.transform.position = 
