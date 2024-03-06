@@ -23,7 +23,7 @@ public abstract class Drop : MonoBehaviour
 
     private void OnDisable()
     {
-        StopCoroutine(attractionCoroutine);
+        if(attractionCoroutine != null) StopCoroutine(attractionCoroutine);
     }
 
 

@@ -65,7 +65,6 @@ public class Player : MonoBehaviour
 
     private void LevelUp(E_LevelUpChoice choice) //to do 
     {
-        print(choice);
         switch (choice)
         {
             case E_LevelUpChoice.IncreaseSpeed:

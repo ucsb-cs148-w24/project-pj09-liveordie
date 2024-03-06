@@ -15,12 +15,39 @@ public class LevelingManager : MonoBehaviour
     private float curExp = 0; //current exp
     private float levelUpMultiplier = 1.5f; //multiplier for each level
     private int level = 1; //player level
+
+    private List<LevelUpChoice> levelUpChoiceList;
+
     void Start()
     {
-        expToNextLevel = 0.5f; //remember to change it ********************************
+        initLevelUpChoices();
+        expToNextLevel = 0.5f; //for testing, remember to change it ********************************
         curExp = 0;
         level = 1;
         EventMgr.Instance.AddEventListener<float>("ExpOrbPicked", IncreaseExp);
+    }
+
+    private void initLevelUpChoices()
+    {
+        levelUpChoiceList = new List<LevelUpChoice>
+        {
+            new LevelUpChoice("Increase Speed",
+                () =>
+                {
+                    EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseSpeed);
+                }),
+            new LevelUpChoice("Increase Maximum Health",
+                () =>
+                {
+                    EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseMaxHealth);
+                }),
+            new LevelUpChoice("Increase Rope Radius",
+                () =>
+                {
+                    EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseRopeRadius);
+                })
+        };
+        //add all the initial choices
     }
     
     private void IncreaseExp(float val)
@@ -39,11 +66,19 @@ public class LevelingManager : MonoBehaviour
         curExp = 0;
         expToNextLevel *= levelUpMultiplier; //increase the exp needed for leveling up
         level ++;
-        EventMgr.Instance.EventTrigger("LevelUp", GenerateLevelUpChoice());
+        UIMgr.Instance.ShowPanel<LevelUpPanel>("LevelUpPanel", E_PanelLayer.Top, (panel) =>
+        {
+            panel.init(GenerateLevelUpChoice());
+        });
     }
 
-    private E_LevelUpChoice GenerateLevelUpChoice()
+    private List<LevelUpChoice> GenerateLevelUpChoice()
     {
-        return (E_LevelUpChoice)Random.Range(0, 3);
+        return new List<LevelUpChoice>
+        {
+            levelUpChoiceList[0],
+            levelUpChoiceList[1],
+            levelUpChoiceList[2]
+        };
     }
 }
