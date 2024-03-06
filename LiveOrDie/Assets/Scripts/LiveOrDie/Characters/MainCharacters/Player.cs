@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 public class Player : MonoBehaviour
@@ -5,7 +6,7 @@ public class Player : MonoBehaviour
     public int whichPlayer; // UNIQUE ID
     
     //stats fields
-    public float speed = 1.5f; // speed of player movement
+    public float speed = 3f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
     public float characterHealth = 50f; // can be changed
     public float maxHealth = 50f;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     //attackRange
     //attackDamage
     //attackSpeed
+    //defence
 
     
     [HideInInspector]
@@ -40,10 +42,15 @@ public class Player : MonoBehaviour
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
             rb = gameObject.AddComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        
+        speed = 3f; // speed of player movement
+        maxRadius = 5f; // max distance between players
+        characterHealth = 50f; // can be changed
+        maxHealth = 50f;
     }
     protected void Start() {
         EventMgr.Instance.AddEventListener("PlayerDeath", KillPlayer);
-        EventMgr.Instance.AddEventListener("LevelUp", LevelUp);
+        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     void Update()
@@ -56,9 +63,23 @@ public class Player : MonoBehaviour
         EventMgr.Instance.RemoveEventListener("PlayerDeath", KillPlayer);
     }
 
-    private void LevelUp() //to do 
+    private void LevelUp(E_LevelUpChoice choice) //to do 
     {
-        
+        print(choice);
+        switch (choice)
+        {
+            case E_LevelUpChoice.IncreaseSpeed:
+                print("speed");
+                break;
+            case E_LevelUpChoice.IncreaseMaxHealth:
+                print("health");
+                break;
+            case E_LevelUpChoice.IncreaseRopeRadius:
+                print("rope");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(choice), choice, null);
+        }
     }
 
 }
