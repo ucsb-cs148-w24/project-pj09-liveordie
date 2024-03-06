@@ -32,6 +32,7 @@ public abstract class Drop : MonoBehaviour
 
     IEnumerator AttractedCoroutine(Collider2D other)
     {
+        if(!other || !this) yield return null;
         col.enabled = false;
         while (backOffDist > 0)
         {

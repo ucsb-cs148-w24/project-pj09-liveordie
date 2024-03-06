@@ -29,7 +29,7 @@ public class MainScenePanelTests
         var check = GameObject.Find("Enemies");
         var cloner = check.GetComponentInChildren<EnemyCloner>();
         Assert.That(cloner, Is.Not.Null);
-        Assert.That(cloner.enemySize, Is.EqualTo(10));
+        Assert.That(cloner.enemySize, Is.EqualTo(15));
         // Assert.That(cloner.wolfPrefab.name, Is.EqualTo("Wolf"));
         yield return null;
      }
@@ -112,7 +112,7 @@ public class MainScenePanelTests
         
         var script = enemy.GetComponent<EnemyCloner>();
         Assert.That(script, Is.Not.Null);
-        Assert.That(script.enemySize, Is.EqualTo(10));
+        Assert.That(script.enemySize, Is.EqualTo(15));
         yield return null;
      }
 
@@ -138,6 +138,15 @@ public class MainScenePanelTests
         var score = GameObject.Find("ScoreBoardController");
         Assert.That(score, Is.Not.Null);
         var script = score.GetComponent<ScoreBoardController>();
+        Assert.That(script, Is.Not.Null);
+        yield return null;
+     }
+   [UnityTest]
+     public IEnumerator VerifyGameOverControllerLoadedCorrectly()
+     {
+        var score = GameObject.Find("GameOverController");
+        Assert.That(score, Is.Not.Null);
+        var script = score.GetComponent<GameOverController>();
         Assert.That(script, Is.Not.Null);
         yield return null;
      }

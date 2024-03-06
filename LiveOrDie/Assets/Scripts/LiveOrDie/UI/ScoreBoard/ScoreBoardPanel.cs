@@ -49,5 +49,6 @@ public class ScoreBoardPanel : BasePanel
     {
         totalScore += score;
         scoreText.text = "Score: "+ totalScore;
+        EventMgr.Instance.EventTrigger("SendScore", (float)totalScore);
     } 
 }

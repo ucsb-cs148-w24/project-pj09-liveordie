@@ -31,6 +31,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
 
     public void Fire(Transform p1Transform, Transform p2Transform) 
     {
+        if(!p1Transform || !p2Transform) return;
         StartCoroutine(fireRoutine(p1Transform, p2Transform));
     }
 
@@ -43,6 +44,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
 
     private IEnumerator swingRoutine(Transform p1Transform, Transform p2Transform) 
     {
+    if(!p1Transform || !p2Transform || !pwsRb) yield return null;
         StartCoroutine(FadeInRoutine());
         float elapsedTime = 0f;
         float startRotation = pwsRb.rotation;

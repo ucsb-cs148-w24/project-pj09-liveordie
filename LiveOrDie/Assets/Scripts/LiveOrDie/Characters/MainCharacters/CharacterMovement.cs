@@ -111,7 +111,6 @@ public class CharacterMovement : MonoBehaviour
         EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
         EventMgr.Instance.RemoveEventListener<bool>("DrunkDrug", ChangeDrunkState);
     }
-    
     //move character according to desired move type
     void ChangeCharacterDirection(E_MoveType moveType)
     {
@@ -221,12 +220,12 @@ public class CharacterMovement : MonoBehaviour
     private void GlobalControlLock()
     {
         InputMgr.Instance.SwitchAllButtons(false);
+        print("lock");
     }
     private void GlobalControlUnlock()
     {
         InputMgr.Instance.SwitchAllButtons(true);
     }
-
     private List<int> ShuffleList(List<int> list)
     {
         for (int i = list.Count - 1; i > 0; i--)

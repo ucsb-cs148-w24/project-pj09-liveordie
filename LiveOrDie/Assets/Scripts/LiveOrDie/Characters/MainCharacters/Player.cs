@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
             movement.speed *= 10f;
         }
         else{
-            Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
+            Debug.Log("Wrong use of Event Listener for EnforceSpeedEffect()");
         }
     }
     // setter functions
@@ -101,11 +101,6 @@ public class Player : MonoBehaviour
     }
     public void OnDestroy(){
         EventMgr.Instance.RemoveEventListener("PlayerDeath", KillPlayer);
-        healthbar.SelfDestruct();
-        // weapon.SelfDestruct();
-    }
-    public void OnDisable(){
-        if(gameObject) Destroy(gameObject);
     }
 
 }
