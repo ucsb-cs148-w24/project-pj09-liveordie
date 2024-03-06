@@ -206,6 +206,6 @@ public class CharacterMovement : MonoBehaviour
     private void GlobalControlUnlock()
     {
         InputMgr.Instance.SwitchAllButtons(true);
-        print("unlock");
+        // print("unlock");
     }
 }
