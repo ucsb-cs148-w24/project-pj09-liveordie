@@ -146,9 +146,18 @@ public class MainScenePanelTests
    [UnityTest]
      public IEnumerator VerifyGameOverControllerLoadedCorrectly()
      {
-        var score = GameObject.Find("GameOverController");
-        Assert.That(score, Is.Not.Null);
-        var script = score.GetComponent<GameOverController>();
+        var gameOver = GameObject.Find("GameOverController");
+        Assert.That(gameOver, Is.Not.Null);
+        var script = gameOver.GetComponent<GameOverController>();
+        Assert.That(script, Is.Not.Null);
+        yield return null;
+     }
+   [UnityTest]
+     public IEnumerator VerifyWeaponStatusControllerLoadedCorrectly()
+     {
+        var weaponStatus = GameObject.Find("WeaponStatusController");
+        Assert.That(weaponStatus, Is.Not.Null);
+        var script = weaponStatus.GetComponent<WeaponStatusController>();
         Assert.That(script, Is.Not.Null);
         yield return null;
      }

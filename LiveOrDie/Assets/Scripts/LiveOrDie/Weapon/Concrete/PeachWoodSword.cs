@@ -48,7 +48,7 @@ public class PeachWoodSword : MeleeWeapon
     public override void LevelUp()
     {
         weaponLevel += 1;
-        weaponDamage.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
+        weaponDamage.AddModifier(new StatModifier(StatModifierType.Flat, 1f), 0);
         weaponRate.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
         meleeRange.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
     }

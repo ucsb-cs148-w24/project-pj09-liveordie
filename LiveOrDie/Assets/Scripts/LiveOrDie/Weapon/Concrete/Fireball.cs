@@ -67,7 +67,7 @@ public class Fireball : RangedWeapon
     public override void LevelUp()
     {
         weaponLevel += 1;
-        weaponDamage.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
+        weaponDamage.AddModifier(new StatModifier(StatModifierType.Flat, 0.5f), 0);
         weaponRate.AddModifier(new StatModifier(StatModifierType.PercentAdd, -5f), 0);
     }
 
