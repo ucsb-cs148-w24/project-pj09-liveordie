@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c170129905d5747a8a4fcf1bb7979170
+guid: 32f2fbea9ae2141eb9c2443ef18ac215
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: drug_0
+      name: talisman_0
       rect:
         serializedVersion: 2
         x: 0
@@ -144,20 +144,20 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1447df9e92a14a2eb3f7ab3051f4c85
-      internalID: 1489844369
+      spriteID: c14a4cb007ef74a00bbe9006f7c50d5e
+      internalID: 891867219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: drug_1
+      name: talisman_1
       rect:
         serializedVersion: 2
         x: 128
@@ -165,14 +165,35 @@ TextureImporter:
         width: 128
         height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1966fa7a449e0403db9bfa3ebc22f56f
-      internalID: -1708687533
+      spriteID: 6ebd22597af1b4154aaa3d9e31650063
+      internalID: 992207502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: talisman_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51525da69793f44c2a9c5a3d3164ac34
+      internalID: 744744049
       vertices: []
       indices: 
       edges: []
@@ -188,8 +209,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      drug_0: 1489844369
-      drug_1: -1708687533
+      talisman_0: 891867219
+      talisman_1: 992207502
+      talisman_2: 744744049
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

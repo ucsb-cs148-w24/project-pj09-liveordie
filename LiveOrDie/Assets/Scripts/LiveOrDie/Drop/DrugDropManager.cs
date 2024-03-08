@@ -7,10 +7,13 @@ using System;
 public class DrugDropManager : MonoBehaviour
 {
     private DrugFactory drugFactory; 
+    private TalismanFactory talismanFactory;
     private List<Player> players; // list referencing players so we can directly give it "effects"
-    public int numDrugs, maxDrugs; // counter | max # to spawn
+    [HideInInspector]
+    public int numSpawn, maxSpawn; // counter | max # to spawn
     private float targetTime; // startDelay | random Time to spawn
     private bool drugged; // whether under drug effect
+    [HideInInspector]
     public float effectTime; // amount of time left until drug wears off
     private enum RANDOM_EFFECTS{
         HEALTH_DROP_STATE, // Drop health by 1/2 its current
@@ -30,8 +33,10 @@ public class DrugDropManager : MonoBehaviour
     private void Start()
     {
         drugFactory = new DrugFactory();
-        numDrugs = 0;
-        maxDrugs = 10;
+        talismanFactory = new TalismanFactory();
+        numSpawn = 0;
+        maxSpawn = 10;
+        drugged = false;
         targetTime = 5;
         effectTime = 5f;
         players = new List<Player>() {
@@ -44,7 +49,7 @@ public class DrugDropManager : MonoBehaviour
 
     private void Update(){
         targetTime -= Time.deltaTime; // update time for random drug spawn
-        if (targetTime <= 0 && numDrugs < maxDrugs){
+        if (targetTime <= 0 && numSpawn < maxSpawn){
             DropDrug();
             targetTime = UnityEngine.Random.Range(10, 20);
         }
@@ -55,14 +60,14 @@ public class DrugDropManager : MonoBehaviour
                     p.ResetCharacteristics();
                 });
                 drugged = false;
-                effectTime = 5f;
+                effectTime = UnityEngine.Random.Range(5, 20);
             }
         }
     }
     private void HandlePickedDrug(){
         if(!drugged){
             drugged = true;
-            numDrugs--;
+            numSpawn--;
             // Enforce random effect on Drugged Player --> Range [0-6] for now, but will expand
             int effect = UnityEngine.Random.Range(0, 6); 
             switch(effect){
@@ -106,12 +111,27 @@ public class DrugDropManager : MonoBehaviour
     }
 
     private void DropDrug(){
-        if(numDrugs < maxDrugs){
-            numDrugs++;
-            drugFactory.CreateAsync(RandomSpawnPosition(), (obj) =>
-            {
-                // do stuff to obj here
-            });
+        if(numSpawn < maxSpawn){
+            numSpawn++;
+            int prefab = UnityEngine.Random.Range(0, 2); // random choose between talisman & drug
+            // TO BE IMPLEMENTED: drugs have > probability of bad effect, opposite with talisman
+            switch (prefab){
+                case 0:
+                    drugFactory.CreateAsync(RandomSpawnPosition(), (obj) =>
+                    {
+                        // do stuff to obj here
+                    });
+                    break;
+                case 1:
+                    talismanFactory.CreateAsync(RandomSpawnPosition(), (obj) =>
+                    {
+                        // do stuff to obj here
+                    });
+                    break;
+                default:
+                    break;
+            }
+            
         }
     } 
     private Vector3 RandomSpawnPosition() {
