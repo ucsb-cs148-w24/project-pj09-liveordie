@@ -1,9 +1,7 @@
 using System;
 using Unity.VisualScripting;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using System.Collections.Generic;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -22,6 +20,10 @@ public class CharacterMovement : MonoBehaviour
     public bool isMovementLocked = false;
     public int horizontal;
     public int vertical;
+    public bool drunkState;
+
+    // List<int> indices = new List<int>{0,1,2,3};
+    private List<int> drunkMovements;
 
     public enum E_MoveType
     {
@@ -33,7 +35,14 @@ public class CharacterMovement : MonoBehaviour
     public void SelfDestruct() { Destroy(gameObject); }
     public void OnEnable(){
         speed = 10f;
+        speed = 5f;
         horizontal = vertical = 0;
+        drunkMovements = new List<int>{0,1,2,3};
+    }
+
+    public void ChangeDrunkState(bool enforce){
+        drunkState = enforce;
+        drunkMovements = ShuffleList(drunkMovements);
     }
     void Start(){ 
         healthbar = GetComponentInChildren<CharacterHealth>();
@@ -41,6 +50,7 @@ public class CharacterMovement : MonoBehaviour
         // Event listener
         EventMgr.Instance.AddEventListener("GamePaused", GlobalControlLock);
         EventMgr.Instance.AddEventListener("GameResumed", GlobalControlUnlock);
+        EventMgr.Instance.AddEventListener<bool>("DrunkDrug", ChangeDrunkState);
         
         // Event listener  control events
         EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
@@ -71,6 +81,7 @@ public class CharacterMovement : MonoBehaviour
                 Debug.LogWarning("Unexpected character type: " + whichCharacter);
                 break;
         }
+        drunkState = false;
     }
 
     void Update()
@@ -97,9 +108,9 @@ public class CharacterMovement : MonoBehaviour
         EventMgr.Instance.RemoveEventListener("GamePaused", GlobalControlLock);
         EventMgr.Instance.RemoveEventListener("GameResumed", GlobalControlUnlock);
         EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsHeld", Controls);
-        EventMgr.Instance.AddEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
+        EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsReleased", CancelControls);
+        EventMgr.Instance.RemoveEventListener<bool>("DrunkDrug", ChangeDrunkState);
     }
-    
     //move character according to desired move type
     void ChangeCharacterDirection(E_MoveType moveType)
     {
@@ -132,16 +143,20 @@ public class CharacterMovement : MonoBehaviour
             switch (act)
             {
                 case E_AllKeysActs.player1up:
-                    ChangeCharacterDirection(E_MoveType.up);
+                    if(drunkState) ChangeCharacterDirection((E_MoveType)drunkMovements[0]);
+                    else ChangeCharacterDirection(E_MoveType.up);
                     break;
                 case E_AllKeysActs.player1down:
-                    ChangeCharacterDirection(E_MoveType.down);
+                    if(drunkState) ChangeCharacterDirection((E_MoveType)drunkMovements[1]);
+                    else ChangeCharacterDirection(E_MoveType.down);
                     break;
                 case E_AllKeysActs.player1left:
-                    ChangeCharacterDirection(E_MoveType.left);
+                    if(drunkState) ChangeCharacterDirection((E_MoveType)drunkMovements[2]);
+                    else ChangeCharacterDirection(E_MoveType.left);
                     break;
                 case E_AllKeysActs.player1right:
-                    ChangeCharacterDirection(E_MoveType.right);
+                    if(drunkState) ChangeCharacterDirection((E_MoveType)drunkMovements[3]);
+                    else ChangeCharacterDirection(E_MoveType.right);
                     break;
             }
         }
@@ -150,16 +165,20 @@ public class CharacterMovement : MonoBehaviour
             switch (act)
             {
                 case E_AllKeysActs.player2up:
-                    ChangeCharacterDirection(E_MoveType.up);
+                    if(drunkState) ChangeCharacterDirection((E_MoveType)drunkMovements[0]);
+                    else ChangeCharacterDirection(E_MoveType.up);
                     break;
                 case E_AllKeysActs.player2down:
-                    ChangeCharacterDirection(E_MoveType.down);
+                    if(drunkState) ChangeCharacterDirection((E_MoveType)drunkMovements[1]);
+                    else ChangeCharacterDirection(E_MoveType.down);
                     break;
                 case E_AllKeysActs.player2left:
-                    ChangeCharacterDirection(E_MoveType.left);
+                    if(drunkState) ChangeCharacterDirection((E_MoveType)drunkMovements[2]);
+                    else ChangeCharacterDirection(E_MoveType.left);
                     break;
                 case E_AllKeysActs.player2right:
-                    ChangeCharacterDirection(E_MoveType.right);
+                    if(drunkState) ChangeCharacterDirection((E_MoveType)drunkMovements[3]);
+                    else ChangeCharacterDirection(E_MoveType.right);
                     break;
             }
         }
@@ -201,9 +220,21 @@ public class CharacterMovement : MonoBehaviour
     private void GlobalControlLock()
     {
         InputMgr.Instance.SwitchAllButtons(false);
+        print("lock");
     }
     private void GlobalControlUnlock()
     {
         InputMgr.Instance.SwitchAllButtons(true);
+    }
+    private List<int> ShuffleList(List<int> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            int temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+        return list;
     }
 }

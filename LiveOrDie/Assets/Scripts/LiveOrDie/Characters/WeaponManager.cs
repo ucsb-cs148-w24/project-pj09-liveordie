@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
 public class WeaponManager : MonoBehaviour
 {
     public Dictionary<string, Weapon> weapons;

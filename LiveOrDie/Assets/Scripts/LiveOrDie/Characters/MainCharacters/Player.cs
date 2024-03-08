@@ -1,6 +1,4 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 public class Player : MonoBehaviour
 {
     public int whichPlayer; // UNIQUE ID
@@ -15,18 +13,49 @@ public class Player : MonoBehaviour
     private SpriteRenderer render; // PLAYER SKIN
 
     // REFERENCES
-    [HideInInspector]
     private CharacterHealth healthbar;
-    [HideInInspector]
     private CharacterMovement movement;
-
-    // getter functions
+    // public functions
     public Rigidbody2D getRigidBody() {return rb;}
     public SpriteRenderer getSpriteRenderer() {return render;}
-
+    public void EnforceSensitiveState(bool enforce){
+        healthbar.setSentitiveState(enforce);
+    }
+    public void EnforceDrunkEffect(bool enforce) { 
+        movement.ChangeDrunkState(enforce);
+    }
+    public void EnforceHealthEffect(string type) { 
+        if(type == "drop"){
+            healthbar.DecreaseHealth((int)healthbar.characterHealth / 2);
+        }
+        else if(type == "boost"){
+            healthbar.IncreaseHealth((int)healthbar.maxHealth - (int)healthbar.characterHealth);
+        }
+        else{
+            Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
+        }
+    }
+    public void EnforceSpeedEffect(string type) { 
+        if(type == "drop"){
+            movement.speed = 1;
+        }
+        else if(type == "boost"){
+            movement.speed *= 1.5f;
+        }
+        else if(type == "berzerkers"){
+            movement.speed *= 10f;
+        }
+        else{
+            Debug.Log("Wrong use of Event Listener for EnforceSpeedEffect()");
+        }
+    }
     // setter functions
     private void KillPlayer() {isDead = true;}
-
+    public void ResetCharacteristics(){
+        movement.speed = 5f;
+        movement.ChangeDrunkState(false);
+        healthbar.setSentitiveState(false);
+    }
     protected void OnEnable(){
         maxRadius = 5f;
         isDead = false;
@@ -60,6 +89,7 @@ public class Player : MonoBehaviour
         healthbar.playerPosition = gameObject.transform;
         if (!(movement = gameObject.GetComponent<CharacterMovement>()))
             movement = gameObject.AddComponent<CharacterMovement>();
+        
         EventMgr.Instance.AddEventListener("PlayerDeath", KillPlayer);
     }
 
@@ -71,11 +101,6 @@ public class Player : MonoBehaviour
     }
     public void OnDestroy(){
         EventMgr.Instance.RemoveEventListener("PlayerDeath", KillPlayer);
-        healthbar.SelfDestruct();
-        // weapon.SelfDestruct();
-    }
-    public void OnDisable(){
-        if(gameObject) Destroy(gameObject);
     }
 
 }

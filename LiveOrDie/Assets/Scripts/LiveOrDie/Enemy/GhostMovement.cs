@@ -31,12 +31,9 @@ public class GhostMovement : MonoBehaviour
     private void Move()
     {
         // TrackDistance();
+        if (target == null) return;
         Vector3 direction = (target.transform.position - transform.position).normalized;
         this.transform.position += direction * speed * Time.deltaTime;
-
-        // Debug.Log(this.transform.position.x);
-        // Debug.Log(direction.x);
-
         if(direction.x > 0) render.flipX = true;
         else render.flipX = false;
     }

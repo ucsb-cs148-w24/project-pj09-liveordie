@@ -32,6 +32,7 @@ public class Fireball : RangedWeapon
 
     public override void Attack()
     {
+        if(!p1FirePoint || !p2FirePoint) return;
         // instantiate fireball prefab (with ProjectileAttackBehaviour script) at p1FirePoint
         PoolMgr.Instance.GetObjAsync("Prefabs/Weapons/FireBullet", (firebullet) => {
             firebullet.transform.position = p1FirePoint.position + firePointOffset;

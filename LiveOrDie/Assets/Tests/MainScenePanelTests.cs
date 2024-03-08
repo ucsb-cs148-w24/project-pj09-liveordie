@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -31,7 +29,7 @@ public class MainScenePanelTests
         var check = GameObject.Find("Enemies");
         var cloner = check.GetComponentInChildren<EnemyCloner>();
         Assert.That(cloner, Is.Not.Null);
-        Assert.That(cloner.enemySize, Is.EqualTo(10));
+        Assert.That(cloner.enemySize, Is.EqualTo(15));
         // Assert.That(cloner.wolfPrefab.name, Is.EqualTo("Wolf"));
         yield return null;
      }
@@ -114,7 +112,7 @@ public class MainScenePanelTests
         
         var script = enemy.GetComponent<EnemyCloner>();
         Assert.That(script, Is.Not.Null);
-        Assert.That(script.enemySize, Is.EqualTo(10));
+        Assert.That(script.enemySize, Is.EqualTo(15));
         yield return null;
      }
 
@@ -141,6 +139,42 @@ public class MainScenePanelTests
         Assert.That(score, Is.Not.Null);
         var script = score.GetComponent<ScoreBoardController>();
         Assert.That(script, Is.Not.Null);
+        yield return null;
+     }
+   [UnityTest]
+     public IEnumerator VerifyGameOverControllerLoadedCorrectly()
+     {
+        var score = GameObject.Find("GameOverController");
+        Assert.That(score, Is.Not.Null);
+        var script = score.GetComponent<GameOverController>();
+        Assert.That(script, Is.Not.Null);
+        yield return null;
+     }
+    [UnityTest]
+     public IEnumerator VerifyDrugDropManagerLoadedCorrectly()
+     {
+        // Assertions for Existence of the Bamboo/Rope
+        var check = GameObject.Find("DrugDropManager");
+        var drugManager = check.GetComponent<DrugDropManager>();
+        Assert.That(drugManager, Is.Not.Null);
+        yield return null;
+     }
+    [UnityTest]
+     public IEnumerator VerifyExpDropManagerLoadedCorrectly()
+     {
+        // Assertions for Existence of the Bamboo/Rope
+        var check = GameObject.Find("ExpDropManager");
+        var expManager = check.GetComponent<ExpDropManager>();
+        Assert.That(expManager, Is.Not.Null);
+        yield return null;
+     }
+    [UnityTest]
+     public IEnumerator VerifyExpDropPanelControllerLoadedCorrectly()
+     {
+        // Assertions for Existence of the Bamboo/Rope
+        var check = GameObject.Find("ExpBarPanelController");
+        var expController = check.GetComponent<ExpBarPanelController>();
+        Assert.That(expController, Is.Not.Null);
         yield return null;
      }
 }

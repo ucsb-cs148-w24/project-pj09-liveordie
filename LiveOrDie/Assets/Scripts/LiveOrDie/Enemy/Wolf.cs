@@ -28,6 +28,7 @@ public class Wolf : Enemy
     }
 
     public override void TakeDamage(int damage) {
+        AudioMgr.Instance.PlayAudio("wolfHurt",false);
         health -= damage;
         enemyHealth.UpdateHealthBar();
         CheckDead();
@@ -47,6 +48,7 @@ public class Wolf : Enemy
     private void CheckDead()
     {
         if (health <= 0){
+            AudioMgr.Instance.PlayAudio("wolfDie",false);
             Die();
         }
     }

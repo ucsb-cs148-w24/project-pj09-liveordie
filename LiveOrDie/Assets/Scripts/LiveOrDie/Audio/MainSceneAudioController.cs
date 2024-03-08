@@ -18,8 +18,7 @@ public class MainSceneAudioController : MonoBehaviour
 
     private void Update(){
 
-        if(Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown(KeyCode.M))
-        AudioMgr.Instance.PlayAudio("BulletSFX",false);
+       
         
     }
 
