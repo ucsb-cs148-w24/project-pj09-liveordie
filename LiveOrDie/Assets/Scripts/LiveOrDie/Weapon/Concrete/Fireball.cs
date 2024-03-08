@@ -49,7 +49,7 @@ public class Fireball : RangedWeapon
 
             FireballAttackBehaviour fireballAttackBehaviour = firebullet.GetComponent<FireballAttackBehaviour>();
             fireballAttackBehaviour.Initialize(this);
-            fireballAttackBehaviour.Fire(p1Sprite.flipX ? Vector3.right : Vector3.left);
+            fireballAttackBehaviour.Fire(p1Sprite.flipX);
         });
 
         // instantiate fireball prefab (with ProjectileAttackBehaviour script) at p2FirePoint
@@ -61,7 +61,7 @@ public class Fireball : RangedWeapon
 
             FireballAttackBehaviour fireballAttackBehaviour = firebullet.GetComponent<FireballAttackBehaviour>();
             fireballAttackBehaviour.Initialize(this);
-            fireballAttackBehaviour.Fire(p2Sprite.flipX ? Vector3.right : Vector3.left);
+            fireballAttackBehaviour.Fire(p2Sprite.flipX);
         });
 
     }

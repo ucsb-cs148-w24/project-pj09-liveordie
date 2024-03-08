@@ -8,19 +8,23 @@ public class FireballAttackBehaviour : AttackBehaviourBase
     private float damage;
 
     private Rigidbody2D firebulletRb;
+    private SpriteRenderer spriteRenderer;
 
     public override void Initialize(Weapon weapon)
     {
+        this.weapon = weapon;
         speed = ((RangedWeapon)weapon).projectileSpeed.Value;
         maxDistance = ((RangedWeapon)weapon).projectileRange.Value;
         damage = weapon.weaponDamage.Value;
 
         firebulletRb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Fire(Vector3 direction) 
+    public void Fire(bool flipX) 
     {
-        firebulletRb.rotation = Quaternion.FromToRotation(Vector3.right, direction).eulerAngles.z;
+        spriteRenderer.flipX = flipX;
+        Vector2 direction = new Vector2(flipX ? 1 : -1, 0); 
         firebulletRb.velocity = direction * speed;
         AudioMgr.Instance.PlayAudio("BulletSFX", false);
         StartCoroutine(DestroyAfterTime());
