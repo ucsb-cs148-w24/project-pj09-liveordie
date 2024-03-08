@@ -9,13 +9,13 @@ public class Fireball : RangedWeapon
     
     public override void Initialize()
     {
-        weaponAccuracy = 1.0f;
-        weaponDamage = 1;
-        weaponRate = 1.0f;
+        weaponDamage = new CharacterStat(1f);
+        weaponRate = new CharacterStat(1f);
+
+        projectileSpeed = new CharacterStat(10.0f, 100.0f);
+        projectileRange = new CharacterStat(20.0f, 200.0f);
+
         weaponLevel = 1;
-        weaponName = "Fireball";
-        projectileSpeed = 10.0f;
-        projectileRange = 20.0f;
 
         autoAttackOn = false;
 
@@ -28,6 +28,13 @@ public class Fireball : RangedWeapon
         p1Sprite = player1.GetComponent<SpriteRenderer>();
         p2Sprite = player2.GetComponent<SpriteRenderer>();
 
+        // for testing purposes
+        EventMgr.Instance.AddEventListener("LevelUp", LevelUp);
+    }
+
+    private void OnDestroy()
+    {
+        EventMgr.Instance.RemoveEventListener("LevelUp", LevelUp);
     }
 
     public override void Attack()
@@ -55,6 +62,23 @@ public class Fireball : RangedWeapon
             fireballAttackBehaviour.Fire(p2Sprite.flipX ? Vector3.right : Vector3.left);
         });
 
+    }
+
+    public override void LevelUp()
+    {
+        weaponLevel += 1;
+        weaponDamage.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
+        weaponRate.AddModifier(new StatModifier(StatModifierType.PercentAdd, -5f), 0);
+    }
+
+    public override string GetDetailString()
+    {
+        return  weaponDescription + "\n" + 
+                "Level: " + weaponLevel + "\n" +
+                "Damage: " + weaponDamage.Value + "\n" + 
+                "Cooldown: " + weaponRate.Value + "\n" + 
+                "Projectile Speed: " + projectileSpeed.Value + "\n" + 
+                "Projectile Range: " + projectileRange.Value;
     }
 
 }

@@ -5,17 +5,15 @@ public class FireballAttackBehaviour : AttackBehaviourBase
 {
     private float speed;
     private float maxDistance;
-    private int damage;
-    private float accuracy;
+    private float damage;
 
     private Rigidbody2D firebulletRb;
 
     public override void Initialize(Weapon weapon)
     {
-        speed = ((RangedWeapon)weapon).projectileSpeed;
-        maxDistance = ((RangedWeapon)weapon).projectileRange;
-        damage = weapon.weaponDamage;
-        accuracy = weapon.weaponAccuracy;
+        speed = ((RangedWeapon)weapon).projectileSpeed.Value;
+        maxDistance = ((RangedWeapon)weapon).projectileRange.Value;
+        damage = weapon.weaponDamage.Value;
 
         firebulletRb = GetComponent<Rigidbody2D>();
     }
@@ -39,7 +37,7 @@ public class FireballAttackBehaviour : AttackBehaviourBase
     void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Enemy") || other.CompareTag("Objects")) {
             if(other.CompareTag("Enemy")) {
-                other.GetComponent<Enemy>().TakeDamage(damage);
+                other.GetComponent<Enemy>().TakeDamage((int)damage);
             }
             PoolMgr.Instance.PushObj("Prefabs/Weapons/FireBullet",this.gameObject);
         }

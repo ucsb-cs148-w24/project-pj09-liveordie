@@ -44,11 +44,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6f996e20abd204f98703d14c25b4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAccuracy: 0
-  weaponDamage: 0
-  weaponRate: 0
-  weaponLevel: 0
-  weaponName: 
-  meleeRange: 0
-  meleeSwingTime: 0
-  meleePrefab: {fileID: 5206948675625424250, guid: c43f8de600559cd4d9ed6a01ede35c52, type: 3}
+  weaponDamage:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  weaponRate:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  weaponLevel: 1
+  weaponName: Peach Wood Sword
+  weaponDescription: A peach wood sword to ward off the enemy
+  weaponIcon: {fileID: 21300000, guid: 7f532c2a75b91ff448cf675b881c206e, type: 3}
+  autoAttackOn: 0
+  cooldownTimeLeft: 0
+  meleeRange:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  meleeSwingTime:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
