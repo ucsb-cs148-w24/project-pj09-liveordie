@@ -5,5 +5,3 @@ ________________________________________________________________________________
 - Initial Character Health Scripts, Rope Controller, and Movement Scripts
 - Refactoring Player Scripts, bridge scripts with other Scripts
 - Creating Mystery Drug Drop Features in the game
-
-## Side Quests
