@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer render; // PLAYER SKIN
 
     // REFERENCES
-    private CharacterHealth healthbar;
+    [HideInInspector]
+    public CharacterHealth healthbar;
     private CharacterMovement movement;
     // public functions
     public Rigidbody2D getRigidBody() {return rb;}
@@ -55,6 +56,7 @@ public class Player : MonoBehaviour
         movement.speed = 5f;
         movement.ChangeDrunkState(false);
         healthbar.setSentitiveState(false);
+        EventMgr.Instance.EventTrigger("MagicMushroom", false); // reset
     }
     protected void OnEnable(){
         maxRadius = 5f;
