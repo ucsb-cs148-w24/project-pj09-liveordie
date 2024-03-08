@@ -127,11 +127,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 430
         width: 640
-        height: 440
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -152,11 +152,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 0
+        y: 430
         width: 640
-        height: 440
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -177,11 +177,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1280
-        y: 0
+        y: 430
         width: 640
-        height: 440
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -202,11 +202,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1920
-        y: 0
+        y: 430
         width: 640
-        height: 440
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -218,6 +218,90 @@ TextureImporter:
       bones: []
       spriteID: 1f74e3f9cd0274c4aae0dc06caaf9040
       internalID: 2027677239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wolf_sprite_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 640
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1e9d2806b4bcd4b81d30bb0bb282f2
+      internalID: -170859044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wolf_sprite_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 640
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12d8e4dc02b8dab4a94639021cbdb599
+      internalID: 1360441174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wolf_sprite_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 640
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 766600330644850499f6730dd73d71d3
+      internalID: -2100242637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wolf_sprite_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 640
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3128a2819e0b8cc4cbc046dc3ef55a1a
+      internalID: 1454445457
       vertices: []
       indices: 
       edges: []
@@ -237,6 +321,10 @@ TextureImporter:
       wolf_sprite_sheet_1: -1178294682
       wolf_sprite_sheet_2: -821454612
       wolf_sprite_sheet_3: 2027677239
+      wolf_sprite_sheet_4: -170859044
+      wolf_sprite_sheet_5: 1360441174
+      wolf_sprite_sheet_6: -2100242637
+      wolf_sprite_sheet_7: 1454445457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
