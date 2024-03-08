@@ -7,8 +7,8 @@ public class PausePanelController : MonoBehaviour
 {
     private void Start()
     {
-        EventMgr.Instance.AddEventListener("GamePaused", SwitchPauseState);
-        EventMgr.Instance.AddEventListener("GameResumed", SwitchPauseState);
+        EventMgr.Instance.AddEventListener("GamePaused", SwitchPauseStateOn);
+        EventMgr.Instance.AddEventListener("GameResumed", SwitchPauseStateOff);
     }
 
     private bool isPausePanelShown = false;
@@ -32,9 +32,14 @@ public class PausePanelController : MonoBehaviour
         }
     }
 
-    private void SwitchPauseState()
+    private void SwitchPauseStateOn()
     {
-        isPausePanelShown = !isPausePanelShown;
+        isPausePanelShown = true;
+    }
+    
+    private void SwitchPauseStateOff()
+    {
+        isPausePanelShown = false;
     }
         
 }

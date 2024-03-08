@@ -46,6 +46,8 @@ public class LevelUpPanel : BasePanel
     
     public override void Hide()
     {
+        if (UIMgr.Instance.GetPanel<PausePanel>("PausePanel")) return;
         Time.timeScale = 1;
+        EventMgr.Instance.EventTrigger("GameResumed"); //**send game paused event 
     }
 }
