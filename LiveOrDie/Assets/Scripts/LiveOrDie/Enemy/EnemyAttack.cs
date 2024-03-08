@@ -34,7 +34,6 @@ public class EnemyAttack : MonoBehaviour
         if (currentTarget != null &&  canAttack )
         {
             AudioMgr.Instance.PlayAudio("beingCHEWED",false);
-            Debug.Log(currentTarget.GetComponentInChildren<CharacterHealth>().player.whichPlayer);
             currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(enemy.damage);
             canAttack = false;
             if(this.gameObject.activeSelf) StartCoroutine(AttackCoolDownCoroutine());

@@ -16,14 +16,14 @@ public class PausePanel : BasePanel
                 break;
             
             case "ResumeButton":
-                AudioMgr.Instance.PlayAudio("OnClick", false);
+
                 UIMgr.Instance.HidePanel("PausePanel"); // hide pause panel
                 //return to the game ------------------
                 
                 break;
             
             case "BackToMenuButton":
-                AudioMgr.Instance.PlayAudio("OnClick", false);
+                
                 UIMgr.Instance.HidePanel("PausePanel");
                 // GoToScene("StartScreenTest"); //load start screen test
                 GoToScene("StartScene"); //load start screen test

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class RopeController : MonoBehaviour
@@ -30,7 +27,6 @@ public class RopeController : MonoBehaviour
     void Update()
     {
         if(!Player1 || !Player2){
-            EventMgr.Instance.EventTrigger("StartShowing");
             if(gameObject) Destroy(gameObject);
         }
         else{
