@@ -6,7 +6,7 @@
     - [x] Jason Gu
     - [x] Frank Zhong
     - [x] Baige He
-    - [] Cindy Lin
+    - [ ] Cindy Lin
     - [x] Sean Oh
     - [x] Thomas Harbeck
 
