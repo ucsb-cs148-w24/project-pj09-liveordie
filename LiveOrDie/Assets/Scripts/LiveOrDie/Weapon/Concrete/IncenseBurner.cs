@@ -37,6 +37,7 @@ public class IncenseBurner : StaticWeapon
     public override void Attack()
     {
         PoolMgr.Instance.GetObjAsync("Prefabs/Weapons/IncenseBurnerAttack", (incenseBurner) => {
+            if(!incenseBurner) return;
             incenseBurner.transform.position = (player1Transform.position + player2Transform.position) / 2;
             incenseBurner.transform.rotation = Quaternion.identity;
             incenseBurner.transform.parent = transform;

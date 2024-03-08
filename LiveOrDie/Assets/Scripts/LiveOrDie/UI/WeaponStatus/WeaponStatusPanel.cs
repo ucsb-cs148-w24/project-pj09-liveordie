@@ -25,6 +25,10 @@ public class WeaponStatusPanel : BasePanel
         EventMgr.Instance.EventTrigger<string>("AddWeapon", "IncenseBurner");
     }
 
+    void OnDestroy()
+    {
+        EventMgr.Instance.RemoveEventListener("UpdateWeaponView", RefreshWeaponView);
+    }
 
     public void RefreshWeaponView()
     {

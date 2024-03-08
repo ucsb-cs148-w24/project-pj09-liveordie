@@ -9,7 +9,7 @@ public abstract class Enemy : MonoBehaviour
     public int damage {get; set;}
     public GameObject target {get; set;}
     protected EnemyAttack attack;
-    protected DamageIndicatorFactory damageIndicatorFactory = new DamageIndicatorFactory();
+    protected PopupIndicatorFactory damageIndicatorFactory = new PopupIndicatorFactory();
 
     public abstract void Initialize();
 
@@ -18,7 +18,7 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         damageIndicatorFactory.CreateAsync(transform.position, (obj) => {
             obj.transform.SetParent(transform);
-            obj.GetComponentInChildren<DamageIndicator>().Initialize(damage);
+            obj.GetComponentInChildren<PopupIndicator>().Initialize(damage.ToString());
         });
     }
 

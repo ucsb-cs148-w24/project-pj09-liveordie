@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1429202355084978872}
   - component: {fileID: 7221357125116437455}
   m_Layer: 5
-  m_Name: DamageText
+  m_Name: PopupText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4528935365773485225}
   m_Layer: 0
-  m_Name: DamageIndicator
+  m_Name: PopupIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

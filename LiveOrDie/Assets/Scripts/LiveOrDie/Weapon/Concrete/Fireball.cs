@@ -42,6 +42,7 @@ public class Fireball : RangedWeapon
         if(!p1FirePoint || !p2FirePoint) return;
         // instantiate fireball prefab (with ProjectileAttackBehaviour script) at p1FirePoint
         PoolMgr.Instance.GetObjAsync("Prefabs/Weapons/FireBullet", (firebullet) => {
+            if(!firebullet) return;
             firebullet.transform.position = p1FirePoint.position + firePointOffset;
             firebullet.transform.rotation = Quaternion.identity;
             firebullet.transform.parent = transform;
@@ -53,6 +54,7 @@ public class Fireball : RangedWeapon
 
         // instantiate fireball prefab (with ProjectileAttackBehaviour script) at p2FirePoint
         PoolMgr.Instance.GetObjAsync("Prefabs/Weapons/FireBullet", (firebullet) => {
+            if(!firebullet) return;
             firebullet.transform.position = p2FirePoint.position + firePointOffset;
             firebullet.transform.rotation = Quaternion.identity;
             firebullet.transform.parent = transform;
