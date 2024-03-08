@@ -31,17 +31,17 @@ public class LevelingManager : MonoBehaviour
     {
         levelUpChoiceList = new List<LevelUpChoice>
         {
-            new LevelUpChoice("Increase Speed",
+            new ("Increase Speed",
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseSpeed);
                 }),
-            new LevelUpChoice("Increase Maximum Health",
+            new ("Increase Maximum Health",
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseMaxHealth);
                 }),
-            new LevelUpChoice("Increase Rope Radius",
+            new ("Increase Rope Radius",
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseRopeRadius);
@@ -68,17 +68,25 @@ public class LevelingManager : MonoBehaviour
         level ++;
         UIMgr.Instance.ShowPanel<LevelUpPanel>("LevelUpPanel", E_PanelLayer.Top, (panel) =>
         {
-            panel.init(GenerateLevelUpChoice());
+            panel.initWithThree(GenerateLevelUpChoice(3));
         });
     }
 
-    private List<LevelUpChoice> GenerateLevelUpChoice()
+    private List<LevelUpChoice> GenerateLevelUpChoice(int choiceNum) //return wanted number of choices
     {
-        return new List<LevelUpChoice>
+        List<LevelUpChoice> randomChoices = new List<LevelUpChoice>();
+        for (int i = 0; i < choiceNum; i++)
         {
-            levelUpChoiceList[0],
-            levelUpChoiceList[1],
-            levelUpChoiceList[2]
-        };
+            int index = Random.Range(0+i, levelUpChoiceList.Count);
+            randomChoices.Add(levelUpChoiceList[index]);
+            
+            //switch element of choice element and the first one
+            var temp = levelUpChoiceList[0];
+            levelUpChoiceList[0] = levelUpChoiceList[index];
+            levelUpChoiceList[index] = temp;
+        }
+
+        return randomChoices;
+
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class LevelUpPanel : BasePanel
 {
     private List<LevelUpChoice> threeChoices;
-    public void init(List<LevelUpChoice> choices) //initialize three choices
+    public void initWithThree(List<LevelUpChoice> choices) //initialize three choices
     {
         threeChoices = choices;
         TMP_Text choiceText1 = GetUIComponent<TMP_Text>("ChoiceButton1Text");
