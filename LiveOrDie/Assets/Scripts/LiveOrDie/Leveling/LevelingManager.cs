@@ -31,17 +31,20 @@ public class LevelingManager : MonoBehaviour
     {
         levelUpChoiceList = new List<LevelUpChoice>
         {
-            new ("Increase Speed",
+            new ("Evasion",
+                "Increase Speed + 10%",
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseSpeed);
                 }),
-            new ("Increase Maximum Health",
+            new ("Vitality",
+                "Increase Maximum Health +20%",
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseMaxHealth);
                 }),
-            new ("Increase Rope Radius",
+            new ("Uninhibited",
+                "Increase Rope Radius +1",
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseRopeRadius);

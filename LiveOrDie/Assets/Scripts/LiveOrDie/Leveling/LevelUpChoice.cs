@@ -6,10 +6,12 @@ using UnityEngine;
 public class LevelUpChoice
 {
     private Action triggerAction;
+    public string levelUpName;
     public string levelUpDescription;
 
-    public LevelUpChoice(string description, Action levelUpAction)
+    public LevelUpChoice(string name, string description, Action levelUpAction)
     {
+        levelUpName = name;
         levelUpDescription = description;
         triggerAction = levelUpAction;
     }

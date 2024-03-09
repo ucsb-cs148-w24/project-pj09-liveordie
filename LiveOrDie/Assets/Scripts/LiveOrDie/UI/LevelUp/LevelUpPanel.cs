@@ -11,13 +11,21 @@ public class LevelUpPanel : BasePanel
     public void initWithThree(List<LevelUpChoice> choices) //initialize three choices
     {
         threeChoices = choices;
-        TMP_Text choiceText1 = GetUIComponent<TMP_Text>("ChoiceButton1Text");
-        TMP_Text choiceText2 = GetUIComponent<TMP_Text>("ChoiceButton2Text");
-        TMP_Text choiceText3 = GetUIComponent<TMP_Text>("ChoiceButton3Text");
+        TMP_Text choiceName1 = GetUIComponent<TMP_Text>("ChoiceButton1Name");
+        TMP_Text choiceName2 = GetUIComponent<TMP_Text>("ChoiceButton2Name");
+        TMP_Text choiceName3 = GetUIComponent<TMP_Text>("ChoiceButton3Name");
 
-        choiceText1.text = threeChoices[0].levelUpDescription;
-        choiceText2.text = threeChoices[1].levelUpDescription;
-        choiceText3.text = threeChoices[2].levelUpDescription;
+        choiceName1.text = threeChoices[0].levelUpName;
+        choiceName2.text = threeChoices[1].levelUpName;
+        choiceName3.text = threeChoices[2].levelUpName;
+        
+        TMP_Text choiceDescription1 = GetUIComponent<TMP_Text>("ChoiceButton1Description");
+        TMP_Text choiceDescription2 = GetUIComponent<TMP_Text>("ChoiceButton2Description");
+        TMP_Text choiceDescription3 = GetUIComponent<TMP_Text>("ChoiceButton3Description");
+
+        choiceDescription1.text = threeChoices[0].levelUpDescription;
+        choiceDescription2.text = threeChoices[1].levelUpDescription;
+        choiceDescription3.text = threeChoices[2].levelUpDescription;
     } 
     
 
