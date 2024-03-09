@@ -13,7 +13,7 @@ public class CharacterHealth : MonoBehaviour
     public Transform playerPosition;
 
     private bool sensitiveState; // if true, damaages x 2
-    public void setSentitiveState(bool state){
+    public void setSensitiveState(bool state){
         sensitiveState = state;
     }
     public void SelfDestruct() { Destroy(gameObject);}
@@ -22,8 +22,8 @@ public class CharacterHealth : MonoBehaviour
         if(sensitiveState){
             amount *= 2;
         }
-        characterHealth -= amount;
-        healthbar.fillAmount = characterHealth/maxHealth; 
+        playerModel.characterHealth -= amount;
+        healthbar.fillAmount = playerModel.characterHealth/playerModel.maxHealth; 
     }
     
     public void IncreaseHealth(int amount){
@@ -39,8 +39,8 @@ public class CharacterHealth : MonoBehaviour
     
     void Start() { 
         sensitiveState = false; 
-        player = GetComponentInParent<Player>();
-        playerPosition = player.transform;
+        playerModel = GetComponentInParent<Player>();
+        playerPosition = playerModel.transform;
         this.transform.position = 
             new Vector3(playerPosition.localPosition.x, 
                         playerPosition.localPosition.y + 2.0f, 0);

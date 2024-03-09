@@ -24,12 +24,12 @@ public class PeachWoodSword : MeleeWeapon
         player2Transform = player2.transform;
 
         // for testing purposes
-        EventMgr.Instance.AddEventListener("LevelUp", LevelUp);
+        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     private void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener("LevelUp", LevelUp);
+        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     public override void Attack()
@@ -46,7 +46,7 @@ public class PeachWoodSword : MeleeWeapon
         });
     }
 
-    public override void LevelUp()
+    public override void LevelUp(E_LevelUpChoice choice)
     {
         weaponLevel += 1;
         weaponDamage.AddModifier(new StatModifier(StatModifierType.Flat, 1f), 0);

@@ -35,10 +35,6 @@ public class CharacterMovement : MonoBehaviour
     }
     public void SelfDestruct() { Destroy(gameObject); }
     public void OnEnable(){
-
-        speed = 10f;
-        speed = 5f;
-
         horizontal = vertical = 0;
         drunkMovements = new List<int>{0,1,2,3};
     }

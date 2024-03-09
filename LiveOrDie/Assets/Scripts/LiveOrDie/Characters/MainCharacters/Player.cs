@@ -36,17 +36,17 @@ public class Player : MonoBehaviour
 
     public SpriteRenderer getSpriteRenderer() {return render;}
     public void EnforceSensitiveState(bool enforce){
-        healthbar.setSentitiveState(enforce);
+        healthbar.setSensitiveState(enforce);
     }
     public void EnforceDrunkEffect(bool enforce) { 
         movement.ChangeDrunkState(enforce);
     }
     public void EnforceHealthEffect(string type) { 
         if(type == "drop"){
-            healthbar.DecreaseHealth((int)healthbar.characterHealth / 2);
+            healthbar.DecreaseHealth((int)characterHealth / 2);
         }
         else if(type == "boost"){
-            healthbar.IncreaseHealth((int)healthbar.maxHealth - (int)healthbar.characterHealth);
+            healthbar.IncreaseHealth((int)maxHealth - (int)characterHealth);
         }
         else{
             Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
@@ -54,13 +54,13 @@ public class Player : MonoBehaviour
     }
     public void EnforceSpeedEffect(string type) { 
         if(type == "drop"){
-            movement.speed = 1;
+            speed = 1;
         }
         else if(type == "boost"){
-            movement.speed *= 1.5f;
+            speed *= 1.5f;
         }
         else if(type == "berzerkers"){
-            movement.speed *= 10f;
+            speed *= 10f;
         }
         else{
             Debug.Log("Wrong use of Event Listener for EnforceSpeedEffect()");
@@ -70,9 +70,9 @@ public class Player : MonoBehaviour
     // setter functions
     private void KillPlayer() {isDead = true;}
     public void ResetCharacteristics(){
-        movement.speed = 5f;
+        speed = 5f;
         movement.ChangeDrunkState(false);
-        healthbar.setSentitiveState(false);
+        healthbar.setSensitiveState(false);
     }
     protected void OnEnable(){
         isDead = false;
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         maxHealth = 50f;
     }
 
-    protected void Start() {       
+    protected void Start() {
         switch (whichPlayer){
             case 1: // User 1 finds User 2 (right)
                 peer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
@@ -122,6 +122,7 @@ public class Player : MonoBehaviour
     }
     public void OnDestroy(){
         EventMgr.Instance.RemoveEventListener("PlayerDeath", KillPlayer);
+        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     private void LevelUp(E_LevelUpChoice choice) //to do 

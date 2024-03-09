@@ -29,12 +29,12 @@ public class Fireball : RangedWeapon
         p2Sprite = player2.GetComponent<SpriteRenderer>();
 
         // for testing purposes
-        EventMgr.Instance.AddEventListener("LevelUp", LevelUp);
+        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     private void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener("LevelUp", LevelUp);
+        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     public override void Attack()
@@ -66,7 +66,7 @@ public class Fireball : RangedWeapon
 
     }
 
-    public override void LevelUp()
+    public override void LevelUp(E_LevelUpChoice choice)
     {
         weaponLevel += 1;
         weaponDamage.AddModifier(new StatModifier(StatModifierType.Flat, 0.5f), 0);
