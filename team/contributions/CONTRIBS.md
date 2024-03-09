@@ -3,10 +3,10 @@
 ## Contributions: Rachel Jiang
 ______________________________________________________________________________________
 ### Main Contributions
-- Testing/QA: Creating GameAssembly files and Unity Tests
-- Initial Character Health Scripts, Rope Controller, and Movement Scripts
-- Refactoring Player Scripts, bridge scripts with other Scripts
-- Creating Mystery Drug Drop Features in the game
+- Testing/QA: Creating GameAssembly files/Tests
+- Health, Rope, and Movement Scripts
+- Refactoring Player Scripts
+- Creating Mystery Drop Feature
 
 
 ## Contributions: Sean Oh
