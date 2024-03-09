@@ -28,7 +28,7 @@ public class Ghost : Enemy
     }
 
     public override void TakeDamage(int damage) {
-        health -= damage;
+        base.TakeDamage(damage);
         enemyHealth.UpdateHealthBar();
         CheckDead();
     }

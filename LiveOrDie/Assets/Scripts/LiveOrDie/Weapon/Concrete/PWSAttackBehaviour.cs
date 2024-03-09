@@ -7,8 +7,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
     [SerializeField] public float fadeTime = 1.0f;
     private float range;
     private float swingTime;
-    private int damage;
-    private float accuracy;
+    private float damage;
     private Vector3 rotatePosOffset = new Vector3(0, 0.5f, 0);
 
     private Rigidbody2D pwsRb;
@@ -16,10 +15,9 @@ public class PWSAttackBehaviour : AttackBehaviourBase
 
     public override void Initialize(Weapon weapon)
     {
-        range = ((MeleeWeapon)weapon).meleeRange;
-        swingTime = ((MeleeWeapon)weapon).meleeSwingTime;
-        damage = weapon.weaponDamage;
-        accuracy = weapon.weaponAccuracy;
+        range = ((MeleeWeapon)weapon).meleeRange.Value;
+        swingTime = ((MeleeWeapon)weapon).meleeSwingTime.Value;
+        damage = weapon.weaponDamage.Value;
         
         pwsRb = GetComponent<Rigidbody2D>();
         pwsSprite = GetComponent<SpriteRenderer>();
@@ -71,7 +69,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Enemy")) {
-            other.GetComponent<Enemy>().TakeDamage(damage);
+            other.GetComponent<Enemy>().TakeDamage((int)damage);
         }
     }
 

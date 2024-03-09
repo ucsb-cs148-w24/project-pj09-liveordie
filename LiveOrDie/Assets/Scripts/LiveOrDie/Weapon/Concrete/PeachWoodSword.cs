@@ -8,13 +8,13 @@ public class PeachWoodSword : MeleeWeapon
     
     public override void Initialize() 
     {
-        weaponAccuracy = 1.0f;
-        weaponDamage = 1;
-        weaponRate = 5.0f;
+        weaponDamage = new CharacterStat(1);
+        weaponRate = new CharacterStat(5.0f);
+        meleeRange = new CharacterStat(1.0f, 5.0f);
+        meleeSwingTime = new CharacterStat(2.0f);
+
         weaponLevel = 1;
-        weaponName = "PeachWoodSword";
-        meleeRange = 1.0f;
-        meleeSwingTime = 2.0f;
+
 
         autoAttackOn = false;
 
@@ -22,12 +22,21 @@ public class PeachWoodSword : MeleeWeapon
         player2 = GameObject.Find("Player2");
         player1Transform = player1.transform;
         player2Transform = player2.transform;
+
+        // for testing purposes
+        EventMgr.Instance.AddEventListener("LevelUp", LevelUp);
+    }
+
+    private void OnDestroy()
+    {
+        EventMgr.Instance.RemoveEventListener("LevelUp", LevelUp);
     }
 
     public override void Attack()
     {
         if(!player1Transform || !player2Transform) return;
         PoolMgr.Instance.GetObjAsync("Prefabs/Weapons/PeachWoodSwordAttack", (sword) => {
+            if(!sword) return;
             sword.transform.position = (player1Transform.position + player2Transform.position) / 2;
             sword.transform.parent = transform;
 
@@ -37,12 +46,21 @@ public class PeachWoodSword : MeleeWeapon
         });
     }
 
-    protected override IEnumerator AutoAttackRoutine()
+    public override void LevelUp()
     {
-        while(autoAttackOn) {
-            Attack();
-            yield return new WaitForSeconds(weaponRate);
-        }
+        weaponLevel += 1;
+        weaponDamage.AddModifier(new StatModifier(StatModifierType.Flat, 1f), 0);
+        weaponRate.AddModifier(new StatModifier(StatModifierType.PercentAdd, -5f), 0);
+        meleeRange.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
+    }
+
+    public override string GetDetailString()
+    {
+        return  weaponDescription + "\n" + 
+                "Level: " + weaponLevel + "\n" +
+                "Damage: " + weaponDamage.Value + "\n" + 
+                "Cooldown: " + weaponRate.Value + "\n" + 
+                "Range: " + meleeRange.Value;
     }
 
 }

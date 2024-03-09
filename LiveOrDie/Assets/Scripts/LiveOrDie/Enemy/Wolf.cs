@@ -28,8 +28,8 @@ public class Wolf : Enemy
     }
 
     public override void TakeDamage(int damage) {
+        base.TakeDamage(damage);
         AudioMgr.Instance.PlayAudio("wolfHurt",false);
-        health -= damage;
         enemyHealth.UpdateHealthBar();
         CheckDead();
     }

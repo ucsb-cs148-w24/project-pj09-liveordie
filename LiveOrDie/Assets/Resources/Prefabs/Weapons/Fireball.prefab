@@ -44,11 +44,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f231f3062e85165458b721f5828e312d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAccuracy: 0
-  weaponDamage: 0
-  weaponRate: 0
-  weaponLevel: 0
-  weaponName: 
-  projectileSpeed: 0
-  projectileRange: 0
-  projectilePrefab: {fileID: 8374863435778687136, guid: ddf16c1be929d409ea3ac1866d6afe81, type: 3}
+  weaponDamage:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  weaponRate:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  weaponLevel: 1
+  weaponName: Fireball
+  weaponDescription: A fireball that fires to the left and right
+  weaponIcon: {fileID: -1367895933, guid: a841e7d2067877a4f8bc15b8e627d746, type: 3}
+  autoAttackOn: 0
+  cooldownTimeLeft: 0
+  projectileSpeed:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  projectileRange:
+    baseValue: 0
+    maxValue: 0
+    _value: 0

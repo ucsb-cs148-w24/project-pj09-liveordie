@@ -11,17 +11,17 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
     private float range;
     private float rate;
     private float duration;
-    private int damage;
+    private float damage;
 
     private Collider2D incenseBurnerRadiusCollider;
     private SpriteRenderer incenseBurnerRadiusSprite;
     
     public override void Initialize(Weapon weapon)
     {
-        range = ((StaticWeapon)weapon).staticRange;
-        rate = ((StaticWeapon)weapon).staticRate;
-        duration = ((StaticWeapon)weapon).staticDuration;
-        damage = weapon.weaponDamage;
+        range = ((StaticWeapon)weapon).staticRange.Value;
+        rate = ((StaticWeapon)weapon).staticRate.Value;
+        duration = ((StaticWeapon)weapon).staticDuration.Value;
+        damage = weapon.weaponDamage.Value;
 
         incenseBurnerRadiusCollider = transform.Find("IncenseBurnerRadius").GetComponent<Collider2D>();
         incenseBurnerRadiusSprite = transform.Find("IncenseBurnerRadius").GetComponent<SpriteRenderer>();
@@ -51,10 +51,10 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
         Physics2D.OverlapCollider(incenseBurnerRadiusCollider, new ContactFilter2D().NoFilter(), results);
         foreach(Collider2D collider in results) {
             if(collider.CompareTag("Enemy")) {
-                collider.GetComponent<Enemy>().TakeDamage(damage);
+                collider.GetComponent<Enemy>().TakeDamage((int)damage);
             }
             if(collider.CompareTag("Player1") || collider.CompareTag("Player2")) {
-                collider.GetComponentInChildren<CharacterHealth>().IncreaseHealth(damage);
+                collider.GetComponentInChildren<CharacterHealth>().IncreaseHealth((int)damage);
             }
         }
     }
