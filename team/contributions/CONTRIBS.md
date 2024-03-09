@@ -6,7 +6,7 @@ ________________________________________________________________________________
 - Pre-start scenes including setting menu
 - ideas about the game development
 - ideas and UI about weapons
-- 
+  
 ## Contributions: Rachel Jiang
 ______________________________________________________________________________________
 ### Main Contributions
