@@ -49,13 +49,13 @@ public class LevelUpPanel : BasePanel
     //need to consider time scale with pause panel***********************************************************
     public override void Show()
     {
+        EventMgr.Instance.EventTrigger("PausePanelLock");
         Time.timeScale = 0;
     }
     
     public override void Hide()
     {
-        if (UIMgr.Instance.GetPanel<PausePanel>("PausePanel")) return;
         Time.timeScale = 1;
-        EventMgr.Instance.EventTrigger("GameResumed"); //**send game paused event 
+        EventMgr.Instance.EventTrigger("PausePanelUnLock");
     }
 }
