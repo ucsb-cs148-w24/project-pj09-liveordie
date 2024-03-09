@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Drop : MonoBehaviour
@@ -42,6 +39,7 @@ public abstract class Drop : MonoBehaviour
 
     IEnumerator AttractedCoroutine(Collider2D other)
     {
+        if(!other || !this) yield return null;
         col.enabled = false;
         while (backOffDist > 0)
         {

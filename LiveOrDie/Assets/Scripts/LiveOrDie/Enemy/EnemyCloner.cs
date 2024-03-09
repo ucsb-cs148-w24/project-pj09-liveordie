@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -77,6 +73,11 @@ public class EnemyCloner : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomSpawn, out hit, 60, 1 << NavMesh.GetAreaFromName("Walkable"));
         Vector3 spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f) * 0.95f;     // multiply by 0.9 since spawning on the edge of the nav surface doesn't work
+        
+        // if SamplePosition fails, try again
+        if(double.IsInfinity(spawnPosition.x) || double.IsInfinity(spawnPosition.y)) {
+            spawnPosition = GetRandomSpawnPosition();
+        }
         return spawnPosition;
     }
 

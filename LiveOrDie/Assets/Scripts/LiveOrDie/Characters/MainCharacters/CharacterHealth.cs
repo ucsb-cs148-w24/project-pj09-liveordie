@@ -12,18 +12,20 @@ public class CharacterHealth : MonoBehaviour
     [HideInInspector]
     public Transform playerPosition;
 
-    public void DecreaseHealth()
-    {
-        playerModel.characterHealth--;
-        healthbar.fillAmount = playerModel.characterHealth / 50;
+    private bool sensitiveState; // if true, damaages x 2
+    public void setSentitiveState(bool state){
+        sensitiveState = state;
     }
-
     public void SelfDestruct() { Destroy(gameObject);}
-   
-   public void DecreaseHealth(int amount){
-        playerModel.characterHealth -= amount;
-        healthbar.fillAmount = playerModel.characterHealth/playerModel.maxHealth; 
+
+    public void DecreaseHealth(int amount){
+        if(sensitiveState){
+            amount *= 2;
+        }
+        characterHealth -= amount;
+        healthbar.fillAmount = characterHealth/maxHealth; 
     }
+    
     public void IncreaseHealth(int amount){
         if(playerModel.characterHealth + amount > playerModel.maxHealth) playerModel.characterHealth = playerModel.maxHealth;
         else playerModel.characterHealth += amount;
@@ -34,9 +36,11 @@ public class CharacterHealth : MonoBehaviour
             if(image.name == "FillBlock") healthbar = image;  
         healthbar.color = healthy;
     }
+    
     void Start() { 
-        playerModel = GetComponentInParent<Player>();
-        playerPosition = playerModel.transform;
+        sensitiveState = false; 
+        player = GetComponentInParent<Player>();
+        playerPosition = player.transform;
         this.transform.position = 
             new Vector3(playerPosition.localPosition.x, 
                         playerPosition.localPosition.y + 2.0f, 0);
@@ -46,6 +50,7 @@ public class CharacterHealth : MonoBehaviour
     {
         if (playerModel.characterHealth <= 0){
             EventMgr.Instance.EventTrigger("PlayerDeath");
+            EventMgr.Instance.EventTrigger("StartShowing");
         }
         else if(playerModel.characterHealth > (0.5f*playerModel.maxHealth)) {
             healthbar.color = healthy;
