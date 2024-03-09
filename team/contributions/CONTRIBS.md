@@ -24,3 +24,10 @@ ________________________________________________________________________________
 - Player/Enemy Attack player framework
 - Design of Wolf, Ghost, Fire, Spirit sprites + animations
 - Designed Ghost prefab
+
+## Contributions: Frank Zhong
+______________________________________________________________________________________
+### Main Contributions
+- Start Screen and Pause Menu
+- Sound design, integrating BGM and SFX
+- Update UI and Sound framework
