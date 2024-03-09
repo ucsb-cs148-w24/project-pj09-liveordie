@@ -28,6 +28,7 @@ ________________________________________________________________________________
 ## Contributions: Frank Zhong
 ______________________________________________________________________________________
 ### Main Contributions
-- Start Screen and Pause Menu
 - Sound design, integrating BGM and SFX
-- Update UI and Sound framework
+- Update UI and Audio framework
+- Start Screen and Pause Menu
+
