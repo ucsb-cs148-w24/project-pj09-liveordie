@@ -57,6 +57,7 @@ public class WeaponIconItem : MonoBehaviour, IPointerClickHandler, IPointerEnter
     void OnDestroy()
     {
         EventMgr.Instance.RemoveEventListener("LevelUp", UpdateLevelText);
+        EventMgr.Instance.RemoveEventListener("LevelUp", UpdateDetailsPanel);
     }
 
     private void UpdateLevelText()
