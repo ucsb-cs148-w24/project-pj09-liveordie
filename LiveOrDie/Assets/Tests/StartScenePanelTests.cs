@@ -1,13 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
-using static UnityEngine.UI.CanvasScaler;
 
 public class StartScenePanelTests
 {

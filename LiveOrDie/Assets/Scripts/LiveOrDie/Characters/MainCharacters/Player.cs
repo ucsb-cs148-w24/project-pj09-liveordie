@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 public class Player : MonoBehaviour
 {
     public int whichPlayer; // UNIQUE ID
@@ -28,15 +27,53 @@ public class Player : MonoBehaviour
     private SpriteRenderer render; // PLAYER SKIN
 
     // REFERENCES
-    private CharacterHealth healthBar;
-    private CharacterMovement movement;
 
-    // getter functions
+    private CharacterHealth healthbar;
+
+    private CharacterMovement movement;
+    // public functions
     public Rigidbody2D getRigidBody() {return rb;}
+
+    public SpriteRenderer getSpriteRenderer() {return render;}
+    public void EnforceSensitiveState(bool enforce){
+        healthbar.setSentitiveState(enforce);
+    }
+    public void EnforceDrunkEffect(bool enforce) { 
+        movement.ChangeDrunkState(enforce);
+    }
+    public void EnforceHealthEffect(string type) { 
+        if(type == "drop"){
+            healthbar.DecreaseHealth((int)healthbar.characterHealth / 2);
+        }
+        else if(type == "boost"){
+            healthbar.IncreaseHealth((int)healthbar.maxHealth - (int)healthbar.characterHealth);
+        }
+        else{
+            Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
+        }
+    }
+    public void EnforceSpeedEffect(string type) { 
+        if(type == "drop"){
+            movement.speed = 1;
+        }
+        else if(type == "boost"){
+            movement.speed *= 1.5f;
+        }
+        else if(type == "berzerkers"){
+            movement.speed *= 10f;
+        }
+        else{
+            Debug.Log("Wrong use of Event Listener for EnforceSpeedEffect()");
+        }
+    }
 
     // setter functions
     private void KillPlayer() {isDead = true;}
-
+    public void ResetCharacteristics(){
+        movement.speed = 5f;
+        movement.ChangeDrunkState(false);
+        healthbar.setSentitiveState(false);
+    }
     protected void OnEnable(){
         isDead = false;
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
@@ -48,7 +85,31 @@ public class Player : MonoBehaviour
         characterHealth = 50f; // can be changed
         maxHealth = 50f;
     }
-    protected void Start() {
+
+    protected void Start() {       
+        switch (whichPlayer){
+            case 1: // User 1 finds User 2 (right)
+                peer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
+                dj = gameObject.AddComponent<DistanceJoint2D>();
+                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
+                dj.distance = maxRadius;
+                dj.maxDistanceOnly = true;
+                break;
+            case 2: // User 2 finds User 1 (left)
+                peer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
+                dj = gameObject.AddComponent<DistanceJoint2D>();
+                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
+                dj.maxDistanceOnly = true;
+                break;
+            default:
+                Debug.LogWarning("Unexpected character type: " + whichPlayer);
+                break;
+        }
+        healthbar = gameObject.GetComponentInChildren<CharacterHealth>();
+        healthbar.playerPosition = gameObject.transform;
+        if (!(movement = gameObject.GetComponent<CharacterMovement>()))
+            movement = gameObject.AddComponent<CharacterMovement>();
+        
         EventMgr.Instance.AddEventListener("PlayerDeath", KillPlayer);
         EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }

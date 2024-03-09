@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class MeleeWeapon : Weapon
 {
-    public float meleeRange;
-    public float meleeSwingTime;
+    public CharacterStat meleeRange;
+    public CharacterStat meleeSwingTime;
 
 }

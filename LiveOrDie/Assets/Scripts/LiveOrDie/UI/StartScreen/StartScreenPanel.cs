@@ -11,17 +11,21 @@ public class StartScreenPanel:BasePanel
             case "StartGameButton":
                 // print("startGame");
                 // GoToScene("PauseMenuTest");
+
                 GoToScene("MainScene");
+                
                 UIMgr.Instance.HidePanel("StartScreenPanel");
                 break;
             
             case "SettingsButton":
+                AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.ShowPanel<SettingsPanel>("SettingsPanel", E_PanelLayer.Top);
                 break;
             
             case "QuitButton":
+                AudioMgr.Instance.PlayAudio("OnClick", false);
                 Application.Quit(); //only works after deploying
-                print("QuitGame");
+                // print("QuitGame");
                 break;
             default:
                 break;
