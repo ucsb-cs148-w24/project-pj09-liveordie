@@ -32,6 +32,7 @@ ________________________________________________________________________________
 - Design of Wolf, Ghost, Fire, Spirit sprites + animations
 - Designed Ghost prefab
 
+
 ## Contributions: Frank Zhong
 ______________________________________________________________________________________
 ### Main Contributions
@@ -39,9 +40,10 @@ ________________________________________________________________________________
 - Update UI and Audio framework
 - Start Screen and Pause Menu
 
-# Contributions: Jason Gu
+
+## Contributions: Jason Gu
 ______________________________________________________________________________________
-## Main Contributions
+### Main Contributions
 - Refined toolkit for game development
 - Start Screen, pause menu, loading panel UI and scripts
 - General code refactor
