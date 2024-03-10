@@ -50,7 +50,7 @@ public class ScoreBoardPanel : BasePanel
         EventMgr.Instance.RemoveEventListener<float>("TimeText", updateTimeLeft);
     }
     private void handleMagic(bool val){
-        mushroomEffect = true;
+        mushroomEffect = val;
     }
     private void updateMysteryDrug(string effect){
         effectText = effect;

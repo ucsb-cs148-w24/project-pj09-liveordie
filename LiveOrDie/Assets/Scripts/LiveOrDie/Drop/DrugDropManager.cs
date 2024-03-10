@@ -63,7 +63,8 @@ public class DrugDropManager : MonoBehaviour
         if(!drugged){
             drugged = true;
             numSpawn--;
-            int effect = 6; // Enforce random effect on Drugged Player
+            // Enforce random effect on Drugged Player --> Range [0-6] for now, but will expand
+            int effect = 6; // UnityEngine.Random.Range(0, 6); 
             switch(effect){
                 case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Half Health");
