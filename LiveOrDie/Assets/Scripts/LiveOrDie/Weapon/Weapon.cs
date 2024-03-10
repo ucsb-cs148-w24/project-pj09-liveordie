@@ -42,7 +42,7 @@ public abstract class Weapon : MonoBehaviour
         StopCoroutine(autoAttackRoutine);
     }
 
-    public abstract void LevelUp();
+    public abstract void LevelUp(E_LevelUpChoice choice);
 
     public abstract string GetDetailString();
 

@@ -113,6 +113,7 @@ public class EventMgr : Singleton<EventMgr>
     {
         if (eventDic.ContainsKey(name))//if there is an according event listener
         {
+            if((eventDic[name] as EventInfo) == null) Debug.Log(name);
             (eventDic[name] as EventInfo).actions += action;//add method to existing event
         }
         else //if there is no according event listener
