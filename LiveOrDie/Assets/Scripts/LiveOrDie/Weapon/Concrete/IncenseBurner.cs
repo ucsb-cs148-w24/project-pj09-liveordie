@@ -10,11 +10,18 @@ public class IncenseBurner : StaticWeapon
 
     public override void Initialize()
     {
-        weaponDamage = new CharacterStat(2.0f);
-        weaponRate = new CharacterStat(20.0f);
-        staticRange = new CharacterStat(1.0f, 5.0f);
-        staticRate = new CharacterStat(4.0f);
-        staticDuration = new CharacterStat(12.0f);
+        weaponDamage = new CharacterStat(baseValue: 2.0f, minValue: 0.0f, maxValue: -1.0f);
+        weaponRate = new CharacterStat(baseValue: 20f, minValue: 1.0f, maxValue: -1.0f);
+        staticRange = new CharacterStat(baseValue: 1.0f, minValue: 0.5f, maxValue: 5.0f);
+        staticRate = new CharacterStat(baseValue: 4.0f, minValue: 1.0f, maxValue: -1.0f);
+        staticDuration = new CharacterStat(baseValue: 12.0f, minValue: 5.0f, maxValue: -1.0f);
+
+        damageLevelModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
+        rateLevelModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
+        rangeLevelModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
+        staticRateLevelModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
+        durationLevelModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
+
 
         weaponLevel = 1;
 
@@ -52,11 +59,18 @@ public class IncenseBurner : StaticWeapon
     public override void LevelUp()
     {
         weaponLevel += 1;
-        weaponDamage.AddModifier(new StatModifier(StatModifierType.Flat, 1f), 0);
-        weaponRate.AddModifier(new StatModifier(StatModifierType.PercentAdd, -5f), 0);
-        staticRange.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
-        staticRate.AddModifier(new StatModifier(StatModifierType.PercentAdd, -5f), 0);
-        staticDuration.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
+        damageLevelModifier.value += 1f;
+        rateLevelModifier.value *= 0.95f;
+        rangeLevelModifier.value += 0.05f;
+        staticRateLevelModifier.value *= 0.95f;
+        durationLevelModifier.value += 0.05f;
+
+
+        weaponDamage.AddModifier("LevelUp", damageLevelModifier);
+        weaponRate.AddModifier("LevelUp", rateLevelModifier);
+        staticRange.AddModifier("LevelUp", rangeLevelModifier);
+        staticRate.AddModifier("LevelUp", staticRateLevelModifier);
+        staticDuration.AddModifier("LevelUp", durationLevelModifier);
     }
 
     public override string GetDetailString()

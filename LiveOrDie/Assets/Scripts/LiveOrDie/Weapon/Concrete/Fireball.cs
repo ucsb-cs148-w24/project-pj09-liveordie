@@ -9,11 +9,13 @@ public class Fireball : RangedWeapon
     
     public override void Initialize()
     {
-        weaponDamage = new CharacterStat(1f);
-        weaponRate = new CharacterStat(1f);
+        weaponDamage = new CharacterStat(baseValue: 1f, minValue: 0f, maxValue: -1f);
+        weaponRate = new CharacterStat(baseValue: 1f, minValue: 0.01f, maxValue: -1f);
+        damageLevelModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
+        rateLevelModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
 
-        projectileSpeed = new CharacterStat(10.0f, 100.0f);
-        projectileRange = new CharacterStat(20.0f, 200.0f);
+        projectileSpeed = new CharacterStat(baseValue: 10.0f, minValue: 1.0f, maxValue: 100.0f);
+        projectileRange = new CharacterStat(baseValue: 20.0f, minValue: 1.0f, maxValue: 200.0f);
 
         weaponLevel = 1;
 
@@ -69,8 +71,10 @@ public class Fireball : RangedWeapon
     public override void LevelUp()
     {
         weaponLevel += 1;
-        weaponDamage.AddModifier(new StatModifier(StatModifierType.Flat, 0.5f), 0);
-        weaponRate.AddModifier(new StatModifier(StatModifierType.PercentAdd, -5f), 0);
+        damageLevelModifier.value += 1f;
+        rateLevelModifier.value *= 0.95f;
+        weaponDamage.AddModifier("LevelUp",damageLevelModifier);
+        weaponRate.AddModifier("LevelUp",rateLevelModifier);
     }
 
     public override string GetDetailString()

@@ -8,10 +8,14 @@ public class PeachWoodSword : MeleeWeapon
     
     public override void Initialize() 
     {
-        weaponDamage = new CharacterStat(1);
-        weaponRate = new CharacterStat(5.0f);
-        meleeRange = new CharacterStat(1.0f, 5.0f);
-        meleeSwingTime = new CharacterStat(2.0f);
+        weaponDamage = new CharacterStat(baseValue: 1.0f, minValue: 0.0f, maxValue: -1.0f);
+        weaponRate = new CharacterStat(baseValue: 5.0f, minValue: 0.01f, maxValue: -1.0f);
+        meleeRange = new CharacterStat(baseValue:1.0f, minValue: 0.5f, maxValue: 5.0f);
+        meleeSwingTime = new CharacterStat(baseValue:2.0f, minValue: 0.5f, maxValue: -1);
+
+        damageLevelModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
+        rateLevelModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
+        rangeLevelModifier = new StatModifier(StatModifierType.PercentAdd, 0f, StatModifierOrder.BaseModifier);
 
         weaponLevel = 1;
 
@@ -49,9 +53,13 @@ public class PeachWoodSword : MeleeWeapon
     public override void LevelUp()
     {
         weaponLevel += 1;
-        weaponDamage.AddModifier(new StatModifier(StatModifierType.Flat, 1f), 0);
-        weaponRate.AddModifier(new StatModifier(StatModifierType.PercentAdd, -5f), 0);
-        meleeRange.AddModifier(new StatModifier(StatModifierType.PercentAdd, 5f), 0);
+        damageLevelModifier.value += 1;
+        rateLevelModifier.value *= 0.95f;
+        rangeLevelModifier.value += 5f;
+
+        weaponDamage.AddModifier("LevelUp", damageLevelModifier);
+        weaponRate.AddModifier("LevelUp", rateLevelModifier);
+        meleeRange.AddModifier("LevelUp", rangeLevelModifier);
     }
 
     public override string GetDetailString()

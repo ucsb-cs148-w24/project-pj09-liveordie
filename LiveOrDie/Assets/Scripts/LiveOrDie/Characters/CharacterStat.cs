@@ -5,66 +5,94 @@ using System.Collections.Generic;
 public class CharacterStat
 {
     public float baseValue;
+    private float oldBaseValue;
 
     public float Value
     {
         get { 
-            _value = GetFinalValue();
+            if (isDirty || oldBaseValue != baseValue) {
+                _value = CalculateValue();
+                isDirty = false;
+            }
             return _value;
         }
 
     }
 
-    // -1 means no max value 
+    // -1 means no min/max value 
+    public float minValue;
     public float maxValue;
     public float _value;
 
-    public List<StatModifier> statModifiers;
+    private bool isDirty = true;
 
-    public CharacterStat(float baseValue, float maxValue = -1)
+    public Dictionary<string, StatModifier> statModifiers;
+
+    public CharacterStat(float baseValue, float minValue = -1, float maxValue = -1)
     {
         this.baseValue = baseValue;
+        this.minValue = minValue;
         this.maxValue = maxValue;
-        statModifiers = new List<StatModifier>();
+        statModifiers = new Dictionary<string, StatModifier>();
     }
 
-    // order = -1 means add at the end
-    public void AddModifier(StatModifier modifier, int order = -1)
+    public void AddModifier(string name, StatModifier modifier)
     {
-        if(order == -1 || order > statModifiers.Count){
-            statModifiers.Add(modifier);
-            return;
+        isDirty = true;
+        if(!statModifiers.ContainsKey(name)){
+            statModifiers.Add(name, modifier);
         } else {
-            statModifiers.Insert(order, modifier);
+            statModifiers[name] = modifier;
         }
     }
 
-    public void RemoveModifier(StatModifier modifier)
+    public void RemoveModifier(string name)
     {
-        statModifiers.Remove(modifier);
+        isDirty = true;
+        statModifiers.Remove(name);
     }
 
-    private float GetFinalValue()
+    private float CalculateValue()
     {  
         float finalValue = baseValue;
+        float sumFlat = 0;
+        float sumPercentAdd = 0;
+        float prodPercentMult = 1;
 
-        for(int i = 0; i < statModifiers.Count; i++)
+        // convert dictionary to list, then sort by StatModifier.order
+        List<StatModifier> sortedModifiers = new List<StatModifier>(statModifiers.Values);
+        sortedModifiers.Sort((a, b) => a.order.CompareTo(b.order));
+
+        for(int i = 0; i < sortedModifiers.Count; i++)
         {
-            StatModifier statModifier = statModifiers[i];
+            StatModifier statModifier = sortedModifiers[i];
+
+            // accumulate the modifiers
             switch(statModifier.type)
             {
                 case StatModifierType.Flat:
-                    finalValue = finalValue + statModifier.value;
+                    sumFlat += statModifier.value;
                     break;
                 case StatModifierType.PercentAdd:
-                    finalValue = finalValue + (baseValue * (statModifier.value / 100));
+                    sumPercentAdd += statModifier.value;
                     break;
                 case StatModifierType.PercentMult:
-                    finalValue = finalValue * (1f + (statModifier.value / 100));
+                    prodPercentMult *= statModifier.value / 100;
                     break;
             }
+
+            // apply the modifiers when we hit the end of the list or we hit a different order
+            // applies in order: flat, then percent add, then percent mult
+            if(i + 1 >= sortedModifiers.Count || sortedModifiers[i + 1].order != statModifier.order)
+            {
+                finalValue = finalValue + sumFlat;
+                finalValue = finalValue * (1 + sumPercentAdd / 100);
+                finalValue = finalValue * prodPercentMult;
+            }
+
         }
         if(finalValue > maxValue && maxValue != -1) finalValue = maxValue;
+        if(finalValue < minValue && minValue != -1) finalValue = minValue;
         return finalValue;
     }
 
