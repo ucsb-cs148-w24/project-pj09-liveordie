@@ -18,11 +18,6 @@ public class WeaponStatusPanel : BasePanel
         weaponIcons = transform.Find("WeaponIcons").gameObject;
 
         EventMgr.Instance.AddEventListener("UpdateWeaponView", RefreshWeaponView);
-
-        // for now, we just add all weapons by default
-        EventMgr.Instance.EventTrigger<string>("AddWeapon", "Fireball");
-        EventMgr.Instance.EventTrigger<string>("AddWeapon", "PeachWoodSword");
-        EventMgr.Instance.EventTrigger<string>("AddWeapon", "IncenseBurner");
     }
 
     void OnDestroy()

@@ -36,7 +36,7 @@ public class WeaponIconItem : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
         weapon = _weapon;
 
-        weaponIconImage.sprite = weapon.weaponIcon;
+        weaponIconImage.sprite = weapon.GetWeaponIcon();
         
         EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", UpdateLevelText);
         EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", UpdateDetailsPanel);
@@ -67,7 +67,7 @@ public class WeaponIconItem : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
     private void UpdateDetailsPanel(E_LevelUpChoice choice)
     {
-        WeaponDetailsTitleText.text = weapon.weaponName;
+        WeaponDetailsTitleText.text = weapon.GetWeaponName();
         WeaponDetailsBodyText.text = weapon.GetDetailString();
     }
 

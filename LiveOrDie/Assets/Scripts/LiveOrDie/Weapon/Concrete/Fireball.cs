@@ -6,6 +6,9 @@ public class Fireball : RangedWeapon
     private Vector3 firePointOffset = new Vector3(0,1,0);
     private SpriteRenderer p1Sprite, p2Sprite;
     private GameObject player1, player2;
+
+    public static new string weaponName = "Fireball";
+    public static new string weaponDescription = "A fireball that fires to the left and right";
     
     public override void Initialize()
     {
@@ -75,6 +78,21 @@ public class Fireball : RangedWeapon
         rateLevelModifier.value *= 0.95f;
         weaponDamage.AddModifier("LevelUp",damageLevelModifier);
         weaponRate.AddModifier("LevelUp",rateLevelModifier);
+    }
+
+    public override string GetWeaponName()
+    {
+        return weaponName;
+    }
+
+    public override string GetWeaponDescription()
+    {
+        return weaponDescription;
+    }
+
+    public override Sprite GetWeaponIcon()
+    {
+        return weaponIcon;
     }
 
     public override string GetDetailString()
