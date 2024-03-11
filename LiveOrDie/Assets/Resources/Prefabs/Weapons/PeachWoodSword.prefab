@@ -46,23 +46,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamage:
     baseValue: 0
+    minValue: 0
     maxValue: 0
     _value: 0
   weaponRate:
     baseValue: 0
+    minValue: 0
     maxValue: 0
     _value: 0
   weaponLevel: 1
-  weaponName: Peach Wood Sword
-  weaponDescription: A peach wood sword to ward off the enemy
+  weaponName: 
+  weaponDescription: 
   weaponIcon: {fileID: 21300000, guid: 7f532c2a75b91ff448cf675b881c206e, type: 3}
   autoAttackOn: 0
   cooldownTimeLeft: 0
   meleeRange:
     baseValue: 0
+    minValue: 0
     maxValue: 0
     _value: 0
   meleeSwingTime:
     baseValue: 0
+    minValue: 0
     maxValue: 0
     _value: 0

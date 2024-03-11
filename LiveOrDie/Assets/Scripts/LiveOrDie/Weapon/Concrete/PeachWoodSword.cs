@@ -6,6 +6,9 @@ public class PeachWoodSword : MeleeWeapon
     private Transform player1Transform, player2Transform;
     private GameObject player1, player2;
     
+    public static new string weaponName = "Peach Wood Sword";
+    public static new string weaponDescription = "A peach wood sword that swings in a circle.";
+
     public override void Initialize() 
     {
         weaponDamage = new CharacterStat(baseValue: 1.0f, minValue: 0.0f, maxValue: -1.0f);
@@ -60,6 +63,21 @@ public class PeachWoodSword : MeleeWeapon
         weaponDamage.AddModifier("LevelUp", damageLevelModifier);
         weaponRate.AddModifier("LevelUp", rateLevelModifier);
         meleeRange.AddModifier("LevelUp", rangeLevelModifier);
+    }
+
+    public override string GetWeaponName()
+    {
+        return weaponName;
+    }
+
+    public override string GetWeaponDescription()
+    {
+        return weaponDescription;
+    }
+
+    public override Sprite GetWeaponIcon()
+    {
+        return weaponIcon;
     }
 
     public override string GetDetailString()
