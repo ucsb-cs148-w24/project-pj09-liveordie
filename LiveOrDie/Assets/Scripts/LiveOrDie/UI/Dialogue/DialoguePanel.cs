@@ -2,19 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
+[System.Serializable]
+public struct DialogueImage
+{
+    public Sprite image;
+    public int dialog;
+};
 
 public class DialoguePanel : BasePanel
 {
     public TMP_Text textComponent;
     public string[] lines;
     public float textSpeed;
+    [SerializeField]
+    public DialogueImage[] dialogueImages;
+    public Image imageUI;
 
     private int index;
+    int imageIndex = 0;
+
 
     void Start()
     {
         textComponent.text = string.Empty;
         StartDialogue();
+        imageUI = GetUIComponent<Image>("DialogueImage");
+        imageUI.sprite = dialogueImages[imageIndex].image;
     }
 
     void Update()
@@ -24,6 +39,8 @@ public class DialoguePanel : BasePanel
             if (textComponent.text == lines[index])
             {
                 NextLine();
+                imageIndex += 1;
+                imageUI.sprite = dialogueImages[imageIndex].image;
             }
             else
             {
