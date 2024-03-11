@@ -8,8 +8,8 @@ public abstract class Weapon : MonoBehaviour
     public int weaponLevel;
     protected StatModifier damageLevelModifier, rateLevelModifier;
 
-    public string weaponName;
-    [TextArea] public string weaponDescription;
+    public static string weaponName = "Weapon";
+    [TextArea] public static string weaponDescription = "Weapon Description";
     public Sprite weaponIcon;
 
     public bool autoAttackOn;
@@ -44,6 +44,10 @@ public abstract class Weapon : MonoBehaviour
     }
 
     public abstract void LevelUp(E_LevelUpChoice choice);
+
+    public abstract string GetWeaponName();
+    public abstract string GetWeaponDescription();
+    public abstract Sprite GetWeaponIcon();
 
     public abstract string GetDetailString();
 

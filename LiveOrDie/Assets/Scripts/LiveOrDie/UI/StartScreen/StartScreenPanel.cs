@@ -41,7 +41,7 @@ public class StartScreenPanel:BasePanel
         SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
         {
             EventMgr.Instance.EventTrigger("ProgressBar", 1f);
-            // EventMgr.Instance.EventTrigger("Load"+sceneName+"Completed"); //for later usage 
+            EventMgr.Instance.EventTrigger("Load"+sceneName+"Completed"); //for later usage 
             
             
         }); 
