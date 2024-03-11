@@ -31,6 +31,12 @@ public class CharacterHealth : MonoBehaviour
         playerModel.characterHealth.AddModifier("Health",playerModel.healthModifier);
         healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
     }
+
+    public void RefreshHealthUI()
+    {
+        healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
+    }
+    
     void OnEnable(){
         foreach(var image in gameObject.GetComponentsInChildren<Image>())
             if(image.name == "FillBlock") healthbar = image;  
@@ -46,7 +52,7 @@ public class CharacterHealth : MonoBehaviour
                         playerPosition.localPosition.y + 2.0f, 0);
         this.transform.rotation = playerPosition.rotation;
     }
-    void Update()
+    void Update() //need to be moved inside refresh function
     {
         if (playerModel.characterHealth.Value <= 0){
             EventMgr.Instance.EventTrigger("PlayerDeath");

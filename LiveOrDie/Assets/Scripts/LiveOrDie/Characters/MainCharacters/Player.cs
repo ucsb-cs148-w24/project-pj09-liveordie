@@ -85,31 +85,13 @@ public class Player : MonoBehaviour
     }
 
     protected void Start() {
-        switch (whichPlayer){
-            case 1: // User 1 finds User 2 (right)
-                peer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
-                dj = gameObject.AddComponent<DistanceJoint2D>();
-                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
-                dj.distance = maxRadius.Value;
-                dj.maxDistanceOnly = true;
-                break;
-            case 2: // User 2 finds User 1 (left)
-                peer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
-                dj = gameObject.AddComponent<DistanceJoint2D>();
-                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
-                dj.maxDistanceOnly = true;
-                break;
-            default:
-                Debug.LogWarning("Unexpected character type: " + whichPlayer);
-                break;
-        }
         healthbar = gameObject.GetComponentInChildren<CharacterHealth>();
         healthbar.playerPosition = gameObject.transform;
         if (!(movement = gameObject.GetComponent<CharacterMovement>()))
             movement = gameObject.AddComponent<CharacterMovement>();
         
         EventMgr.Instance.AddEventListener("PlayerDeath", KillPlayer);
-        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
+        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("PlayerLevelUp", LevelUp);
     }
 
     void Update()
@@ -120,21 +102,29 @@ public class Player : MonoBehaviour
     }
     public void OnDestroy(){
         EventMgr.Instance.RemoveEventListener("PlayerDeath", KillPlayer);
-        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
+        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("PlayerLevelUp", LevelUp);
     }
 
     private void LevelUp(E_LevelUpChoice choice) //to do 
     {
         switch (choice)
         {
-            case E_LevelUpChoice.IncreaseSpeed:
-                print("speed");
+            case E_LevelUpChoice.Evasion:
+                speed.baseValue *= 1.1f;
                 break;
-            case E_LevelUpChoice.IncreaseMaxHealth:
-                print("health");
+            case E_LevelUpChoice.Vitality:
+                maxHealth.baseValue *= 1.2f;
+                healthbar.RefreshHealthUI();
                 break;
-            case E_LevelUpChoice.IncreaseRopeRadius:
-                print("rope");
+            case E_LevelUpChoice.Uninhibited:
+                maxRadius.baseValue += 1f;
+                movement.RefreshRopeRadius();
+                break;
+            case E_LevelUpChoice.Regeneration:
+                maxHealth.baseValue *= 1.05f;
+                characterHealth.baseValue += maxHealth.baseValue / 2;
+                characterHealth.baseValue = Math.Min(characterHealth.baseValue , maxHealth.baseValue);
+                healthbar.RefreshHealthUI();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(choice), choice, null);

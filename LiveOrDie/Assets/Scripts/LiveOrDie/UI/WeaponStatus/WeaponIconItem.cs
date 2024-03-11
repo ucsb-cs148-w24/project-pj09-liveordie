@@ -41,8 +41,8 @@ public class WeaponIconItem : MonoBehaviour, IPointerClickHandler, IPointerEnter
         EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", UpdateLevelText);
         EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", UpdateDetailsPanel);
 
-        UpdateLevelText(E_LevelUpChoice.IncreaseSpeed);
-        UpdateDetailsPanel(E_LevelUpChoice.IncreaseSpeed);
+        UpdateLevelText(E_LevelUpChoice.Vitality);
+        UpdateDetailsPanel(E_LevelUpChoice.Vitality);
         UpdateAutoAttackVisual();
     }
 

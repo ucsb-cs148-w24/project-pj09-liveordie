@@ -4,9 +4,11 @@ using UnityEngine;
 
 public enum E_LevelUpChoice
 {
-    IncreaseSpeed,
-    IncreaseMaxHealth,
-    IncreaseRopeRadius,
+    Evasion,
+    Vitality,
+    Uninhibited,
+    Regeneration,
+
 }
 
 public class LevelingManager : MonoBehaviour
@@ -25,6 +27,7 @@ public class LevelingManager : MonoBehaviour
         curExp = 0;
         level = 1;
         EventMgr.Instance.AddEventListener<float>("ExpOrbPicked", IncreaseExp);
+        EventMgr.Instance.AddEventListener<LevelUpChoice>("UnlockNewLevelUpChoices",UnlockNewLevelUpChoices);
     }
 
     private void initLevelUpChoices()
@@ -35,19 +38,25 @@ public class LevelingManager : MonoBehaviour
                 "Increase Speed + 10%",
                 () =>
                 {
-                    EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseSpeed);
+                    EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Evasion);
                 }),
             new ("Vitality",
                 "Increase Maximum Health +20%",
                 () =>
                 {
-                    EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseMaxHealth);
+                    EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Vitality);
                 }),
             new ("Uninhibited",
                 "Increase Rope Radius +1",
                 () =>
                 {
-                    EventMgr.Instance.EventTrigger("LevelUp", E_LevelUpChoice.IncreaseRopeRadius);
+                    EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Uninhibited);
+                }),
+            new ("Regeneration",
+                "Restore Half of Max Health and Increase Maximum Health +5%",
+                () =>
+                {
+                    EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Regeneration);
                 })
         };
         //add all the initial choices
@@ -78,18 +87,24 @@ public class LevelingManager : MonoBehaviour
     private List<LevelUpChoice> GenerateLevelUpChoice(int choiceNum) //return wanted number of choices
     {
         List<LevelUpChoice> randomChoices = new List<LevelUpChoice>();
+        int swapIndex = 0;
         for (int i = 0; i < choiceNum; i++)
         {
-            int index = Random.Range(0+i, levelUpChoiceList.Count);
-            randomChoices.Add(levelUpChoiceList[index]);
+            int randomIndex = Random.Range(0+i, levelUpChoiceList.Count);
+            randomChoices.Add(levelUpChoiceList[randomIndex]);
             
             //switch element of choice element and the first one
-            var temp = levelUpChoiceList[0];
-            levelUpChoiceList[0] = levelUpChoiceList[index];
-            levelUpChoiceList[index] = temp;
+            var temp = levelUpChoiceList[swapIndex];
+            levelUpChoiceList[swapIndex] = levelUpChoiceList[randomIndex];
+            levelUpChoiceList[randomIndex] = temp;
+            swapIndex++; //next time swap with the second one
         }
 
         return randomChoices;
+    }
 
+    private void UnlockNewLevelUpChoices(LevelUpChoice choice)
+    {
+        levelUpChoiceList.Add(choice);
     }
 }
