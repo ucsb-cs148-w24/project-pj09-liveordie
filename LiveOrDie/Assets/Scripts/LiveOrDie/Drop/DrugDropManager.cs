@@ -9,12 +9,12 @@ public class DrugDropManager : MonoBehaviour
     private DrugFactory drugFactory; 
     private TalismanFactory talismanFactory;
     private List<Player> players; // list referencing players so we can directly give it "effects"
+    
     [HideInInspector]
     public int numSpawn, maxSpawn; // counter | max # to spawn
-    private float targetTime; // startDelay | random Time to spawn
-    private bool drugged; // whether under drug effect
     [HideInInspector]
-    public float effectTime; // amount of time left until drug wears off
+    public float effectTime， targetTime; // time left before wearoff & random Time to spawn
+    private bool drugged; // whether under drug effect
     private enum RANDOM_EFFECTS{
         HEALTH_DROP_STATE, // Drop health by 1/2 its current
         HEALTH_BOOST_STATE, // Increase health by 1.5 OR to full health
