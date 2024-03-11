@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Dialogue : BasePanel
+public class DialoguePanel : BasePanel
 {
-    public TextMeshProUGUI textComponent;
+    public TMP_Text textComponent;
     public string[] lines;
     public float textSpeed;
 
@@ -67,7 +67,7 @@ public class Dialogue : BasePanel
         switch(buttonName)
         {
             case "SkipButton":
-                UIMgr.Instance.HidePanel("Dialogue");
+                UIMgr.Instance.HidePanel("DialoguePanel");
                 break;
             default:
                 break;
@@ -75,8 +75,8 @@ public class Dialogue : BasePanel
     }
 
     public override void Show(){
-        (transform as RectTransform).offsetMax= Vector2.zero;
-        (transform as RectTransform).offsetMin= Vector2.zero;
+        
+
     }
 
     
