@@ -19,14 +19,14 @@ public class CharacterHealth : MonoBehaviour
     public void SelfDestruct() { Destroy(gameObject);}
     public void DecreaseHealth(int amount){
         if(sensitiveState) amount *= 2;
-        playerModel.characterHealth.AddModifier(new StatModifier(StatModifierType.Flat, -amount), 0);
+        playerModel.characterHealth.AddModifier(new StatModifier(StatModifierType.Flat, -amount), -1);
         healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
     }
     public void IncreaseHealth(int amount){
         if(playerModel.characterHealth.Value + amount > playerModel.maxHealth.Value) 
             playerModel.characterHealth.statModifiers.Clear();
         else 
-            playerModel.characterHealth.AddModifier(new StatModifier(StatModifierType.Flat, amount), 0);
+            playerModel.characterHealth.AddModifier(new StatModifier(StatModifierType.Flat, amount), -1);
         
         healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
     }

@@ -38,13 +38,13 @@ public class Player : MonoBehaviour
     public void EnforceDrunkEffect(bool enforce) {  movement.ChangeDrunkState(enforce); }
     public void EnforceHealthEffect(string type) { 
         if(type == "drop") healthbar.DecreaseHealth((int)characterHealth.Value / 2);
-        else if(type == "boost") healthbar.IncreaseHealth((int)maxHealth.Value - (int)characterHealth.Value);
+        else if(type == "boost") healthbar.IncreaseHealth((int)maxHealth.Value);
         else Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
     }
     public void EnforceSpeedEffect(string type) { 
-        if(type == "drop") speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value/2f), 0);
-        else if(type == "boost")speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value*1.5f), 0);
-        else if(type == "berzerkers") speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value*15f), 0);
+        if(type == "drop") speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value/2f), -1);
+        else if(type == "boost")speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value*1.5f), -1);
+        else if(type == "berzerkers") speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value*15f), -1);
         else Debug.Log("Wrong use of Event Listener for EnforceSpeedEffect()");
     }
 
