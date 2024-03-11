@@ -23,14 +23,14 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        EventMgr.Instance.AddEventListener("LoadMainSceneCompleted", initWeaponChoices);
+        EventMgr.Instance.AddEventListener("LoadingPanelCompleted", initWeaponChoices);
     }
 
     private void OnDestroy()
     {
         EventMgr.Instance.RemoveEventListener<string>("AddWeapon", AddWeapon);
         EventMgr.Instance.RemoveEventListener<string>("RemoveWeapon", RemoveWeapon);
-        EventMgr.Instance.RemoveEventListener("LoadMainSceneCompleted", initWeaponChoices);
+        EventMgr.Instance.RemoveEventListener("LoadingPanelCompleted", initWeaponChoices);
     }
 
     private void initWeaponChoices()

@@ -73,6 +73,7 @@ public class LoadingPanel : BasePanel
             yield return new WaitForSeconds(0);
         }
         UIMgr.Instance.HidePanel("LoadingPanel"); // hide itself after loading 
+        EventMgr.Instance.EventTrigger("LoadingPanelCompleted");
         
     }
     
