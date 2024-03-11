@@ -16,14 +16,13 @@ public class PausePanel : BasePanel
                 break;
             
             case "ResumeButton":
-
+                AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.HidePanel("PausePanel"); // hide pause panel
                 //return to the game ------------------
                 
                 break;
             
             case "BackToMenuButton":
-                
                 UIMgr.Instance.HidePanel("PausePanel");
                 // GoToScene("StartScreenTest"); //load start screen test
                 GoToScene("StartScene"); //load start screen test
@@ -40,6 +39,7 @@ public class PausePanel : BasePanel
 
     public override void Hide()
     {
+        if (UIMgr.Instance.GetPanel<LevelUpPanel>("LevelUpPanel")) return;
         Time.timeScale = 1;
         EventMgr.Instance.EventTrigger("GameResumed"); //**send game paused event 
     }

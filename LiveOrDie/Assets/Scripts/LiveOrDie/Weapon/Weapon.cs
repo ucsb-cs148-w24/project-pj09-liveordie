@@ -3,14 +3,18 @@ using System.Collections;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public float weaponAccuracy;
-    public int weaponDamage;
-    public float weaponRate;
+    public CharacterStat weaponDamage;
+    public CharacterStat weaponRate;
     public int weaponLevel;
 
     public string weaponName;
+    [TextArea] public string weaponDescription;
+    public Sprite weaponIcon;
 
     public bool autoAttackOn;
+    public float cooldownTimeLeft;
+
+    private Coroutine autoAttackRoutine;
 
     public abstract void Initialize();
 
@@ -19,21 +23,27 @@ public abstract class Weapon : MonoBehaviour
     public virtual void StartAutoAttack()
     {
         autoAttackOn = true;
-        StartCoroutine(AutoAttackRoutine());
+        autoAttackRoutine = StartCoroutine(AutoAttackRoutine());
     }
 
     protected virtual IEnumerator AutoAttackRoutine()
     {
         while(autoAttackOn) {
+            for(cooldownTimeLeft = weaponRate.Value; cooldownTimeLeft > 0; cooldownTimeLeft -= Time.deltaTime) {
+                yield return null;
+            }
             Attack();
-            yield return new WaitForSeconds(weaponRate);
         }
     }
 
     public virtual void StopAutoAttack()
     {
         autoAttackOn = false;
-        StopCoroutine(AutoAttackRoutine());
+        StopCoroutine(autoAttackRoutine);
     }
+
+    public abstract void LevelUp(E_LevelUpChoice choice);
+
+    public abstract string GetDetailString();
 
 }

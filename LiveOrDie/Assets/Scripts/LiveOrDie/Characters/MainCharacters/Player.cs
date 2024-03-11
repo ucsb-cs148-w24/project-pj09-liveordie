@@ -1,10 +1,24 @@
+using System;
 using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int whichPlayer; // UNIQUE ID
+    
+    //stats fields
+    public float speed = 3f; // speed of player movement
+    public float maxRadius = 5f; // max distance between players
+    public float characterHealth = 50f; // can be changed
+    public float maxHealth = 50f;
+    
+    //some other possible stats
+    //cooldown
+    //pickRange
+    //attackRange
+    //attackDamage
+    //attackSpeed
+    //defence
 
-    [HideInInspector]
-    public float maxRadius {get; set;} // max distance between players
+    
     [HideInInspector]
     public bool isDead; // dead?
     private Player peer; // BEST FRIEND
@@ -18,19 +32,20 @@ public class Player : MonoBehaviour
     private CharacterMovement movement;
     // public functions
     public Rigidbody2D getRigidBody() {return rb;}
+
     public SpriteRenderer getSpriteRenderer() {return render;}
     public void EnforceSensitiveState(bool enforce){
-        healthbar.setSentitiveState(enforce);
+        healthbar.setSensitiveState(enforce);
     }
     public void EnforceDrunkEffect(bool enforce) { 
         movement.ChangeDrunkState(enforce);
     }
     public void EnforceHealthEffect(string type) { 
         if(type == "drop"){
-            healthbar.DecreaseHealth((int)healthbar.characterHealth / 2);
+            healthbar.DecreaseHealth((int)characterHealth / 2);
         }
         else if(type == "boost"){
-            healthbar.IncreaseHealth((int)healthbar.maxHealth - (int)healthbar.characterHealth);
+            healthbar.IncreaseHealth((int)maxHealth - (int)characterHealth);
         }
         else{
             Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
@@ -38,37 +53,40 @@ public class Player : MonoBehaviour
     }
     public void EnforceSpeedEffect(string type) { 
         if(type == "drop"){
-            movement.speed = 1;
+            speed = 1;
         }
         else if(type == "boost"){
-            movement.speed *= 1.5f;
+            speed *= 1.5f;
         }
         else if(type == "berzerkers"){
-            movement.speed *= 10f;
+            speed *= 10f;
         }
         else{
             Debug.Log("Wrong use of Event Listener for EnforceSpeedEffect()");
         }
     }
+
     // setter functions
     private void KillPlayer() {isDead = true;}
     public void ResetCharacteristics(){
-        movement.speed = 5f;
+        speed = 5f;
         movement.ChangeDrunkState(false);
         healthbar.setSentitiveState(false);
         EventMgr.Instance.EventTrigger("MagicMushroom", false); // reset
     }
     protected void OnEnable(){
-        maxRadius = 5f;
         isDead = false;
-        if(!(render = gameObject.GetComponent<SpriteRenderer>())) 
-            render = gameObject.AddComponent<SpriteRenderer>();
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
             rb = gameObject.AddComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        //WeaponState = default weapons
+        
+        speed = 3f; // speed of player movement
+        maxRadius = 5f; // max distance between players
+        characterHealth = 50f; // can be changed
+        maxHealth = 50f;
     }
-    protected void Start() {       
+
+    protected void Start() {
         switch (whichPlayer){
             case 1: // User 1 finds User 2 (right)
                 peer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
@@ -93,6 +111,7 @@ public class Player : MonoBehaviour
             movement = gameObject.AddComponent<CharacterMovement>();
         
         EventMgr.Instance.AddEventListener("PlayerDeath", KillPlayer);
+        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     void Update()
@@ -103,6 +122,25 @@ public class Player : MonoBehaviour
     }
     public void OnDestroy(){
         EventMgr.Instance.RemoveEventListener("PlayerDeath", KillPlayer);
+        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
+    }
+
+    private void LevelUp(E_LevelUpChoice choice) //to do 
+    {
+        switch (choice)
+        {
+            case E_LevelUpChoice.IncreaseSpeed:
+                print("speed");
+                break;
+            case E_LevelUpChoice.IncreaseMaxHealth:
+                print("health");
+                break;
+            case E_LevelUpChoice.IncreaseRopeRadius:
+                print("rope");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(choice), choice, null);
+        }
     }
 
 }

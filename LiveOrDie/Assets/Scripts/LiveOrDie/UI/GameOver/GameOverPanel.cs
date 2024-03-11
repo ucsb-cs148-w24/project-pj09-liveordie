@@ -18,7 +18,7 @@ public class GameOverPanel : BasePanel
     }
 
     public void SetScore(float score){ scoreText.text = score.ToString();}
-    public void SetExp(float exp){ expText.text = exp.ToString();}
+    public void SetLevel(int level){ expText.text = level.ToString();}
 
     protected override void OnClick(string buttonName)
     {

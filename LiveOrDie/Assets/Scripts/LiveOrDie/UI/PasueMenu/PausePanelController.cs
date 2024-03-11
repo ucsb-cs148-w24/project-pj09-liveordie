@@ -7,13 +7,18 @@ public class PausePanelController : MonoBehaviour
 {
     private void Start()
     {
-        EventMgr.Instance.AddEventListener("GamePaused", SwitchPauseState);
-        EventMgr.Instance.AddEventListener("GameResumed", SwitchPauseState);
+        EventMgr.Instance.AddEventListener("GamePaused", SwitchPauseStateOn);
+        EventMgr.Instance.AddEventListener("GameResumed", SwitchPauseStateOff);
+        EventMgr.Instance.AddEventListener("PausePanelLock", PausePanelLock);
+        EventMgr.Instance.AddEventListener("PausePanelUnLock", PausePanelUnLock);
     }
 
     private bool isPausePanelShown = false;
+    private bool isPausePanelLocked = false;
     private void Update()
     {
+        if(isPausePanelLocked) return; //cannot open when lock is on
+        ;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!isPausePanelShown)
@@ -32,9 +37,24 @@ public class PausePanelController : MonoBehaviour
         }
     }
 
-    private void SwitchPauseState()
+    private void SwitchPauseStateOn()
     {
-        isPausePanelShown = !isPausePanelShown;
+        isPausePanelShown = true;
     }
-        
+    
+    private void SwitchPauseStateOff()
+    {
+        isPausePanelShown = false;
+    }
+
+    private void PausePanelLock()
+    {
+        isPausePanelLocked = true;
+    }
+
+    private void PausePanelUnLock()
+    {
+        isPausePanelLocked = false;
+    }
+    
 }

@@ -5,8 +5,10 @@ using System.Collections.Generic;
 
 public class CharacterMovement : MonoBehaviour
 {
-    public float speed = 1.5f; // speed of player movement
     public float maxRadius = 5f; // max distance between players
+    
+    //components
+    private Player playerModel;
     public int whichCharacter; // unique ID of character
     private BoxCollider2D boxCollide;
     private Rigidbody2D rb;
@@ -17,7 +19,6 @@ public class CharacterMovement : MonoBehaviour
     private bool isDead = false;
     
     //movement lock flag
-    public bool isMovementLocked = false;
     public int horizontal;
     public int vertical;
     public bool drunkState;
@@ -34,8 +35,6 @@ public class CharacterMovement : MonoBehaviour
     }
     public void SelfDestruct() { Destroy(gameObject); }
     public void OnEnable(){
-        speed = 10f;
-        speed = 5f;
         horizontal = vertical = 0;
         drunkMovements = new List<int>{0,1,2,3};
     }
@@ -44,8 +43,9 @@ public class CharacterMovement : MonoBehaviour
         drunkState = enforce;
         drunkMovements = ShuffleList(drunkMovements);
     }
-    void Start(){ 
-        healthbar = GetComponentInChildren<CharacterHealth>();
+    void Start()
+    {
+        playerModel = GetComponent<Player>();
 
         // Event listener
         EventMgr.Instance.AddEventListener("GamePaused", GlobalControlLock);
@@ -76,6 +76,9 @@ public class CharacterMovement : MonoBehaviour
                 break;
             case 2: // User 2 finds User 1 (left)
                 peer = GameObject.FindGameObjectWithTag("Player1");
+                dj = gameObject.AddComponent<DistanceJoint2D>();
+                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
+                dj.maxDistanceOnly = true;
                 break;
             default:
                 Debug.LogWarning("Unexpected character type: " + whichCharacter);
@@ -87,7 +90,6 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         if(isDead) {
-            Destroy(healthbar);
             Destroy(gameObject);
         }
     }
@@ -97,14 +99,12 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + Time.deltaTime * speed * new Vector2(horizontal, vertical).normalized);
+        rb.MovePosition(rb.position + Time.deltaTime * playerModel.speed * new Vector2(horizontal, vertical).normalized);
     }
 
     private void OnDestroy()
     {
         //remove all event listener
-        // EventMgr.Instance.RemoveEventListener("GamePaused", SwitchMovementLock);
-        // EventMgr.Instance.RemoveEventListener("GameResumed", SwitchMovementLock);
         EventMgr.Instance.RemoveEventListener("GamePaused", GlobalControlLock);
         EventMgr.Instance.RemoveEventListener("GameResumed", GlobalControlUnlock);
         EventMgr.Instance.RemoveEventListener<E_AllKeysActs>("KeyIsHeld", Controls);

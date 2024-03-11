@@ -44,11 +44,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37171f5963d240443900524802a7b0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAccuracy: 0
-  weaponDamage: 0
-  weaponRate: 0
-  weaponLevel: 0
-  weaponName: 
-  staticRange: 0
-  staticRate: 0
-  staticDuration: 0
+  weaponDamage:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  weaponRate:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  weaponLevel: 1
+  weaponName: Incense Burner
+  weaponDescription: Burns the enemy and heals the players with incense
+  weaponIcon: {fileID: -1461128699, guid: 4fdc8d762453a5f4c98663e64df328ce, type: 3}
+  autoAttackOn: 0
+  cooldownTimeLeft: 0
+  staticRange:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  staticRate:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
+  staticDuration:
+    baseValue: 0
+    maxValue: 0
+    _value: 0
