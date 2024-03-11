@@ -37,7 +37,7 @@ _____________________________________________________________________________
 #### Frank
 - What did:
 - What to do: Add all sounds and some extra features
-- What blockers: null references
+- What blockers: None
 
 #### Baige
 - What did: Finished the intro story and come up the name of dragon "Yan Loong"
