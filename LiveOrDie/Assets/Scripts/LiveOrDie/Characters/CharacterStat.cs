@@ -52,6 +52,12 @@ public class CharacterStat
         statModifiers.Remove(name);
     }
 
+    public void ClearModifiers()
+    {
+        isDirty = true;
+        statModifiers.Clear();
+    }
+
     private float CalculateValue()
     {  
         float finalValue = baseValue;
