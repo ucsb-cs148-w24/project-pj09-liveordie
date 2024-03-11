@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a0d636c7478290d4cac60dd41d8d8deb
+guid: 70de076b922d40e44b1441f2d0a677cd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 440
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,118 +106,173 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wolf_sprite_sheet_0
+      name: ghost_sprite_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 230
+        width: 220
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208a751d8a807cb4887d8418aea9554a
+      internalID: 1997496176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_sprite_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 230
+        width: 220
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 144b5146bcb67754cb3248a5577c787c
+      internalID: 2124171583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_sprite_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 230
+        width: 220
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406c7ecb64e87504a85503c1e3ae8659
+      internalID: 218702974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_sprite_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 230
+        width: 220
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee2b7d8d3e7bf4498312f2e3ca1c508
+      internalID: -422990110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_sprite_sheet_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 440
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        width: 220
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 183, y: -201}
-        - {x: 182, y: -145}
-        - {x: -222.68546, y: -144.5784}
-        - {x: -222.5, y: -202.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ebe8af0053ab364da97e3b9c046bf82
-      internalID: 329535362
+      spriteID: e388e67b7ebe98f4fa0dec6c67bff68a
+      internalID: 390259468
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolf_sprite_sheet_1
+      name: ghost_sprite_sheet_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 220
         y: 0
-        width: 640
-        height: 440
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        width: 220
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 183, y: -201}
-        - {x: 182, y: -145}
-        - {x: -222.68546, y: -144.5784}
-        - {x: -222.5, y: -202.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 824619003f83f614a867cc1a7d3590aa
-      internalID: -1178294682
+      spriteID: 16de2bfba15ffdc4194eafad78317c9c
+      internalID: 2009505237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolf_sprite_sheet_2
+      name: ghost_sprite_sheet_6
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 440
         y: 0
-        width: 640
-        height: 440
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        width: 220
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 183, y: -201}
-        - {x: 182, y: -145}
-        - {x: -222.68546, y: -144.5784}
-        - {x: -222.5, y: -202.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b29f192fec64f6c488996a69dcd644b5
-      internalID: -821454612
+      spriteID: 7f36fe071055fc94c9766b2b2139d851
+      internalID: 788875412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wolf_sprite_sheet_3
+      name: ghost_sprite_sheet_7
       rect:
         serializedVersion: 2
-        x: 1920
+        x: 660
         y: 0
-        width: 640
-        height: 440
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1}
+        width: 220
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 183, y: -201}
-        - {x: 182, y: -145}
-        - {x: -222.68546, y: -144.5784}
-        - {x: -222.5, y: -202.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f74e3f9cd0274c4aae0dc06caaf9040
-      internalID: 2027677239
+      spriteID: e323dbb71c5fdd240bc336dd7090d709
+      internalID: 2053099912
       vertices: []
       indices: 
       edges: []
@@ -233,10 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      wolf_sprite_sheet_0: 329535362
-      wolf_sprite_sheet_1: -1178294682
-      wolf_sprite_sheet_2: -821454612
-      wolf_sprite_sheet_3: 2027677239
+      ghost_sprite_sheet_0: 1997496176
+      ghost_sprite_sheet_1: 2124171583
+      ghost_sprite_sheet_2: 218702974
+      ghost_sprite_sheet_3: -422990110
+      ghost_sprite_sheet_4: 390259468
+      ghost_sprite_sheet_5: 2009505237
+      ghost_sprite_sheet_6: 788875412
+      ghost_sprite_sheet_7: 2053099912
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

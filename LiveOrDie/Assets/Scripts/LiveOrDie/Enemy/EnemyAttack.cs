@@ -10,6 +10,8 @@ public class EnemyAttack : MonoBehaviour
     private bool canAttack = true;
     private Enemy enemy;
 
+    public Animator myAnim;
+
     void OnEnable()
     {
         // Assuming player tags are "Player1" and "Player2"
@@ -17,6 +19,8 @@ public class EnemyAttack : MonoBehaviour
         player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
         canAttack = true;
         enemy = GetComponent<Enemy>();
+        myAnim = GetComponent<Animator>();
+        myAnim.Play("move_animation");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -37,6 +41,8 @@ public class EnemyAttack : MonoBehaviour
             AudioMgr.Instance.PlayAudio("beingCHEWED",false);
 
             currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(enemy.damage);
+            
+            myAnim.Play("attack_animation");
             canAttack = false;
             if(this.gameObject.activeSelf) StartCoroutine(AttackCoolDownCoroutine());
         }
