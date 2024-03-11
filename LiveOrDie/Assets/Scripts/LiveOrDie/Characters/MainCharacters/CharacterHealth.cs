@@ -17,20 +17,18 @@ public class CharacterHealth : MonoBehaviour
     private bool sensitiveState; // if true, damaages x 2
     public void setSensitiveState(bool state){ sensitiveState = state; }
     public void SelfDestruct() { Destroy(gameObject);}
-
-    // NEED TO FIX THE FOLLOWING 2 FUNCTIONS
     public void DecreaseHealth(int amount){
         if(sensitiveState) amount *= 2;
-        playerModel.characterHealth.AddModifier("DecrementHealth", (playerModel.characterHealth - amount));
-        healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
+        playerModel.healthModifier.value -= amount;
+        playerModel.characterHealth.AddModifier("Health", playerModel.healthModifier);
+        healthbar.fillAmount = playerModel.characterHealth.Value / playerModel.maxHealth.Value; 
     }
     public void IncreaseHealth(int amount){
-        if(playerModel.characterHealth.Value + amount > playerModel.maxHealth.Value) {
-            playerModel.characterHealth.AddModifier("RegenerateHealth", (playerModel.maxHealth));
-        }
-        else {
-            playerModel.characterHealth.AddModifier("RegenerateHealth", (playerModel.characterHealth + amount));
-        }
+        if(playerModel.characterHealth.Value + amount > playerModel.maxHealth.Value)
+            playerModel.healthModifier.value = playerModel.maxHealth.Value;
+        else 
+            playerModel.healthModifier.value += amount;
+        playerModel.characterHealth.AddModifier("Health",playerModel.healthModifier);
         healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
     }
     void OnEnable(){
