@@ -46,23 +46,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponDamage:
     baseValue: 0
+    minValue: 0
     maxValue: 0
     _value: 0
   weaponRate:
     baseValue: 0
+    minValue: 0
     maxValue: 0
     _value: 0
   weaponLevel: 1
-  weaponName: Fireball
-  weaponDescription: A fireball that fires to the left and right
+  weaponName: 
+  weaponDescription: 
   weaponIcon: {fileID: -1367895933, guid: a841e7d2067877a4f8bc15b8e627d746, type: 3}
   autoAttackOn: 0
   cooldownTimeLeft: 0
   projectileSpeed:
     baseValue: 0
+    minValue: 0
     maxValue: 0
     _value: 0
   projectileRange:
     baseValue: 0
+    minValue: 0
     maxValue: 0
     _value: 0
