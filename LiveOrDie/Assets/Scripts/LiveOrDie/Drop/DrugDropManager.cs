@@ -13,7 +13,7 @@ public class DrugDropManager : MonoBehaviour
     [HideInInspector]
     public int numSpawn, maxSpawn; // counter | max # to spawn
     [HideInInspector]
-    public float effectTime， targetTime; // time left before wearoff & random Time to spawn
+    public float effectTime, targetTime; // time left before wearoff & random Time to spawn
     private bool drugged; // whether under drug effect
     private enum RANDOM_EFFECTS{
         HEALTH_DROP_STATE, // Drop health by 1/2 its current
@@ -69,36 +69,32 @@ public class DrugDropManager : MonoBehaviour
                 case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Half Health");
                     EventMgr.Instance.EventTrigger("TimeText", 5f);
-                    players.ForEach(p => p.EnforceHealthEffect("drop"));
+                    players.ForEach(p => p.EnforcePlayerEffect("drop health"));
                     break;
                 case (int)RANDOM_EFFECTS.HEALTH_BOOST_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Health Boost");
                     EventMgr.Instance.EventTrigger("TimeText", 5f);
-                    players.ForEach(p => p.EnforceHealthEffect("boost"));
+                    players.ForEach(p => p.EnforcePlayerEffect("boost health"));
                     break;
                 case (int)RANDOM_EFFECTS.SPEEDY_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Speed Boost");
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
-                    players.ForEach(p => p.EnforceSpeedEffect("boost"));
+                    players.ForEach(p => p.EnforcePlayerEffect("boost speed"));
                     break;
                 case (int)RANDOM_EFFECTS.SLUG_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Slug Speed");
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
-                    players.ForEach(p => p.EnforceSpeedEffect("drop"));
+                    players.ForEach(p => p.EnforcePlayerEffect("drop speed"));
                     break;
                 case (int)RANDOM_EFFECTS.DRUNK_STATE:
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
                     EventMgr.Instance.EventTrigger("DrugText", "Drunk Mode");
-                    players.ForEach(p => 
-                    {
-                        p.EnforceDrunkEffect(true);
-                        p.EnforceSpeedEffect("berzerkers");
-                    });
+                    players.ForEach(p =>  p.EnforcePlayerEffect("drunk") );
                     break;
                 case (int)RANDOM_EFFECTS.SENSITIVE_STATE:
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
                     EventMgr.Instance.EventTrigger("DrugText", "Double Damage");
-                    players.ForEach(p => p.EnforceSensitiveState(true));
+                    players.ForEach(p => p.EnforcePlayerEffect("sensitive"));
                     break;
                 case (int)RANDOM_EFFECTS.MAGIC_MUSHROOM_STATE:
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
