@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 339101002198893625}
   - component: {fileID: 6748121812138713036}
   - component: {fileID: 7817382520834709237}
-  - component: {fileID: -8955458670246078258}
   - component: {fileID: 4179966737288167083}
+  - component: {fileID: 7930538642759158768}
   m_Layer: 0
-  m_Name: Drug
+  m_Name: Talisman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayerID: -1162308513
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1489844369, guid: c170129905d5747a8a4fcf1bb7979170, type: 3}
+  m_Sprite: {fileID: 891867219, guid: 32f2fbea9ae2141eb9c2443ef18ac215, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,18 +122,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8955458670246078258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4567130197500238019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c63f595ab71db4ea48dc9800744f8261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &4179966737288167083
 Animator:
   serializedVersion: 5
@@ -144,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 4567130197500238019}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f8387587e73fc4ee280e7187b82139ac, type: 2}
+  m_Controller: {fileID: 9100000, guid: a902c28c826384ca3af76d7e8eca41d4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -155,3 +143,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7930538642759158768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4567130197500238019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d1f5bdca8384e739daf7639cb831f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

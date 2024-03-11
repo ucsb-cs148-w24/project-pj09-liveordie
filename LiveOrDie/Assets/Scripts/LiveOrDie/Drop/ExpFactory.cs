@@ -7,11 +7,11 @@ public class ExpFactory : IFactory
 {
     public void CreateAsync(Vector3 position, UnityAction<GameObject> AfterPoolCallBack)
     {
-        PoolMgr.Instance.GetObjAsync("Prefabs/Exp", (wolf) =>
+        PoolMgr.Instance.GetObjAsync("Prefabs/Exp", (exp) =>
         {
-            wolf.transform.position = position;
-            wolf.transform.rotation = Quaternion.identity;
-            AfterPoolCallBack(wolf);
+            exp.transform.position = position;
+            exp.transform.rotation = Quaternion.identity;
+            AfterPoolCallBack(exp);
         });
     }
 }

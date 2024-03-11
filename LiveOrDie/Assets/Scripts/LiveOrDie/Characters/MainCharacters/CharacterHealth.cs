@@ -1,35 +1,34 @@
 using UnityEngine;
 using UnityEngine.UI; 
+using System.Collections.Generic;
 
 public class CharacterHealth : MonoBehaviour
 {
+    // public/hidden variables
     [HideInInspector]
     public Image healthbar;
-
     [HideInInspector]
     public Player playerModel;
-    private Color healthy = new Color(0.6f, 1, 0.6f, 1);
     [HideInInspector]
     public Transform playerPosition;
 
+    // private variables
+    private Color healthy = new Color(0.6f, 1, 0.6f, 1);
     private bool sensitiveState; // if true, damaages x 2
-    public void setSensitiveState(bool state){
-        sensitiveState = state;
-    }
+    public void setSensitiveState(bool state){ sensitiveState = state; }
     public void SelfDestruct() { Destroy(gameObject);}
-
     public void DecreaseHealth(int amount){
-        if(sensitiveState){
-            amount *= 2;
-        }
-        playerModel.characterHealth -= amount;
-        healthbar.fillAmount = playerModel.characterHealth/playerModel.maxHealth; 
+        if(sensitiveState) amount *= 2;
+        playerModel.characterHealth.AddModifier(new StatModifier(StatModifierType.Flat, -amount), -1);
+        healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
     }
-    
     public void IncreaseHealth(int amount){
-        if(playerModel.characterHealth + amount > playerModel.maxHealth) playerModel.characterHealth = playerModel.maxHealth;
-        else playerModel.characterHealth += amount;
-        healthbar.fillAmount = playerModel.characterHealth/playerModel.maxHealth; 
+        if(playerModel.characterHealth.Value + amount > playerModel.maxHealth.Value) 
+            playerModel.characterHealth.statModifiers.Clear();
+        else 
+            playerModel.characterHealth.AddModifier(new StatModifier(StatModifierType.Flat, amount), -1);
+        
+        healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
     }
     void OnEnable(){
         foreach(var image in gameObject.GetComponentsInChildren<Image>())
@@ -48,11 +47,11 @@ public class CharacterHealth : MonoBehaviour
     }
     void Update()
     {
-        if (playerModel.characterHealth <= 0){
+        if (playerModel.characterHealth.Value <= 0){
             EventMgr.Instance.EventTrigger("PlayerDeath");
             EventMgr.Instance.EventTrigger("StartShowing");
         }
-        else if(playerModel.characterHealth > (0.5f*playerModel.maxHealth)) {
+        else if(playerModel.characterHealth.Value > (0.5f*playerModel.maxHealth.Value)) {
             healthbar.color = healthy;
         }
         else { healthbar.color = Color.red;}

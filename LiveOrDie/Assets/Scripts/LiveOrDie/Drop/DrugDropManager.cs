@@ -7,11 +7,14 @@ using System;
 public class DrugDropManager : MonoBehaviour
 {
     private DrugFactory drugFactory; 
+    private TalismanFactory talismanFactory;
     private List<Player> players; // list referencing players so we can directly give it "effects"
-    public int numDrugs, maxDrugs; // counter | max # to spawn
-    private float targetTime; // startDelay | random Time to spawn
+    
+    [HideInInspector]
+    public int numSpawn, maxSpawn; // counter | max # to spawn
+    [HideInInspector]
+    public float effectTime， targetTime; // time left before wearoff & random Time to spawn
     private bool drugged; // whether under drug effect
-    public float effectTime; // amount of time left until drug wears off
     private enum RANDOM_EFFECTS{
         HEALTH_DROP_STATE, // Drop health by 1/2 its current
         HEALTH_BOOST_STATE, // Increase health by 1.5 OR to full health
@@ -19,21 +22,17 @@ public class DrugDropManager : MonoBehaviour
         SPEEDY_STATE, // speed increases by 2x
         DRUNK_STATE, // Keyboard input: WASD --> SDWA & UDLR --> DLRU
         SENSITIVE_STATE, // 10 seconds, hitting obstacles cause players to take damage
-
-        ////////////////////////////// ANYTHING BELOW HAS YET TO BE IMPLEMENTED
-        MAGIC_MUSHROOM_STATE, // Any player attack will hurt their peer Player
-        BOOST_STATE, // attack power 2x
-        WEAK_STATE, // attack power halves
-        WITHDRAWAL_STATE, // crazy man, loose control of keyboard control
+        MAGIC_MUSHROOM_STATE, // Attacks lower experience level
     }
-
     private void Start()
     {
         drugFactory = new DrugFactory();
-        numDrugs = 0;
-        maxDrugs = 10;
-        targetTime = 5;
-        effectTime = 5f;
+        talismanFactory = new TalismanFactory();
+        numSpawn = 0;
+        maxSpawn = 10;
+        drugged = false;
+        targetTime = 5f;
+        effectTime = UnityEngine.Random.Range(10, 20);
         players = new List<Player>() {
             GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>(),
             GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>()
@@ -44,46 +43,52 @@ public class DrugDropManager : MonoBehaviour
 
     private void Update(){
         targetTime -= Time.deltaTime; // update time for random drug spawn
-        if (targetTime <= 0 && numDrugs < maxDrugs){
+        if (targetTime <= 0 && numSpawn < maxSpawn){
             DropDrug();
             targetTime = UnityEngine.Random.Range(10, 20);
         }
         if(drugged){ // if drugged, update time that it wears off 
             effectTime -= Time.deltaTime;
             if(effectTime <= 0){
-                players.ForEach( p => {
-                    p.ResetCharacteristics();
-                });
+                players.ForEach( p => { 
+                    p.ResetCharacteristics(); 
+                    }
+                );
+                effectTime = UnityEngine.Random.Range(6, 20);
                 drugged = false;
-                effectTime = 5f;
             }
         }
     }
     private void HandlePickedDrug(){
         if(!drugged){
             drugged = true;
-            numDrugs--;
+            numSpawn--;
             // Enforce random effect on Drugged Player --> Range [0-6] for now, but will expand
             int effect = UnityEngine.Random.Range(0, 6); 
             switch(effect){
                 case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
-                    EventMgr.Instance.EventTrigger("DrugText", "DOOM! Health Halved!");
+                    EventMgr.Instance.EventTrigger("DrugText", "Half Health");
+                    EventMgr.Instance.EventTrigger("TimeText", 5f);
                     players.ForEach(p => p.EnforceHealthEffect("drop"));
                     break;
                 case (int)RANDOM_EFFECTS.HEALTH_BOOST_STATE:
-                    EventMgr.Instance.EventTrigger("DrugText", "ENHANCE! Health Boost!");
+                    EventMgr.Instance.EventTrigger("DrugText", "Health Boost");
+                    EventMgr.Instance.EventTrigger("TimeText", 5f);
                     players.ForEach(p => p.EnforceHealthEffect("boost"));
                     break;
                 case (int)RANDOM_EFFECTS.SPEEDY_STATE:
-                    EventMgr.Instance.EventTrigger("DrugText", "ENHANCE! Speed Boost!");
+                    EventMgr.Instance.EventTrigger("DrugText", "Speed Boost");
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
                     players.ForEach(p => p.EnforceSpeedEffect("boost"));
                     break;
                 case (int)RANDOM_EFFECTS.SLUG_STATE:
-                    EventMgr.Instance.EventTrigger("DrugText", "You're a slug");
+                    EventMgr.Instance.EventTrigger("DrugText", "Slug Speed");
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
                     players.ForEach(p => p.EnforceSpeedEffect("drop"));
                     break;
                 case (int)RANDOM_EFFECTS.DRUNK_STATE:
-                    EventMgr.Instance.EventTrigger("DrugText", "Your a drunkard");
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
+                    EventMgr.Instance.EventTrigger("DrugText", "Drunk Mode");
                     players.ForEach(p => 
                     {
                         p.EnforceDrunkEffect(true);
@@ -91,27 +96,47 @@ public class DrugDropManager : MonoBehaviour
                     });
                     break;
                 case (int)RANDOM_EFFECTS.SENSITIVE_STATE:
-                    EventMgr.Instance.EventTrigger("DrugText", "You're sensitive");
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
+                    EventMgr.Instance.EventTrigger("DrugText", "Double Damage");
                     players.ForEach(p => p.EnforceSensitiveState(true));
                     break;
-                default:
+                case (int)RANDOM_EFFECTS.MAGIC_MUSHROOM_STATE:
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
+                    EventMgr.Instance.EventTrigger("DrugText", "Magic Mushroom");
+                    EventMgr.Instance.EventTrigger("MagicMushroom", true);
+                    break;
+                default: // nausea, half screen
                     break;
             }
         }
     }
-
     private void OnDestroy()
     {
         EventMgr.Instance.RemoveEventListener("DrugPicked", HandlePickedDrug);
     }
 
     private void DropDrug(){
-        if(numDrugs < maxDrugs){
-            numDrugs++;
-            drugFactory.CreateAsync(RandomSpawnPosition(), (obj) =>
-            {
-                // do stuff to obj here
-            });
+        if(numSpawn < maxSpawn){
+            numSpawn++;
+            int prefab = UnityEngine.Random.Range(0, 2); // random choose between talisman & drug
+            // TO BE IMPLEMENTED: drugs have > probability of bad effect, opposite with talisman
+            switch (prefab){
+                case 0:
+                    drugFactory.CreateAsync(RandomSpawnPosition(), (obj) =>
+                    {
+                        // do stuff to obj here
+                    });
+                    break;
+                case 1:
+                    talismanFactory.CreateAsync(RandomSpawnPosition(), (obj) =>
+                    {
+                        // do stuff to obj here
+                    });
+                    break;
+                default:
+                    break;
+            }
+            
         }
     } 
     private Vector3 RandomSpawnPosition() {

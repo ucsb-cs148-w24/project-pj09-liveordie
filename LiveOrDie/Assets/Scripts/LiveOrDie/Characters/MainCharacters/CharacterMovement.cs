@@ -22,8 +22,6 @@ public class CharacterMovement : MonoBehaviour
     public int horizontal;
     public int vertical;
     public bool drunkState;
-
-    // List<int> indices = new List<int>{0,1,2,3};
     private List<int> drunkMovements;
 
     public enum E_MoveType
@@ -99,7 +97,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + Time.deltaTime * playerModel.speed * new Vector2(horizontal, vertical).normalized);
+        rb.MovePosition(rb.position + Time.deltaTime * playerModel.speed.Value * new Vector2(horizontal, vertical).normalized);
     }
 
     private void OnDestroy()
