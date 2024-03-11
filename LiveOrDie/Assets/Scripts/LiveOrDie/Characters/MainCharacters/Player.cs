@@ -9,14 +9,9 @@ public class Player : MonoBehaviour
 
     //stats fields stored in CharacterStat
     [HideInInspector]
-    public CharacterStat speed;
+    public CharacterStat speed, maxRadius, characterHealth, maxHealth;
     [HideInInspector]
-    public CharacterStat maxRadius;
-    [HideInInspector]
-    public CharacterStat characterHealth; // maybe not needed
-    [HideInInspector]
-    public CharacterStat maxHealth;
-    
+    public StatModifier speedModifier, radiusModifier, healthModifier, maxHealthModifier;
     //some other possible stats
     //cooldown
     //pickRange
@@ -37,30 +32,38 @@ public class Player : MonoBehaviour
     public void EnforceSensitiveState(bool enforce){ healthbar.setSensitiveState(enforce); }
     public void EnforceDrunkEffect(bool enforce) {  movement.ChangeDrunkState(enforce); }
     public void EnforceHealthEffect(string type) { 
-        if(type == "drop") healthbar.DecreaseHealth((int)characterHealth.Value / 2);
-        else if(type == "boost") healthbar.IncreaseHealth((int)maxHealth.Value);
-        else Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");
+        if(type == "drop") {healthModifier.value /= 2.0f; characterHealth.AddModifier("Health",healthModifier);}
+        else if(type == "boost") {healthModifier.value = maxHealth.Value; characterHealth.AddModifier("Health",healthModifier);}
+        else{ Debug.Log("Wrong use of Event Listener for EnforceHealthEffect()");}
     }
     public void EnforceSpeedEffect(string type) { 
-        if(type == "drop") speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value/2f), -1);
-        else if(type == "boost")speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value*1.5f), -1);
-        else if(type == "berzerkers") speed.AddModifier(new StatModifier(StatModifierType.Flat, speed.Value*15f), -1);
+        if(type == "drop") {speedModifier.value /= 2.0f; speed.AddModifier("Speed",speedModifier);}
+        else if(type == "boost") {speedModifier.value *= 1.5f; speed.AddModifier("Speed",speedModifier);}
+        else if(type == "berzerkers") {speedModifier.value *= 15.0f; speed.AddModifier("Speed",speedModifier);}
         else Debug.Log("Wrong use of Event Listener for EnforceSpeedEffect()");
     }
 
     // setter functions
     private void KillPlayer() {isDead = true;}
     public void ResetCharacteristics(){
-        speed.statModifiers.Clear();
+        speedModifier.value = speed.baseValue;
+        speed.AddModifier("Speed", speedModifier);
+
         movement.ChangeDrunkState(false);
         healthbar.setSensitiveState(false);
         EventMgr.Instance.EventTrigger("MagicMushroom", false); // reset
     }
     protected void OnEnable(){
-        speed = new CharacterStat(3f);
-        maxRadius = new CharacterStat(5f);
-        characterHealth = new CharacterStat(50f);
-        maxHealth = new CharacterStat(50f);
+        speed = new CharacterStat(baseValue: 3.0f, minValue: 1.0f);
+        maxRadius = new CharacterStat(baseValue: 5.0f, minValue: 0.0f);
+        characterHealth = new CharacterStat(baseValue: 50f, minValue: 0.0f);
+        maxHealth = new CharacterStat(baseValue: 50f, minValue: 0.0f);
+        
+        speedModifier = new StatModifier(StatModifierType.Flat, speed.baseValue, StatModifierOrder.TemporaryModifier);
+        maxRadius = new StatModifier(StatModifierType.Flat, maxRadius.baseValue, StatModifierOrder.PermanentModifier);
+        characterHealth = new StatModifier(StatModifierType.Flat, characterHealth.baseValue, StatModifierOrder.PermanentModifier);
+        maxHealth = new StatModifier(StatModifierType.Flat, maxHealth.baseValue, StatModifierOrder.BaseModifier);
+
         isDead = false;
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
             rb = gameObject.AddComponent<Rigidbody2D>();

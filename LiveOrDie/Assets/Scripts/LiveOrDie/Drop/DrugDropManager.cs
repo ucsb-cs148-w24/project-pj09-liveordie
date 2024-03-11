@@ -13,7 +13,7 @@ public class DrugDropManager : MonoBehaviour
     [HideInInspector]
     public int numSpawn, maxSpawn; // counter | max # to spawn
     [HideInInspector]
-    public float effectTime， targetTime; // time left before wearoff & random Time to spawn
+    public float effectTime, targetTime; // time left before wearoff & random Time to spawn
     private bool drugged; // whether under drug effect
     private enum RANDOM_EFFECTS{
         HEALTH_DROP_STATE, // Drop health by 1/2 its current

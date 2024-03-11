@@ -36,6 +36,7 @@ public class CharacterStat
         statModifiers = new Dictionary<string, StatModifier>();
     }
 
+    // adds/updates modification type based on string key
     public void AddModifier(string name, StatModifier modifier)
     {
         isDirty = true;
@@ -46,12 +47,14 @@ public class CharacterStat
         }
     }
 
+    // removes modification type key
     public void RemoveModifier(string name)
     {
         isDirty = true;
         statModifiers.Remove(name);
     }
 
+    // base Value state kept, modifiers all cleared
     public void ClearModifiers()
     {
         isDirty = true;
