@@ -6,6 +6,7 @@ public abstract class Weapon : MonoBehaviour
     public CharacterStat weaponDamage;
     public CharacterStat weaponRate;
     public int weaponLevel;
+    protected StatModifier damageLevelModifier, rateLevelModifier;
 
     public string weaponName;
     [TextArea] public string weaponDescription;
