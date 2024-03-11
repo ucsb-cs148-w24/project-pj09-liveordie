@@ -89,7 +89,7 @@ public class DrugDropManager : MonoBehaviour
                 case (int)RANDOM_EFFECTS.DRUNK_STATE:
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
                     EventMgr.Instance.EventTrigger("DrugText", "Drunk Mode");
-                    players.ForEach(p =>  p.EnforcePlayerEffect("berzerkers") );
+                    players.ForEach(p =>  p.EnforcePlayerEffect("drunk") );
                     break;
                 case (int)RANDOM_EFFECTS.SENSITIVE_STATE:
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
