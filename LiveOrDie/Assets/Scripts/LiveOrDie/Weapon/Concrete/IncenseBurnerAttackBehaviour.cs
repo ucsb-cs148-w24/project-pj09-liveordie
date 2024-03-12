@@ -53,8 +53,11 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
             if(collider.CompareTag("Enemy")) {
                 collider.GetComponent<Enemy>().TakeDamage((int)damage);
             }
-            if(collider.CompareTag("Player1") || collider.CompareTag("Player2")) {
-                collider.GetComponentInChildren<CharacterHealth>().IncreaseHealth((int)damage);
+            if(collider.CompareTag("Player1") || collider.CompareTag("Player2"))
+            {
+                CharacterHealth health = collider.GetComponentInChildren<CharacterHealth>();
+                health.IncreaseHealth((int)damage);
+                health.RefreshHealthUI();
             }
         }
     }

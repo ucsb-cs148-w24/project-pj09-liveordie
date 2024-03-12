@@ -7,13 +7,11 @@ using Random = UnityEngine.Random;
 public enum E_LevelUpChoice
 {
     //character levelUps
-    Evasion,
-    Vitality,
-    Uninhibited,
-    Regeneration,
+    Evasion, Vitality, Uninhibited, Regeneration,
     //fireball levelUps
-    Scorch,
-    RapidFire,
+    Scorch, RapidFire,
+    //incense burner levelUps
+    StrongIncense, Faith, Smolder, RapidCombustion, Preach,
 
 }
 

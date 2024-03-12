@@ -44,7 +44,7 @@ public class Fireball : RangedWeapon
                     LevelUp(E_LevelUpChoice.Scorch);
                 }),
             new ("Rapid Fire",
-                "Reduce Fireball cool down -10%",
+                "Reduce Fireball cooldown -10%",
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.RapidFire);
@@ -53,7 +53,7 @@ public class Fireball : RangedWeapon
         };
         
         
-        EventMgr.Instance.EventTrigger("UnlockFireballLevelUpChoices", levelUpChoices); //add available levelup choices to mananger
+        EventMgr.Instance.EventTrigger("UnlockFireballLevelUpChoices", levelUpChoices); //add available levelup choices to manager
     }
     
 
