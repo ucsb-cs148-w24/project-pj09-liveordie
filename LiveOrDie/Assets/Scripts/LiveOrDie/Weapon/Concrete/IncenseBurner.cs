@@ -43,11 +43,11 @@ public class IncenseBurner : StaticWeapon
                 {
                     LevelUp(E_LevelUpChoice.StrongIncense);
                 }),
-            new ("Faith",
+            new ("Piety",
                 "Increase Incense Burner Range +20%",
                 ()=>
                 {
-                    LevelUp(E_LevelUpChoice.Faith);
+                    LevelUp(E_LevelUpChoice.Piety);
                 }),
             new ("Smolder",
                 "Increase Incense Burner duration +30%",
@@ -56,13 +56,13 @@ public class IncenseBurner : StaticWeapon
                     LevelUp(E_LevelUpChoice.Smolder);
                 }),
             new ("Rapid Combustion",
-                "Increase Incense Burner Attack cooldown -10%",
+                "Reduce Incense Burner Attack cooldown -10%",
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.RapidCombustion);
                 }),
             new ("Preach",
-                "Increase Incense Burner Place cooldown -20%",
+                "Reduce Incense Burner Place cooldown -20%",
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.Preach);
@@ -103,7 +103,7 @@ public class IncenseBurner : StaticWeapon
                 damageLevelModifier.value += 2f;
                 weaponDamage.AddModifier("LevelUp", damageLevelModifier);
                 break;
-            case E_LevelUpChoice.Faith:
+            case E_LevelUpChoice.Piety:
                 rangeLevelModifier.value *= 1.2f;
                 staticRange.AddModifier("LevelUp", rangeLevelModifier);
                 break;

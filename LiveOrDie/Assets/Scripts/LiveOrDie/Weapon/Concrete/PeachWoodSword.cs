@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PeachWoodSword : MeleeWeapon
@@ -18,7 +19,7 @@ public class PeachWoodSword : MeleeWeapon
 
         damageLevelModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
         rateLevelModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
-        rangeLevelModifier = new StatModifier(StatModifierType.PercentAdd, 0f, StatModifierOrder.BaseModifier);
+        rangeLevelModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
 
         weaponLevel = 1;
 
@@ -30,14 +31,29 @@ public class PeachWoodSword : MeleeWeapon
         player1Transform = player1.transform;
         player2Transform = player2.transform;
 
-        EventMgr.Instance.EventTrigger("UnlockPeachWoodSwordLevelUpChoices"); //add available levelup choices
-        // for testing purposes
-        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
-    }
+        List<LevelUpChoice> levelUpChoices = new List<LevelUpChoice>()
+        {
+            new ("Exorcism",
+                "Increase Peach Wood Sword damage +2",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.Exorcism);
+                }),
+            new ("Rapid Cleave",
+                "Reduce Peach Wood Sword cooldown -30%",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.RapidCleave);
+                }),
+            new ("Phantom",
+                "Increase Peach Wood Sword range +20%",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.Phantom);
+                }),
+        };
+        EventMgr.Instance.EventTrigger("UnlockPeachWoodSwordLevelUpChoices", levelUpChoices); //add available levelup choices
 
-    private void OnDestroy()
-    {
-        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     public override void Attack()
@@ -57,13 +73,21 @@ public class PeachWoodSword : MeleeWeapon
     public override void LevelUp(E_LevelUpChoice choice)
     {
         weaponLevel += 1;
-        damageLevelModifier.value += 1;
-        rateLevelModifier.value *= 0.95f;
-        rangeLevelModifier.value += 5f;
-
-        weaponDamage.AddModifier("LevelUp", damageLevelModifier);
-        weaponRate.AddModifier("LevelUp", rateLevelModifier);
-        meleeRange.AddModifier("LevelUp", rangeLevelModifier);
+        switch (choice)
+        {
+            case E_LevelUpChoice.Exorcism:
+                damageLevelModifier.value += 2;
+                weaponDamage.AddModifier("LevelUp", damageLevelModifier);
+                break;
+            case E_LevelUpChoice.RapidCleave:
+                rateLevelModifier.value *= 0.7f;
+                weaponRate.AddModifier("LevelUp", rateLevelModifier);
+                break;
+            case E_LevelUpChoice.Phantom:
+                rangeLevelModifier.value *= 1.2f;
+                meleeRange.AddModifier("LevelUp", rangeLevelModifier);
+                break;
+        }
     }
 
     public override string GetWeaponName()

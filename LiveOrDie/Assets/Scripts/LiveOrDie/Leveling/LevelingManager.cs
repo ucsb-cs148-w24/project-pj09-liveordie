@@ -11,7 +11,9 @@ public enum E_LevelUpChoice
     //fireball levelUps
     Scorch, RapidFire,
     //incense burner levelUps
-    StrongIncense, Faith, Smolder, RapidCombustion, Preach,
+    StrongIncense, Piety, Smolder, RapidCombustion, Preach,
+    //peach wood sword levelUps
+    Exorcism, RapidCleave, Phantom
 
 }
 
