@@ -88,6 +88,7 @@ public class PeachWoodSword : MeleeWeapon
                 meleeRange.AddModifier("LevelUp", rangeLevelModifier);
                 break;
         }
+        EventMgr.Instance.EventTrigger("LevelUpWeapon");
     }
 
     public override string GetWeaponName()
