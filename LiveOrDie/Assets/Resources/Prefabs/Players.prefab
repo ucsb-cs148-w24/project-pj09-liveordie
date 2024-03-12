@@ -159,12 +159,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba537fe2c718413eb6d61e37d089b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   maxRadius: 5
   whichCharacter: 1
-  isMovementLocked: 0
   horizontal: 0
   vertical: 0
+  drunkState: 0
 --- !u!50 &9178055712953238706
 Rigidbody2D:
   serializedVersion: 4
@@ -241,6 +240,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whichPlayer: 1
   isDead: 0
+  speed:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  maxRadius:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  characterHealth:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  maxHealth:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  pickupRange:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  healthbar: {fileID: 0}
 --- !u!1 &2196739191031065372
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +332,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
 --- !u!1 &2203837295004628677
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +399,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
 --- !u!1 &2405921495706572136
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,12 +574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba537fe2c718413eb6d61e37d089b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   maxRadius: 5
   whichCharacter: 2
-  isMovementLocked: 1
   horizontal: 0
   vertical: 0
+  drunkState: 0
 --- !u!50 &110896915486969791
 Rigidbody2D:
   serializedVersion: 4
@@ -631,6 +655,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whichPlayer: 2
   isDead: 0
+  speed:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  maxRadius:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  characterHealth:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  maxHealth:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  pickupRange:
+    baseValue: 0
+    minValue: 0
+    maxValue: 0
+    _value: 0
+  healthbar: {fileID: 0}
 --- !u!1001 &5478363310483497585
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public enum E_LevelUpChoice
 {
     //character levelUps
-    Evasion, Vitality, Uninhibited, Regeneration,
+    Evasion, Vitality, Uninhibited, Regeneration,Siphon,
     //fireball levelUps
     Scorch, RapidFire,
     //incense burner levelUps
@@ -77,7 +77,14 @@ public class LevelingManager : MonoBehaviour
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Regeneration);
-                })
+                }),
+            new ("Siphon",
+                "Increase Exp Pickup Range +1",
+                () =>
+                {
+                    EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Siphon);
+                }),
+            
         };
         //add all the initial choices
     }
