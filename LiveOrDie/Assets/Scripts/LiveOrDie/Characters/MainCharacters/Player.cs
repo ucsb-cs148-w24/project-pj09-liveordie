@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     // public functions
     public void EnforcePlayerEffect(string type){
         int amount;
+        Debug.Log(type);
         switch (type){
             case "drop health": // no need for modifier since drug drops health permanantly
                 amount = (int) (characterHealth.Value / 2);
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
                 healthbar.IncreaseHealth(amount);
                 break;
             case "drop speed":
-                speedModifier.value = speed.Value / 2; 
+                speedModifier.value = -(speed.Value / 2); 
                 speed.AddModifier("Drugged Speed",speedModifier);
                 break;
             case "boost speed":
@@ -52,9 +53,13 @@ public class Player : MonoBehaviour
                 healthbar.setSensitiveState(true);
                 break;
             case "drunk":
-                speedModifier.value = speed.Value *15f;
+                speedModifier.value = 10f;
                 speed.AddModifier("Drugged Speed",speedModifier);
                 movement.ChangeDrunkState(true); 
+                break;
+            case "nausea":
+                break;
+            default:
                 break;
         }
     }

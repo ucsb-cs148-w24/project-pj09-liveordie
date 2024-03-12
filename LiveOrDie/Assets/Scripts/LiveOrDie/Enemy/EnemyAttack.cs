@@ -14,7 +14,6 @@ public class EnemyAttack : MonoBehaviour
 
     void OnEnable()
     {
-        // Assuming player tags are "Player1" and "Player2"
         player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
         player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
         canAttack = true;
@@ -25,19 +24,14 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (player1.isDead || player2.isDead) return;
+        if (!player1 || !player2 || player1.isDead || player2.isDead) return;
         if (collision.gameObject.CompareTag("Player1"))
-        {
             currentTarget = player1;
-        }
         else if (collision.gameObject.CompareTag("Player2"))
-        {
             currentTarget = player2;
-        }
 
-        if (currentTarget != null &&  canAttack )
+        if (currentTarget != null && canAttack )
         {
-
             AudioMgr.Instance.PlayAudio("beingCHEWED",false);
 
             currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(enemy.damage);
