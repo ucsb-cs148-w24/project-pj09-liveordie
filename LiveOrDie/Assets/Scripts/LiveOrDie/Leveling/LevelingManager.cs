@@ -22,7 +22,9 @@ public class LevelingManager : MonoBehaviour
     private float expToNextLevel = 10f; 
     private float curExp = 0; //current exp
     private float levelUpMultiplier = 1.5f; //multiplier for each level
+    private float exccessiveExp = 0;
     private int level = 1; //player level
+    private bool isDuringLeveling = false;
 
     private List<LevelUpChoice> levelUpChoiceList;
 
@@ -32,6 +34,7 @@ public class LevelingManager : MonoBehaviour
         expToNextLevel = 0.5f; //for testing, remember to change it ********************************
         curExp = 0;
         level = 1;
+        EventMgr.Instance.AddEventListener("LevelUpChoiceFinished",SwitchOffLevelUpChoiceFinishedFlag);
         EventMgr.Instance.AddEventListener<float>("ExpOrbPicked", IncreaseExp);
         EventMgr.Instance.AddEventListener<List<LevelUpChoice>>("UnlockFireballLevelUpChoices",UnlockNewLevelUpChoices);
         EventMgr.Instance.AddEventListener<List<LevelUpChoice>>("UnlockPeachWoodSwordLevelUpChoices",UnlockNewLevelUpChoices);
@@ -40,6 +43,8 @@ public class LevelingManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        EventMgr.Instance.RemoveEventListener("LevelUpChoiceFinished", SwitchOffLevelUpChoiceFinishedFlag);
+        EventMgr.Instance.RemoveEventListener<float>("ExpOrbPicked", IncreaseExp);
         EventMgr.Instance.RemoveEventListener<List<LevelUpChoice>>("UnlockFireballLevelUpChoices",UnlockNewLevelUpChoices);
         EventMgr.Instance.RemoveEventListener<List<LevelUpChoice>>("UnlockPeachWoodSwordLevelUpChoices",UnlockNewLevelUpChoices);
         EventMgr.Instance.RemoveEventListener<List<LevelUpChoice>>("UnlockIncenseBurnerLevelUpChoices",UnlockNewLevelUpChoices);
@@ -80,9 +85,16 @@ public class LevelingManager : MonoBehaviour
     private void IncreaseExp(float val)
     {
         curExp += val;
-        if (curExp >= expToNextLevel)
+        while (curExp >= expToNextLevel)
         {
-            LevelUp();
+            if (!isDuringLeveling)
+            {
+                exccessiveExp = curExp - expToNextLevel;
+                LevelUp();
+                curExp += exccessiveExp;
+                exccessiveExp = 0;
+            }
+            
         }
         EventMgr.Instance.EventTrigger("ChangeExpBar",  curExp/expToNextLevel);
         EventMgr.Instance.EventTrigger("SendLevel", level); // need to be changed
@@ -90,6 +102,7 @@ public class LevelingManager : MonoBehaviour
 
     private void LevelUp()
     {
+        isDuringLeveling = true;
         curExp = 0;
         expToNextLevel *= levelUpMultiplier; //increase the exp needed for leveling up
         level ++;
@@ -122,4 +135,10 @@ public class LevelingManager : MonoBehaviour
     {
         levelUpChoiceList.AddRange(choices);
     }
+
+    private void SwitchOffLevelUpChoiceFinishedFlag()
+    {
+        isDuringLeveling = false;
+    }
+    
 }
