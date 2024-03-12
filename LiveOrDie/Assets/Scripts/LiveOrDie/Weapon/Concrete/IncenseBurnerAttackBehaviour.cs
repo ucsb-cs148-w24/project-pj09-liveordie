@@ -57,7 +57,6 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
             {
                 CharacterHealth health = collider.GetComponentInChildren<CharacterHealth>();
                 health.IncreaseHealth((int)damage);
-                health.RefreshHealthUI();
             }
         }
     }

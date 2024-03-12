@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public bool isDead;
 
     //stats fields stored in CharacterStat
-    [HideInInspector]
+    // [HideInInspector]
     public CharacterStat speed, maxRadius, characterHealth, maxHealth;
     [HideInInspector]
     public StatModifier speedModifier, radiusModifier, healthModifier, maxHealthModifier;
@@ -73,10 +73,10 @@ public class Player : MonoBehaviour
         characterHealth = new CharacterStat(baseValue: 50f, minValue: 0.0f);
         maxHealth = new CharacterStat(baseValue: 50f, minValue: 0.0f);
         
-        speedModifier = new StatModifier(StatModifierType.Flat, speed.baseValue, StatModifierOrder.TemporaryModifier);
-        radiusModifier = new StatModifier(StatModifierType.Flat, maxRadius.baseValue, StatModifierOrder.BaseModifier);
-        healthModifier = new StatModifier(StatModifierType.Flat, characterHealth.baseValue, StatModifierOrder.BaseModifier);
-        maxHealthModifier = new StatModifier(StatModifierType.Flat, maxHealth.baseValue, StatModifierOrder.BaseModifier);
+        speedModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.TemporaryModifier);
+        radiusModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
+        healthModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
+        maxHealthModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
 
         isDead = false;
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 

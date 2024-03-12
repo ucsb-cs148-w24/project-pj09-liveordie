@@ -17,17 +17,17 @@ public class CharacterHealth : MonoBehaviour
     private bool sensitiveState; // if true, damaages x 2
     public void setSensitiveState(bool state){ sensitiveState = state; }
     public void SelfDestruct() { Destroy(gameObject);}
-    public void DecreaseHealth(int amount){
-        if(sensitiveState) amount *= 2;
-        playerModel.healthModifier.value = -amount;
+    public void DecreaseHealth(float amount){
+        if(sensitiveState) playerModel.healthModifier.value -= amount*2;
+        playerModel.healthModifier.value -= amount;
         playerModel.characterHealth.AddModifier("Health", playerModel.healthModifier);
         healthbar.fillAmount = playerModel.characterHealth.Value / playerModel.maxHealth.Value; 
     }
-    public void IncreaseHealth(int amount){
+    public void IncreaseHealth(float amount){
         if(playerModel.characterHealth.Value + amount > playerModel.maxHealth.Value)
-            playerModel.healthModifier.value = (int) (playerModel.maxHealth.Value - playerModel.characterHealth.Value);
+            playerModel.healthModifier.value = playerModel.maxHealth.Value - playerModel.characterHealth.Value;
         else 
-            playerModel.healthModifier.value = amount;
+            playerModel.healthModifier.value += amount;
         playerModel.characterHealth.AddModifier("Health",playerModel.healthModifier);
         healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
     }
