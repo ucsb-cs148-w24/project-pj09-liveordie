@@ -1,13 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum E_LevelUpChoice
 {
+    //character levelUps
     Evasion,
     Vitality,
     Uninhibited,
     Regeneration,
+    //fireball levelUps
+    Scorch,
+    RapidFire,
 
 }
 
@@ -27,7 +33,16 @@ public class LevelingManager : MonoBehaviour
         curExp = 0;
         level = 1;
         EventMgr.Instance.AddEventListener<float>("ExpOrbPicked", IncreaseExp);
-        EventMgr.Instance.AddEventListener<LevelUpChoice>("UnlockNewLevelUpChoices",UnlockNewLevelUpChoices);
+        EventMgr.Instance.AddEventListener<List<LevelUpChoice>>("UnlockFireballLevelUpChoices",UnlockNewLevelUpChoices);
+        EventMgr.Instance.AddEventListener<List<LevelUpChoice>>("UnlockPeachWoodSwordLevelUpChoices",UnlockNewLevelUpChoices);
+        EventMgr.Instance.AddEventListener<List<LevelUpChoice>>("UnlockIncenseBurnerLevelUpChoices",UnlockNewLevelUpChoices);
+    }
+
+    private void OnDestroy()
+    {
+        EventMgr.Instance.RemoveEventListener<List<LevelUpChoice>>("UnlockFireballLevelUpChoices",UnlockNewLevelUpChoices);
+        EventMgr.Instance.RemoveEventListener<List<LevelUpChoice>>("UnlockPeachWoodSwordLevelUpChoices",UnlockNewLevelUpChoices);
+        EventMgr.Instance.RemoveEventListener<List<LevelUpChoice>>("UnlockIncenseBurnerLevelUpChoices",UnlockNewLevelUpChoices);
     }
 
     private void initLevelUpChoices()
@@ -103,8 +118,8 @@ public class LevelingManager : MonoBehaviour
         return randomChoices;
     }
 
-    private void UnlockNewLevelUpChoices(LevelUpChoice choice)
+    private void UnlockNewLevelUpChoices(List<LevelUpChoice> choices)
     {
-        levelUpChoiceList.Add(choice);
+        levelUpChoiceList.AddRange(choices);
     }
 }

@@ -35,6 +35,7 @@ public class IncenseBurner : StaticWeapon
         player1Transform = player1.transform;
         player2Transform = player2.transform;
 
+        EventMgr.Instance.EventTrigger("UnlockIncenseBurnerLevelUpChoice"); //add available levelup choices
         // for testing purposes
         EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
