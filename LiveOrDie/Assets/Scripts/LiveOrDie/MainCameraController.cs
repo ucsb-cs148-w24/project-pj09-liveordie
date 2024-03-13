@@ -16,10 +16,15 @@ public class MainCameraController : MonoBehaviour
     void Start(){
         isShaking = false;
         EventMgr.Instance.AddEventListener<bool>("Nausea", HandleNausea);
+        if(obj1 && obj2){
+            centerPoint = (obj1.position + obj2.position) / 2f;
+            transform.position = centerPoint;
+        }
     }
     void onDisable(){
         EventMgr.Instance.RemoveEventListener<bool>("Nausea", HandleNausea);
     }
+
     // Update is called once per frame
     void Update()
     {
