@@ -8,12 +8,12 @@ public abstract class Enemy : MonoBehaviour
     public int health {get; set;}
     public int damage {get; set;}
     public GameObject target {get; set;}
+    public Material originalMat;
     public Material highlightMat;
     protected EnemyAttack attack;
     protected PopupIndicatorFactory damageIndicatorFactory = new PopupIndicatorFactory();
     protected SpriteRenderer render;
     protected Coroutine highlightCoroutine;
-    protected Material originalMat;
 
     public abstract void Initialize();
 
@@ -30,7 +30,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void DamageHighlight() 
     {
         if (highlightCoroutine != null) StopCoroutine(highlightCoroutine);
-        highlightCoroutine = StartCoroutine(DamageHighlightCoroutine());
+        if (gameObject.activeSelf) highlightCoroutine = StartCoroutine(DamageHighlightCoroutine());
     }
 
     protected virtual IEnumerator DamageHighlightCoroutine()

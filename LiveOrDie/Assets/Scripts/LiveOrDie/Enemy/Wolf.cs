@@ -15,7 +15,7 @@ public class Wolf : Enemy
         damage = 1;
         SetTarget();
         render = GetComponent<SpriteRenderer>();
-        originalMat = render.material;
+        render.material = originalMat;
         
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();

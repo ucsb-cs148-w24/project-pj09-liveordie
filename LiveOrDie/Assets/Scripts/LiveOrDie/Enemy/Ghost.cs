@@ -15,7 +15,7 @@ public class Ghost : Enemy
         damage = 10;
         SetTarget();
         render = GetComponent<SpriteRenderer>();
-        originalMat = render.material;
+        render.material = originalMat;
         
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();
