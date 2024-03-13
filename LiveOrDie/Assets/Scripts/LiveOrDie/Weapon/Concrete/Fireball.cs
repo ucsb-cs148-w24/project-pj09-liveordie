@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : RangedWeapon
@@ -7,8 +9,8 @@ public class Fireball : RangedWeapon
     private SpriteRenderer p1Sprite, p2Sprite;
     private GameObject player1, player2;
 
-    public static new string weaponName = "Fireball";
-    public static new string weaponDescription = "A fireball that fires to the left and right";
+    public static string weaponName = "Fireball";
+    public static string weaponDescription = "A fireball that fires to the left and right";
     
     public override void Initialize()
     {
@@ -33,14 +35,27 @@ public class Fireball : RangedWeapon
         p1Sprite = player1.GetComponent<SpriteRenderer>();
         p2Sprite = player2.GetComponent<SpriteRenderer>();
 
-        // for testing purposes
-        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
+        List<LevelUpChoice> levelUpChoices = new List<LevelUpChoice>()
+        {
+            new ("Scorch",
+                "Increase Fireball damage +1",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.Scorch);
+                }),
+            new ("Rapid Fire",
+                "Reduce Fireball cooldown -10%",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.RapidFire);
+                })
+            
+        };
+        
+        
+        EventMgr.Instance.EventTrigger("UnlockFireballLevelUpChoices", levelUpChoices); //add available levelup choices to manager
     }
-
-    private void OnDestroy()
-    {
-        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
-    }
+    
 
     public override void Attack()
     {
@@ -74,10 +89,18 @@ public class Fireball : RangedWeapon
     public override void LevelUp(E_LevelUpChoice choice)
     {
         weaponLevel += 1;
-        damageLevelModifier.value += 1f;
-        rateLevelModifier.value *= 0.95f;
-        weaponDamage.AddModifier("LevelUp",damageLevelModifier);
-        weaponRate.AddModifier("LevelUp",rateLevelModifier);
+        switch (choice)
+        {
+            case E_LevelUpChoice.Scorch:
+                damageLevelModifier.value += 1.0f;
+                weaponDamage.AddModifier("LevelUp",damageLevelModifier);
+                break;
+            case E_LevelUpChoice.RapidFire:
+                rateLevelModifier.value *= 0.9f;
+                weaponRate.AddModifier("LevelUp", rateLevelModifier);
+                break;
+        }
+        EventMgr.Instance.EventTrigger("LevelUpWeapon");
     }
 
     public override string GetWeaponName()

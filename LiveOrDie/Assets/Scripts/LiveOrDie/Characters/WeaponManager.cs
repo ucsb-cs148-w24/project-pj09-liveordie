@@ -15,8 +15,6 @@ public class WeaponManager : MonoBehaviour
     private void Awake() 
     {
         weapons = new Dictionary<string, Weapon>();
-
-        EventMgr.Instance.AddEventListener<string>("AddWeapon", AddWeapon);
         EventMgr.Instance.AddEventListener<string>("RemoveWeapon", RemoveWeapon);
         
     }
@@ -28,7 +26,6 @@ public class WeaponManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener<string>("AddWeapon", AddWeapon);
         EventMgr.Instance.RemoveEventListener<string>("RemoveWeapon", RemoveWeapon);
         EventMgr.Instance.RemoveEventListener("LoadingPanelCompleted", initWeaponChoices);
     }
@@ -40,17 +37,17 @@ public class WeaponManager : MonoBehaviour
             new (Fireball.weaponName + " (Recommended)", 
                 Fireball.weaponDescription, 
                 () => {
-                    EventMgr.Instance.EventTrigger("AddWeapon", "Fireball");
+                    AddWeapon("Fireball");
                 }),
             new (PeachWoodSword.weaponName,
                 PeachWoodSword.weaponDescription,
                 () => {
-                    EventMgr.Instance.EventTrigger("AddWeapon", "PeachWoodSword");
+                    AddWeapon("PeachWoodSword");
                 }),
             new (IncenseBurner.weaponName,
                 IncenseBurner.weaponDescription,
                 () => {
-                    EventMgr.Instance.EventTrigger("AddWeapon", "IncenseBurner");
+                    AddWeapon("IncenseBurner");
                 }),
         };
 

@@ -38,11 +38,11 @@ public class WeaponIconItem : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
         weaponIconImage.sprite = weapon.GetWeaponIcon();
         
-        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", UpdateLevelText);
-        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", UpdateDetailsPanel);
+        EventMgr.Instance.AddEventListener("LevelUpWeapon", UpdateLevelText);
+        EventMgr.Instance.AddEventListener("LevelUpWeapon", UpdateDetailsPanel);
 
-        UpdateLevelText(E_LevelUpChoice.IncreaseSpeed);
-        UpdateDetailsPanel(E_LevelUpChoice.IncreaseSpeed);
+        UpdateLevelText();
+        UpdateDetailsPanel();
         UpdateAutoAttackVisual();
     }
 
@@ -56,16 +56,16 @@ public class WeaponIconItem : MonoBehaviour, IPointerClickHandler, IPointerEnter
 
     void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", UpdateLevelText);
-        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", UpdateDetailsPanel);
+        EventMgr.Instance.RemoveEventListener("LevelUpWeapon", UpdateLevelText);
+        EventMgr.Instance.RemoveEventListener("LevelUpWeapon", UpdateDetailsPanel);
     }
 
-    private void UpdateLevelText(E_LevelUpChoice choice)
+    private void UpdateLevelText()
     {
         WeaponIconLevelText.text = weapon.weaponLevel.ToString();
     }
 
-    private void UpdateDetailsPanel(E_LevelUpChoice choice)
+    private void UpdateDetailsPanel()
     {
         WeaponDetailsTitleText.text = weapon.GetWeaponName();
         WeaponDetailsBodyText.text = weapon.GetDetailString();

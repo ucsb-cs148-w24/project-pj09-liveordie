@@ -57,5 +57,6 @@ public class LevelUpPanel : BasePanel
     {
         Time.timeScale = 1;
         EventMgr.Instance.EventTrigger("PausePanelUnLock");
+        EventMgr.Instance.EventTrigger("LevelUpChoiceFinished");
     }
 }
