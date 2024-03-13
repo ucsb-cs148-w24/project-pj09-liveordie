@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class WolfFactory : EnemyFactory
+public class WolfFactory : IFactory
 {
-
-    public override Enemy CreateEnemy(GameObject prefab, Vector3 position) {
-        GameObject wolfInstance = Instantiate(prefab, position, Quaternion.identity);
-        Wolf newWolf = wolfInstance.GetComponent<Wolf>();
-        newWolf.Initialize();
-        return newWolf;
+    public void CreateAsync(Vector3 position, UnityAction<GameObject> AfterPoolCallBack) {
+        PoolMgr.Instance.GetObjAsync("Prefabs/Wolf", (wolf) =>
+        {
+            wolf.transform.position = position;
+            wolf.transform.rotation = Quaternion.identity;
+            AfterPoolCallBack(wolf);
+        });
     }
 }

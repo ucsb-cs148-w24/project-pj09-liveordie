@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,18 +11,18 @@ public class PausePanel : BasePanel
         switch (buttonName)
         {
             case "SettingsButton":
-                // print("Open Settings Panel");
+                AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.ShowPanel<SettingsPanel>("SettingsPanel", E_PanelLayer.Top); //show settings panel
                 break;
             
             case "ResumeButton":
+                AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.HidePanel("PausePanel"); // hide pause panel
                 //return to the game ------------------
                 
                 break;
             
             case "BackToMenuButton":
-                // print("back to menu");
                 UIMgr.Instance.HidePanel("PausePanel");
                 // GoToScene("StartScreenTest"); //load start screen test
                 GoToScene("StartScene"); //load start screen test
@@ -38,6 +39,7 @@ public class PausePanel : BasePanel
 
     public override void Hide()
     {
+        if (UIMgr.Instance.GetPanel<LevelUpPanel>("LevelUpPanel")) return;
         Time.timeScale = 1;
         EventMgr.Instance.EventTrigger("GameResumed"); //**send game paused event 
     }
@@ -46,6 +48,7 @@ public class PausePanel : BasePanel
     private void GoToScene(string sceneName)
     {
         UIMgr.Instance.ShowPanel<LoadingPanel>("LoadingPanel", E_PanelLayer.Top); //show loading panel
+        PoolMgr.Instance.Clear(); //empty the pool to prevent null reference
         
         SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
         {

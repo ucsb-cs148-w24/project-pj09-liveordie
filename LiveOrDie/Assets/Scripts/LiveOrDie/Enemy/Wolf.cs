@@ -7,13 +7,19 @@ public class Wolf : Enemy
     private SpriteRenderer render;
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
+    private int points = 10; // how many points a wolf is worth
+
+    private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
 
     public override void Initialize() {
         health = 10;
         damage = 1;
-        isDead = false;
         SetTarget();
+        
+        //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();
+        enemyHealth.enemy = this; //assign itself to its sub component
+        enemyHealth.Initialize();
     }
 
     void OnEnable()
@@ -21,23 +27,11 @@ public class Wolf : Enemy
         Initialize();
     }
 
-    void OnDisable()
-    {
-        if(gameObject){
-            Destroy(gameObject);
-        }
-    }
-
-    private void Update() {
-        if(isDead && gameObject) {
-            Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other){
-        if (!isDead && other.CompareTag("Bullet")){
-            enemyHealth.DecreaseHealth();
-        }
+    public override void TakeDamage(int damage) {
+        base.TakeDamage(damage);
+        AudioMgr.Instance.PlayAudio("wolfHurt",false);
+        enemyHealth.UpdateHealthBar();
+        CheckDead();
     }
 
     private void SetTarget() {
@@ -49,5 +43,22 @@ public class Wolf : Enemy
         else target = GameObject.FindGameObjectWithTag("Player2");
         if(chooseTarget == 0) render.color = Color.white;
         else render.color = Color.grey;
+    }
+
+    private void CheckDead()
+    {
+        if (health <= 0){
+            AudioMgr.Instance.PlayAudio("wolfDie",false);
+            Die();
+        }
+    }
+    
+
+    protected override void Die()
+    {
+        EventMgr.Instance.EventTrigger("WolfDead"); //trigger event for later usage
+        EventMgr.Instance.EventTrigger("IncrementScore", points);
+        EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
+        PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
     }
 }

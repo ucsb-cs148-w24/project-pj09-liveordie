@@ -21,7 +21,7 @@
     We are going to add more descriptions to our Pull Requests. We will add a video demo-ing our changes to the project and add a test to the code to demonstrate how it works to teammates attempting to make changes in the future.
 
 * a measurement: 
-    How many merge conflicts we get in the next week. 
+    Descriptive pull requests in order to avoid merge conflicts. 
 
 ## Retro Assessment
 
@@ -32,7 +32,8 @@
 ## Experiment/Change
 
 * A brief description of what constitutes your change/experiment
-
+        - We are going to make our pull requests more descriptive with videos demonstrating our changes in order to avoid the amount of merge conflicts we get and allow for easier merges. 
 * A brief assessment of how its results (did it improve things? move the needle at all?)
-
+        - We did improve things, there was less discussion required in order to observe what each member's pull requests constituted and we had less merge conflicts over the course of the week.
 * A decision going forward: keep the change, revert to previous procedure, make a new change? 
+        - We are going to keep this change going forward. It requires slightly more effort from each team member when creating a pull request but will save us from the process of resolving more merge conflicts in the future.

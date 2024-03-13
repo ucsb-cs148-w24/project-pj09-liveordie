@@ -9,10 +9,16 @@
         "GUID:e0cd26848372d4e5c891c569017e11f1",
         "GUID:2bafac87e7f4b9b418d9448d219b01ab",
         "GUID:315d634a9ac6d460a9515f5a56be6311",
-        "GUID:21b0c8d1703a94250bfac916590cea4f"
+        "GUID:21b0c8d1703a94250bfac916590cea4f",
+        "GUID:ad769053a986ed84aa750e9b5bccc2ae"
     ],
     "includePlatforms": [],
-    "excludePlatforms": [],
+    "excludePlatforms": [
+        "macOSStandalone",
+        "WebGL",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [

@@ -15,10 +15,10 @@ using UnityEngine.Events;
 public class AudioMgr : Singleton<AudioMgr>
 {
     private AudioSource BGM = null;
-    private float BGMVolume = 1f;
+    private float BGMVolume = 0.5f;
 
     private GameObject soundCarrier = null;
-    private float audioVolume = 1f;
+    private float audioVolume = 0.2f;
     private List<AudioSource> audioList = new List<AudioSource>();
 
     /// <summary>
@@ -36,7 +36,7 @@ public class AudioMgr : Singleton<AudioMgr>
     {
         for (int i = audioList.Count-1; i >= 0; --i)
         {
-            if (!audioList[i].isPlaying)
+            if (audioList[i] && !audioList[i].isPlaying)
             {
                 Object.Destroy(audioList[i]);
                 audioList.RemoveAt(i);
@@ -162,5 +162,8 @@ public class AudioMgr : Singleton<AudioMgr>
     {
         audioList.Clear();
     }
+
+    public float GetBGMVolume() { return BGMVolume; }
+    public float GetSFXVolume() { return audioVolume; }
 
 }
