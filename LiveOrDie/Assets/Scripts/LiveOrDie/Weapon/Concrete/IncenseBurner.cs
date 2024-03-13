@@ -35,13 +35,48 @@ public class IncenseBurner : StaticWeapon
         player1Transform = player1.transform;
         player2Transform = player2.transform;
 
+        List<LevelUpChoice> levelUpChoices = new List<LevelUpChoice>()
+        {
+            new ("Strong Incense",
+                "Increase Incense Burner damage +2",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.StrongIncense);
+                }),
+            new ("Piety",
+                "Increase Incense Burner Range +20%",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.Piety);
+                }),
+            new ("Smolder",
+                "Increase Incense Burner duration +30%",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.Smolder);
+                }),
+            new ("Rapid Combustion",
+                "Reduce Incense Burner Attack cooldown -10%",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.RapidCombustion);
+                }),
+            new ("Preach",
+                "Reduce Incense Burner Place cooldown -20%",
+                ()=>
+                {
+                    LevelUp(E_LevelUpChoice.Preach);
+                }),
+        };
+
+        EventMgr.Instance.EventTrigger("UnlockIncenseBurnerLevelUpChoices",levelUpChoices); //add available levelup choices
         // for testing purposes
-        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
+        // EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     private void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
+        // EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
     }
 
     public override void Attack()
@@ -62,18 +97,31 @@ public class IncenseBurner : StaticWeapon
     public override void LevelUp(E_LevelUpChoice choice)
     {
         weaponLevel += 1;
-        damageLevelModifier.value += 1f;
-        rateLevelModifier.value *= 0.95f;
-        rangeLevelModifier.value += 0.05f;
-        staticRateLevelModifier.value *= 0.95f;
-        durationLevelModifier.value += 0.05f;
-
-
-        weaponDamage.AddModifier("LevelUp", damageLevelModifier);
-        weaponRate.AddModifier("LevelUp", rateLevelModifier);
-        staticRange.AddModifier("LevelUp", rangeLevelModifier);
-        staticRate.AddModifier("LevelUp", staticRateLevelModifier);
-        staticDuration.AddModifier("LevelUp", durationLevelModifier);
+        switch (choice)
+        {
+            case E_LevelUpChoice.StrongIncense:
+                damageLevelModifier.value += 2f;
+                weaponDamage.AddModifier("LevelUp", damageLevelModifier);
+                break;
+            case E_LevelUpChoice.Piety:
+                rangeLevelModifier.value *= 1.2f;
+                staticRange.AddModifier("LevelUp", rangeLevelModifier);
+                break;
+            case E_LevelUpChoice.Smolder:
+                durationLevelModifier.value *= 1.3f;
+                staticDuration.AddModifier("LevelUp", durationLevelModifier);
+                break;
+            case E_LevelUpChoice.RapidCombustion:
+                staticRateLevelModifier.value *= 0.9f;
+                staticRate.AddModifier("LevelUp", staticRateLevelModifier);
+                break;
+            case E_LevelUpChoice.Preach:
+                rateLevelModifier.value *= 0.8f;
+                weaponRate.AddModifier("LevelUp", rateLevelModifier);
+                break;
+        }
+        
+        EventMgr.Instance.EventTrigger("LevelUpWeapon");
     }
 
     public override string GetWeaponName()

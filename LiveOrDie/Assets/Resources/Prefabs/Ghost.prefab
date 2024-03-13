@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -2631922672947614053}
   - component: {fileID: 6445653746951992915}
   - component: {fileID: -7841026986906903219}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Ghost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &4529436459226364020
@@ -246,7 +246,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3288919942004062365, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4914957828633466052, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_Pivot.x
@@ -334,11 +334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6273140279733702962, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7313707597830188155, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -9105178347222613240, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}

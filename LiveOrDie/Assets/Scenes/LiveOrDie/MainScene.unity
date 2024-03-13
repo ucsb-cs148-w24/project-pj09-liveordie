@@ -1269,6 +1269,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 2372785567083527456, guid: 618ed381331167048a27aa8cbd641b77, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3074054321574307741, guid: 618ed381331167048a27aa8cbd641b77, type: 3}
       propertyPath: characterHealth
       value: 50
