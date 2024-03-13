@@ -8,10 +8,10 @@ public class Player : MonoBehaviour
     public bool isDead;
 
     //stats fields stored in CharacterStat
+    // [HideInInspector]
+    public CharacterStat speed, maxRadius, characterHealth, maxHealth, pickupRange;
     [HideInInspector]
-    public CharacterStat speed, maxRadius, characterHealth, maxHealth;
-    [HideInInspector]
-    public StatModifier speedModifier, radiusModifier, healthModifier, maxHealthModifier;
+    public StatModifier speedModifier, radiusModifier, healthModifier, maxHealthModifier, pickupRangeModifier;
     //some other possible stats
     //cooldown
     //pickRange
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb; // Physics
     private DistanceJoint2D dj; // Physics
     private SpriteRenderer render; // PLAYER SKIN
+    private CircleCollider2D pickupBox;
 
     // REFERENCES
     [HideInInspector]
@@ -31,7 +32,6 @@ public class Player : MonoBehaviour
     // public functions
     public void EnforcePlayerEffect(string type){
         int amount;
-        Debug.Log(type);
         switch (type){
             case "drop health": // no need for modifier since drug drops health permanantly
                 amount = (int) (characterHealth.Value / 2);
@@ -58,11 +58,21 @@ public class Player : MonoBehaviour
                 movement.ChangeDrunkState(true); 
                 break;
             case "nausea":
+                healthbar.setSensitiveState(true);
                 break;
             case "rebirth":
+                // every player property (not including weapons)
+                speed.RemoveModifier("LevelUp");
+                maxRadius.RemoveModifier("LevelUp");
+                characterHealth.RemoveModifier("LevelUp");
+                maxHealth.RemoveModifier("LevelUp");
+                pickupRange.RemoveModifier("LevelUp");
+                healthbar.RefreshHealthUI();
+                movement.RefreshRopeRadius();
+                pickupBox.radius = pickupRange.Value;
                 break;
             default:
-                break;
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
 
@@ -79,44 +89,30 @@ public class Player : MonoBehaviour
         maxRadius = new CharacterStat(baseValue: 5.0f, minValue: 0.0f);
         characterHealth = new CharacterStat(baseValue: 50f, minValue: 0.0f);
         maxHealth = new CharacterStat(baseValue: 50f, minValue: 0.0f);
+        pickupRange = new CharacterStat(1.0f, 1.0f);
         
-        speedModifier = new StatModifier(StatModifierType.Flat, speed.baseValue, StatModifierOrder.TemporaryModifier);
-        radiusModifier = new StatModifier(StatModifierType.Flat, maxRadius.baseValue, StatModifierOrder.BaseModifier);
-        healthModifier = new StatModifier(StatModifierType.Flat, characterHealth.baseValue, StatModifierOrder.BaseModifier);
-        maxHealthModifier = new StatModifier(StatModifierType.Flat, maxHealth.baseValue, StatModifierOrder.BaseModifier);
+        speedModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.TemporaryModifier);
+        radiusModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
+        healthModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
+        maxHealthModifier = new StatModifier(StatModifierType.PercentMult, 100f, StatModifierOrder.BaseModifier);
+        pickupRangeModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
 
         isDead = false;
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
             rb = gameObject.AddComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+        pickupBox = GetComponentInChildren<CircleCollider2D>();
     }
 
     protected void Start() {
-        switch (whichPlayer){
-            case 1: // User 1 finds User 2 (right)
-                peer = GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>();
-                dj = gameObject.AddComponent<DistanceJoint2D>();
-                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
-                dj.distance = maxRadius.Value;
-                dj.maxDistanceOnly = true;
-                break;
-            case 2: // User 2 finds User 1 (left)
-                peer = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>();
-                dj = gameObject.AddComponent<DistanceJoint2D>();
-                dj.connectedBody = peer.GetComponent<Rigidbody2D>();
-                dj.maxDistanceOnly = true;
-                break;
-            default:
-                Debug.LogWarning("Unexpected character type: " + whichPlayer);
-                break;
-        }
         healthbar = gameObject.GetComponentInChildren<CharacterHealth>();
         healthbar.playerPosition = gameObject.transform;
         if (!(movement = gameObject.GetComponent<CharacterMovement>()))
             movement = gameObject.AddComponent<CharacterMovement>();
         
         EventMgr.Instance.AddEventListener("PlayerDeath", KillPlayer);
-        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
+        EventMgr.Instance.AddEventListener<E_LevelUpChoice>("PlayerLevelUp", LevelUp);
     }
 
     void Update()
@@ -127,21 +123,36 @@ public class Player : MonoBehaviour
     }
     public void OnDestroy(){
         EventMgr.Instance.RemoveEventListener("PlayerDeath", KillPlayer);
-        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("LevelUp", LevelUp);
+        EventMgr.Instance.RemoveEventListener<E_LevelUpChoice>("PlayerLevelUp", LevelUp);
     }
 
     private void LevelUp(E_LevelUpChoice choice) //to do 
     {
         switch (choice)
         {
-            case E_LevelUpChoice.IncreaseSpeed:
-                print("speed");
+            case E_LevelUpChoice.Evasion:
+                speedModifier.value *= 1.1f;
+                speed.AddModifier("LevelUp", speedModifier);
                 break;
-            case E_LevelUpChoice.IncreaseMaxHealth:
-                print("health");
+            case E_LevelUpChoice.Vitality:
+                maxHealth.baseValue *= 1.2f;
+                healthbar.RefreshHealthUI();
                 break;
-            case E_LevelUpChoice.IncreaseRopeRadius:
-                print("rope");
+            case E_LevelUpChoice.Uninhibited:
+                radiusModifier.value += 1f;
+                maxRadius.AddModifier("LevelUp", radiusModifier);
+                movement.RefreshRopeRadius();
+                break;
+            case E_LevelUpChoice.Regeneration:
+                maxHealth.baseValue *= 1.05f;
+                characterHealth.baseValue += maxHealth.baseValue / 2;
+                characterHealth.baseValue = Math.Min(characterHealth.baseValue , maxHealth.baseValue);
+                healthbar.RefreshHealthUI();
+                break;
+            case E_LevelUpChoice.Siphon:
+                pickupRangeModifier.value += 1;
+                pickupRange.AddModifier("LevelUp", pickupRangeModifier);
+                pickupBox.radius = pickupRange.Value;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(choice), choice, null);

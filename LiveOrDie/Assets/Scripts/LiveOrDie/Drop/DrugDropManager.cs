@@ -64,8 +64,7 @@ public class DrugDropManager : MonoBehaviour
     private void HandlePickedDrug(){
         if(!drugged){
             drugged = true; numSpawn--;
-            // Enforce random effect on Drugged Player --> Range [0-11]
-            int effect = UnityEngine.Random.Range(0, 11); 
+            int effect = 7; // UnityEngine.Random.Range(0, 11); 
             switch(effect){
                 case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Half Health");
@@ -122,6 +121,8 @@ public class DrugDropManager : MonoBehaviour
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
                     EventMgr.Instance.EventTrigger("DrugText", "You've made a temporary friend!");
                     // EventMgr.Instance.EventTrigger("Enchantment", UnityEngine.Random.Range(0, 2));
+                    break;
+                case(int) RANDOM_EFFECTS.NIGHT_FOG:
                     break;
                 default:
                     break;

@@ -71,12 +71,14 @@ public class CharacterMovement : MonoBehaviour
                 dj.connectedBody = peer.GetComponent<Rigidbody2D>();
                 dj.distance = maxRadius;
                 dj.maxDistanceOnly = true;
+                dj.autoConfigureDistance = false;
                 break;
             case 2: // User 2 finds User 1 (left)
                 peer = GameObject.FindGameObjectWithTag("Player1");
                 dj = gameObject.AddComponent<DistanceJoint2D>();
                 dj.connectedBody = peer.GetComponent<Rigidbody2D>();
                 dj.maxDistanceOnly = true;
+                dj.autoConfigureDistance = false;
                 break;
             default:
                 Debug.LogWarning("Unexpected character type: " + whichCharacter);
@@ -235,4 +237,11 @@ public class CharacterMovement : MonoBehaviour
         }
         return list;
     }
+
+    public void RefreshRopeRadius()
+    {
+        dj.autoConfigureDistance = false;
+        dj.distance = playerModel.maxRadius.Value;
+    }
+    
 }

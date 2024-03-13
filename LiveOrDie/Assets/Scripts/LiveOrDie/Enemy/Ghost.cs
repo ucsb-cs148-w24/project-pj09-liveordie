@@ -28,6 +28,7 @@ public class Ghost : Enemy
     }
 
     public override void TakeDamage(int damage) {
+        AudioMgr.Instance.PlayAudio("ghostHurt",false);
         base.TakeDamage(damage);
         enemyHealth.UpdateHealthBar();
         CheckDead();

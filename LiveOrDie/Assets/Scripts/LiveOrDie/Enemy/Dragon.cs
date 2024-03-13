@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Dragon : Enemy
 {
+    public DragonVomit prefab;
     private SpriteRenderer render;
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
+
+        // subcomponents
+        // enemyHealth = GetComponentInChildren<EnemyHealth>();
+        // enemyHealth.enemy = this; //assign itself to its sub component
+        // enemyHealth.Initialize();
+
     private int points = 500; // how many points a dragon is worth
     public override void Initialize() {
+        vomit = getComponent<DragonVomit>();
         health = 1000;
         damage = 50;
         SetTarget();
