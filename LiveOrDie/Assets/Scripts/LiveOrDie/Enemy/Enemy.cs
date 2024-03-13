@@ -8,8 +8,12 @@ public abstract class Enemy : MonoBehaviour
     public int health {get; set;}
     public int damage {get; set;}
     public GameObject target {get; set;}
+    public Material highlightMat;
     protected EnemyAttack attack;
     protected PopupIndicatorFactory damageIndicatorFactory = new PopupIndicatorFactory();
+    protected SpriteRenderer render;
+    protected Coroutine highlightCoroutine;
+    protected Material originalMat;
 
     public abstract void Initialize();
 
@@ -20,6 +24,21 @@ public abstract class Enemy : MonoBehaviour
             obj.transform.SetParent(transform);
             obj.GetComponentInChildren<PopupIndicator>().Initialize(damage.ToString());
         });
+        DamageHighlight();
+    }
+
+    protected virtual void DamageHighlight() 
+    {
+        if (highlightCoroutine != null) StopCoroutine(highlightCoroutine);
+        highlightCoroutine = StartCoroutine(DamageHighlightCoroutine());
+    }
+
+    protected virtual IEnumerator DamageHighlightCoroutine()
+    {
+        print("damage highlight");
+        render.material = highlightMat;
+        yield return new WaitForSeconds(0.1f);
+        render.material = originalMat;
     }
 
     protected virtual void Die() {}

@@ -93,7 +93,7 @@ public class WeaponIconItem : MonoBehaviour, IPointerClickHandler, IPointerEnter
         if(weapon.autoAttackOn) {
             weaponIconAutoAttackOutline.color = Color.yellow;
         } else {
-            weaponIconAutoAttackOutline.color = Color.gray;
+            weaponIconAutoAttackOutline.color = Color.white;
         }
     }
 
