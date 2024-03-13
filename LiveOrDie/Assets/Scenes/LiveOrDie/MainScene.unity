@@ -972,9 +972,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609ed5fdf89b44b1e8d48a81dc41b5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numDrugs: 0
-  maxDrugs: 0
+  numSpawn: 0
+  maxSpawn: 0
   effectTime: 0
+  targetTime: 0
 --- !u!4 &1927950638
 Transform:
   m_ObjectHideFlags: 0

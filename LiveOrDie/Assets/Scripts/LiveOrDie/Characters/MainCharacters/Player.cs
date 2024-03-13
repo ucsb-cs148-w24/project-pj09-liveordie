@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
                 break;
             case "nausea":
                 break;
+            case "rebirth":
+                break;
             default:
                 break;
         }

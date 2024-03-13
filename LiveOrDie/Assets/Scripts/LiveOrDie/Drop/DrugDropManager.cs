@@ -27,12 +27,7 @@ public class DrugDropManager : MonoBehaviour
         DOPPLE_GANGER, // players becomes enemies
         ENCHANTMENT, // 1 type of enemy prefab can now hurt other enemies
         NAUSEA, // Earthquake! camera is shaking!
-    }
-    private enum TO_IMPLEMENT{
-        HALF_BLINDNESS, // only see half of the screen
-        TOTAL_SOLAR_ECLIPSE, // brightness dims
-        BLUE_MOON, // Wolf attacks are tripled in damage
-        NULLIFY, // Weapons don't do any damage
+        NIGHT_FOG, // gloomy atmosphere, hard to see 
     }
     private void Start()
     {
@@ -43,7 +38,7 @@ public class DrugDropManager : MonoBehaviour
         maxSpawn = 10;
         targetTime = 5f;
         effectTime = UnityEngine.Random.Range(10, 20);
-        players = new List<Player>() {
+        players = new List<Player>(){
             GameObject.FindGameObjectWithTag("Player1").GetComponent<Player>(),
             GameObject.FindGameObjectWithTag("Player2").GetComponent<Player>()
         };
@@ -54,23 +49,23 @@ public class DrugDropManager : MonoBehaviour
         targetTime -= Time.deltaTime; // update time for random drug spawn
         if (targetTime <= 0 && numSpawn < maxSpawn){
             DropDrug();
-            targetTime = UnityEngine.Random.Range(10, 20);
         }
         if(drugged){ // if drugged, update time that it wears off 
             effectTime -= Time.deltaTime;
-            if(effectTime <= 0){
-                players.ForEach( p => p.ResetCharacteristics());
-                EventMgr.Instance.EventTrigger("Nausea", false);
-                effectTime = UnityEngine.Random.Range(5, 10);
-                drugged = false;
-            }
+            if(effectTime <= 0){ Reset();}
         }
+    }
+    private void Reset(){
+        players.ForEach( p => p.ResetCharacteristics());
+        EventMgr.Instance.EventTrigger("Nausea", false);
+        effectTime = UnityEngine.Random.Range(5, 10);
+        drugged = false;
     }
     private void HandlePickedDrug(){
         if(!drugged){
             drugged = true; numSpawn--;
-            // Enforce random effect on Drugged Player --> Range [0-7]
-            int effect = 10; // UnityEngine.Random.Range(0, 6); 
+            // Enforce random effect on Drugged Player --> Range [0-11]
+            int effect = UnityEngine.Random.Range(0, 11); 
             switch(effect){
                 case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Half Health");
@@ -110,21 +105,45 @@ public class DrugDropManager : MonoBehaviour
                     EventMgr.Instance.EventTrigger("MagicMushroom", true);
                     break;
                 case(int)RANDOM_EFFECTS.NAUSEA:
-                    EventMgr.Instance.EventTrigger("Nausea", true);
+                    HandleSceneEnvironmentEffects("nausea");
+                    break;
+                case(int)RANDOM_EFFECTS.REINCARNATION:
                     EventMgr.Instance.EventTrigger("TimeText", effectTime);
-                    EventMgr.Instance.EventTrigger("DrugText", "Earthquake!");
-                    players.ForEach(p => p.EnforcePlayerEffect("nausea"));
+                    EventMgr.Instance.EventTrigger("DrugText", "Back to Level 1");
+                    players.ForEach(p => p.EnforcePlayerEffect("rebirth") );
+                    break;
+                case(int) RANDOM_EFFECTS.DOPPLE_GANGER:
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
+                    EventMgr.Instance.EventTrigger("DrugText", "Frenemies?");
+                    players.ForEach(p => p.EnforcePlayerEffect("doppleganger") );
+                    // EventMgr.Instance.EventTrigger("DoppleGanger");
+                    break;
+                case(int) RANDOM_EFFECTS.ENCHANTMENT:
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
+                    EventMgr.Instance.EventTrigger("DrugText", "You've made a temporary friend!");
+                    // EventMgr.Instance.EventTrigger("Enchantment", UnityEngine.Random.Range(0, 2));
                     break;
                 default:
                     break;
             }
         }
     }
+    private void HandleSceneEnvironmentEffects(string change){
+        switch(change){
+            case "nausea":
+                EventMgr.Instance.EventTrigger("Nausea", true);
+                EventMgr.Instance.EventTrigger("TimeText", effectTime);
+                EventMgr.Instance.EventTrigger("DrugText", "Earthquake!");
+                players.ForEach(p => p.EnforcePlayerEffect("nausea"));
+                break;
+            default:
+                break;
+        }
+    }
     private void OnDestroy()
     {
         EventMgr.Instance.RemoveEventListener("DrugPicked", HandlePickedDrug);
     }
-
     private void DropDrug(){
         if(numSpawn < maxSpawn){
             numSpawn++;
@@ -147,6 +166,7 @@ public class DrugDropManager : MonoBehaviour
             }
             
         }
+        targetTime = UnityEngine.Random.Range(10, 20);
     } 
     private Vector3 RandomSpawnPosition() {
         // get random x and y with min radius 1 and max radius 1.3
