@@ -18,6 +18,7 @@ _____________________________________________________________________________
 
 ## ==KEY NOTES==
  - Cindy absent: sick
+ - Time for Stand Up: 3m 30s
 _____________________________________________________________________________
 
 ## Scribe: Rachel
@@ -25,24 +26,24 @@ _____________________________________________________________________________
 ## ==Scribe Notes==
 
 #### Rachel
-- What did:
-- What to do:
-- What blockers:
+- What did: String position, scoreboard, reviewed PRs
+- What to do: scoreboard
+- What blockers: N/A
 
 #### Jason
-- What did:
-- What to do:
-- What blockers:
+- What did: Improvement to scripts, worked with frank on audio manager
+- What to do: Enemy dropping system
+- What blockers: N/A
 
 #### Frank
-- What did:
-- What to do:
-- What blockers:
+- What did: created Audio Manager & reviewed PRs
+- What to do: Add details audio manager
+- What blockers: Discuss later
 
 #### Baige
-- What did:
-- What to do:
-- What blockers:
+- What did: introduction to game background (small story b4 game), pixel arts for weapons
+- What to do: incorporate weapon images
+- What blockers: N/A
 
 #### Cindy
 - What did: finished scripts for enemy attack
@@ -50,15 +51,14 @@ _____________________________________________________________________________
 - What blockers: N/A
 
 #### Sean
-- What did:
-- What to do:
-- What blockers:
+- What did: Enemy Refactoring, reviewed PRs
+- What to do: spring planning TBD
+- What blockers: N/A
 
 #### Thomas
-- What did:
-- What to do:
-- What blockers:
-
+- What did: updated Ghosts, changed Wolves
+- What to do: Enemy Attacks sprites
+- What blockers: Bullets go through walls? string also does...
 _____________________________________________________________________________
 
 ## ==OTHER STUFF==

@@ -39,8 +39,14 @@ public class DialoguePanel : BasePanel
             if (textComponent.text == lines[index])
             {
                 NextLine();
-                imageIndex += 1;
-                imageUI.sprite = dialogueImages[imageIndex].image;
+                //imageIndex += 1;
+                //imageUI.sprite = dialogueImages[imageIndex].image;
+                if (imageIndex < 9)
+                {
+                    imageIndex += 1;
+                    imageUI.sprite = dialogueImages[imageIndex].image;
+                }
+                
             }
             else
             {
@@ -91,12 +97,18 @@ public class DialoguePanel : BasePanel
         }
     }
 
-    public override void Show(){
-        
+    //private void GoToScene(string sceneName)
+    //{
+    //    UIMgr.Instance.ShowPanel<StartScreenPanel>("StartScreenPanel", E_PanelLayer.Top); 
 
-    }
+    //    SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
+    //    {
+    //        EventMgr.Instance.EventTrigger("ProgressBar", 1f);
 
-    
+    //    });
+    //}
+
+
 }
 
 

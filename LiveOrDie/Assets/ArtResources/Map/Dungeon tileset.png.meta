@@ -4230,10 +4230,10 @@ TextureImporter:
         serializedVersion: 2
         x: 96
         y: 48
-        width: 16
+        width: 8
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 1, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
@@ -4253,12 +4253,12 @@ TextureImporter:
       name: Dungeon tileset_192
       rect:
         serializedVersion: 2
-        x: 128
+        x: 136
         y: 48
-        width: 16
-        height: 32
+        width: 8
+        height: 30
       alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+      pivot: {x: 0, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:

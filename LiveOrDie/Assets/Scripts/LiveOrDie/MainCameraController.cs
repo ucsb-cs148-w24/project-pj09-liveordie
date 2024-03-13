@@ -9,6 +9,14 @@ public class MainCameraController : MonoBehaviour
     private Vector2 centerPoint;
     private Vector2 velocity;
 
+    void Start()
+    {
+        if(obj1 && obj2){
+            centerPoint = (obj1.position + obj2.position) / 2f;
+            transform.position = centerPoint;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -16,9 +24,6 @@ public class MainCameraController : MonoBehaviour
             centerPoint = (obj1.position + obj2.position) / 2f;
             transform.position = Vector2.SmoothDamp(transform.position, centerPoint, ref velocity, smoothTime);
             transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-        }
-        else{
-            Debug.Log("GameOver");
         }
     }
 }
