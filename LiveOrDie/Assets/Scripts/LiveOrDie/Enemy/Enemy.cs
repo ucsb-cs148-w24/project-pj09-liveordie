@@ -35,7 +35,6 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual IEnumerator DamageHighlightCoroutine()
     {
-        print("damage highlight");
         render.material = highlightMat;
         yield return new WaitForSeconds(0.1f);
         render.material = originalMat;
