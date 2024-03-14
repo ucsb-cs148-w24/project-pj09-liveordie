@@ -59,25 +59,51 @@ public class EnemyCloner : MonoBehaviour
     }
 
     private Vector3 GetRandomSpawnPosition() {
-        // get random x and y with min radius 1 and max radius 1.3
-        float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2);
-        float radius = 1.2f;
-        float x = Mathf.Cos(angle) * radius;
-        float y = Mathf.Sin(angle) * radius;
-
-        // convert viewport coordinates to world coordinates
-        Vector3 randomSpawn = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 0));
-        randomSpawn.z = 0;
-
-        // check if the spawn position is walkable
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomSpawn, out hit, 60, 1 << NavMesh.GetAreaFromName("Walkable"));
-        Vector3 spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f) * 0.95f;     // multiply by 0.9 since spawning on the edge of the nav surface doesn't work
-        
+        float x = 0, y = 0;
+        float offset = 5;
+        Vector3 randomSpawn = Vector3.zero;
+        Vector3 spawnPosition = new Vector3(float.PositiveInfinity, float.PositiveInfinity, 0);
         // if SamplePosition fails, try again
-        if(double.IsInfinity(spawnPosition.x) || double.IsInfinity(spawnPosition.y)) {
-            spawnPosition = GetRandomSpawnPosition();
+        while (float.IsInfinity(spawnPosition.x) || float.IsInfinity(spawnPosition.y))
+        {
+            int side = Random.Range(0, 4); //decide with side of the screen to spawn
+            switch (side)
+            {
+                case 0: //left
+                    x = 0;
+                    y = Random.Range(0f, Screen.height);
+                    randomSpawn = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+                    randomSpawn.x -= offset;
+                    break;
+                case 1: //right
+                    x = Screen.width;
+                    y = Random.Range(0f, Screen.height);
+                    randomSpawn = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+                    randomSpawn.x += offset;
+                    break;
+                case 2: //top
+                    y = Screen.height;
+                    x = Random.Range(0f, Screen.width);
+                    randomSpawn = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+                    randomSpawn.y += offset;
+                    break;
+                case 3: //bottom
+                    y = 0;
+                    x = Random.Range(0f, Screen.width);
+                    randomSpawn = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+                    randomSpawn.y -= offset;
+                    break;
+
+            }
+            
+
+            // check if the spawn position is walkable
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomSpawn, out hit, 0.1f, 1 << NavMesh.GetAreaFromName("Walkable"));
+            
+            spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f);
         }
+
         return spawnPosition;
     }
 
