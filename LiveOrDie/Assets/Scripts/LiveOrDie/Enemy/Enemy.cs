@@ -11,6 +11,8 @@ public abstract class Enemy : MonoBehaviour
     protected EnemyAttack attack;
     protected PopupIndicatorFactory damageIndicatorFactory = new PopupIndicatorFactory();
 
+    public string EnemyAttackAudioName;
+
     public abstract void Initialize();
 
     public virtual void TakeDamage(int damage)
