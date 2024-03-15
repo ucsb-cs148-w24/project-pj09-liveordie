@@ -1,5 +1,8 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyCloner : MonoBehaviour
 {
@@ -7,17 +10,59 @@ public class EnemyCloner : MonoBehaviour
     private int enemyCount = 0; //number of current wolves 
     
     private WolfFactory wolfFactory;
-    private Wolf newWolf;
-
     private GhostFactory ghostFactory;
-    private Ghost newGhost;
 
-    int randomizer;
+    public float difficulty; //multiplier
+    public int spawnQuantity; //the number of enemies to be spawned at once
+    public float spawnInterval; //the time between enemies to be spawned
 
-    void Clone()
+    private float gameTime = 0f;
+
+    void Start()
     {
-        randomizer = UnityEngine.Random.Range(1,11);
-        // randomizer = 10;
+        wolfFactory = new WolfFactory();
+        ghostFactory = new GhostFactory();
+
+        difficulty = 1;
+        spawnQuantity = 1;
+        spawnInterval = 5f;
+
+        for (int i = 0; i < 5; i++)
+        {
+            NormalSpawn(); //clone 10 at the beginning
+        }
+        
+        EventMgr.Instance.AddEventListener("EnemyDead", ReduceEnemyCount);
+        StartCoroutine(SpawnEnemyCoroutine());
+    }
+
+    private void Update()
+    {
+        gameTime += Time.deltaTime;
+        // print(gameTime);
+    }
+
+    private void OnDestroy()
+    {
+        EventMgr.Instance.RemoveEventListener("EnemyDead", ReduceEnemyCount);
+        StopCoroutine(SpawnEnemyCoroutine());
+    }
+    
+    private IEnumerator SpawnEnemyCoroutine()
+    {
+        while (true)
+        {
+            // print(GetRandomSpawnPosition());
+            NormalSpawn();
+
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+    
+    void NormalSpawn()
+    {
+        int randomizer = Random.Range(1,11);
         if(randomizer <= 8) {
             wolfFactory.CreateAsync(GetRandomSpawnPosition(), (wolf) =>
             {
@@ -34,38 +79,22 @@ public class EnemyCloner : MonoBehaviour
             });
         }
     }
-    
-    void Start()
+
+    private void GhostFrenzy()
     {
-        wolfFactory = new WolfFactory();
         
-        //***********************Any counting function should be moved into a centralized mgr later***************
-        EventMgr.Instance.AddEventListener("WolfDead", ReduceEnemyCount);
-        EventMgr.Instance.AddEventListener("WolfDead", CheckIfClone);
-
-        ghostFactory = new GhostFactory();
-
-        for (int i = 0; i < 10; i++)
-        {
-            Clone(); //clone 10 at the beginning
-        }
     }
     
-
-    private void OnDestroy()
-    {
-        EventMgr.Instance.RemoveEventListener("WolfDead", ReduceEnemyCount);
-        EventMgr.Instance.RemoveEventListener("WolfDead", CheckIfClone);
-    }
-
+    
     private Vector3 GetRandomSpawnPosition() {
-        float x = 0, y = 0;
-        float offset = 5;
+        float x, y;
+        float offset = 5f;
         Vector3 randomSpawn = Vector3.zero;
-        Vector3 spawnPosition = new Vector3(float.PositiveInfinity, float.PositiveInfinity, 0);
+        Vector3 spawnPosition = Vector3.zero;
+        bool isHit = false;
         // if SamplePosition fails, try again
-        while (float.IsInfinity(spawnPosition.x) || float.IsInfinity(spawnPosition.y))
-        {
+        // while(!isHit)
+        // {
             int side = Random.Range(0, 4); //decide with side of the screen to spawn
             switch (side)
             {
@@ -95,31 +124,25 @@ public class EnemyCloner : MonoBehaviour
                     break;
 
             }
-            
 
             // check if the spawn position is walkable
             NavMeshHit hit;
-            NavMesh.SamplePosition(randomSpawn, out hit, 0.1f, 1 << NavMesh.GetAreaFromName("Walkable"));
+             isHit = NavMesh.SamplePosition(randomSpawn, out hit, 5f, 1 << NavMesh.GetAreaFromName("Walkable"));
             
-            spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f);
-        }
+             if(isHit){spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f);}
+            print(isHit);
+        // }
 
         return spawnPosition;
-    }
 
-    //***********************Any counting function should be moved into a centralized mgr later***************
+    }
+    
     private void ReduceEnemyCount()
     {
         enemyCount--;
     }
-
-    //*******************Any clone rule related functions should be moved into a centralized mgr later***************
-    private void CheckIfClone()
-    {
-        if(enemyCount < enemySize) {  //can add some sort of delay here using Invoke
-            Invoke(nameof(Clone), 5f);
-        }
-    }
+    
+    
     
     
 }

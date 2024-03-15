@@ -56,7 +56,7 @@ public class Ghost : Enemy
 
     protected override void Die()
     {
-        EventMgr.Instance.EventTrigger("GhostDead"); //trigger event for later usage
+        EventMgr.Instance.EventTrigger("EnemyDead"); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
         EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
         PoolMgr.Instance.PushObj("Prefabs/Ghost",this.gameObject); //push gameObject back to pool

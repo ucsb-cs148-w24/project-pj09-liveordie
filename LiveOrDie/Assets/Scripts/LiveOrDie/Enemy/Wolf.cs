@@ -57,7 +57,7 @@ public class Wolf : Enemy
 
     protected override void Die()
     {
-        EventMgr.Instance.EventTrigger("WolfDead"); //trigger event for later usage
+        EventMgr.Instance.EventTrigger("EnemyDead"); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
         EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
         PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
