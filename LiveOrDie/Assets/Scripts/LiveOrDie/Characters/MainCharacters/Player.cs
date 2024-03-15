@@ -59,6 +59,25 @@ public class Player : MonoBehaviour
                 speed.AddModifier("Drugged Speed",speedModifier);
                 movement.ChangeDrunkState(true); 
                 break;
+            case "nausea":
+                healthbar.setSensitiveState(true);
+                break;
+            case "rebirth":
+                // every player property (not including weapons)
+                speed.RemoveModifier("LevelUp");
+                maxRadius.RemoveModifier("LevelUp");
+                characterHealth.RemoveModifier("LevelUp");
+                maxHealth.RemoveModifier("LevelUp");
+                pickupRange.RemoveModifier("LevelUp");
+                healthbar.RefreshHealthUI();
+                movement.RefreshRopeRadius();
+                pickupBox.radius = pickupRange.Value;
+                break;
+            case "goliath":
+                gameObject.transform.localScale *= 2;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
 
@@ -69,6 +88,7 @@ public class Player : MonoBehaviour
         movement.ChangeDrunkState(false); // reset
         healthbar.setSensitiveState(false); // reset
         EventMgr.Instance.EventTrigger("MagicMushroom", false); // reset
+        gameObject.transform.localScale /= 2;
     }
     protected void OnEnable(){
         speed = new CharacterStat(baseValue: 3.0f, minValue: 1.0f);

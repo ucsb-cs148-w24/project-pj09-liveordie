@@ -16,13 +16,18 @@ public class DrugDropManager : MonoBehaviour
     public float effectTime, targetTime; // time left before wearoff & random Time to spawn
     private bool drugged; // whether under drug effect
     private enum RANDOM_EFFECTS{
-        HEALTH_DROP_STATE, // Drop health by 1/2 its current
-        HEALTH_BOOST_STATE, // Increase health by 1.5 OR to full health
-        SLUG_STATE, // speed reduced to 1
-        SPEEDY_STATE, // speed increases by 2x
-        DRUNK_STATE, // Keyboard input: WASD --> SDWA & UDLR --> DLRU
-        SENSITIVE_STATE, // 10 seconds, hitting obstacles cause players to take damage
-        MAGIC_MUSHROOM_STATE, // Attacks lower experience level
+        HEALTH_DROP_STATE, // Halves health
+        HEALTH_BOOST_STATE, // Full health
+        SLUG_STATE, // halfs speed
+        SPEEDY_STATE, // 1.5*speed
+        DRUNK_STATE, // erratic movement
+        SENSITIVE_STATE, // enemy attacks double
+        MAGIC_MUSHROOM_STATE, // player attacks reduce experience level
+        REINCARNATION, // remove all modifiers --> everything resets to level 1 player properties
+        NAUSEA, // Earthquake! camera is shaking!
+        ENGLARGE, // is bigger always better?
+        DOPPLE_GANGER, // players becomes enemies
+        ENCHANTMENT, // 1 type of enemy prefab can now hurt other enemies
     }
     private void Start()
     {
@@ -61,10 +66,8 @@ public class DrugDropManager : MonoBehaviour
     }
     private void HandlePickedDrug(){
         if(!drugged){
-            drugged = true;
-            numSpawn--;
-            // Enforce random effect on Drugged Player --> Range [0-6] for now, but will expand
-            int effect = UnityEngine.Random.Range(0, 6); 
+            drugged = true; numSpawn--;
+            int effect = UnityEngine.Random.Range(0, 9); 
             switch(effect){
                 case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Half Health");
@@ -101,7 +104,20 @@ public class DrugDropManager : MonoBehaviour
                     EventMgr.Instance.EventTrigger("DrugText", "Magic Mushroom");
                     EventMgr.Instance.EventTrigger("MagicMushroom", true);
                     break;
-                default: // nausea, half screen
+                case(int)RANDOM_EFFECTS.NAUSEA:
+                    HandleSceneEnvironmentEffects("nausea");
+                    break;
+                case(int)RANDOM_EFFECTS.REINCARNATION:
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
+                    EventMgr.Instance.EventTrigger("DrugText", "Back to Level 1");
+                    players.ForEach(p => p.EnforcePlayerEffect("rebirth") );
+                    break;
+                case(int) RANDOM_EFFECTS.ENGLARGE:
+                    EventMgr.Instance.EventTrigger("TimeText", effectTime);
+                    EventMgr.Instance.EventTrigger("DrugText", "Is bigger always better?");
+                    players.ForEach(p => p.EnforcePlayerEffect("goliath") );
+                    break;
+                default:
                     break;
             }
         }
