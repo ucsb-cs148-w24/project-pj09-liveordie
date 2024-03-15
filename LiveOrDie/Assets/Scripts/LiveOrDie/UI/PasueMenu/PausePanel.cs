@@ -21,6 +21,11 @@ public class PausePanel : BasePanel
                 //return to the game ------------------
                 
                 break;
+
+            case "TutorialButton":
+                //AudioMgr.Instance.PlayAudio("OnClick", false);
+                UIMgr.Instance.ShowPanel<TutorialPanel>("TutorialPanel", E_PanelLayer.Top); //show settings panel
+                break;
             
             case "BackToMenuButton":
                 UIMgr.Instance.HidePanel("PausePanel");
