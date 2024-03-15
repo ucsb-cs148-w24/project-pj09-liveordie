@@ -6,7 +6,7 @@ public class DragonVomitAttackBehavior : MonoBehaviour
     public CharacterStat attackDamage, attackRate, projectileRange;
     public StatModifier damageModifier, rateModifier;
     private Rigidbody2D vomitRb;
-    private SpriteRenderer dragonSprite;
+    // private SpriteRenderer dragonSprite;
     public bool autoAttackOn;
     public float cooldownTimeLeft;
     private Coroutine autoAttackRoutine;
