@@ -65,7 +65,7 @@ public class DrugDropManager : MonoBehaviour
     private void HandlePickedDrug(){
         if(!drugged){
             drugged = true; numSpawn--;
-            int effect = (int)RANDOM_EFFECTS.NAUSEA; // UnityEngine.Random.Range(0, 11); 
+            int effect = UnityEngine.Random.Range(0, 11); 
             switch(effect){
                 case (int)RANDOM_EFFECTS.HEALTH_DROP_STATE:
                     EventMgr.Instance.EventTrigger("DrugText", "Half Health");
