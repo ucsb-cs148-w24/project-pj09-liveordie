@@ -15,7 +15,7 @@ public class MainSceneAudioController : MonoBehaviour
 
     private void OnDestroy()
     {
-        AudioMgr.Instance.StopBGM();
+        //AudioMgr.Instance.StopBGM();
     }
 
     private void Update(){
