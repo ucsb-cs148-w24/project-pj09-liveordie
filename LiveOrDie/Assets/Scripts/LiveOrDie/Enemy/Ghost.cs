@@ -17,8 +17,12 @@ public class Ghost : Enemy
         health = 5;
         damage = 10;
         SetTarget();
+
+        EnemyAttackAudioName="ghostAttack";
+
         render = GetComponent<SpriteRenderer>();
         render.material = originalMat;
+
         
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();

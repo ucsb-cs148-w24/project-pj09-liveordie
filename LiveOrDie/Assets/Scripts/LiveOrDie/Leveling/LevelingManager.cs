@@ -55,30 +55,35 @@ public class LevelingManager : MonoBehaviour
         {
             new ("Evasion",
                 "Increase Speed + 10%",
+                ResMgr.Instance.Load<Sprite>("Sprites/Icons/speed_icon"),
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Evasion);
                 }),
             new ("Vitality",
                 "Increase Maximum Health +20%",
+                ResMgr.Instance.Load<Sprite>("Sprites/Icons/health_icon"),
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Vitality);
                 }),
             new ("Uninhibited",
                 "Increase Rope Radius +1",
+                ResMgr.Instance.Load<Sprite>("Sprites/Icons/distance_icon"),
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Uninhibited);
                 }),
             new ("Regeneration",
                 "Restore Half of Max Health and Increase Maximum Health +5%",
+                ResMgr.Instance.Load<Sprite>("Sprites/Icons/regeneration_icon"),
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Regeneration);
                 }),
             new ("Siphon",
                 "Increase Exp Pickup Range +1",
+                ResMgr.Instance.Load<Sprite>("Sprites/Icons/soul_icon"),
                 () =>
                 {
                     EventMgr.Instance.EventTrigger("PlayerLevelUp", E_LevelUpChoice.Siphon);

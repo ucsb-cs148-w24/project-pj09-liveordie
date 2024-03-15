@@ -26,6 +26,8 @@ public class PeachWoodSword : MeleeWeapon
 
         autoAttackOn = false;
 
+        weaponIcon = ResMgr.Instance.Load<Sprite>("Sprites/Icons/pws_icon");
+
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");
         player1Transform = player1.transform;
@@ -35,18 +37,21 @@ public class PeachWoodSword : MeleeWeapon
         {
             new ("Exorcism",
                 "Increase Peach Wood Sword damage +2",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.Exorcism);
                 }),
             new ("Rapid Cleave",
                 "Reduce Peach Wood Sword cooldown -30%",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.RapidCleave);
                 }),
             new ("Phantom",
                 "Increase Peach Wood Sword range +20%",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.Phantom);

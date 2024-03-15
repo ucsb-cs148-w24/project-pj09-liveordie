@@ -7,7 +7,7 @@ public class Wolf : Enemy
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
     private int points = 10; // how many points a wolf is worth
-
+    
     private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
     
     [HideInInspector]
@@ -17,8 +17,12 @@ public class Wolf : Enemy
         health = 10;
         damage = 1;
         SetTarget();
+
+        EnemyAttackAudioName = "beingCHEWED"; 
+
         render = GetComponent<SpriteRenderer>();
         render.material = originalMat;
+
         
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();

@@ -8,11 +8,13 @@ public class LevelUpChoice
     private Action triggerAction;
     public string levelUpName;
     public string levelUpDescription;
+    public Sprite levelUpIcon;
 
-    public LevelUpChoice(string name, string description, Action levelUpAction)
+    public LevelUpChoice(string name, string description, Sprite icon, Action levelUpAction)
     {
         levelUpName = name;
         levelUpDescription = description;
+        levelUpIcon = icon;
         triggerAction = levelUpAction;
     }
     

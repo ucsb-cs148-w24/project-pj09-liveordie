@@ -15,6 +15,8 @@ public abstract class Enemy : MonoBehaviour
     protected SpriteRenderer render;
     protected Coroutine highlightCoroutine;
 
+    public string EnemyAttackAudioName;
+
     public abstract void Initialize();
 
     public virtual void TakeDamage(int damage)

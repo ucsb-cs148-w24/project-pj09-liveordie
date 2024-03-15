@@ -43,18 +43,21 @@ public class WeaponManager : MonoBehaviour
         {
             new (Fireball.weaponName + " (Recommended)", 
                 Fireball.weaponDescription, 
+                ResMgr.Instance.Load<Sprite>("Sprites/Icons/fireball_icon"),
                 () => {
                     AddWeapon("Fireball");
                     weaponAvailable.Remove("Fireball");
                 }),
             new (PeachWoodSword.weaponName,
                 PeachWoodSword.weaponDescription,
+                ResMgr.Instance.Load<Sprite>("Sprites/Icons/pws_icon"),
                 () => {
                     AddWeapon("PeachWoodSword");
                     weaponAvailable.Remove("PeachWoodSword");
                 }),
             new (IncenseBurner.weaponName,
                 IncenseBurner.weaponDescription,
+                ResMgr.Instance.Load<Sprite>("Sprites/Icons/incense_burner_icon"),
                 () => {
                     AddWeapon("IncenseBurner");
                     weaponAvailable.Remove("IncenseBurner");
