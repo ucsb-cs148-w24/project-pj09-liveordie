@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class Dragon : Enemy
 {
-    public DragonVomit prefab;
     private SpriteRenderer render;
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
-
-        // subcomponents
-        // enemyHealth = GetComponentInChildren<EnemyHealth>();
-        // enemyHealth.enemy = this; //assign itself to its sub component
-        // enemyHealth.Initialize();
-
+    private GameObject target;
+    private int chooseTarget;
     private int points = 500; // how many points a dragon is worth
     public override void Initialize() {
-        vomit = getComponent<DragonVomit>();
         health = 1000;
-        damage = 50;
+        damage = 500;
         SetTarget();
         
         //subcomponents
@@ -34,7 +28,6 @@ public class Dragon : Enemy
 
     public override void TakeDamage(int damage) {
         base.TakeDamage(damage);
-        AudioMgr.Instance.PlayAudio("wolfHurt",false);
         enemyHealth.UpdateHealthBar();
         CheckDead();
     }
@@ -43,17 +36,28 @@ public class Dragon : Enemy
         render = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        // int chooseTarget = UnityEngine.Random.Range(0, 2);
-        // if (chooseTarget == 0) target = GameObject.FindGameObjectWithTag("Player1");
-        // else target = GameObject.FindGameObjectWithTag("Player2");
-        // if(chooseTarget == 0) render.color = Color.white;
-        // else render.color = Color.grey;
+        int chooseTarget = UnityEngine.Random.Range(0, 2);
+        if (chooseTarget == 0) target = GameObject.FindGameObjectWithTag("Player1");
+        else target = GameObject.FindGameObjectWithTag("Player2");
+        if(chooseTarget == 0) render.color = Color.white;
+        else render.color = Color.grey;
     }
 
+    public void Attack()
+    {
+        if(!this) return;
+        PoolMgr.Instance.GetObjAsync("Prefabs/Vomit", (vomit) => {
+            if(!vomit) return;
+            vomit.transform.position = (gameObject.transform.position);
+            vomit.transform.parent = transform;
+            DragonVomitAttackBehavior dragonVomitAttack = GetComponent<DragonVomitAttackBehavior>();
+            dragonVomitAttack.Initialize();
+            dragonVomitAttack.StartAutoAttack();
+        });
+    }
     private void CheckDead()
     {
         if (health <= 0){
-            // AudioMgr.Instance.PlayAudio("dragonDies",false);
             Die();
         }
     }
@@ -64,6 +68,6 @@ public class Dragon : Enemy
         // EventMgr.Instance.EventTrigger("DragonDead"); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
         EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
-        // PoolMgr.Instance.PushObj("Prefabs/Dragon",this.gameObject); //push gameObject back to pool
+        PoolMgr.Instance.PushObj("Prefabs/Dragon",this.gameObject); //push gameObject back to pool
     }
 }
