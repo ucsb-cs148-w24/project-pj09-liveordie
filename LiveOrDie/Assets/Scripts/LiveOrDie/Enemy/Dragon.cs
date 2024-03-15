@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Dragon : Enemy
 {
-    private SpriteRenderer render;
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
-    private GameObject target;
     private int chooseTarget;
     private int points = 500; // how many points a dragon is worth
     public override void Initialize() {
@@ -33,14 +31,14 @@ public class Dragon : Enemy
     }
 
     private void SetTarget() {
-        render = GetComponent<SpriteRenderer>();
+        // render = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         int chooseTarget = UnityEngine.Random.Range(0, 2);
         if (chooseTarget == 0) target = GameObject.FindGameObjectWithTag("Player1");
         else target = GameObject.FindGameObjectWithTag("Player2");
-        if(chooseTarget == 0) render.color = Color.white;
-        else render.color = Color.grey;
+        // if(chooseTarget == 0) render.color = Color.white;
+        // else render.color = Color.grey;
     }
 
     public void Attack()
