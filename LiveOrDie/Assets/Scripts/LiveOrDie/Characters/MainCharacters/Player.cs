@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
                 healthbar.IncreaseHealth(amount);
                 break;
             case "drop speed":
-                speedModifier.value = speed.Value / 2; 
+                speedModifier.value = -speed.Value / 2; 
                 speed.AddModifier("Drugged Speed",speedModifier);
                 break;
             case "boost speed":
