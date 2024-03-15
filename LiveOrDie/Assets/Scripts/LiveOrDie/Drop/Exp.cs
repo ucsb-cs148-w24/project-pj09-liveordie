@@ -12,6 +12,7 @@ public class Exp : Drop
     protected override void TriggerEffect()
     {
         EventMgr.Instance.EventTrigger("ExpOrbPicked", expValue);
+        AudioMgr.Instance.PlayAudio("OnClick", false);
     }
     
     protected override void DestroySelf()
