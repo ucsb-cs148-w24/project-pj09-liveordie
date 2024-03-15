@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Linq;
 using UnityEngine;
 
 public class Dragon : Enemy
@@ -9,10 +11,13 @@ public class Dragon : Enemy
     private int chooseTarget;
     private int points = 500; // how many points a dragon is worth
     public override void Initialize() {
-        health = 1000;
+        health = 100;
         damage = 500;
         SetTarget();
-        
+
+        render = GetComponentsInChildren<SpriteRenderer>().ToList().Where(p => p.name=="head").FirstOrDefault();
+        render.material = originalMat;
+
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();
         enemyHealth.enemy = this; //assign itself to its sub component
@@ -44,13 +49,13 @@ public class Dragon : Enemy
     public void Attack()
     {
         if(!this) return;
-        PoolMgr.Instance.GetObjAsync("Prefabs/Vomit", (vomit) => {
+        PoolMgr.Instance.GetObjAsync("Prefabs/dragon_fire", (vomit) => {
             if(!vomit) return;
             vomit.transform.position = (gameObject.transform.position);
             vomit.transform.parent = transform;
             DragonVomitAttackBehavior dragonVomitAttack = GetComponent<DragonVomitAttackBehavior>();
             dragonVomitAttack.Initialize();
-            dragonVomitAttack.StartAutoAttack();
+            // dragonVomitAttack.StartAutoAttack();
         });
     }
     private void CheckDead()

@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1043138102988663628, guid: 9bb802783d13bd2419270661e1b7fde6, type: 3}
       propertyPath: m_AnimatedTiles.Array.data[2].second.m_AnimationSpeed
-      value: 10
+      value: 10.000001
       objectReference: {fileID: 0}
     - target: {fileID: 1645674066163395925, guid: 9bb802783d13bd2419270661e1b7fde6, type: 3}
       propertyPath: m_TagString
@@ -5843,7 +5843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85348b253fd0c7c4c99cd9edc1ae7e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 1.5
 --- !u!1 &1053725819
 GameObject:
   m_ObjectHideFlags: 0

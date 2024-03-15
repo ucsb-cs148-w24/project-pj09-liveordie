@@ -16,6 +16,9 @@ public class DragonVomitAttackBehavior : MonoBehaviour
 
     public void Initialize()
     {
+
+        Debug.Log("test");
+
         attackDamage = new CharacterStat(baseValue: 100f, minValue: 0f, maxValue: -1f);
         attackRate = new CharacterStat(baseValue: 1f, minValue: 0.10f, maxValue: -1f);
         damageModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
@@ -33,47 +36,47 @@ public class DragonVomitAttackBehavior : MonoBehaviour
     public void Fire(bool flipX) 
     {
         // dragonSprite.flipX = flipX;
-        // Vector2 direction = new Vector2(flipX ? 1 : -1, 0); 
-        // vomitRb.velocity = direction * attackRate.Value;
-        // StartCoroutine(DestroyAfterTime());
+        Vector2 direction = new Vector2(flipX ? 1 : -1, 0); 
+        vomitRb.velocity = direction * attackRate.Value;
+        StartCoroutine(DestroyAfterTime());
     }
 
     private IEnumerator DestroyAfterTime() {
         yield return new WaitForSeconds(projectileRange.Value/attackRate.Value);
-        // if(gameObject != null) {
-        //     PoolMgr.Instance.PushObj("Prefabs/Weapons/Vomit",this.gameObject);
-        // }
+        if(gameObject != null) {
+            PoolMgr.Instance.PushObj("Prefabs/dragon_fire",this.gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        // if(other.CompareTag("Player1") || other.CompareTag("Player2")) {
-        //     other.GetComponent<Player>().healthbar.DecreaseHealth(attackDamage.Value);
-        //     PoolMgr.Instance.PushObj("Prefabs/Weapons/Vomit",this.gameObject);
-        // }
+        if(other.CompareTag("Player1") || other.CompareTag("Player2")) {
+            other.GetComponent<Player>().healthbar.DecreaseHealth(attackDamage.Value);
+            PoolMgr.Instance.PushObj("Prefabs/dragon_fire",this.gameObject);
+        }
     }
      void OnDisable(){
-        // StopAutoAttack();
+        StopAutoAttack();
     }
     public void StartAutoAttack()
     {
-        // autoAttackOn = true;
-        // autoAttackRoutine = StartCoroutine(AutoAttackRoutine());
+        autoAttackOn = true;
+        autoAttackRoutine = StartCoroutine(AutoAttackRoutine());
     }
 
     protected IEnumerator AutoAttackRoutine()
     {
-        // while(autoAttackOn) {
-        //     for(cooldownTimeLeft = attackRate.Value; cooldownTimeLeft > 0; cooldownTimeLeft -= Time.deltaTime) {
+        while(autoAttackOn) {
+            for(cooldownTimeLeft = attackRate.Value; cooldownTimeLeft > 0; cooldownTimeLeft -= Time.deltaTime) {
                 yield return null;
-        //     }
+            }
         //     Fire(dragonSprite.flipX);
-        // }
+        }
     }
 
     public void StopAutoAttack()
     {
-        // autoAttackOn = false;
-        // StopCoroutine(autoAttackRoutine);
+        autoAttackOn = false;
+        StopCoroutine(autoAttackRoutine);
     }
 
 }

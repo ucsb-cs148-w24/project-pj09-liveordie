@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5270739078915929318}
     m_Modifications:
+    - target: {fileID: -9105178347222613240, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
+      propertyPath: fillBar
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4914957828633466052, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -70,11 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4914957828633466052, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 4914957828633466052, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 5.77
       objectReference: {fileID: 0}
     - target: {fileID: 4914957828633466052, guid: 15e31c3a5c2dd4a05b6045150b8e307e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -452,6 +456,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 5936d6600b715864f8fc42c31854d437, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2967515516675671775}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 5936d6600b715864f8fc42c31854d437, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6254927786496003876}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 5936d6600b715864f8fc42c31854d437, type: 3}
 --- !u!4 &5270739078915929318 stripped
 Transform:
@@ -590,3 +597,16 @@ MonoBehaviour:
     _value: 0
   autoAttackOn: 0
   cooldownTimeLeft: 0
+--- !u!114 &6254927786496003876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479963603130051717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85348b253fd0c7c4c99cd9edc1ae7e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.5
