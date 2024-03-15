@@ -10,12 +10,18 @@ public class Ghost : Enemy
 
     private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
 
+
+
     public override void Initialize() {
         health = 5;
         damage = 10;
         SetTarget();
+
+        EnemyAttackAudioName="ghostAttack";
+
         render = GetComponent<SpriteRenderer>();
         render.material = originalMat;
+
         
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();
