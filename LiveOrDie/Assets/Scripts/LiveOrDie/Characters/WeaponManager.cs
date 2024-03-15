@@ -8,6 +8,8 @@ public class WeaponManager : MonoBehaviour
 
     private List<LevelUpChoice> weaponChoices;
 
+    private List<string> weaponAvailable;
+
     public void OnDisable(){
         weapons.Clear();
         Destroy(gameObject);
@@ -15,7 +17,10 @@ public class WeaponManager : MonoBehaviour
     private void Awake() 
     {
         weapons = new Dictionary<string, Weapon>();
+        weaponAvailable = new List<string>{ "Fireball", "PeachWoodSword", "IncenseBurner"};
+        
         EventMgr.Instance.AddEventListener<string>("RemoveWeapon", RemoveWeapon);
+        EventMgr.Instance.AddEventListener("UnlockWeapon", UnlockWeapon);
         
     }
 
@@ -28,6 +33,8 @@ public class WeaponManager : MonoBehaviour
     {
         EventMgr.Instance.RemoveEventListener<string>("RemoveWeapon", RemoveWeapon);
         EventMgr.Instance.RemoveEventListener("LoadingPanelCompleted", initWeaponChoices);
+        EventMgr.Instance.RemoveEventListener("UnlockWeapon", UnlockWeapon);
+        
     }
 
     private void initWeaponChoices()
@@ -38,16 +45,19 @@ public class WeaponManager : MonoBehaviour
                 Fireball.weaponDescription, 
                 () => {
                     AddWeapon("Fireball");
+                    weaponAvailable.Remove("Fireball");
                 }),
             new (PeachWoodSword.weaponName,
                 PeachWoodSword.weaponDescription,
                 () => {
                     AddWeapon("PeachWoodSword");
+                    weaponAvailable.Remove("PeachWoodSword");
                 }),
             new (IncenseBurner.weaponName,
                 IncenseBurner.weaponDescription,
                 () => {
                     AddWeapon("IncenseBurner");
+                    weaponAvailable.Remove("IncenseBurner");
                 }),
         };
 
@@ -80,6 +90,14 @@ public class WeaponManager : MonoBehaviour
             weapons.Remove(name);
             EventMgr.Instance.EventTrigger("UpdateWeaponView");
         }
+    }
+
+    private void UnlockWeapon()
+    {
+        if (weaponAvailable.Count == 0) return;
+        string weaponUnlocked = weaponAvailable[Random.Range(0, weaponAvailable.Count)];
+        AddWeapon(weaponUnlocked);
+        weaponAvailable.Remove(weaponUnlocked);
     }
 
 }
