@@ -1,0 +1,284 @@
+fileFormatVersion: 2
+guid: 689362b078d9bf44e80568e8fe1ebc1f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: slider_background
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 86
+        width: 32
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75d1559a2ae458c4cbc4f695e9d913e2
+      internalID: -2089282581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slider_filled
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 86
+        width: 32
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3081665832b141240b63bd4066cdee0b
+      internalID: 1647877970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      04_0: 279406369
+      04_1: 1542583303
+      04_10: 800398311
+      04_100: -959517991
+      04_101: 751484950
+      04_11: 1955479575
+      04_12: -2135566884
+      04_13: -147091259
+      04_14: 601718371
+      04_15: 200951180
+      04_16: 1387754420
+      04_17: 349368880
+      04_18: -1209097235
+      04_19: -1223836037
+      04_2: 849290162
+      04_20: -902011524
+      04_21: -151265971
+      04_22: 1123271615
+      04_23: -1837908606
+      04_24: 855884733
+      04_25: -2006083728
+      04_26: -1815251504
+      04_27: -1435794240
+      04_28: -1370806966
+      04_29: 1555267962
+      04_3: 1599499024
+      04_30: -1417992632
+      04_31: -241436123
+      04_32: 1272732651
+      04_33: 158567310
+      04_34: -1918102963
+      04_35: -680711394
+      04_36: 441182382
+      04_37: 515331039
+      04_38: -61353769
+      04_39: -802284766
+      04_4: 1391112139
+      04_40: 866798172
+      04_41: 511475127
+      04_42: 449816545
+      04_43: 1534425394
+      04_44: 746327372
+      04_45: -395235327
+      04_46: -1095257764
+      04_47: 1313442794
+      04_48: 1378296539
+      04_49: -2052387623
+      04_5: -2054473666
+      04_50: 39034242
+      04_51: 906518974
+      04_52: 85647968
+      04_53: -565716599
+      04_54: -1846776980
+      04_55: 559807860
+      04_56: -841894013
+      04_57: 1124850233
+      04_58: -1204975853
+      04_59: -1370782510
+      04_6: -1966853080
+      04_61: -1513697815
+      04_63: -473525949
+      04_64: -1960590376
+      04_65: 1162043425
+      04_66: 878628906
+      04_67: -2087058689
+      04_68: 1932158223
+      04_69: 1167004518
+      04_7: 537739349
+      04_70: 1881350592
+      04_71: 1445513157
+      04_72: 1418915230
+      04_73: 1224150285
+      04_74: -1485393949
+      04_75: 1523469312
+      04_76: -1657608616
+      04_77: -1988924162
+      04_78: -513744007
+      04_79: 569018735
+      04_8: -1983390036
+      04_80: -1876983182
+      04_81: -655867222
+      04_82: -1472512707
+      04_83: -1435519440
+      04_84: 573332890
+      04_85: -525823402
+      04_86: 944021532
+      04_87: 677257266
+      04_88: -676239107
+      04_89: -683566818
+      04_9: -191330074
+      04_90: 1538822985
+      04_91: 1009951569
+      04_92: -1747139957
+      04_93: 2066728453
+      04_94: -1741332404
+      04_95: 403307199
+      04_96: -2079753646
+      04_97: 1252102947
+      04_98: 261373395
+      04_99: 268556457
+      slider_background: -2089282581
+      slider_filled: 1647877970
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

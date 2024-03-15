@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Wolf : Enemy
 {
-    private SpriteRenderer render;
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
     private int points = 10; // how many points a wolf is worth
@@ -15,7 +14,12 @@ public class Wolf : Enemy
         health = 10;
         damage = 1;
         SetTarget();
+
         EnemyAttackAudioName = "beingCHEWED"; 
+
+        render = GetComponent<SpriteRenderer>();
+        render.material = originalMat;
+
         
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();
