@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI; 
 using System.Collections.Generic;
+using System.Collections;
 
 public class CharacterHealth : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class CharacterHealth : MonoBehaviour
     public Player playerModel;
     [HideInInspector]
     public Transform playerPosition;
+    public Material originalMat;
+    public Material highlightMat;
+    private PopupIndicatorFactory damageIndicatorFactory = new PopupIndicatorFactory();
+    private Coroutine highlightCoroutine;
 
     // private variables
     private Color healthy = new Color(0.6f, 1, 0.6f, 1);
@@ -22,7 +27,27 @@ public class CharacterHealth : MonoBehaviour
         playerModel.healthModifier.value -= amount;
         playerModel.characterHealth.AddModifier("Health", playerModel.healthModifier);
         healthbar.fillAmount = playerModel.characterHealth.Value / playerModel.maxHealth.Value; 
+
+        damageIndicatorFactory.CreateAsync(transform.position, (obj) => {
+            obj.transform.SetParent(transform);
+            obj.GetComponentInChildren<PopupIndicator>().Initialize(amount.ToString());
+        });
+        DamageHighlight();
     }
+
+    protected virtual void DamageHighlight() 
+    {
+        if (highlightCoroutine != null) StopCoroutine(highlightCoroutine);
+        if (gameObject.activeSelf) highlightCoroutine = StartCoroutine(DamageHighlightCoroutine());
+    }
+
+    protected virtual IEnumerator DamageHighlightCoroutine()
+    {
+        playerModel.render.material = highlightMat;
+        yield return new WaitForSeconds(0.05f);
+        playerModel.render.material = originalMat;
+    }
+
     public void IncreaseHealth(float amount){
         if(playerModel.characterHealth.Value + amount > playerModel.maxHealth.Value)
             playerModel.healthModifier.value = playerModel.maxHealth.Value - playerModel.characterHealth.Value;
@@ -30,6 +55,10 @@ public class CharacterHealth : MonoBehaviour
             playerModel.healthModifier.value += amount;
         playerModel.characterHealth.AddModifier("Health",playerModel.healthModifier);
         healthbar.fillAmount = playerModel.characterHealth.Value/playerModel.maxHealth.Value; 
+        damageIndicatorFactory.CreateAsync(transform.position, (obj) => {
+            obj.transform.SetParent(transform);
+            obj.GetComponentInChildren<PopupIndicator>().Initialize("+"+amount.ToString());
+        });
     }
 
     public void RefreshHealthUI()

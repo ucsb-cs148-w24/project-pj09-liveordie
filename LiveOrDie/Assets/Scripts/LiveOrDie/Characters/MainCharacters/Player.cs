@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private Player peer; // BEST FRIEND
     private Rigidbody2D rb; // Physics
     private DistanceJoint2D dj; // Physics
-    private SpriteRenderer render; // PLAYER SKIN
+    public SpriteRenderer render; // PLAYER SKIN
     private CircleCollider2D pickupBox;
 
     // REFERENCES
@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
         pickupBox = GetComponentInChildren<CircleCollider2D>();
+        render = GetComponent<SpriteRenderer>();
     }
 
     protected void Start() {

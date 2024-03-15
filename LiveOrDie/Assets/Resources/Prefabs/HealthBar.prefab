@@ -170,6 +170,8 @@ MonoBehaviour:
   healthbar: {fileID: 0}
   playerModel: {fileID: 0}
   playerPosition: {fileID: 0}
+  originalMat: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  highlightMat: {fileID: 2100000, guid: 9c3d04dc8eb24a94f97cf854760ddb5a, type: 2}
 --- !u!1 &7313707597830188155
 GameObject:
   m_ObjectHideFlags: 0
