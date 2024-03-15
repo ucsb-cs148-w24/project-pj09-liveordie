@@ -27,7 +27,7 @@ public class EnemyCloner : MonoBehaviour
         spawnQuantity = 1;
         spawnInterval = 5f;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 1000; i++)
         {
             NormalSpawn(); //clone 10 at the beginning
         }
@@ -52,7 +52,6 @@ public class EnemyCloner : MonoBehaviour
     {
         while (true)
         {
-            // print(GetRandomSpawnPosition());
             NormalSpawn();
 
             yield return new WaitForSeconds(spawnInterval);
@@ -93,8 +92,8 @@ public class EnemyCloner : MonoBehaviour
         Vector3 spawnPosition = Vector3.zero;
         bool isHit = false;
         // if SamplePosition fails, try again
-        // while(!isHit)
-        // {
+        while(!isHit)
+        {
             int side = Random.Range(0, 4); //decide with side of the screen to spawn
             switch (side)
             {
@@ -125,14 +124,15 @@ public class EnemyCloner : MonoBehaviour
 
             }
 
+            randomSpawn.z = 0; //must do this otherwise after screen to world transform its z is the same as camera
             // check if the spawn position is walkable
             NavMeshHit hit;
              isHit = NavMesh.SamplePosition(randomSpawn, out hit, 5f, 1 << NavMesh.GetAreaFromName("Walkable"));
             
              if(isHit){spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f);}
-            print(isHit);
-        // }
-
+             
+        }
+        
         return spawnPosition;
 
     }
