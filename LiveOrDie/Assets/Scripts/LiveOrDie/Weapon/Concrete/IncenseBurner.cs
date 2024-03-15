@@ -30,6 +30,8 @@ public class IncenseBurner : StaticWeapon
 
         autoAttackOn = false;
 
+        weaponIcon = ResMgr.Instance.Load<Sprite>("Sprites/Icons/incense_burner_icon");
+
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");
         player1Transform = player1.transform;
@@ -39,30 +41,35 @@ public class IncenseBurner : StaticWeapon
         {
             new ("Strong Incense",
                 "Increase Incense Burner damage +2",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.StrongIncense);
                 }),
             new ("Piety",
                 "Increase Incense Burner Range +20%",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.Piety);
                 }),
             new ("Smolder",
                 "Increase Incense Burner duration +30%",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.Smolder);
                 }),
             new ("Rapid Combustion",
                 "Reduce Incense Burner Attack cooldown -10%",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.RapidCombustion);
                 }),
             new ("Preach",
                 "Reduce Incense Burner Place cooldown -20%",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.Preach);

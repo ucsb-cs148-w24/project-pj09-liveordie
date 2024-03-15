@@ -26,6 +26,8 @@ public class Fireball : RangedWeapon
 
         autoAttackOn = false;
 
+        weaponIcon = ResMgr.Instance.Load<Sprite>("Sprites/Icons/fireball_icon");
+
         // this is probably a very bad way to get these
         // add a centralized player script with functions that return this info
         player1 = GameObject.Find("Player1");
@@ -39,12 +41,14 @@ public class Fireball : RangedWeapon
         {
             new ("Scorch",
                 "Increase Fireball damage +1",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.Scorch);
                 }),
             new ("Rapid Fire",
                 "Reduce Fireball cooldown -10%",
+                weaponIcon,
                 ()=>
                 {
                     LevelUp(E_LevelUpChoice.RapidFire);
