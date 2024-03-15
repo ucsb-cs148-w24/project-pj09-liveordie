@@ -38,11 +38,23 @@ public class EnemyAttack : MonoBehaviour
         if (currentTarget != null &&  canAttack )
         {
 
-            AudioMgr.Instance.PlayAudio("beingCHEWED",false);
+
 
             currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(enemy.damage);
 
             myAnim.Play("attack_animation");
+            switch (enemy.damage) // Play different sounds based on enemy attack damage
+            {
+                case 1:
+                    AudioMgr.Instance.PlayAudio("beingCHEWED",false);
+                    break;
+                case 10:
+                    AudioMgr.Instance.PlayAudio("ghostAttack",false);
+                    break;
+                default:
+                    break; // No sound for other types, or add more cases as needed
+            }
+
             canAttack = false;
             if(this.gameObject.activeSelf) StartCoroutine(AttackCoolDownCoroutine());
         }
