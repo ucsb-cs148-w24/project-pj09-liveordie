@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 1603632964111879160}
   - component: {fileID: 4854746446116011136}
   m_Layer: 5
-  m_Name: MoveText
+  m_Name: FireText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,7 +932,7 @@ GameObject:
   - component: {fileID: 2302560210354432673}
   - component: {fileID: 2686381513020323819}
   m_Layer: 5
-  m_Name: Fire (1)
+  m_Name: PWS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1366,7 +1366,7 @@ GameObject:
   - component: {fileID: 3114680032418011403}
   - component: {fileID: 972277637428212672}
   m_Layer: 5
-  m_Name: MoveText (1)
+  m_Name: PWSText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1708,7 +1708,7 @@ GameObject:
   - component: {fileID: 1359739832371067977}
   - component: {fileID: 8242896286945798219}
   - component: {fileID: 7769046060594943101}
-  - component: {fileID: 4363329489657767238}
+  - component: {fileID: 597983099710236510}
   m_Layer: 5
   m_Name: Character1
   m_TagString: Untagged
@@ -1773,27 +1773,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &4363329489657767238
-Animator:
-  serializedVersion: 5
+--- !u!114 &597983099710236510
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7838582844423123860}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9947a6c3f7a8ce5498ee37f6278618fb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 0}
 --- !u!1 &8070517777089498871
 GameObject:
   m_ObjectHideFlags: 0
