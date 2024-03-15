@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Ghost : Enemy
 {
-    private SpriteRenderer render;
     private Rigidbody2D rb;
     private EnemyHealth enemyHealth;
     private int points = 20; // how many points a ghost is worth
 
     private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
 
+
+
     public override void Initialize() {
         health = 5;
         damage = 10;
         SetTarget();
+
+        EnemyAttackAudioName="ghostAttack";
+
+        render = GetComponent<SpriteRenderer>();
+        render.material = originalMat;
+
         
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();

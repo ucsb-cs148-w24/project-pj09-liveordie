@@ -20,7 +20,7 @@ public class SettingsPanel : BasePanel
         {
             case "BackButton":
                 // print("back");
-                AudioMgr.Instance.PlayAudio("OnClick", false);
+                //AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.HidePanel("SettingsPanel");
                 break;
             default:
@@ -45,8 +45,7 @@ public class SettingsPanel : BasePanel
     {
         (transform as RectTransform).offsetMax= Vector2.zero;
         (transform as RectTransform).offsetMin= Vector2.zero;
-
-
+        
     }
     
     

@@ -26,6 +26,32 @@ public class LevelUpPanel : BasePanel
         choiceDescription1.text = threeChoices[0].levelUpDescription;
         choiceDescription2.text = threeChoices[1].levelUpDescription;
         choiceDescription3.text = threeChoices[2].levelUpDescription;
+        
+        Image choiceIcon1 = GetUIComponent<Image>("ChoiceButton1Icon");
+        Image choiceIcon2 = GetUIComponent<Image>("ChoiceButton2Icon");
+        Image choiceIcon3 = GetUIComponent<Image>("ChoiceButton3Icon");
+
+        if(threeChoices[0].levelUpIcon != null) {
+            choiceIcon1.gameObject.SetActive(true);
+            choiceIcon1.sprite = threeChoices[0].levelUpIcon; 
+        }
+        else {
+            choiceIcon1.gameObject.SetActive(false);
+        }
+        if(threeChoices[1].levelUpIcon != null) {
+            choiceIcon2.gameObject.SetActive(true);
+            choiceIcon2.sprite = threeChoices[1].levelUpIcon; 
+        }
+        else {
+            choiceIcon2.gameObject.SetActive(false);
+        }
+        if(threeChoices[2].levelUpIcon != null) {
+            choiceIcon3.gameObject.SetActive(true);
+            choiceIcon3.sprite = threeChoices[2].levelUpIcon; 
+        }
+        else {
+            choiceIcon3.gameObject.SetActive(false);
+        }
     } 
     
 
