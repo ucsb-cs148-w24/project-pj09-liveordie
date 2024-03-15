@@ -9,11 +9,9 @@ public class Player : MonoBehaviour
 
     //stats fields stored in CharacterStat
     // [HideInInspector]
-    public CharacterStat speed, maxRadius, characterHealth, maxHealth;
-    public CharacterStat pickupRange;
+    public CharacterStat speed, maxRadius, characterHealth, maxHealth, pickupRange;
     [HideInInspector]
-    public StatModifier speedModifier, radiusModifier, healthModifier, maxHealthModifier;
-    public StatModifier pickupRangeModifier;
+    public StatModifier speedModifier, radiusModifier, healthModifier, maxHealthModifier, pickupRangeModifier;
     //some other possible stats
     //cooldown
     //pickRange
@@ -44,7 +42,7 @@ public class Player : MonoBehaviour
                 healthbar.IncreaseHealth(amount);
                 break;
             case "drop speed":
-                speedModifier.value = -speed.Value / 2; 
+                speedModifier.value = -(speed.Value / 2); 
                 speed.AddModifier("Drugged Speed",speedModifier);
                 break;
             case "boost speed":
@@ -55,10 +53,26 @@ public class Player : MonoBehaviour
                 healthbar.setSensitiveState(true);
                 break;
             case "drunk":
-                speedModifier.value = speed.Value *15f;
+                speedModifier.value = 10f;
                 speed.AddModifier("Drugged Speed",speedModifier);
                 movement.ChangeDrunkState(true); 
                 break;
+            case "nausea":
+                healthbar.setSensitiveState(true);
+                break;
+            case "rebirth":
+                // every player property (not including weapons)
+                speed.RemoveModifier("LevelUp");
+                maxRadius.RemoveModifier("LevelUp");
+                characterHealth.RemoveModifier("LevelUp");
+                maxHealth.RemoveModifier("LevelUp");
+                pickupRange.RemoveModifier("LevelUp");
+                healthbar.RefreshHealthUI();
+                movement.RefreshRopeRadius();
+                pickupBox.radius = pickupRange.Value;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
 
