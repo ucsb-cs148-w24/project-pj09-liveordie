@@ -22,7 +22,6 @@ public class LevelingManager : MonoBehaviour
     private float expToNextLevel = 10f; 
     private float curExp = 0; //current exp
     private float levelUpMultiplier = 1.5f; //multiplier for each level
-    private float exccessiveExp = 0;
     private int level = 1; //player level
     private bool isDuringLeveling = false;
 
@@ -91,17 +90,12 @@ public class LevelingManager : MonoBehaviour
     
     private void IncreaseExp(float val)
     {
+        if(isDuringLeveling) return;
         curExp += val;
-        while (curExp >= expToNextLevel)
+        if (curExp >= expToNextLevel)
         {
-            if (!isDuringLeveling)
-            {
-                exccessiveExp = curExp - expToNextLevel;
-                LevelUp();
-                curExp += exccessiveExp;
-                exccessiveExp = 0;
-            }
-            
+            LevelUp();
+            curExp = 0;
         }
         EventMgr.Instance.EventTrigger("ChangeExpBar",  curExp/expToNextLevel);
         EventMgr.Instance.EventTrigger("SendLevel", level); // need to be changed

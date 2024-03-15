@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Exp : Drop
 {
-    public float expValue = 1f;
+    private float expValue = 1f;
     public Image img;
     
     protected override void TriggerEffect()
