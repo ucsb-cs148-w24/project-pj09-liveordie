@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
 
-    public int health {get; set;}
-    public int damage {get; set;}
+    public float health {get; set;}
+    public float damage {get; set;}
     public GameObject target {get; set;}
     public Material originalMat;
     public Material highlightMat;

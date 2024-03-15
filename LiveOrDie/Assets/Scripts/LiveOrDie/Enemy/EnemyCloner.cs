@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 public class EnemyCloner : MonoBehaviour
 {
-    public int enemySize = 15;
-    private int enemyCount = 0; //number of current wolves 
+    public int enemySize = 15;  //number of max enemies
+    private int enemyCount = 0; //number of current enemies 
     
     private WolfFactory wolfFactory;
     private GhostFactory ghostFactory;
@@ -16,7 +16,7 @@ public class EnemyCloner : MonoBehaviour
     public int spawnQuantity; //the number of enemies to be spawned at once
     public float spawnInterval; //the time between enemies to be spawned
 
-    private float gameTime = 0f;
+    public float eliteMultiplier = 10f;
 
     void Start()
     {
@@ -27,47 +27,73 @@ public class EnemyCloner : MonoBehaviour
         spawnQuantity = 1;
         spawnInterval = 5f;
 
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 10; i++)
         {
             NormalSpawn(); //clone 10 at the beginning
         }
         
         EventMgr.Instance.AddEventListener("EnemyDead", ReduceEnemyCount);
         StartCoroutine(SpawnEnemyCoroutine());
+        StartCoroutine(DifficultyUp());
+        StartCoroutine(SpawnEliteCoroutine());
     }
-
-    private void Update()
-    {
-        gameTime += Time.deltaTime;
-        // print(gameTime);
-    }
+    
 
     private void OnDestroy()
     {
         EventMgr.Instance.RemoveEventListener("EnemyDead", ReduceEnemyCount);
         StopCoroutine(SpawnEnemyCoroutine());
+        StopCoroutine(DifficultyUp());
+        StopCoroutine(SpawnEliteCoroutine());
     }
     
     private IEnumerator SpawnEnemyCoroutine()
     {
         while (true)
         {
-            NormalSpawn();
-
+            if (enemyCount < enemySize)
+            {
+                NormalSpawn();
+            }
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
+    private IEnumerator DifficultyUp()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(60f);
+            difficulty += 0.2f;
+            spawnInterval *= 0.95f;
+            spawnQuantity += 1;
+            enemySize += 5;
+        }
+    }
+
+    private IEnumerator SpawnEliteCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(300f);
+            EliteSpawn();
+        }
+    }
+    
+    
+    
+
     
     void NormalSpawn()
     {
-        int randomizer = Random.Range(1,11);
-        if(randomizer <= 8) {
+        int randomizer = Random.Range(0,10);
+        if(randomizer < 8) {
             wolfFactory.CreateAsync(GetRandomSpawnPosition(), (wolf) =>
             {
                 //use reference 'wolf' here if you want to use the wolf spawned
                 enemyCount++;
                 wolf.transform.parent = transform;
+                wolf.GetComponent<Wolf>().health *= difficulty;
             });
         }
         else {
@@ -75,13 +101,33 @@ public class EnemyCloner : MonoBehaviour
             {
                 enemyCount++;
                 ghost.transform.parent = transform;
+                ghost.GetComponent<Ghost>().health *= difficulty;
             });
         }
     }
 
-    private void GhostFrenzy()
+    private void EliteSpawn()
     {
-        
+        int randomizer = Random.Range(0,10);
+        if(randomizer < 5) {
+            wolfFactory.CreateAsync(GetRandomSpawnPosition(), (wolf) =>
+            {
+                //use reference 'wolf' here if you want to use the wolf spawned
+                enemyCount++;
+                wolf.transform.parent = transform;
+                wolf.GetComponent<Wolf>().health *= eliteMultiplier * difficulty;
+                wolf.transform.localScale *= 2;
+            });
+        }
+        else {
+            ghostFactory.CreateAsync(GetRandomSpawnPosition(), (ghost) =>
+            {
+                enemyCount++;
+                ghost.transform.parent = transform;
+                ghost.GetComponent<Ghost>().health *= eliteMultiplier * difficulty;
+                ghost.transform.localScale *= 2;
+            });
+        }
     }
     
     

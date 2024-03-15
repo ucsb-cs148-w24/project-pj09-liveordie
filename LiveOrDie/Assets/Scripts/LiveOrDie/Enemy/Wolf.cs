@@ -21,6 +21,8 @@ public class Wolf : Enemy
         enemyHealth = GetComponentInChildren<EnemyHealth>();
         enemyHealth.enemy = this; //assign itself to its sub component
         enemyHealth.Initialize();
+        
+        this.gameObject.transform.localScale = Vector3.one; //reset if elite
     }
 
     void OnEnable()
