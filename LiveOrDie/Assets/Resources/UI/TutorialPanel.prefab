@@ -28,10 +28,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 176010796048718007}
   - {fileID: 1612902572737378611}
   - {fileID: 9174043657189893441}
   - {fileID: 343684365373892415}
+  - {fileID: 176010796048718007}
   m_Father: {fileID: 7967278824702115860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -286,8 +286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 343, y: 0}
-  m_SizeDelta: {x: 1162.5448, y: 83.1259}
+  m_AnchoredPosition: {x: 353, y: 0.0000022054}
+  m_SizeDelta: {x: 1370.6456, y: 80.1099}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2171657821118502072
 CanvasRenderer:
@@ -317,9 +317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'appear regularly to strengthen the attak
-
-'
+  m_text: swings a circle regularly to attak enemies
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1aa8e7a62d09a341948aa929041b345, type: 2}
   m_sharedMaterial: {fileID: 1821658731017909026, guid: b1aa8e7a62d09a341948aa929041b345, type: 2}
@@ -1856,8 +1854,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 483, y: 0.0000038147}
-  m_SizeDelta: {x: 888.1669, y: 83.1259}
+  m_AnchoredPosition: {x: 788, y: 0.0000076294}
+  m_SizeDelta: {x: 1475.5673, y: 125.6351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4109324246857119425
 CanvasRenderer:
@@ -1887,7 +1885,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: can recover the health status
+  m_text: can burn the enemies and recover the health status
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1aa8e7a62d09a341948aa929041b345, type: 2}
   m_sharedMaterial: {fileID: 1821658731017909026, guid: b1aa8e7a62d09a341948aa929041b345, type: 2}
@@ -2030,8 +2028,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2125,7 +2123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: -324}
+  m_AnchoredPosition: {x: -728, y: -320}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6113223508188319325
