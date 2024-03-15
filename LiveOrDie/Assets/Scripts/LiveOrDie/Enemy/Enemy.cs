@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour
 {
 
     public float health {get; set;}
+    public float maxHealth {get; set;}
     public float damage {get; set;}
     public GameObject target {get; set;}
     public Material originalMat;

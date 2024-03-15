@@ -11,12 +11,12 @@ public class WeaponUnlockOrbManager : MonoBehaviour
         orbFactory = new WeaponUnlockOrbFactory();
         
         //event type parameter - position of the exp
-        EventMgr.Instance.AddEventListener<Vector3>("EliteDead", DropOrb); 
+        EventMgr.Instance.AddEventListener<Vector3>("DropWeaponUnlock", DropOrb); 
     }
 
     private void OnDestroy()
     {
-        EventMgr.Instance.RemoveEventListener<Vector3>("EliteDead", DropOrb);
+        EventMgr.Instance.RemoveEventListener<Vector3>("DropWeaponUnlock", DropOrb);
     }
 
     private void DropOrb(Vector3 pos)

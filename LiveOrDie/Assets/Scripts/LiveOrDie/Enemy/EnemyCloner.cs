@@ -117,7 +117,8 @@ public class EnemyCloner : MonoBehaviour
                 wolf.transform.parent = transform;
                 Wolf wolfScript = wolf.GetComponent<Wolf>();
                 wolfScript.health *= eliteMultiplier * difficulty;
-                wolfScript.deathEvent = "EliteDead";
+                wolfScript.maxHealth *= eliteMultiplier * difficulty;
+                wolfScript.dropEvent = "DropWeaponUnlock";
                 wolf.transform.localScale *= 2;
             });
         }
@@ -128,7 +129,8 @@ public class EnemyCloner : MonoBehaviour
                 ghost.transform.parent = transform;
                 Ghost ghostScript = ghost.GetComponent<Ghost>();
                 ghostScript.health *= eliteMultiplier * difficulty;
-                ghostScript.deathEvent = "EliteDead";
+                ghostScript.maxHealth *= eliteMultiplier * difficulty;
+                ghostScript.dropEvent = "DropWeaponUnlock";
                 ghost.transform.localScale *= 2;
             });
         }

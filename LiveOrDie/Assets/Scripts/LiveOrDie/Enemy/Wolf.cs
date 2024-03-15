@@ -12,9 +12,11 @@ public class Wolf : Enemy
     
     [HideInInspector]
     public string deathEvent = "EnemyDead";
+    public string dropEvent = "DropExp";
 
     public override void Initialize() {
         health = 10;
+        maxHealth = 10;
         damage = 1;
         SetTarget();
 
@@ -31,6 +33,7 @@ public class Wolf : Enemy
         
         this.gameObject.transform.localScale = Vector3.one; //reset if elite
         deathEvent = "EnemyDead";
+        dropEvent = "DropExp";
     }
 
     void OnEnable()
@@ -69,7 +72,7 @@ public class Wolf : Enemy
     {
         EventMgr.Instance.EventTrigger(deathEvent); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
-        EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
+        EventMgr.Instance.EventTrigger(dropEvent, this.gameObject.transform.position);
         PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
     }
 }
