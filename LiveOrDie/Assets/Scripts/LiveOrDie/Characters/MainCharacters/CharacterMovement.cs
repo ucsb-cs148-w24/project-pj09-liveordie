@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour
     //movement lock flag
     public int horizontal;
     public int vertical;
-    public bool drunkState;
+    public bool drunkState=false;
     private List<int> drunkMovements;
 
     public enum E_MoveType
