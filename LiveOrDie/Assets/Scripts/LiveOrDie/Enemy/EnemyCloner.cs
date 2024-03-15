@@ -115,7 +115,9 @@ public class EnemyCloner : MonoBehaviour
                 //use reference 'wolf' here if you want to use the wolf spawned
                 enemyCount++;
                 wolf.transform.parent = transform;
-                wolf.GetComponent<Wolf>().health *= eliteMultiplier * difficulty;
+                Wolf wolfScript = wolf.GetComponent<Wolf>();
+                wolfScript.health *= eliteMultiplier * difficulty;
+                wolfScript.deathEvent = "EliteDead";
                 wolf.transform.localScale *= 2;
             });
         }
@@ -124,7 +126,9 @@ public class EnemyCloner : MonoBehaviour
             {
                 enemyCount++;
                 ghost.transform.parent = transform;
-                ghost.GetComponent<Ghost>().health *= eliteMultiplier * difficulty;
+                Ghost ghostScript = ghost.GetComponent<Ghost>();
+                ghostScript.health *= eliteMultiplier * difficulty;
+                ghostScript.deathEvent = "EliteDead";
                 ghost.transform.localScale *= 2;
             });
         }
