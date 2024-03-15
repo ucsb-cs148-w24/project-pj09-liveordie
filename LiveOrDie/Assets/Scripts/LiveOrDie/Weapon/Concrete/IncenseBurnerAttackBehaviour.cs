@@ -31,6 +31,7 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
 
     public void Fire()
     {
+        AudioMgr.Instance.PlayAudio("gong", false);
         StartCoroutine(FireRoutine());
         StartCoroutine(DestroyRoutine());
     }
@@ -49,6 +50,7 @@ public class IncenseBurnerAttackBehaviour : AttackBehaviourBase
     {
         List<Collider2D> results = new List<Collider2D>();
         Physics2D.OverlapCollider(incenseBurnerRadiusCollider, new ContactFilter2D().NoFilter(), results);
+        AudioMgr.Instance.PlayAudio("gong", false);
         foreach(Collider2D collider in results) {
             if(collider.CompareTag("Enemy")) {
                 collider.GetComponent<Enemy>().TakeDamage((int)damage);
