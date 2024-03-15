@@ -22,6 +22,11 @@ public class StartScreenPanel:BasePanel
                 UIMgr.Instance.ShowPanel<SettingsPanel>("SettingsPanel", E_PanelLayer.Top);
                 break;
             
+            case "TutorialButton":
+                AudioMgr.Instance.PlayAudio("OnClick", false);
+                UIMgr.Instance.ShowPanel<TutorialPanel>("TutorialPanel", E_PanelLayer.Top);
+                break;
+
             case "QuitButton":
                 AudioMgr.Instance.PlayAudio("OnClick", false);
                 Application.Quit(); //only works after deploying
