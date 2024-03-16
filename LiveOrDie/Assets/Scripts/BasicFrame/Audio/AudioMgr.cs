@@ -136,7 +136,7 @@ public class AudioMgr : Singleton<AudioMgr>
         audioVolume = volume;
         foreach (AudioSource source in audioList)
         {
-            source.volume = volume;
+            if (source) source.volume = volume;
         }
     }
 
