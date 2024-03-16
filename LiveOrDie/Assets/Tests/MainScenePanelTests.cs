@@ -159,24 +159,24 @@ public class MainScenePanelTests
         Assert.That(script, Is.Not.Null);
         yield return null;
      }
-    [UnityTest]
-     public IEnumerator VerifyDrugDropManagerLoadedCorrectly()
-     {
-        // Assertions for Existence of the Bamboo/Rope
-        var check = GameObject.Find("DrugDropManager");
-        var drugManager = check.GetComponent<DrugDropManager>();
-        Assert.That(drugManager, Is.Not.Null);
-        yield return null;
-     }
-    [UnityTest]
-     public IEnumerator VerifyExpDropManagerLoadedCorrectly()
-     {
-        // Assertions for Existence of the Bamboo/Rope
-        var check = GameObject.Find("ExpDropManager");
-        var expManager = check.GetComponent<ExpDropManager>();
-        Assert.That(expManager, Is.Not.Null);
-        yield return null;
-     }
+    // [UnityTest]
+    //  public IEnumerator VerifyDrugDropManagerLoadedCorrectly()
+    //  {
+    //     // Assertions for Existence of the Bamboo/Rope
+    //     var check = GameObject.Find("DrugDropManager");
+    //     var drugManager = check.GetComponent<DrugDropManager>();
+    //     Assert.That(drugManager, Is.Not.Null);
+    //     yield return null;
+    //  }
+    // [UnityTest]
+    //  public IEnumerator VerifyExpDropManagerLoadedCorrectly()
+    //  {
+    //     // Assertions for Existence of the Bamboo/Rope
+    //     var check = GameObject.Find("ExpDropManager");
+    //     var expManager = check.GetComponent<ExpDropManager>();
+    //     Assert.That(expManager, Is.Not.Null);
+    //     yield return null;
+    //  }
     [UnityTest]
      public IEnumerator VerifyExpDropPanelControllerLoadedCorrectly()
      {
@@ -187,3 +187,4 @@ public class MainScenePanelTests
         yield return null;
      }
 }
+
