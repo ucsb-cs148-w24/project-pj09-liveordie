@@ -398,8 +398,8 @@ MonoBehaviour:
   m_text: 'However, during the long journey, the bodies of Zhang San and Li Si were
     accidentally lost. '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ba109b605d11d418c8ffdbf019c78880, type: 2}
-  m_sharedMaterial: {fileID: -157482899666981101, guid: ba109b605d11d418c8ffdbf019c78880, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d9f49c62de864069994e4febc0de4cc, type: 2}
+  m_sharedMaterial: {fileID: -7759141920185557812, guid: 7d9f49c62de864069994e4febc0de4cc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
