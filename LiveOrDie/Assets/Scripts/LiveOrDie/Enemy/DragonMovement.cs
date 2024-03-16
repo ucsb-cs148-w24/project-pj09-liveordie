@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DragonMovement : MonoBehaviour
 {
-    public float speed = 2f; // move speed of enemies
+    private float speed = 10f; // move speed of enemies
     private GameObject target;
     private int chooseTarget;
     // private SpriteRenderer render;
@@ -32,9 +32,6 @@ public class DragonMovement : MonoBehaviour
     {
         // TrackDistance();
         if (target == null) return;
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        this.transform.position += direction * speed * Time.deltaTime;
-        // if(direction.x > 0) render.flipX = true;
-        // else render.flipX = false;
+        this.transform.position += -this.transform.right * speed * Time.deltaTime;
     }
 }
