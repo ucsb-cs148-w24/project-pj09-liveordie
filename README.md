@@ -9,6 +9,8 @@ In rural China, the ancient custom of "corpse driving" involves transporting the
 
 <img src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/blob/main/LiveOrDie/Assets/ArtResources/concept(with%20wagon).webp" width="100%" height="100%">
 
+## Deployment
+Deployed on Unity Play: [link](https://play.unity.com/mg/other/webgl-builds-390394)
 
 ## Technology Stack: Unity Real-Time Dev Platform, which uses built-in assets and C#
 
@@ -51,6 +53,8 @@ More details [here](https://docs.unity3d.com/2022.3/Documentation/Manual/system-
 Libraries we used in this project:
 - [Unity 2D feature set](https://docs.unity3d.com/Manual/2DFeature.html)
 - [Unity WebGL Publisher](https://docs.unity3d.com/Packages/com.unity.connect.share@4.2/manual/index.html)
+- [NavMeshPlus](https://github.com/h8man/NavMeshPlus)
+- [Unity Test Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/index.html)
 
 ### Installation Steps
 1. Navigate to [releases](https://github.com/ucsb-cs148-w24/project-pj09-liveordie/releases) 
@@ -59,16 +63,12 @@ Libraries we used in this project:
 4. Enjoy with a friend or by yourself!
 
 ## Functionality
-- Upon launching the game, you will see the start screen
-- Press "Game Start" to start playing
+- Upon launching the game, you will see the intro story and then the start screen
+- Press "Game Start" to start playing or "Tutorial" to see tips on how to play
 - Use WASD to control Player 1 movement and arrow keys to control Player 2 movement
-- Automatic attack
+- Your weapon attacks automatically (more details when hovering over the icons on the right)
 - Be careful not to go too far apart from each other
-- Defeat the enemies as long as possible or until you both die (not yet implemented)
-
-## Known Problems
-- Various missing features like player/enemy health
-- Movement speed varies based on how fast your device can run the game
+- Defeat the enemies for as long as possible while collecting experience and unlocking weapons
 
 ## Contributing
 We are not currently accepting contributions
