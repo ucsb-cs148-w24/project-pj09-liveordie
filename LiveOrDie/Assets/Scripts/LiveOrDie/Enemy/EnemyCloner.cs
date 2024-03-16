@@ -1,29 +1,99 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyCloner : MonoBehaviour
 {
-    public int enemySize = 15;
-    private int enemyCount = 0; //number of current wolves 
+    public int enemySize = 15;  //number of max enemies
+    private int enemyCount = 0; //number of current enemies 
     
     private WolfFactory wolfFactory;
-    private Wolf newWolf;
-
     private GhostFactory ghostFactory;
-    private Ghost newGhost;
 
-    int randomizer;
+    public float difficulty; //multiplier
+    public int spawnQuantity; //the number of enemies to be spawned at once
+    public float spawnInterval; //the time between enemies to be spawned
 
-    void Clone()
+    public float eliteMultiplier = 10f;
+
+    void Start()
     {
-        randomizer = UnityEngine.Random.Range(1,11);
-        // randomizer = 10;
-        if(randomizer <= 8) {
+        wolfFactory = new WolfFactory();
+        ghostFactory = new GhostFactory();
+
+        difficulty = 1;
+        spawnQuantity = 1;
+        spawnInterval = 5f;
+
+        for (int i = 0; i < 10; i++)
+        {
+            NormalSpawn(); //clone 10 at the beginning
+        }
+        
+        EventMgr.Instance.AddEventListener("EnemyDead", ReduceEnemyCount);
+        StartCoroutine(SpawnEnemyCoroutine());
+        StartCoroutine(DifficultyUp());
+        StartCoroutine(SpawnEliteCoroutine());
+    }
+    
+
+    private void OnDestroy()
+    {
+        EventMgr.Instance.RemoveEventListener("EnemyDead", ReduceEnemyCount);
+        StopCoroutine(SpawnEnemyCoroutine());
+        StopCoroutine(DifficultyUp());
+        StopCoroutine(SpawnEliteCoroutine());
+    }
+    
+    private IEnumerator SpawnEnemyCoroutine()
+    {
+        while (true)
+        {
+            if (enemyCount < enemySize)
+            {
+                NormalSpawn();
+            }
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+    private IEnumerator DifficultyUp()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(60f);
+            difficulty += 0.2f;
+            spawnInterval *= 0.95f;
+            spawnQuantity += 1;
+            enemySize += 5;
+        }
+    }
+
+    private IEnumerator SpawnEliteCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(300f);
+            EliteSpawn();
+        }
+    }
+    
+    
+    
+
+    
+    void NormalSpawn()
+    {
+        int randomizer = Random.Range(0,10);
+        if(randomizer < 8) {
             wolfFactory.CreateAsync(GetRandomSpawnPosition(), (wolf) =>
             {
                 //use reference 'wolf' here if you want to use the wolf spawned
                 enemyCount++;
                 wolf.transform.parent = transform;
+                wolf.GetComponent<Wolf>().health *= difficulty;
             });
         }
         else {
@@ -31,69 +101,100 @@ public class EnemyCloner : MonoBehaviour
             {
                 enemyCount++;
                 ghost.transform.parent = transform;
+                ghost.GetComponent<Ghost>().health *= difficulty;
+            });
+        }
+    }
+
+    private void EliteSpawn()
+    {
+        int randomizer = Random.Range(0,10);
+        if(randomizer < 5) {
+            wolfFactory.CreateAsync(GetRandomSpawnPosition(), (wolf) =>
+            {
+                //use reference 'wolf' here if you want to use the wolf spawned
+                enemyCount++;
+                wolf.transform.parent = transform;
+                Wolf wolfScript = wolf.GetComponent<Wolf>();
+                wolfScript.health *= eliteMultiplier * difficulty;
+                wolfScript.maxHealth *= eliteMultiplier * difficulty;
+                wolfScript.dropEvent = "DropWeaponUnlock";
+                wolf.transform.localScale *= 2;
+            });
+        }
+        else {
+            ghostFactory.CreateAsync(GetRandomSpawnPosition(), (ghost) =>
+            {
+                enemyCount++;
+                ghost.transform.parent = transform;
+                Ghost ghostScript = ghost.GetComponent<Ghost>();
+                ghostScript.health *= eliteMultiplier * difficulty;
+                ghostScript.maxHealth *= eliteMultiplier * difficulty;
+                ghostScript.dropEvent = "DropWeaponUnlock";
+                ghost.transform.localScale *= 2;
             });
         }
     }
     
-    void Start()
-    {
-        wolfFactory = new WolfFactory();
-        
-        //***********************Any counting function should be moved into a centralized mgr later***************
-        EventMgr.Instance.AddEventListener("WolfDead", ReduceEnemyCount);
-        EventMgr.Instance.AddEventListener("WolfDead", CheckIfClone);
-
-        ghostFactory = new GhostFactory();
-
-        for (int i = 0; i < 10; i++)
+    
+    private Vector3 GetRandomSpawnPosition() {
+        float x, y;
+        float offset = 5f;
+        Vector3 randomSpawn = Vector3.zero;
+        Vector3 spawnPosition = Vector3.zero;
+        bool isHit = false;
+        // if SamplePosition fails, try again
+        while(!isHit)
         {
-            Clone(); //clone 10 at the beginning
+            int side = Random.Range(0, 4); //decide with side of the screen to spawn
+            switch (side)
+            {
+                case 0: //left
+                    x = 0;
+                    y = Random.Range(0f, Screen.height);
+                    randomSpawn = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+                    randomSpawn.x -= offset;
+                    break;
+                case 1: //right
+                    x = Screen.width;
+                    y = Random.Range(0f, Screen.height);
+                    randomSpawn = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+                    randomSpawn.x += offset;
+                    break;
+                case 2: //top
+                    y = Screen.height;
+                    x = Random.Range(0f, Screen.width);
+                    randomSpawn = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+                    randomSpawn.y += offset;
+                    break;
+                case 3: //bottom
+                    y = 0;
+                    x = Random.Range(0f, Screen.width);
+                    randomSpawn = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+                    randomSpawn.y -= offset;
+                    break;
+
+            }
+
+            randomSpawn.z = 0; //must do this otherwise after screen to world transform its z is the same as camera
+            // check if the spawn position is walkable
+            NavMeshHit hit;
+             isHit = NavMesh.SamplePosition(randomSpawn, out hit, 5f, 1 << NavMesh.GetAreaFromName("Walkable"));
+            
+             if(isHit){spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f);}
+             
         }
+        
+        return spawnPosition;
+
     }
     
-
-    private void OnDestroy()
-    {
-        EventMgr.Instance.RemoveEventListener("WolfDead", ReduceEnemyCount);
-        EventMgr.Instance.RemoveEventListener("WolfDead", CheckIfClone);
-    }
-
-    private Vector3 GetRandomSpawnPosition() {
-        // get random x and y with min radius 1 and max radius 1.3
-        float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2);
-        float radius = 1.2f;
-        float x = Mathf.Cos(angle) * radius;
-        float y = Mathf.Sin(angle) * radius;
-
-        // convert viewport coordinates to world coordinates
-        Vector3 randomSpawn = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 0));
-        randomSpawn.z = 0;
-
-        // check if the spawn position is walkable
-        NavMeshHit hit;
-        NavMesh.SamplePosition(randomSpawn, out hit, 60, 1 << NavMesh.GetAreaFromName("Walkable"));
-        Vector3 spawnPosition = new Vector3(hit.position.x, hit.position.y, 0f) * 0.95f;     // multiply by 0.9 since spawning on the edge of the nav surface doesn't work
-        
-        // if SamplePosition fails, try again
-        if(double.IsInfinity(spawnPosition.x) || double.IsInfinity(spawnPosition.y)) {
-            spawnPosition = GetRandomSpawnPosition();
-        }
-        return spawnPosition;
-    }
-
-    //***********************Any counting function should be moved into a centralized mgr later***************
     private void ReduceEnemyCount()
     {
         enemyCount--;
     }
-
-    //*******************Any clone rule related functions should be moved into a centralized mgr later***************
-    private void CheckIfClone()
-    {
-        if(enemyCount < enemySize) {  //can add some sort of delay here using Invoke
-            Invoke(nameof(Clone), 5f);
-        }
-    }
+    
+    
     
     
 }
