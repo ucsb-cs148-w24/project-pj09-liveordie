@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class Exp : Drop
 {
+
     private float expValue = 1f;
+
     public Image img;
     
     protected override void TriggerEffect()
     {
         EventMgr.Instance.EventTrigger("ExpOrbPicked", expValue);
+
         AudioMgr.Instance.PlayAudio("OnClick", false);
     }
     
