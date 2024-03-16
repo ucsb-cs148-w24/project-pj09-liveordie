@@ -32,6 +32,9 @@ public class StartScreenPanel:BasePanel
                 Application.Quit(); //only works after deploying
                 // print("QuitGame");
                 break;
+            case "CreditsButton":
+                UIMgr.Instance.ShowPanel<CreditsPanel>("CreditsPanel", E_PanelLayer.Top);
+                break;
             default:
                 break;
         }
