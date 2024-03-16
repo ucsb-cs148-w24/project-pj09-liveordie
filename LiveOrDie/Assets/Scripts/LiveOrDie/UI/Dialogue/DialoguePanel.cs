@@ -41,10 +41,15 @@ public class DialoguePanel : BasePanel
                 NextLine();
                 //imageIndex += 1;
                 //imageUI.sprite = dialogueImages[imageIndex].image;
-                if (imageIndex < 9)
+                if (imageIndex < 8)
                 {
-                    imageIndex += 1;
+                    
                     imageUI.sprite = dialogueImages[imageIndex].image;
+                    imageIndex += 1;
+                }
+                else
+                {
+                    GoToScene("StartScene");
                 }
                 
             }
@@ -52,6 +57,7 @@ public class DialoguePanel : BasePanel
             {
                 StopAllCoroutines();
                 textComponent.text = lines[index];
+                
             }
         }
     }
@@ -60,6 +66,7 @@ public class DialoguePanel : BasePanel
     {
         index = 0;
         StartCoroutine(TypeLine());
+
     }
 
     IEnumerator TypeLine()
@@ -91,22 +98,26 @@ public class DialoguePanel : BasePanel
         {
             case "SkipButton":
                 UIMgr.Instance.HidePanel("DialoguePanel");
+                GoToScene("StartScene");
                 break;
             default:
                 break;
         }
     }
 
-    //private void GoToScene(string sceneName)
-    //{
-    //    UIMgr.Instance.ShowPanel<StartScreenPanel>("StartScreenPanel", E_PanelLayer.Top); 
+    private void GoToScene(string sceneName)
+    {
+        UIMgr.Instance.ShowPanel<LoadingPanel>("LoadingPanel", E_PanelLayer.Top); //show loading panel
+        PoolMgr.Instance.Clear(); //empty the pool to prevent null reference
 
-    //    SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
-    //    {
-    //        EventMgr.Instance.EventTrigger("ProgressBar", 1f);
+        SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
+        {
+            EventMgr.Instance.EventTrigger("ProgressBar", 1f);
+            EventMgr.Instance.EventTrigger("Load" + sceneName + "Completed"); //for later usage 
 
-    //    });
-    //}
+
+        });
+    }
 
 
 }
