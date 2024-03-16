@@ -100,8 +100,8 @@ public class Player : MonoBehaviour
         healthbar.setSensitiveState(false); // reset
         EventMgr.Instance.EventTrigger("MagicMushroom", false); // reset
         EventMgr.Instance.EventTrigger("Nausea", false);
-        if(bigScaling == true) gameObject.transform.localScale /= 2; 
-        if(smallScaling == true) gameObject.transform.localScale *= 3; 
+        if(bigScaling == true) gameObject.transform.localScale /= 3; 
+        if(smallScaling == true) gameObject.transform.localScale *= 2; 
         bigScaling = false;
         smallScaling = false;
     }
