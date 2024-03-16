@@ -11,6 +11,7 @@ public class CharacterStat
     {
         get { 
             if (isDirty || oldBaseValue != baseValue) {
+                oldBaseValue = baseValue;
                 _value = CalculateValue();
                 isDirty = false;
             }

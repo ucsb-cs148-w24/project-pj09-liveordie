@@ -50,6 +50,7 @@ public class PWSAttackBehaviour : AttackBehaviourBase
         AudioMgr.Instance.PlayAudio("pws_sfx",false);
         while (elapsedTime < swingTime)
         {
+            if(!p1Transform || !p2Transform || !pwsRb) yield break;
             float t = elapsedTime / swingTime; // Normalized time between 0 and 1
             float currentRotation = Mathf.Lerp(startRotation, targetRotation, t);
             pwsRb.MoveRotation(currentRotation);

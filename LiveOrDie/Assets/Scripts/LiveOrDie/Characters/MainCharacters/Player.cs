@@ -169,8 +169,7 @@ public class Player : MonoBehaviour
                 break;
             case E_LevelUpChoice.Regeneration:
                 maxHealth.baseValue *= 1.05f;
-                characterHealth.baseValue += maxHealth.baseValue / 2;
-                characterHealth.baseValue = Math.Min(characterHealth.baseValue , maxHealth.baseValue);
+                healthbar.IncreaseHealth(maxHealth.baseValue / 2);
                 healthbar.RefreshHealthUI();
                 break;
             case E_LevelUpChoice.Siphon:

@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LiveOrDie/StoryScene.unity
+    guid: 316902a8ac8d8d24487fd7c256b87c2b
+  - enabled: 1
     path: Assets/Scenes/LiveOrDie/StartScene.unity
     guid: d014a0874b6ee974e8a42f83384c00a5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test/UITest/PauseMenuTest/PauseMenuTest.unity
     guid: 7d3a169b7f8f90f4c878fa6d54b99804
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test/UITest/StartScreen/StartScreenTest.unity
     guid: d93572e5c5c0a46aab610f467133c901
   - enabled: 1
