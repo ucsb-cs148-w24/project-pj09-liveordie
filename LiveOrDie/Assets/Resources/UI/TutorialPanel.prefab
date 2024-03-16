@@ -286,7 +286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 165.20627, y: 0.0000022054}
+  m_AnchoredPosition: {x: 176.7, y: 0.0000022054}
   m_SizeDelta: {x: 619.4706, y: 80.1099}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2171657821118502072
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: swings a circle
+  m_text: swings in a circle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1aa8e7a62d09a341948aa929041b345, type: 2}
   m_sharedMaterial: {fileID: 1821658731017909026, guid: b1aa8e7a62d09a341948aa929041b345, type: 2}
@@ -1537,7 +1537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -268, y: -224}
+  m_AnchoredPosition: {x: -286, y: -224}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3856873696169813235
