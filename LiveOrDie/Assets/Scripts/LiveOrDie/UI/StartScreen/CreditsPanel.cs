@@ -9,7 +9,7 @@ public class CreditsPanel : BasePanel
         switch (buttonName)
         {
             case "BackButton":
-                AudioMgr.Instance.PlayAudio("OnClick", false);
+                //AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.HidePanel("CreditsPanel");
                 break;
             default:
