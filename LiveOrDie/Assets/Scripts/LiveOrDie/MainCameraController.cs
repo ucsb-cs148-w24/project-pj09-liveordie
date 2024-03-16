@@ -8,13 +8,21 @@ public class MainCameraController : MonoBehaviour
     public float smoothTime = 0.5f;
     private Vector2 centerPoint;
     private Vector2 velocity;
-
-    void Start()
-    {
+    private bool isShaking;
+    private float shakeAmount = 0.5f;
+    private void HandleNausea(bool handle){
+        isShaking = handle;
+    }
+    void Start(){
+        isShaking = false;
+        EventMgr.Instance.AddEventListener<bool>("Nausea", HandleNausea);
         if(obj1 && obj2){
             centerPoint = (obj1.position + obj2.position) / 2f;
             transform.position = centerPoint;
         }
+    }
+    void onDisable(){
+        EventMgr.Instance.RemoveEventListener<bool>("Nausea", HandleNausea);
     }
 
     // Update is called once per frame
@@ -24,6 +32,9 @@ public class MainCameraController : MonoBehaviour
             centerPoint = (obj1.position + obj2.position) / 2f;
             transform.position = Vector2.SmoothDamp(transform.position, centerPoint, ref velocity, smoothTime);
             transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+            if(isShaking){
+                transform.localPosition = transform.position + Random.insideUnitSphere * shakeAmount;
+            }
         }
     }
 }
