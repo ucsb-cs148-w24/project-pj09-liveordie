@@ -13,7 +13,7 @@ public class IncenseBurner : StaticWeapon
 
     public override void Initialize()
     {
-        weaponDamage = new CharacterStat(baseValue: 2.0f, minValue: 0.0f, maxValue: -1.0f);
+        weaponDamage = new CharacterStat(baseValue: 3.0f, minValue: 0.0f, maxValue: -1.0f);
         weaponRate = new CharacterStat(baseValue: 20f, minValue: 1.0f, maxValue: -1.0f);
         staticRange = new CharacterStat(baseValue: 1.0f, minValue: 0.5f, maxValue: 5.0f);
         staticRate = new CharacterStat(baseValue: 4.0f, minValue: 1.0f, maxValue: -1.0f);

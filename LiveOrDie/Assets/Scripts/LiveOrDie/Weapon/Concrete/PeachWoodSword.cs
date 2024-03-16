@@ -12,7 +12,7 @@ public class PeachWoodSword : MeleeWeapon
 
     public override void Initialize() 
     {
-        weaponDamage = new CharacterStat(baseValue: 1.0f, minValue: 0.0f, maxValue: -1.0f);
+        weaponDamage = new CharacterStat(baseValue: 1.5f, minValue: 0.0f, maxValue: -1.0f);
         weaponRate = new CharacterStat(baseValue: 5.0f, minValue: 0.01f, maxValue: -1.0f);
         meleeRange = new CharacterStat(baseValue:1.0f, minValue: 0.5f, maxValue: 5.0f);
         meleeSwingTime = new CharacterStat(baseValue:2.0f, minValue: 0.5f, maxValue: -1);
@@ -65,7 +65,7 @@ public class PeachWoodSword : MeleeWeapon
     {
         if(!player1Transform || !player2Transform) return;
         PoolMgr.Instance.GetObjAsync("Prefabs/Weapons/PeachWoodSwordAttack", (sword) => {
-            if(!sword) return;
+            if(!sword || !player1Transform || !player2Transform) return;
             sword.transform.position = (player1Transform.position + player2Transform.position) / 2;
             sword.transform.parent = transform;
 

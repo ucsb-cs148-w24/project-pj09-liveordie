@@ -9,9 +9,14 @@ public class Wolf : Enemy
     private int points = 10; // how many points a wolf is worth
     
     private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
+    
+    [HideInInspector]
+    public string deathEvent = "EnemyDead";
+    public string dropEvent = "DropExp";
 
     public override void Initialize() {
         health = 10;
+        maxHealth = 10;
         damage = 1;
         SetTarget();
 
@@ -25,6 +30,10 @@ public class Wolf : Enemy
         enemyHealth = GetComponentInChildren<EnemyHealth>();
         enemyHealth.enemy = this; //assign itself to its sub component
         enemyHealth.Initialize();
+        
+        this.gameObject.transform.localScale = Vector3.one; //reset if elite
+        deathEvent = "EnemyDead";
+        dropEvent = "DropExp";
     }
 
     void OnEnable()
@@ -61,9 +70,9 @@ public class Wolf : Enemy
 
     protected override void Die()
     {
-        EventMgr.Instance.EventTrigger("WolfDead"); //trigger event for later usage
+        EventMgr.Instance.EventTrigger(deathEvent); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
-        EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
+        EventMgr.Instance.EventTrigger(dropEvent, this.gameObject.transform.position);
         PoolMgr.Instance.PushObj("Prefabs/Wolf",this.gameObject); //push gameObject back to pool
     }
 }

@@ -11,15 +11,20 @@ public class PausePanel : BasePanel
         switch (buttonName)
         {
             case "SettingsButton":
-                AudioMgr.Instance.PlayAudio("OnClick", false);
+                //AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.ShowPanel<SettingsPanel>("SettingsPanel", E_PanelLayer.Top); //show settings panel
                 break;
             
             case "ResumeButton":
-                AudioMgr.Instance.PlayAudio("OnClick", false);
+                //AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.HidePanel("PausePanel"); // hide pause panel
                 //return to the game ------------------
                 
+                break;
+
+            case "TutorialButton":
+                //AudioMgr.Instance.PlayAudio("OnClick", false);
+                UIMgr.Instance.ShowPanel<TutorialPanel>("TutorialPanel", E_PanelLayer.Top); //show settings panel
                 break;
             
             case "BackToMenuButton":
