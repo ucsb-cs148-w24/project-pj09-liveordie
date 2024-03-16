@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
 
     //stats fields stored in CharacterStat
     // [HideInInspector]
-    public CharacterStat speed, maxRadius, characterHealth, maxHealth, pickupRange;
+    public CharacterStat speed, maxRadius, characterHealth, maxHealth;
+    public CharacterStat pickupRange;
     [HideInInspector]
-    public StatModifier speedModifier, radiusModifier, healthModifier, maxHealthModifier, pickupRangeModifier;
+    public StatModifier speedModifier, radiusModifier, healthModifier, maxHealthModifier;
+    public StatModifier pickupRangeModifier;
     //some other possible stats
     //cooldown
     //pickRange
@@ -24,12 +26,14 @@ public class Player : MonoBehaviour
     private DistanceJoint2D dj; // Physics
     public SpriteRenderer render; // PLAYER SKIN
     private CircleCollider2D pickupBox;
+    private bool smallScaling, bigScaling;
 
     // REFERENCES
     [HideInInspector]
     public CharacterHealth healthbar;
     private CharacterMovement movement;
     // public functions
+
     public void EnforcePlayerEffect(string type){
         int amount;
         switch (type){
@@ -71,6 +75,18 @@ public class Player : MonoBehaviour
                 movement.RefreshRopeRadius();
                 pickupBox.radius = pickupRange.Value;
                 break;
+            case "goliath":
+                gameObject.transform.localScale *= 3;
+                speedModifier.value = -(speed.Value / 2); 
+                speed.AddModifier("Drugged Speed",speedModifier);
+                bigScaling = true;
+                break;
+            case "mouse":
+                gameObject.transform.localScale /= 2;
+                speedModifier.value = speed.Value *1.5f;
+                speed.AddModifier("Drugged Speed",speedModifier);
+                smallScaling = true;
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
@@ -83,6 +99,11 @@ public class Player : MonoBehaviour
         movement.ChangeDrunkState(false); // reset
         healthbar.setSensitiveState(false); // reset
         EventMgr.Instance.EventTrigger("MagicMushroom", false); // reset
+        EventMgr.Instance.EventTrigger("Nausea", false);
+        if(bigScaling == true) gameObject.transform.localScale /= 3; 
+        if(smallScaling == true) gameObject.transform.localScale *= 2; 
+        bigScaling = false;
+        smallScaling = false;
     }
     protected void OnEnable(){
         speed = new CharacterStat(baseValue: 3.0f, minValue: 1.0f);
@@ -98,6 +119,8 @@ public class Player : MonoBehaviour
         pickupRangeModifier = new StatModifier(StatModifierType.Flat, 0f, StatModifierOrder.BaseModifier);
 
         isDead = false;
+        smallScaling = false;
+        bigScaling = false;
         if(!(rb = gameObject.GetComponent<Rigidbody2D>())) 
             rb = gameObject.AddComponent<Rigidbody2D>();
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
