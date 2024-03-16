@@ -299,7 +299,10 @@ MonoBehaviour:
 
 
     Tileset and UI assets by Rekkimaru, Iskander (quasilyte),
-    and BDragon1727 on itch.io.'
+    and BDragon1727 on itch.io.
+
+
+    Music by Hiromi Uehara and Mooncake audio'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1aa8e7a62d09a341948aa929041b345, type: 2}
   m_sharedMaterial: {fileID: 1821658731017909026, guid: b1aa8e7a62d09a341948aa929041b345, type: 2}
