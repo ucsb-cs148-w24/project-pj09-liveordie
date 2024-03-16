@@ -13,6 +13,7 @@ public class ExpDropManager : MonoBehaviour
         
         //event type parameter - position of the exp
         EventMgr.Instance.AddEventListener<Vector3>("DropExp", DropExp); 
+        EventMgr.Instance.AddEventListener<Vector3>("DropBigExp", DropBigExp);
     }
 
     private void OnDestroy()
@@ -22,10 +23,19 @@ public class ExpDropManager : MonoBehaviour
 
     private void DropExp(Vector3 pos)
     {
-        expFactory.CreateAsync(pos, (obj) =>
+        expFactory.CreateAsync(pos, (exp) =>
         {
-            // can access the exp obj here
+            exp.transform.localScale = Vector3.one/2;
+            exp.GetComponent<Exp>().expValue = 1f;
         });
     }
-    
+
+    private void DropBigExp(Vector3 pos)
+    {
+        expFactory.CreateAsync(pos, (exp) =>
+        {
+            exp.transform.localScale = Vector3.one;
+            exp.GetComponent<Exp>().expValue = 10f;
+        });
+    }
 }

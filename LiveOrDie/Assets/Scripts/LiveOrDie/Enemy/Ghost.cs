@@ -17,7 +17,7 @@ public class Ghost : Enemy
     public override void Initialize() {
         health = 5;
         maxHealth = 5;
-        damage = 10;
+        damage = 5;
         SetTarget();
 
         EnemyAttackAudioName="ghostAttack";

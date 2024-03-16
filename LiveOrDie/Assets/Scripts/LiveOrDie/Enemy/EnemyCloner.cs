@@ -8,9 +8,11 @@ public class EnemyCloner : MonoBehaviour
 {
     public int enemySize = 15;  //number of max enemies
     private int enemyCount = 0; //number of current enemies 
+    private int dragonCount = 0; //number of dragons
     
     private WolfFactory wolfFactory;
     private GhostFactory ghostFactory;
+    private DragonFactory dragonFactory;
 
     public float difficulty; //multiplier
     public int spawnQuantity; //the number of enemies to be spawned at once
@@ -22,6 +24,7 @@ public class EnemyCloner : MonoBehaviour
     {
         wolfFactory = new WolfFactory();
         ghostFactory = new GhostFactory();
+        dragonFactory = new DragonFactory();
 
         difficulty = 1;
         spawnQuantity = 1;
@@ -33,18 +36,22 @@ public class EnemyCloner : MonoBehaviour
         }
         
         EventMgr.Instance.AddEventListener("EnemyDead", ReduceEnemyCount);
+        EventMgr.Instance.AddEventListener("DragonDead", ReduceDragonCount);
         StartCoroutine(SpawnEnemyCoroutine());
         StartCoroutine(DifficultyUp());
         StartCoroutine(SpawnEliteCoroutine());
+        StartCoroutine(SpawnDragonCoroutine());
     }
     
 
     private void OnDestroy()
     {
         EventMgr.Instance.RemoveEventListener("EnemyDead", ReduceEnemyCount);
+        EventMgr.Instance.RemoveEventListener("DragonDead", ReduceDragonCount);
         StopCoroutine(SpawnEnemyCoroutine());
         StopCoroutine(DifficultyUp());
         StopCoroutine(SpawnEliteCoroutine());
+        StopCoroutine(SpawnDragonCoroutine());
     }
     
     private IEnumerator SpawnEnemyCoroutine()
@@ -75,12 +82,22 @@ public class EnemyCloner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(300f);
+            yield return new WaitForSeconds(90f);
             EliteSpawn();
         }
     }
     
-    
+    private IEnumerator SpawnDragonCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(300f);
+            if (dragonCount < 1) //spawn when there is no dragon, if play cannot kill it, they dont get a new one in 5 min
+            {
+                DragonSpawn();
+            }
+        }
+    }
     
 
     
@@ -93,7 +110,9 @@ public class EnemyCloner : MonoBehaviour
                 //use reference 'wolf' here if you want to use the wolf spawned
                 enemyCount++;
                 wolf.transform.parent = transform;
-                wolf.GetComponent<Wolf>().health *= difficulty;
+                Wolf wolfScript = wolf.GetComponent<Wolf>();
+                wolfScript.health *=  difficulty;
+                wolfScript.maxHealth *=  difficulty;
             });
         }
         else {
@@ -101,7 +120,9 @@ public class EnemyCloner : MonoBehaviour
             {
                 enemyCount++;
                 ghost.transform.parent = transform;
-                ghost.GetComponent<Ghost>().health *= difficulty;
+                Ghost ghostScript = ghost.GetComponent<Ghost>();
+                ghostScript.health *=  difficulty;
+                ghostScript.maxHealth *=  difficulty;
             });
         }
     }
@@ -118,7 +139,7 @@ public class EnemyCloner : MonoBehaviour
                 Wolf wolfScript = wolf.GetComponent<Wolf>();
                 wolfScript.health *= eliteMultiplier * difficulty;
                 wolfScript.maxHealth *= eliteMultiplier * difficulty;
-                wolfScript.dropEvent = "DropWeaponUnlock";
+                wolfScript.dropEvent = "DropBigExp";
                 wolf.transform.localScale *= 2;
             });
         }
@@ -130,11 +151,24 @@ public class EnemyCloner : MonoBehaviour
                 Ghost ghostScript = ghost.GetComponent<Ghost>();
                 ghostScript.health *= eliteMultiplier * difficulty;
                 ghostScript.maxHealth *= eliteMultiplier * difficulty;
-                ghostScript.dropEvent = "DropWeaponUnlock";
+                ghostScript.dropEvent = "DropBigExp";
                 ghost.transform.localScale *= 2;
             });
         }
     }
+
+    private void DragonSpawn()
+    {
+        dragonFactory.CreateAsync(GetRandomSpawnPosition(), (dragon) =>
+        {
+            dragonCount++;
+            dragon.transform.parent = transform;
+            Dragon dragonScript = dragon.GetComponent<Dragon>();
+            dragonScript.health *=  difficulty;
+            dragonScript.maxHealth *=  difficulty;
+        });
+    }
+    
     
     
     private Vector3 GetRandomSpawnPosition() {
@@ -192,6 +226,11 @@ public class EnemyCloner : MonoBehaviour
     private void ReduceEnemyCount()
     {
         enemyCount--;
+    }
+
+    private void ReduceDragonCount()
+    {
+        dragonCount--;
     }
     
     

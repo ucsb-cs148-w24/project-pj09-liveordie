@@ -27,7 +27,8 @@ public class Dragon : Enemy
     private Player currentTarget;
     private bool canAttack = true;
     public override void Initialize() {
-        health = 100;
+        health = 300;
+        maxHealth = 300;
         damage = 2;
         SetTargetDirection();
 
@@ -88,7 +89,7 @@ public class Dragon : Enemy
     {
         EventMgr.Instance.EventTrigger("DragonDead"); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
-        EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
+        EventMgr.Instance.EventTrigger("DropWeaponUnlock", this.gameObject.transform.position);
         PoolMgr.Instance.PushObj("Prefabs/Dragon",this.gameObject); //push gameObject back to pool
     }
 
