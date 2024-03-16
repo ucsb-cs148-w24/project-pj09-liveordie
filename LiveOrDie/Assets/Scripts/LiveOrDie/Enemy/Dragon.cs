@@ -36,6 +36,7 @@ public class Dragon : Enemy
         tailTransform =  GetComponentsInChildren<Transform>().ToList().FirstOrDefault(p => p.name=="tail end");
         headTransform =  GetComponentsInChildren<Transform>().ToList().FirstOrDefault(p => p.name=="head");
         render.material = originalMat;
+        EnemyAttackAudioName="DragonAttack";
 
         //subcomponents
         enemyHealth = GetComponentInChildren<EnemyHealth>();
@@ -104,7 +105,7 @@ public class Dragon : Enemy
         if (currentTarget != null && canAttack )
         {
             currentTarget.GetComponentInChildren<CharacterHealth>().DecreaseHealth(damage);
-            
+            AudioMgr.Instance.PlayAudio(EnemyAttackAudioName, false);
             canAttack = false;
             if(this.gameObject.activeSelf) StartCoroutine(AttackCoolDownCoroutine());
         }
