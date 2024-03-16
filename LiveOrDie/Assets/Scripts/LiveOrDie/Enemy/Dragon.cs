@@ -27,8 +27,8 @@ public class Dragon : Enemy
     private Player currentTarget;
     private bool canAttack = true;
     public override void Initialize() {
-        health = 300;
-        maxHealth = 300;
+        health = 150;
+        maxHealth = 150;
         damage = 2;
         SetTargetDirection();
 
