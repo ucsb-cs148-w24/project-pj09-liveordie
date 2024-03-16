@@ -608,22 +608,14 @@ MonoBehaviour:
     final resting place. Good luck. '
   textSpeed: 0.01
   dialogueImages:
-  - image: {fileID: 21300000, guid: e91b296aa8a1e4090b84258e5fead15e, type: 3}
+  - image: {fileID: 21300000, guid: 5eb1dc175d645480bbfa0a0b0a37551b, type: 3}
     dialog: 1
-  - image: {fileID: 21300000, guid: 8c399215e804a458bbbb60a8831b0240, type: 3}
+  - image: {fileID: 21300000, guid: 7ee780c52f99f4b16887dcd0328e1b77, type: 3}
     dialog: 1
-  - image: {fileID: 21300000, guid: 313f8bc800ae74c48beae6f78dd836c3, type: 3}
+  - image: {fileID: 21300000, guid: 32d6110f630c94120a903489e3ca38f9, type: 3}
     dialog: 1
-  - image: {fileID: 21300000, guid: 93ca7996b9e994bbaa99e031c4150b8c, type: 3}
+  - image: {fileID: 21300000, guid: be619f39b5517486499d500ae4084758, type: 3}
     dialog: 1
-  - image: {fileID: 21300000, guid: 93ca7996b9e994bbaa99e031c4150b8c, type: 3}
-    dialog: 1
-  - image: {fileID: 21300000, guid: 7e8ec4c4d6fc24a77a790e9fe0c91bb5, type: 3}
-    dialog: 1
-  - image: {fileID: 21300000, guid: 7e8ec4c4d6fc24a77a790e9fe0c91bb5, type: 3}
-    dialog: 1
-  - image: {fileID: 21300000, guid: 465c2228581b94861b98803d37419048, type: 3}
-    dialog: 1
-  - image: {fileID: 21300000, guid: 465c2228581b94861b98803d37419048, type: 3}
+  - image: {fileID: 21300000, guid: 1b9bf25eb193e40c0a3155f6f2743376, type: 3}
     dialog: 1
   imageUI: {fileID: 0}
