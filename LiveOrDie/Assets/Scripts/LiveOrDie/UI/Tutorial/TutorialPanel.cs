@@ -12,7 +12,7 @@ public class TutorialPanel : BasePanel
         {
             case "BackButton":
                 print("back");
-                AudioMgr.Instance.PlayAudio("OnClick", false);
+                //AudioMgr.Instance.PlayAudio("OnClick", false);
                 UIMgr.Instance.HidePanel("TutorialPanel");
                 break;
             default:
