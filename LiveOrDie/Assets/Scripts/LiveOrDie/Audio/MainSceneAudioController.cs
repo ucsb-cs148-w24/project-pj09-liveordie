@@ -8,8 +8,9 @@ public class MainSceneAudioController : MonoBehaviour
 {
     private void Start()
     {
+        AudioMgr.Instance.PlayAudio("gong",false);
 
-        //AudioMgr.Instance.PlayBGM("MainSceneBGM1");
+        AudioMgr.Instance.PlayBGM("MainSceneBGM2");
     }
 
     private void OnDestroy()

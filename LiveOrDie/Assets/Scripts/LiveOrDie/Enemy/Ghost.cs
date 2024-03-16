@@ -10,10 +10,13 @@ public class Ghost : Enemy
 
     private CharacterMovement mostRecentAttacker; // keeps track of the last person who attacked them
 
-
+    [HideInInspector]
+    public string deathEvent = "EnemyDead";
+    public string dropEvent = "DropExp";
 
     public override void Initialize() {
         health = 5;
+        maxHealth = 5;
         damage = 10;
         SetTarget();
 
@@ -27,6 +30,10 @@ public class Ghost : Enemy
         enemyHealth = GetComponentInChildren<EnemyHealth>();
         enemyHealth.enemy = this; //assign itself to its sub component
         enemyHealth.Initialize();
+        
+        this.gameObject.transform.localScale = Vector3.one; //reset if elite
+        deathEvent = "EnemyDead";
+        dropEvent = "DropExp";
     }
 
     void OnEnable()
@@ -62,9 +69,9 @@ public class Ghost : Enemy
 
     protected override void Die()
     {
-        EventMgr.Instance.EventTrigger("GhostDead"); //trigger event for later usage
+        EventMgr.Instance.EventTrigger(deathEvent); //trigger event for later usage
         EventMgr.Instance.EventTrigger("IncrementScore", points);
-        EventMgr.Instance.EventTrigger("DropExp", this.gameObject.transform.position);
+        EventMgr.Instance.EventTrigger(dropEvent, this.gameObject.transform.position);
         PoolMgr.Instance.PushObj("Prefabs/Ghost",this.gameObject); //push gameObject back to pool
     }
 }

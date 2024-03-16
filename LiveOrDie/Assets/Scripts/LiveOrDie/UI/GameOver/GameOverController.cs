@@ -11,6 +11,8 @@ public class GameOverController : MonoBehaviour
     private void StartShow(){
         if(!showing){
             PoolMgr.Instance.Clear();
+            AudioMgr.Instance.StopBGM();
+            AudioMgr.Instance.PlayAudio("GameOver", false);
             UIMgr.Instance.ShowPanel<GameOverPanel>("GameOverPanel", E_PanelLayer.Top, (panel) =>
             {
                 panel.SetScore(score);

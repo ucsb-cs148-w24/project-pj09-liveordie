@@ -19,7 +19,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthbar.fillAmount = enemy.health/fillBar;
+        healthbar.fillAmount = enemy.health/enemy.maxHealth;
         if(enemy.health > 2){
             healthbar.color = healthy;
         }
