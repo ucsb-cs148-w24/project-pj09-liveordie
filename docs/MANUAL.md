@@ -90,4 +90,3 @@ Both players' characters will automatically spew fire bullets at a regular pulse
 
 </div>
 
-https://docs.google.com/document/d/1ggBtRV6l86XfoMUNAIYWp7szKj2LHjQti79RbBlAcXw/edit?usp=sharing
