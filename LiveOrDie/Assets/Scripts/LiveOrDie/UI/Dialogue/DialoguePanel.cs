@@ -41,7 +41,7 @@ public class DialoguePanel : BasePanel
                 NextLine();
                 //imageIndex += 1;
                 //imageUI.sprite = dialogueImages[imageIndex].image;
-                if (imageIndex < 9)
+                if (imageIndex < dialogueImages.Length - 1)
                 {
                     imageIndex += 1;
                     imageUI.sprite = dialogueImages[imageIndex].image;
@@ -81,7 +81,8 @@ public class DialoguePanel : BasePanel
         }
         else
         {
-            gameObject.SetActive(false);
+            GoToScene("StartScene");
+            UIMgr.Instance.HidePanel("DialoguePanel");
         }
     }
 
@@ -90,6 +91,7 @@ public class DialoguePanel : BasePanel
         switch(buttonName)
         {
             case "SkipButton":
+                GoToScene("StartScene");
                 UIMgr.Instance.HidePanel("DialoguePanel");
                 break;
             default:
@@ -97,16 +99,14 @@ public class DialoguePanel : BasePanel
         }
     }
 
-    //private void GoToScene(string sceneName)
-    //{
-    //    UIMgr.Instance.ShowPanel<StartScreenPanel>("StartScreenPanel", E_PanelLayer.Top); 
-
-    //    SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
-    //    {
-    //        EventMgr.Instance.EventTrigger("ProgressBar", 1f);
-
-    //    });
-    //}
+    private void GoToScene(string sceneName)
+    {
+       UIMgr.Instance.ShowPanel<LoadingPanel>("LoadingPanel", E_PanelLayer.Top); 
+       SceneMgr.Instance.LoadSceneAsync(sceneName, () =>
+       {
+           EventMgr.Instance.EventTrigger("ProgressBar", 1f);
+       });
+    }
 
 
 }
