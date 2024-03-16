@@ -639,3 +639,6 @@ MonoBehaviour:
     dialog: 1
   - image: {fileID: 21300000, guid: 465c2228581b94861b98803d37419048, type: 3}
     dialog: 1
+  - image: {fileID: 21300000, guid: 465c2228581b94861b98803d37419048, type: 3}
+    dialog: 1
+  imageUI: {fileID: 0}
