@@ -594,33 +594,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 8187768372771914537}
   lines:
-  - In ancient Xiangxi, China, although life was hard due to poor transportation,
-    local people were known for their diligence.
-  - Two friends, Zhang San and Li Si. As soon as they came of age, they decided to
-    seek a living elsewhere.
-  - After a half-month of arduous journey, they finally arrived at the prosperous
-    and big city of Mingchuan. With their resilience and hard work, they managed
-    to open a restaurant within just six months, quickly winning over customers.
-  - However, fate didn't seem to favor them. A sudden epidemic swept through Mingchuan,
-    infecting most of the city's population, with a very low cure rate. During this
-    difficult time, Zhang San and Li Si took the initiative to provide food for the
-    sick free of charge.
-  - Unfortunately, due to prolonged exposure to the patients, they fell victim to
-    the epidemic. After their deaths, the neighbors, grateful for their selfless
-    contributions, decided to follow the tradition of "fallen leaves returning to
-    the root," hoping to send their bodies back to their hometown in Hunan.
-  - But the journey was long, and since they had died of the epidemic, no transport
-    agency was willing to take on the task. Out of desperation, the locals raised
-    funds and hired a corpse driver to transport their bodies.
-  - 'However, during the long journey, the bodies of Zhang San and Li Si were accidentally
-    lost. '
-  - ' Just when it seemed impossible to complete their final journey home, the King
-    of Hell, moved by their good deeds in life, granted you and your partner a special
-    opportunity: to help them complete their last journey and let their souls rest
-    in peace.'
-  - Now, you and your partner bear the important responsibility of ensuring that
-    these two virtuous individuals can "fallen leaves return to the root," returning
-    to their longing hometown.
+  - 'In rural China, the ancient custom of "corpse driving" involves transporting
+    the deceased back to their ancestral lands for burial, often involving the body
+    being made to "walk" back home. '
+  - 'Rooted in the belief that peace in the afterlife is found only in one''s roots,
+    this journey crosses mist-shrouded valleys and spirit-whispering mountains, symbolizing
+    a bridge between worlds.  '
+  - 'After the war, this practice brings your fallen squad home, but you and your
+    friend become separated from the group.  '
+  - 'Fortunately, you still have each other. A soul bond connects you; if one perishes,
+    both lose.  '
+  - 'Together, you must navigate and combat the wilderness''s dangers to reach your
+    final resting place. Good luck. '
   textSpeed: 0.01
   dialogueImages:
   - image: {fileID: 21300000, guid: e91b296aa8a1e4090b84258e5fead15e, type: 3}
