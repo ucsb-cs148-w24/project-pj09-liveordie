@@ -1,17 +1,27 @@
 <div align="center">
    <h1> User Manual: Game Overview</h1>
+   <h2>Introduction</h2>
 </div>
 
 ---
 
-Live Or Die With Your Best Friend is a cooperative multiplayer game steeped in the ancient Chinese custom of corpse driving practiced under the night sky in Hunan and Sichuan provinces. This spectral journey, driven by the narrative of priests and artisans guiding the deceased - their puppet-like frames manipulated via bamboo poles, adds an eerie backdrop to our game. The objective of the players is to guide these corpses back to the afterlife, battling enemies along the path. 
+> _Live Or Die With Your Best Friend is a cooperative multiplayer game steeped in the ancient Chinese custom of corpse driving practiced under the night sky in Hunan and Sichuan provinces. This spectral journey, driven by the narrative of priests and artisans guiding the deceased - their puppet-like frames manipulated via bamboo poles, adds an eerie backdrop to our game. The objective of the players is to guide these corpses back to the afterlife, battling enemies along the path._
+
 
 ---
+<div align="left">
+   <h3>Product Purpose</h3>
+     <p> We like Game + We make Game = We play Game. We share Game + Everyone Game + Every Like Game = Everyone Happy</p>
 
+   <h3>Intended User Audience</h3>
+      <p>This game is designed for those who crave adventure wish to share one with their best friend. Together, they must fight against enemies for their virtual survival. Collaboration is essential as they traverse into the past as corpse drivers on their journey back home.</p>
+</div>
+
+---
+<h2>Game Features</h2>
 <div align="center">
-   <h2>Game Controls</h2>
-  <p>Two players share a single computer as they control distinct game characters. </p>
-   <p>Both players' characters will automatically spew fire bullets at a regular pulse directly in front of them to fend off enemies.</p>
+   <h3>Game Controls</h3>
+  <p>Two players share a single computer as they control distinct game characters. Both players' characters will automatically spew fire bullets at a regular pulse directly in front of them to fend off enemies.</p>
 </div>
 
 <div align="center" style="margin: 10px">
@@ -31,19 +41,17 @@ Live Or Die With Your Best Friend is a cooperative multiplayer game steeped in t
    </table>
 </div>
 
-  ---
-
-
 ---
+
 <div align="center">
-   <h2>Tutorial</h2>
+   <h3>Tutorial</h3>
   <img width="100%" alt="Screenshot 2024-03-16 at 12 24 48" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/a9b5c6b7-d60f-428a-851d-5686b0c51ede">
 </div>
 
 ---
 
 <div align="center">
-   <h2>Enemies</h2>
+   <h3>Enemies</h3>
 </div>
 
 ---
@@ -59,7 +67,7 @@ Live Or Die With Your Best Friend is a cooperative multiplayer game steeped in t
 ---
 
 <div align="center">
-   <h2>Drops</h2>
+   <h3>Drops</h3>
 </div>
 
 ---
@@ -86,7 +94,7 @@ Live Or Die With Your Best Friend is a cooperative multiplayer game steeped in t
 ---
 
 <div align="center">
-   <h2>Choose Your Weapons</h2>
+   <h3>Choose Your Weapons</h3>
 </div>
 
 ---
