@@ -6,14 +6,15 @@ ________________________________________________________________________________
 - Pre-start scenes including setting menu
 - ideas about the game development
 - ideas and UI about weapons
+- Storyboard/Motivation scene development
   
 ## Contributions: Rachel Jiang
 ______________________________________________________________________________________
 ### Main Contributions
-- Testing/QA: Creating GameAssembly files/Tests
+- Testing/QA: GameAssembly files/Tests
 - Health, Rope, and Movement Scripts
 - Refactoring Player Scripts
-- Creating Mystery Drop Feature
+- Random Mystery Drops (Talisman & Peach effects)
 
 
 ## Contributions: Sean Oh
@@ -23,6 +24,7 @@ ________________________________________________________________________________
 - Add pathfinding to enemies
 - Refactor/restructuring for enemies
 - Player weapons system + UI
+- Standardize UI/aesthetics
 
 
 ## Contributions: Thomas Harbeck
@@ -30,7 +32,8 @@ ________________________________________________________________________________
 ### Main Contributions
 - Player/Enemy Attack player framework
 - Design of Wolf, Ghost, Fire, Spirit sprites + animations
-- Designed Ghost prefab
+- Designed Ghost & Dragon prefab
+- Enemy & Player Animations
 
 
 ## Contributions: Frank Zhong
@@ -48,7 +51,8 @@ ________________________________________________________________________________
 - Start Screen, pause menu, loading panel UI and scripts
 - General code refactor
 - Experience and drop system
-- Player leveling system
+- Player leveling system + Elite enemy scripts
+- Dragon scripts
 
 
 ## Contributions: Cindy Lin
