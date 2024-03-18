@@ -1,5 +1,35 @@
 # System Architecture
-- Our project follows the high level idea of ECS (Entity-Component-System) framework partially provided by the interal Unity editor system, which is mainly embodied the way we assmeble gameobjects and system designs. At the same time, we also tried to follow the MVC framework to separate the UI and data containers, and incorporated OOP for class abstractions. 
+- Our project follows the high level idea of ECS (Entity-Component-System) framework partially provided by the interal Unity editor system, which is mainly embodied the way we assmeble gameobjects and system designs. At the same time, we also tried to follow the MVC framework to separate the UI and data containers, and incorporated OOP for class abstractions.
+
+## Main Scene Structure/Hierarchy
+<img align="center" width="100%" alt="Screenshot 2024-03-18 at 09 16 55" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/2f9b7c3b-5d03-472a-97ab-372bb334c2e8">
+
+--------
+
+## Scripting LifeCycle
+
+<table align="center">
+  <tr align="center">
+    <th>Unity LifeCycle</th>
+    <th>Model-View Controller Design</th>
+  </tr>
+  <tr align="center">
+    <td> <img width="100%" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/179781ee-ecd3-49c7-834e-a8b9ee39c21c"> </td>
+    <td> <img width="50%" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/a193d844-a821-47de-89c1-0c33dec60d0a"> </td>
+  </tr>
+  <tr align="center">
+    <td> <a href="https://vionixstudio.com/2020/11/06/unity-awake-vs-start-what-is-the-difference/">Image Source</a> </td>
+    <td> <a href="https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/">Image Source</a> </td>
+  </tr>
+</table>
+
+--------
+
+## Jason's Toolkit
+
+<img align="center" width="100%" alt="Screenshot 2024-03-18 at 09 36 40" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/0733ccac-3aa6-4b44-b8d6-1e083abb4e0a">
+
+--------
 
 # Team Decisions
 - In our second meeting, we tried to flesh out some of the core game mechanics, decided the genre of the game.  
