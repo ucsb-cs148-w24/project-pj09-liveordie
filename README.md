@@ -39,8 +39,10 @@ Deployed on Unity Play: [link](https://play.unity.com/mg/other/webgl-builds-3903
 
 
 
-<div align="center">
-  <img width="80%"  src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/455e62ce-2ada-4509-8b27-b2082272da6d">
+<div align="center" display="flex">
+  <img width="10%"  src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/6f98566d-ddb2-485f-bbda-5a99c7d69c2e">
+  <img width="70%"  src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/455e62ce-2ada-4509-8b27-b2082272da6d">
+  <img width="10%"  src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/5bd61633-04a8-45bd-bc50-23916fa36bac">
 </div>
 
 ## User Roles and Permissions:
