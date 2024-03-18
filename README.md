@@ -4,7 +4,7 @@ _This game is designed for two players connected by an inelastic rope. Together,
 
 
 ## Storyline
-In rural China, the ancient custom of "corpse driving" involves transporting the deceased back to their ancestral lands for burial, often involving the body being made to "walk" back home. Rooted in the belief that peace in the afterlife is found only in one's roots, this journey crosses mist-shrouded valleys and spirit-whispering mountains, symbolizing a bridge between worlds. After the war, this practice brings your fallen squad home, but you and your friend become separated from the group. Fortunately, you still have each other. A soul bond connects you; if one perishes, both lose. Together, you must navigate and combat the wilderness's dangers together to reach your final resting place.
+In rural China, the ancient custom of "corpse driving" involves transporting the deceased back to their ancestral lands for burial, often involving the body being made to "walk" back home. Rooted in the belief that peace in the afterlife is found only in one's roots, this journey crosses mist-shrouded valleys and spirit-whispering mountains, symbolizing a bridge between worlds. After the war, this practice brings your fallen squad home, but you and your friend become separated from the group. Fortunately, you still have each other. A soul bond connects you; you cannot be too far away from each other; if one perishes, both lose. Together, you must navigate and combat the wilderness's dangers together to reach your final resting place.
 
 
 <img src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/blob/main/LiveOrDie/Assets/ArtResources/concept(with%20wagon).webp" width="100%" height="100%">
