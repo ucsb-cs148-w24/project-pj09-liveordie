@@ -38,6 +38,14 @@ https://github.com/ucsb-cs148-w24/project-pj09-liveordie/blob/main/team/sprint01
 - In our first meeting after the mvp, we decided to add more concrete gameplay features and refactor our code to make the system more flexible and expandable.  
 https://github.com/ucsb-cs148-w24/project-pj09-liveordie/blob/main/team/sprint02/lect09.md  
 
+## Script Refactoring PRs
+
+#### https://github.com/ucsb-cs148-w24/project-pj09-liveordie/pull/135
+#### https://github.com/ucsb-cs148-w24/project-pj09-liveordie/pull/111
+#### https://github.com/ucsb-cs148-w24/project-pj09-liveordie/pull/91
+
+--------
+
 # User Flow
 The user flow for our product is fairly simple and linear. 
 - Players will first see a starting menu with Start, Settings and Quit buttons. 
