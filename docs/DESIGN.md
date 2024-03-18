@@ -11,15 +11,15 @@
 <table align="center">
   <tr align="center">
     <th>Unity LifeCycle</th>
-    <th>Model-View Controller Design</th>
+    <th>ECS Design</th>
   </tr>
   <tr align="center">
-    <td> <img width="100%" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/179781ee-ecd3-49c7-834e-a8b9ee39c21c"> </td>
-    <td> <img width="50%" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/a193d844-a821-47de-89c1-0c33dec60d0a"> </td>
+    <td> <img width="80%" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/179781ee-ecd3-49c7-834e-a8b9ee39c21c"> </td>
+    <td> <img width="100%" src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/96a7e12a-cc50-4fee-8456-4dc68c96bd6c"> </td>
   </tr>
   <tr align="center">
     <td> <a href="https://vionixstudio.com/2020/11/06/unity-awake-vs-start-what-is-the-difference/">Image Source</a> </td>
-    <td> <a href="https://www.freecodecamp.org/news/the-model-view-controller-pattern-mvc-architecture-and-frameworks-explained/">Image Source</a> </td>
+    <td> <a href="https://docs.unity3d.com/Packages/com.unity.entities@0.1/manual/ecs_core.html">Image Source</a> </td>
   </tr>
 </table>
 
