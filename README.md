@@ -14,10 +14,30 @@ Deployed on Unity Play: [link](https://play.unity.com/mg/other/webgl-builds-3903
 
 ## Technology Stack: Unity Real-Time Dev Platform, which uses built-in assets and C#
 
-## Team:
-| Rachel Jiang  |Cindy Lin |Sean Oh |Frank Zhong        |  Thomas Harbeck |Jason Gu      | Baige He|
-| ------------- | --------- |------- |----------------- |---------------- |------------- |------------- |
-| racheljiang310 | @clin947 |@seannoh |@Frank404NotFound| @thomasjujube |   @wzqd        | @Bgggggh|
+## Team
+
+<table align="center">
+  <tr align="center">
+    <th>Rachel Jiang</th>
+    <th>Cindy Lin</th>
+    <th>Sean Oh</th>
+    <th>Frank Zhong</th>
+    <th>Thomas Harbeck</th>
+    <th>Jason Gu</th>
+    <th>Baige He</th>
+  </tr>
+  <tr align="center">
+    <td>@racheljiang310</td>
+    <td>@clin947</td>
+    <td>@seannoh</td>
+    <td>@Frank404NotFound</td>
+    <td>@thomasjujube</td>
+    <td>@wzqd</td>
+    <td>@Bgggggh</td>
+  </tr>
+</table>
+
+
 
 <div align="center">
   <img width="80%"  src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/assets/11906082/455e62ce-2ada-4509-8b27-b2082272da6d">
