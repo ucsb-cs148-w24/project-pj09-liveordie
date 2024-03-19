@@ -53,4 +53,10 @@ The user flow for our product is fairly simple and linear.
 - During the game, players are free to pause the game at any time. They can choose to adjust settings, back to the game or quit the game.
 - After one of the characters falls in the battle, the game ends and provides players with a game stats plane.
 - Players can then choose to restart the challenge or quit the game. 
-  
+
+--------
+
+# UI Choices
+- Consistency: Utilize pixelated visual elements throughout, incorporating pixel art and themes to maintain a cohesive and lightweight web game experience.
+- Informative Feedback: Provide players with immediate and clear feedback. For example, display damage numbers floating upwards when players are attacked, along with a decreasing health bar. Ensure enemies' attacks are accompanied by distinct sound effects. Incorporating pixel-themed beeps when players use items or gain experience points enhances the immersive experience.
+- Readability: To improve readability during fast-paced introductory scenes, switch from a pixelated font to a more traditional serif font. This adjustment will make text easier to read when it appears rapidly on the screen.
