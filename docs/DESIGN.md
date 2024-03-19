@@ -56,7 +56,7 @@ The user flow for our product is fairly simple and linear.
 
 --------
 
-# UI Choices
+# UI Design
 - Consistency: Utilize pixelated visual elements throughout, incorporating pixel art and themes to maintain a cohesive and lightweight web game experience.
 - Informative Feedback: Provide players with immediate and clear feedback. For example, display damage numbers floating upwards when players are attacked, along with a decreasing health bar. Ensure enemies' attacks are accompanied by distinct sound effects. Incorporating pixel-themed beeps when players use items or gain experience points enhances the immersive experience.
 - Readability: To improve readability during fast-paced introductory scenes, switch from a pixelated font to a more traditional serif font. This adjustment will make text easier to read when it appears rapidly on the screen.
