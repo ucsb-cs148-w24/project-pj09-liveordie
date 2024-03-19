@@ -57,6 +57,14 @@ The user flow for our product is fairly simple and linear.
 --------
 
 # UI Design
-- Consistency: Utilize pixelated visual elements throughout, incorporating pixel art and themes to maintain a cohesive and lightweight web game experience.
-- Informative Feedback: Provide players with immediate and clear feedback. For example, display damage numbers floating upwards when players are attacked, along with a decreasing health bar. Ensure enemies' attacks are accompanied by distinct sound effects. Incorporating pixel-themed beeps when players use items or gain experience points enhances the immersive experience.
-- Readability: To improve readability during fast-paced introductory scenes, switch from a pixelated font to a more traditional serif font. This adjustment will make text easier to read when it appears rapidly on the screen.
+- Consistency: Ensure the game maintains a unified aesthetic by incorporating pixelated visuals, pixel art, and themes consistently across all elements. This approach contributes to a cohesive and engaging lightweight web game experience that captivates players with its nostalgia and simplicity.
+- Informative Feedback: Deliver immediate and intuitive feedback to players. Display damage indicators, such as floating numbers, to visually represent harm to the player character, coupled with a dynamically decreasing health bar. Complement enemy attacks with distinctive sound effects to enhance gameplay immersion. Utilize pixel-themed sound cues for actions like item usage or experience gain, reinforcing the game's pixel art style and providing a seamless interactive experience.
+- Readability: Enhance text readability, especially during fast-paced introductory scenes, by transitioning from pixelated fonts to more legible, traditional serif fonts. This modification ensures that rapidly appearing text is easily readable, allowing players to quickly grasp story elements and instructions without strain.
+- Aesthetic Choices: Incorporate a unique blend of fusion jazz tracks from Asia to evoke the ambiance of 90's arcade machines, creating a nostalgic yet refreshing audio backdrop. Select fonts that symbolize both blood and ink brushes, marrying the elegance of ancient Chinese calligraphy with a horror theme to create a distinct visual identity. This careful fusion aims to combine traditional aesthetics with modern horror elements, achieving a balance between eeriness and a certain whimsical charm.
+
+--------
+
+# Future Development Directions
+- More weapons
+- Enhanced Cooperative Mechanisms: Currently, the rope mechanic primarily acts as a constraint between the two players, limiting their range of motion relative to each other. Future updates could introduce beneficial interactions using this mechanic. For instance, allowing one player to pull the other out of dangerous situations or pitfalls. This addition would not only add depth to the gameplay but also emphasize teamwork and strategic collaboration between players.
+- Exploration of Extended Reality (XR): Investigating the possibilities within extended reality could open up new avenues for immersive gameplay experiences. By leveraging XR technologies—encompassing virtual reality (VR), augmented reality (AR), and mixed reality (MR)—the game could offer players innovative ways to interact with the game world and each other. This exploration could lead to unique gameplay mechanics, enhanced immersion, and a richer narrative experience, potentially setting a new standard for interactive gaming.
