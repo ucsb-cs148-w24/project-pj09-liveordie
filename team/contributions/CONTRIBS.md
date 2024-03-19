@@ -41,7 +41,8 @@ ________________________________________________________________________________
 ### Main Contributions
 - Sound design, integrating BGM and SFX
 - Update UI and Audio framework
-- Start Screen and Pause Menu
+- Start Screen and Pause Menu, UI aesthetics
+- Intro Scene and scene connection
 
 
 ## Contributions: Jason Gu
