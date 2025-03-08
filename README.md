@@ -10,7 +10,7 @@ In rural China, the ancient custom of "corpse driving" involves transporting the
 <img src="https://github.com/ucsb-cs148-w24/project-pj09-liveordie/blob/main/LiveOrDie/Assets/ArtResources/concept(with%20wagon).webp" width="100%" height="100%">
 
 ## Deployment
-Deployed on Unity Play: [link](https://play.unity.com/mg/other/webgl-builds-390394)
+Deployed on Unity Play: [link](https://play.unity.com/en/games/d983cae9-9b8c-45c3-ba9a-351c7adde4b2/live-or-die-with-your-best-friend)
 
 ## Technology Stack: Unity Real-Time Dev Platform, which uses built-in assets and C#
 
